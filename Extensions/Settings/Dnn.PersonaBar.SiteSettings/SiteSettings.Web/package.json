@@ -42,6 +42,7 @@
     "webpack-dev-server": "1.14.1"
   },
   "dependencies": {
+    "dnn-file-upload": "^0.1.22",
     "dnn-flag": "^1.0.0"
   },
   "peerDependencies": {
