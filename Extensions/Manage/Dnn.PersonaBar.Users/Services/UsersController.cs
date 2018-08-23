@@ -334,6 +334,14 @@ namespace Dnn.PersonaBar.Users.Services
                 var user = Components.UsersController.GetUser(userId, PortalSettings, UserInfo, out response);
                 if (user == null)
                     return Request.CreateErrorResponse(response.Key, response.Value);
+
+                var masterPortalId = PortalController.GetEffectivePortalId(PortalId);
+
+                if (PortalId != masterPortalId)
+                {
+                    user.PortalID = masterPortalId;
+                }
+
                 var deleted = !user.IsDeleted && UserController.DeleteUser(ref user, true, false);
 
                 return !deleted
