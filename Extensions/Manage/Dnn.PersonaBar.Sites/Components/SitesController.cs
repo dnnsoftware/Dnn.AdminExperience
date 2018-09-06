@@ -576,7 +576,11 @@ namespace Dnn.PersonaBar.Sites.Components
                     if (ContentLocalizationEnabled)
                     {
                         var lc = new LocaleController();
-                        lc.PublishLanguage(intPortalId, objPortal.DefaultLanguage, true);
+                        var publishedLocales = lc.GetPublishedLocales(PortalSettings.PortalId);
+                        foreach(var locale in publishedLocales)
+                        {
+                            lc.ActivateLanguage(intPortalId, objPortal.CultureCode, true);
+                        }
                     }
 
                     //Redirect to this new site
