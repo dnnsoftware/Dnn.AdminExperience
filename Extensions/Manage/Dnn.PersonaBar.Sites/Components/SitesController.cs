@@ -573,14 +573,11 @@ namespace Dnn.PersonaBar.Sites.Components
                     // mark default language as published if content localization is enabled
                     var ContentLocalizationEnabled = PortalController.GetPortalSettingAsBoolean("ContentLocalizationEnabled", PortalSettings.PortalId,
                         false);
+                    
+                    LocaleController.Instance.PublishLanguage(intPortalId, PortalSettings.DefaultLanguage, true);
                     if (ContentLocalizationEnabled)
                     {
-                        var lc = new LocaleController();
-                        var publishedLocales = lc.GetPublishedLocales(PortalSettings.PortalId);
-                        foreach(var locale in publishedLocales)
-                        {
-                            lc.ActivateLanguage(intPortalId, objPortal.CultureCode, true);
-                        }
+                        PortalController.UpdatePortalSetting(intPortalId, "ContentLocalizationEnabled", Boolean.TrueString);
                     }
 
                     //Redirect to this new site
