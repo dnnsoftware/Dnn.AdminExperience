@@ -361,10 +361,16 @@ if (typeof dnn.controls === "undefined" || dnn.controls === null) { dnn.controls
                 return false;
             }
 
+            var defaultPermission = this.data.permissionDefinitions.find(
+                function(permission) {
+                    return permission.permissionId == 5;
+                }
+            );
+            defaultPermission.allowAccess = true;
             this._buildGridRow(this._rolesTable.find('tbody'), {
                 roleId: roleId,
                 roleName: roleName,
-                permissions: []
+                permissions: [defaultPermission]
             }, 'roles');
 
             if (typeof this.options.onPermissionChanged == "function") {
