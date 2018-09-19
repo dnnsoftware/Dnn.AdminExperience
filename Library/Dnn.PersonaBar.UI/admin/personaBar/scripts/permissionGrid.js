@@ -382,10 +382,17 @@ if (typeof dnn.controls === "undefined" || dnn.controls === null) { dnn.controls
             for (var i = 0; i < selectedUsers.length; i++) {
                 var user = selectedUsers[i];
                 if (!this._userExistsInGrid(user.id)) {
+
+                    var defaultPermission = this.data.permissionDefinitions.find(
+                        function(permission) {
+                            return permission.permissionId == 5;
+                        }
+                    );
+                    defaultPermission.allowAccess = true;
                     this._buildGridRow(this._usersTable.find('tbody'), {
                         userId: user.id,
                         displayName: user.name,
-                        permissions: []
+                        permissions: [defaultPermission]
                     }, 'users');
                 }
             }
