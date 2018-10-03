@@ -334,6 +334,10 @@ namespace Dnn.PersonaBar.SiteSettings.Services
                         Custom404TabName = TabSanitizer(portal.Custom404TabId, pid)?.TabName,
                         Custom500TabId = TabSanitizer(portal.Custom500TabId, pid)?.TabID,
                         Custom500TabName = TabSanitizer(portal.Custom500TabId, pid)?.TabName,
+                        TermsTabId = TabSanitizer(portal.TermsTabId, pid)?.TabID,
+                        TermsTabName = TabSanitizer(portal.TermsTabId, pid)?.TabName,
+                        PrivacyTabId = TabSanitizer(portal.PrivacyTabId, pid)?.TabID,
+                        PrivacyTabName = TabSanitizer(portal.PrivacyTabId, pid)?.TabName,
                         portalSettings.PageHeadText
                     }
                 });
@@ -381,6 +385,8 @@ namespace Dnn.PersonaBar.SiteSettings.Services
                 portalInfo.SearchTabId = ValidateTabId(request.SearchTabId, pid);
                 portalInfo.Custom404TabId = ValidateTabId(request.Custom404TabId, pid);
                 portalInfo.Custom500TabId = ValidateTabId(request.Custom500TabId, pid);
+                portalInfo.TermsTabId = ValidateTabId(request.TermsTabId, pid);
+                portalInfo.PrivacyTabId = ValidateTabId(request.PrivacyTabId, pid);
 
                 PortalController.Instance.UpdatePortalInfo(portalInfo);
                 PortalController.UpdatePortalSetting(pid, "PageHeadText", string.IsNullOrEmpty(request.PageHeadText) ? "false" : request.PageHeadText);

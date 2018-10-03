@@ -1072,7 +1072,7 @@
     <value>Enable Localized Content</value>
   </data>
   <data name="EnableLocalizedContentHelpText.Text" xml:space="preserve">
-    <value>Enabling localized content allows you to provide translated module content in addition to displaying translated static text. Once localized contetnt is enabled the default site culture will be permanently set and <strong>cannot be changed</strong>.</value>
+    <value />
   </data>
   <data name="EnableLocalizedContentClickCancel.Text" xml:space="preserve">
     <value>Click Cancel now if you want to change the current site default.</value>
@@ -1328,5 +1328,17 @@
   </data>
   <data name="Host.Text" xml:space="preserve">
     <value>Host</value>
+  </data>
+  <data name="plTermsTabId.Help" xml:space="preserve">
+    <value>The page where you show the terms of use for this site. If left unselected a default text will be shown when a user clicks on the terms of use link.</value>
+  </data>
+  <data name="plTermsTabId.Text" xml:space="preserve">
+    <value>Terms of Use Page</value>
+  </data>
+  <data name="plPrivacyTabId.Help" xml:space="preserve">
+    <value>This is the page that your user will be redirected to when clicking on the privacy statement link. If not set then a default privacy statement will be shown.</value>
+  </data>
+  <data name="plPrivacyTabId.Text" xml:space="preserve">
+    <value>Privacy Statement Page</value>
   </data>
 </root>
