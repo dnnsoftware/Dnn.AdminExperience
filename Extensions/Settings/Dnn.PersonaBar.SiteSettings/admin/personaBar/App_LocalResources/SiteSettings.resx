@@ -1341,4 +1341,25 @@
   <data name="plPrivacyTabId.Text" xml:space="preserve">
     <value>Privacy Statement Page</value>
   </data>
+  <data name="plCookieMoreLink.Help" xml:space="preserve">
+    <value>In the cookie consent popup a link is shown to explain about cookies to users. If you wish to override this link (by default it points to cookiesandme.com) it will link to this url.</value>
+  </data>
+  <data name="plCookieMoreLink.Text" xml:space="preserve">
+    <value>Cookie Consent Url</value>
+  </data>
+  <data name="plShowCookieConsent.Help" xml:space="preserve">
+    <value>Show a cookie consent popup on this site. Users will need to click the popup to agree and close it. It will not reappear again after this.</value>
+  </data>
+  <data name="plShowCookieConsent.Text" xml:space="preserve">
+    <value>Show Cookie Consent</value>
+  </data>
+  <data name="TabPrivacy.Text" xml:space="preserve">
+    <value>Privacy</value>
+  </data>
+  <data name="PrivacyCommunicationSettings.Text" xml:space="preserve">
+    <value>Communication Settings</value>
+  </data>
+  <data name="PrivacyCookieConsentSettings.Text" xml:space="preserve">
+    <value>Cookie Consent Settings</value>
+  </data>
 </root>
