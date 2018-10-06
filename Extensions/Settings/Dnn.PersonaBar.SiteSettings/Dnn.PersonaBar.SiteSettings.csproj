@@ -50,23 +50,23 @@
   <ItemGroup>
     <Reference Include="DotNetNuke, Version=7.4.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>D:\DotNetNuke\Website\bin\DotNetNuke.dll</HintPath>
+      <HintPath>..\..\..\bin\DotNetNuke.dll</HintPath>
     </Reference>
     <Reference Include="DotNetNuke.Instrumentation, Version=7.4.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>D:\DotNetNuke\Website\bin\DotNetNuke.Instrumentation.dll</HintPath>
+      <HintPath>..\..\..\bin\DotNetNuke.Instrumentation.dll</HintPath>
     </Reference>
     <Reference Include="DotNetNuke.Web, Version=7.4.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>D:\DotNetNuke\Website\bin\DotNetNuke.Web.dll</HintPath>
+      <HintPath>..\..\..\bin\DotNetNuke.Web.dll</HintPath>
     </Reference>
     <Reference Include="DotNetNuke.Web.Deprecated">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>D:\DotNetNuke\Website\bin\DotNetNuke.Web.Deprecated.dll</HintPath>
+      <HintPath>..\..\..\bin\DotNetNuke.Web.Deprecated.dll</HintPath>
     </Reference>
     <Reference Include="DotNetNuke.Web.Client, Version=7.4.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>D:\DotNetNuke\Website\bin\DotNetNuke.Web.Client.dll</HintPath>
+      <HintPath>..\..\..\bin\DotNetNuke.Web.Client.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
