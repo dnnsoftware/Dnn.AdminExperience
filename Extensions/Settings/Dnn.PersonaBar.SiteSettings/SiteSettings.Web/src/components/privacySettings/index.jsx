@@ -240,6 +240,7 @@ class PrivacySettingsPanelBody extends Component {
             <SingleLineInputWithError
               inputStyle={{ margin: "0" }}
               withLabel={false}
+              enabled={state.privacySettings.ShowCookieConsent}
               error={false}
               value={state.privacySettings.CookieMoreLink}
               onChange={this.onSettingChange.bind(this, "CookieMoreLink")}
@@ -251,11 +252,11 @@ class PrivacySettingsPanelBody extends Component {
 
     return (
       <div className={styles.privacySettings}>
-        <div className="sectionTitleNoBorder">
+        <div className="sectionTitle">
           {resx.get("PrivacyCommunicationSettings")}
         </div>
         <Grid children={[columnOneLeft, columnOneRight]} numberOfColumns={2} />
-        <div className="sectionTitleNoBorder">
+        <div className="sectionTitle">
           {resx.get("PrivacyCookieConsentSettings")}
         </div>
         <Grid children={[columnTwoLeft, columnTwoRight]} numberOfColumns={2} />
