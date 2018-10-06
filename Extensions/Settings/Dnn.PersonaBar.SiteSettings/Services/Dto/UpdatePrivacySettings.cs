@@ -39,5 +39,7 @@ namespace Dnn.PersonaBar.SiteSettings.Services.Dto
         public bool CheckUpgrade { get; set; }
 
         public bool DnnImprovementProgram { get; set; }
+
+        public bool DisplayCopyright { get; set; }
     }
 }

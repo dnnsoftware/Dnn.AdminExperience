@@ -1575,7 +1575,8 @@ namespace Dnn.PersonaBar.SiteSettings.Services
                         portalSettings.ShowCookieConsent,
                         portalSettings.CookieMoreLink,
                         CheckUpgrade = HostController.Instance.GetBoolean("CheckUpgrade", true),
-                        DnnImprovementProgram = HostController.Instance.GetBoolean("DnnImprovementProgram", true)
+                        DnnImprovementProgram = HostController.Instance.GetBoolean("DnnImprovementProgram", true),
+                        DisplayCopyright = HostController.Instance.GetBoolean("Copyright", true)
                     }
                 });
             }
@@ -1609,6 +1610,7 @@ namespace Dnn.PersonaBar.SiteSettings.Services
                 PortalController.UpdatePortalSetting(pid, "CookieMoreLink", request.CookieMoreLink, false, request.CultureCode);
                 HostController.Instance.Update("CheckUpgrade", request.CheckUpgrade ? "Y" : "N", false);
                 HostController.Instance.Update("DnnImprovementProgram", request.DnnImprovementProgram ? "Y" : "N", false);
+                HostController.Instance.Update("Copyright", request.DisplayCopyright ? "Y" : "N", false);
                 DataCache.ClearCache();
 
                 return Request.CreateResponse(HttpStatusCode.OK, new { Success = true });

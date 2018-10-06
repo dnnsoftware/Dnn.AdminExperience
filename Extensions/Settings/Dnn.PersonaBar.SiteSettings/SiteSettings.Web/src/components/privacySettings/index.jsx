@@ -134,31 +134,51 @@ class PrivacySettingsPanelBody extends Component {
   /* eslint-disable react/no-danger */
   render() {
     const { state } = this;
-    const columnOneLeft = (
+    const columnOneLeft = state.privacySettings ? (
       <div className="left-column">
-        {state.privacySettings && (
-          <InputGroup>
-            <Label
-              labelType="inline"
-              tooltipMessage={resx.get("plUpgrade.Help")}
-              label={resx.get("plUpgrade")}
-              extra={
-                <Tooltip
-                  messages={[resx.get("GlobalSetting")]}
-                  type="global"
-                  style={{ float: "left", position: "static" }}
-                />
-              }
-            />
-            <Switch
-              onText={resx.get("SwitchOn")}
-              offText={resx.get("SwitchOff")}
-              value={state.privacySettings.CheckUpgrade}
-              onChange={this.onSettingChange.bind(this, "CheckUpgrade")}
-            />
-          </InputGroup>
-        )}
+        <InputGroup>
+          <Label
+            labelType="inline"
+            tooltipMessage={resx.get("plUpgrade.Help")}
+            label={resx.get("plUpgrade")}
+            extra={
+              <Tooltip
+                messages={[resx.get("GlobalSetting")]}
+                type="global"
+                style={{ float: "left", position: "static" }}
+              />
+            }
+          />
+          <Switch
+            onText={resx.get("SwitchOn")}
+            offText={resx.get("SwitchOff")}
+            value={state.privacySettings.CheckUpgrade}
+            onChange={this.onSettingChange.bind(this, "CheckUpgrade")}
+          />
+        </InputGroup>
+        <InputGroup>
+          <Label
+            labelType="inline"
+            tooltipMessage={resx.get("plDisplayCopyright.Help")}
+            label={resx.get("plDisplayCopyright")}
+            extra={
+              <Tooltip
+                messages={[resx.get("GlobalSetting")]}
+                type="global"
+                style={{ float: "left", position: "static" }}
+              />
+            }
+          />
+          <Switch
+            onText={resx.get("SwitchOn")}
+            offText={resx.get("SwitchOff")}
+            value={state.privacySettings.DisplayCopyright}
+            onChange={this.onSettingChange.bind(this, "DisplayCopyright")}
+          />
+        </InputGroup>
       </div>
+    ) : (
+      <div className="left-column" />
     );
     const columnOneRight = (
       <div className="right-column">
