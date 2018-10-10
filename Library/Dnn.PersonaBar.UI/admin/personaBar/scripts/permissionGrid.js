@@ -7,6 +7,17 @@ if (typeof dnn === "undefined" || dnn === null) { dnn = {}; }
 if (typeof dnn.controls === "undefined" || dnn.controls === null) { dnn.controls = {}; }
 
 (function ($) {
+	
+	var permissionsMap = {
+		BROWSE_FOLDER: 8,
+		VIEW_FOLDER: 5,
+		ADD: 28,
+		COPY: 29,
+		DELETE: 30,
+		MANAGE_SETTINGS: 31,
+		WRITE_TO_FOLDER: 6
+	};
+	
     var permissionGrid = dnn.controls.PermissionGrid = function (parent, data, options) {
         this.options = options;
         this.data = data;
@@ -385,7 +396,7 @@ if (typeof dnn.controls === "undefined" || dnn.controls === null) { dnn.controls
 
                     var defaultPermission = this.data.permissionDefinitions.find(
                         function(permission) {
-                            return permission.permissionId == 5;
+                            return permission.permissionId == permissionsMap.VIEW_FOLDER;
                         }
                     );
                     defaultPermission.allowAccess = true;
