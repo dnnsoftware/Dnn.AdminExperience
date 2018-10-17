@@ -253,6 +253,27 @@ define(['jquery',
             return matched;
         }
 
+        var normalizeType = function (value) {
+
+            if(value == "" || value == null || typeof value == "undefined") {
+                return null;
+            }
+            if(isFinite(value)) {
+                return parseInt(value);
+            }
+            if(typeof value == "string") {
+                var lcValue = value.toLowerCase();
+                if(lcValue == "true") {
+                    return true;
+                }
+                if(lcValue == "false") {
+                    return false;
+                }
+                return lcValue;
+            }
+            return value;
+        };
+
         var createDataTable = function (data) {
             var table = { header: [], rows: ko.observableArray(data) };
             //try to find headers
@@ -345,22 +366,8 @@ define(['jquery',
                 if (sortType !== 0) {
                     filterData.sort(function (left, right) {
                         var sortColumn = table.sortColumn();
-                        var leftData = left[sortColumn] == null ? "" : left[sortColumn];
-                        var rightData = right[sortColumn] == null ? "" : right[sortColumn];
-
-                        leftData = leftData != "" && isFinite(leftData) ? parseFloat(leftData) : leftData;
-                        rightData = rightData != "" && isFinite(rightData) ? parseFloat(rightData) : rightData;
-
-                        if (leftData && typeof leftData === "string") {
-                            leftData = leftData.toLowerCase();
-                        }
-                        if (rightData && typeof rightData === "string") {
-                            rightData = rightData.toLowerCase();
-                        }
-
-                        if(isNaN(leftData) && isNaN(rightData)) {
-                            return 0;
-                        }
+                        var leftData = normalizeType(left[sortColumn]);
+                        var rightData = normalizeType(right[sortColumn]);
 
                         if (leftData === rightData) {
                             return 0;
