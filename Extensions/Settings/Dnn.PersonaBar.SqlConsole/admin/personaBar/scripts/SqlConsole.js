@@ -9,16 +9,16 @@ All Rights Reserved
 * Module responsible to Sql Console
 */
 define(['jquery',
-        'knockout',
-        'knockout.mapping',
-        'main/codeEditor',
-        './sort',
-        './exportData',
-        './clipboard.min',
-        './html2canvas',
-        './FileSaver.min',
-        'dnn.jquery',
-        'main/koBindingHandlers/jScrollPane'],
+            'knockout',
+            'knockout.mapping',
+            'main/codeEditor',
+            './sort',
+            './exportData',
+            './clipboard.min',
+            './html2canvas',
+            './FileSaver.min',
+            'dnn.jquery',
+            'main/koBindingHandlers/jScrollPane'],
     function ($, ko, koMapping, codeEditor, sort, exportData, Clipboard) {
         'use strict';
 
@@ -600,20 +600,20 @@ define(['jquery',
 
             var getExportMethods = function () {
                 return [
-                    {
-                        name: resx.ExportExcel,
-                        onExport: exportExcel
-                    },
-                    {
-                        name: resx.ExportCSV,
-                        onExport: exportCsv
-                    }, {
-                        name: resx.ExportPDF,
-                        onExport: exportPdf
-                    }, {
-                        name: resx.ExportClipboard,
-                        onExport: exportClipboard
-                    }];
+                {
+                    name: resx.ExportExcel,
+                    onExport: exportExcel
+                },
+                {
+                    name: resx.ExportCSV,
+                    onExport: exportCsv
+                }, {
+                    name: resx.ExportPDF,
+                    onExport: exportPdf
+                }, {
+                    name: resx.ExportClipboard,
+                    onExport: exportClipboard
+                }];
             }
 
             table.showExportList = ko.observable(false);
