@@ -348,8 +348,8 @@ define(['jquery',
                         var leftData = left[sortColumn] == null ? "" : left[sortColumn];
                         var rightData = right[sortColumn] == null ? "" : right[sortColumn];
 
-                        leftData = leftData != "" && leftData != "" && isFinite(leftData) ? parseFloat(leftData) : leftData;
-                        rightData = rightData != "" && rightData != null && isFinite(rightData) ? parseFloat(rightData) : rightData;
+                        leftData = leftData != "" && isFinite(leftData) ? parseFloat(leftData) : leftData;
+                        rightData = rightData != "" && isFinite(rightData) ? parseFloat(rightData) : rightData;
 
                         if (leftData && typeof leftData === "string") {
                             leftData = leftData.toLowerCase();
