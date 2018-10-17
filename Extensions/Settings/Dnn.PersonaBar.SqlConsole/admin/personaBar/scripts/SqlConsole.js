@@ -9,16 +9,16 @@ All Rights Reserved
 * Module responsible to Sql Console
 */
 define(['jquery',
-            'knockout',
-            'knockout.mapping',
-            'main/codeEditor',
-            './sort',
-            './exportData',
-            './clipboard.min',
-            './html2canvas',
-            './FileSaver.min',
-            'dnn.jquery',
-            'main/koBindingHandlers/jScrollPane'],
+        'knockout',
+        'knockout.mapping',
+        'main/codeEditor',
+        './sort',
+        './exportData',
+        './clipboard.min',
+        './html2canvas',
+        './FileSaver.min',
+        'dnn.jquery',
+        'main/koBindingHandlers/jScrollPane'],
     function ($, ko, koMapping, codeEditor, sort, exportData, Clipboard) {
         'use strict';
 
@@ -345,14 +345,21 @@ define(['jquery',
                 if (sortType !== 0) {
                     filterData.sort(function (left, right) {
                         var sortColumn = table.sortColumn();
-                        var leftData = isFinite(left[sortColumn]) ? parseFloat(left[sortColumn]) : left[sortColumn];
-                        var rightData = isFinite(right[sortColumn]) ? parseFloat(right[sortColumn]) : right[sortColumn];
+                        var leftData = left[sortColumn] == null ? "" : left[sortColumn];
+                        var rightData = right[sortColumn] == null ? "" : right[sortColumn];
+
+                        leftData = leftData != "" && leftData != "" && isFinite(leftData) ? parseFloat(leftData) : leftData;
+                        rightData = rightData != "" && rightData != null && isFinite(rightData) ? parseFloat(rightData) : rightData;
 
                         if (leftData && typeof leftData === "string") {
                             leftData = leftData.toLowerCase();
                         }
                         if (rightData && typeof rightData === "string") {
                             rightData = rightData.toLowerCase();
+                        }
+
+                        if(isNaN(leftData) && isNaN(rightData)) {
+                            return 0;
                         }
 
                         if (leftData === rightData) {
@@ -593,20 +600,20 @@ define(['jquery',
 
             var getExportMethods = function () {
                 return [
-                {
-                    name: resx.ExportExcel,
-                    onExport: exportExcel
-                },
-                {
-                    name: resx.ExportCSV,
-                    onExport: exportCsv
-                }, {
-                    name: resx.ExportPDF,
-                    onExport: exportPdf
-                }, {
-                    name: resx.ExportClipboard,
-                    onExport: exportClipboard
-                }];
+                    {
+                        name: resx.ExportExcel,
+                        onExport: exportExcel
+                    },
+                    {
+                        name: resx.ExportCSV,
+                        onExport: exportCsv
+                    }, {
+                        name: resx.ExportPDF,
+                        onExport: exportPdf
+                    }, {
+                        name: resx.ExportClipboard,
+                        onExport: exportClipboard
+                    }];
             }
 
             table.showExportList = ko.observable(false);
