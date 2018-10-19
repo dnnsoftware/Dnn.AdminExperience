@@ -23,11 +23,12 @@ define(['jquery', 'knockout'], function ($, ko) {
     'use strict';
 
     var changeSort = function (e) {
-        var $element = $(e.target);
+        var $element = $(e.currentTarget);
         var arrow = $element.find('.sort');
         var viewModel = ko.dataFor($element.parent().parent().parent()[0]);
         var column = ko.dataFor($element[0]);
 
+        $element.parent().find('.sort').removeClass('asc desc');
 
         if (viewModel.sortColumn() !== column) {
             viewModel.sortType(0);
@@ -73,6 +74,7 @@ define(['jquery', 'knockout'], function ($, ko) {
     }
 
     var update = function(element, valueAccessor, allBindings, viewModel, bindingContext) {
+        console.log(element);
     }
 
 
