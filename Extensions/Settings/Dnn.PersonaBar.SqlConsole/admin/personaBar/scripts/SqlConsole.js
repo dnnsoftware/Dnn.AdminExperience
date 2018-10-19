@@ -255,8 +255,8 @@ define(['jquery',
 
         var normalizeType = function (value) {
 
-            if(value == "" || value == null || typeof value == "undefined") {
-                return null;
+            if(value === "" || value === null || typeof value === "undefined") {
+                return "";
             }
             if(isFinite(value)) {
                 return parseInt(value);
@@ -371,9 +371,9 @@ define(['jquery',
 
                         if (leftData === rightData) {
                             return 0;
-                        } else if (leftData < rightData) {
+                        } else if (leftData === "" || leftData < rightData) {
                             return sortType === 1 ? -1 : 1;
-                        } else if (leftData > rightData) {
+                        } else if (leftData > rightData || rightData === "") {
                             return sortType === 1 ? 1 : -1;
                         }
                     });
