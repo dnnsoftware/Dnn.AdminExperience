@@ -73,9 +73,7 @@ define(['jquery', 'knockout'], function ($, ko) {
             .click(changeSort);
     }
 
-    var update = function(element, valueAccessor, allBindings, viewModel, bindingContext) {
-        console.log(element);
-    }
+    var update = function(element, valueAccessor, allBindings, viewModel, bindingContext) {}
 
 
     ko.bindingHandlers.sort = {
