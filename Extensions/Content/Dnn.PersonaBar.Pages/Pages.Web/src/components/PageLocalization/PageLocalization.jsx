@@ -51,15 +51,17 @@ class PageLocalization extends Component {
     }
 
     onDeletePage(page){
-        let callback = () => {
+        return new Promise((resolve) => {
+            this.props.onDeletePage({tabId: page.TabId});
+            resolve();
+        }).then(() => {
             this.removeLocaleFromState(page.CultureCode);
             if(page.TabId === utils.getCurrentPageId()){
                 let panelId = window.$('.socialpanel:visible').attr('id');
                 utils.getUtilities().panelViewData(panelId, {tab: [0]});
                 window.top.location.href = utils.getDefaultPageUrl();
             }
-        };
-        this.props.onDeletePage({tabId: page.TabId}, true, null, callback);
+        });
     }
 
     onUpdateModules(cultureCode, index, value, key = "ModuleTitle") {
@@ -284,7 +286,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     let actions = bindActionCreators({
-        onDeletePage: PageActions.deletePage
+        onDeletePage: PageActions.deleteLocalizePage
     }, dispatch);
     return {...actions, dispatch};
 }
