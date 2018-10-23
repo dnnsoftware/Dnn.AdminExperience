@@ -1690,4 +1690,7 @@
   <data name="EditContent.Text" xml:space="preserve">
     <value>Edit Content</value>
   </data>
+  <data name="DeleteTranslationConfirm.Text" xml:space="preserve">
+    <value>You are about to permanently &lt;b&gt;emove&lt;/b&gt; the '&lt;b&gt;{0}&lt;/b&gt;' translation of this page.  Are you sure you want to proceed?</value>
+  </data>
 </root>

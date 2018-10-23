@@ -206,26 +206,30 @@ const pageActions = {
         };
     },
 
-    deletePage(page, redirectUrl) {
+    deletePage(page, hardDelete, redirectUrl, callback) {
+        
         return (dispatch) => {
             dispatch({
                 type: ActionTypes.DELETE_PAGE
             });
 
-            PagesService.deletePage(page).then(response => {
+            PagesService.deletePage(page, hardDelete).then(response => {
 
                 if (response.Status === responseStatus.ERROR) {
                     utils.notifyError(response.Message, 3000);
                     return;
                 }
 
-                dispatch({
-                    type: ActionTypes.DELETED_PAGE
-                });
-                if (page.tabId !== 0 && (page.tabId === utils.getCurrentPageId()) || redirectUrl) {
-                    window.top.location.href = redirectUrl ? redirectUrl : utils.getDefaultPageUrl();
+                if(typeof callback === "function"){
+                    callback();
+                } else {
+                    dispatch({
+                        type: ActionTypes.DELETED_PAGE
+                    });
+                    if (page.tabId !== 0 && (page.tabId === utils.getCurrentPageId()) || redirectUrl) {
+                        window.top.location.href = redirectUrl ? redirectUrl : utils.getDefaultPageUrl();
+                    }
                 }
-
             }).catch((error) => {
                 dispatch({
                     type: ActionTypes.ERROR_DELETING_PAGE,

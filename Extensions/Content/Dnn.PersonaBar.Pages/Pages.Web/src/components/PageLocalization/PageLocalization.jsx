@@ -1,11 +1,13 @@
 import React, {Component, PropTypes} from "react";
 import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 import Button from "dnn-button";
 import Localization from "../../localization";
 import Scrollbars from "react-custom-scrollbars";
 import PageLanguage from "./PageLanguage";
 import TextOverflowWrapper from "dnn-text-overflow-wrapper";
 import NotifyModal from "./NotifyModal";
+import {pageActions as PageActions} from "../../actions";
 import utils from "../../utils";
 import "./style.less";
 
@@ -37,6 +39,27 @@ class PageLocalization extends Component {
             }
         });
         this.setState({ Pages });
+    }
+
+    removeLocaleFromState(cultureCode){
+        const {Locales} = this.state;
+        let index = Locales.findIndex(l => l.CultureCode == cultureCode);
+        if(index > -1){
+            Locales.splice(index, 1);
+            this.setState({ Locales });
+        }
+    }
+
+    onDeletePage(page){
+        let callback = () => {
+            this.removeLocaleFromState(page.CultureCode);
+            if(page.TabId === utils.getCurrentPageId()){
+                let panelId = window.$('.socialpanel:visible').attr('id');
+                utils.getUtilities().panelViewData(panelId, {tab: [0]});
+                window.top.location.href = utils.getDefaultPageUrl();
+            }
+        };
+        this.props.onDeletePage({tabId: page.TabId}, true, null, callback);
     }
 
     onUpdateModules(cultureCode, index, value, key = "ModuleTitle") {
@@ -129,6 +152,7 @@ class PageLocalization extends Component {
             onRestoreModule={this.onRestoreModule.bind(this) }
             onUpdatePages={this.onUpdatePages.bind(this) }
             onUpdateModules={this.onUpdateModules.bind(this) }
+            onDeletePage={this.onDeletePage.bind(this)}
             />;
     }
 
@@ -242,7 +266,9 @@ class PageLocalization extends Component {
 }
 
 PageLocalization.propTypes = {
-    page: PropTypes.object.isRequired
+    page: PropTypes.object.isRequired,
+    dispatch: PropTypes.func.isRequired,
+    onDeletePage: PropTypes.func
 };
 
 function mapStateToProps(state) {
@@ -256,4 +282,11 @@ function mapStateToProps(state) {
     };
 }
 
-export default connect(mapStateToProps)(PageLocalization);
+function mapDispatchToProps(dispatch) {
+    let actions = bindActionCreators({
+        onDeletePage: PageActions.deletePage
+    }, dispatch);
+    return {...actions, dispatch};
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PageLocalization);
