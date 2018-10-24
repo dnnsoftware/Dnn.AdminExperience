@@ -89,19 +89,27 @@ class DefaultPagesSettingsPanelBody extends Component {
 
         let defaultPagesSettings = Object.assign({}, state.defaultPagesSettings);
 
-        if (key === "SplashTabId" || key === "HomeTabId" || key === "LoginTabId" || key === "RegisterTabId" ||
-            key === "UserTabId" || key === "SearchTabId" || key === "Custom404TabId" || key === "Custom500TabId" ||
-            key === "TermsTabId" || key === "PrivacyTabId") {
-            if (defaultPagesSettings[key] !== parseInt(event)) {
-                defaultPagesSettings[key] = event;
-                defaultPagesSettings[key.replace("Id", "Name")] = value;
-            }
-            else {
-                return;
-            }
-        }
-        else {
-            defaultPagesSettings[key] = typeof (event) === "object" ? event.target.value : event;
+        switch (key) {
+            case "SplashTabId":
+            case "HomeTabId":
+            case "LoginTabId":
+            case "RegisterTabId":
+            case "UserTabId":
+            case "SearchTabId":
+            case "Custom404TabId":
+            case "Custom500TabId":
+            case "TermsTabId":
+            case "PrivacyTabId":
+                if (defaultPagesSettings[key] !== parseInt(event)) {
+                    defaultPagesSettings[key] = event;
+                    defaultPagesSettings[key.replace("Id", "Name")] = value;
+                }
+                else {
+                    return;
+                }
+                break;
+            default:
+                defaultPagesSettings[key] = typeof (event) === "object" ? event.target.value : event;
         }
 
         this.setState({
