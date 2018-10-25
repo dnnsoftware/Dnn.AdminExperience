@@ -254,24 +254,29 @@ define(['jquery',
         }
 
         var normalizeType = function (value) {
-
             if(value === "" || value === null || typeof value === "undefined") {
                 return "";
             }
-            if(isFinite(value)) {
-                return parseInt(value);
+            var type = typeof value;
+            switch(type) {
+                case 'boolean':
+                    return value;
+                case 'number':
+                    return parseFloat(value);
+                case 'string':
+                    var lcValue = value.toLowerCase();
+                    if(isFinite(lcValue)) {
+                        return parseFloat(lcValue);
+                    } else if(lcValue == "true") {
+                        return true;
+                    } else if(lcValue == "false") {
+                        return false;
+                    }
+                    return lcValue;
+                default:
+                    return value;
+
             }
-            if(typeof value == "string") {
-                var lcValue = value.toLowerCase();
-                if(lcValue == "true") {
-                    return true;
-                }
-                if(lcValue == "false") {
-                    return false;
-                }
-                return lcValue;
-            }
-            return value;
         };
 
         var createDataTable = function (data) {
