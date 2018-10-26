@@ -1170,19 +1170,6 @@ require(['jquery', 'knockout', 'moment', '../util', '../sf', '../config', './../
                                     });
                                 }());
 
-                                /*
-
-                                So:
-
-                                1. When user mouseover .btn_panel, open submenu
-                                2. When user mouseleave hovermenu, close it
-                                3. When user mouseleave hovermenu but return to parent .btn_panel, keep open
-                                4. When user keyboard focus .btn_panel and push enter or right, open hovermenu
-                                5. When tab focused, ignore mouseout unless they open another menu
-                                6. When user is in hovermenu and pushes esc or left, close hovermenu and return focus to parent .btn_panel
-
-                                */
-
                                 (function setupHoverMenu() {
 
                                     $('.btn_panel').each(function () {
@@ -1190,7 +1177,7 @@ require(['jquery', 'knockout', 'moment', '../util', '../sf', '../config', './../
                                         var hoverMenuId = $this.data('hovermenu-id');
                                         if (hoverMenuId === undefined) return;
 
-                                        // Hover / mouse events are handled here.
+                                        // Mouse hover events are still handled here for now.
                                         // Keyboard/click events are handed in setupMenu.
                                         var $hoverMenu = $('#' + hoverMenuId);
                                         $this.hover(function (event) {
