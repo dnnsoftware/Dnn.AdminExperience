@@ -1071,82 +1071,89 @@ require(['jquery', 'knockout', 'moment', '../util', '../sf', '../config', './../
                                     }
 
                                     // Handle all the keyup and click events here
-                                    $(".btn_panel, .hovermenu > ul > li").on("click keyup", function (event) {
-                                        event.stopPropagation();
+                                    $(".btn_panel, .hovermenu > ul > li")
+                                        .on("click keyup", function (event) {
+                                            event.preventDefault();
+                                            event.stopPropagation();
 
-                                        // Get the currently focussed element;
-                                        var $this = $(document.activeElement);
+                                            // Get the currently focussed element;
+                                            var $this = $(document.activeElement);
 
-                                        // Does this item have a hovermenu?
-                                        var hoverMenuId = $this.data('hovermenu-id');
-                                        var hasHoverMenu = false;
-                                        if (hoverMenuId !== undefined) { hasHoverMenu = true; }
-                                        var $hoverMenu = $('#' + hoverMenuId);
+                                            // Does this item have a hovermenu?
+                                            var hoverMenuId = $this.data('hovermenu-id');
+                                            var hasHoverMenu = false;
+                                            if (hoverMenuId !== undefined) { hasHoverMenu = true; }
+                                            var $hoverMenu = $('#' + hoverMenuId);
 
-                                        // Or are we in a hovermenu?
-                                        var inHoverMenu = false;
-                                        if ($this.parents(".hovermenu").length > 0) {
-                                            inHoverMenu = true;
-                                            $hoverMenu = $this.parents(".hovermenu").first();
-                                            $hoverMenuParent = $hoverMenu.first().parent();
-                                        }
-
-                                        // Handle the various keyboard events
-                                        if (event.type === "keyup") {
-
-                                            // Used for finding next focusable element
-                                            var parentSelector = ".personabarnav";
-                                            var targetSelector = ".btn_panel";
-                                            if (inHoverMenu) {
-                                                parentSelector = ".hovermenu";
-                                                targetSelector = "li";
+                                            // Or are we in a hovermenu?
+                                            var inHoverMenu = false;
+                                            if ($this.parents(".hovermenu").length > 0) {
+                                                inHoverMenu = true;
+                                                $hoverMenu = $this.parents(".hovermenu").first();
+                                                $hoverMenuParent = $hoverMenu.first().parent();
                                             }
 
-                                            switch (event.keyCode) {
-                                                // esc: close hover menu if open
-                                                case 27:
-                                                    if (inHoverMenu) {
-                                                        hideHoverMenu($hoverMenuParent, $hoverMenu, event.type);
-                                                    }
-                                                    break;
-                                                // up: go to previous focusable item if there is one (same as shift+tab)
-                                                case 38:
-                                                    var $prev = findPreviousFocusableElement($this, parentSelector, targetSelector);
-                                                    if ($prev !== undefined) ( $prev.focus() );
-                                                    break;
-                                                // down: go to next focusable item if there is one (same as tab)
-                                                case 40:
-                                                    var $next = findNextFocusableElement($this, parentSelector, targetSelector);
-                                                    if ($next !== undefined) ( $next.focus() );
-                                                    break;
-                                                // left: close hover menu if open
-                                                case 37:
-                                                    if (inHoverMenu) {
-                                                        hideHoverMenu($hoverMenuParent, $hoverMenu, event.type);
-                                                    }
-                                                    break;
-                                                // right: open hover menu if we have one
-                                                case 39:
-                                                    if (hasHoverMenu) {
-                                                        showHoverMenu($this, $hoverMenu, event.type);
-                                                    }
-                                                    break;
-                                                // enter: open hover menu or fire action
-                                                case 13:
-                                                    if (hasHoverMenu) {
-                                                        showHoverMenu($this, $hoverMenu, event.type);
-                                                    }
-                                                    else {
-                                                        handleClickOnHoverMenuItem(event);
-                                                    }
-                                                    break;
+                                            // Handle the various keyboard events
+                                            // Capturing the Escape key works best with keyup, rather than keypress
+                                            if (event.type === "keyup") {
+
+                                                // Used for finding next focusable element
+                                                var parentSelector = ".personabarnav";
+                                                var targetSelector = ".btn_panel";
+                                                if (inHoverMenu) {
+                                                    parentSelector = ".hovermenu";
+                                                    targetSelector = "li";
+                                                }
+
+                                                switch (event.keyCode) {
+                                                    // esc: close hover menu if open
+                                                    case 27:
+                                                        if (inHoverMenu) {
+                                                            hideHoverMenu($hoverMenuParent, $hoverMenu, event.type);
+                                                        }
+                                                        break;
+                                                    // up: go to previous focusable item if there is one (same as shift+tab)
+                                                    case 38:
+                                                        var $prev = findPreviousFocusableElement($this, parentSelector, targetSelector);
+                                                        if ($prev !== undefined) ( $prev.focus() );
+                                                        break;
+                                                    // down: go to next focusable item if there is one (same as tab)
+                                                    case 40:
+                                                        var $next = findNextFocusableElement($this, parentSelector, targetSelector);
+                                                        if ($next !== undefined) ( $next.focus() );
+                                                        break;
+                                                    // left: close hover menu if open
+                                                    case 37:
+                                                        if (inHoverMenu) {
+                                                            hideHoverMenu($hoverMenuParent, $hoverMenu, event.type);
+                                                        }
+                                                        break;
+                                                    // right: open hover menu if we have one
+                                                    case 39:
+                                                        if (hasHoverMenu) {
+                                                            showHoverMenu($this, $hoverMenu, event.type);
+                                                        }
+                                                        break;
+                                                    // enter: open hover menu or fire action
+                                                    case 13:
+                                                        if (hasHoverMenu) {
+                                                            showHoverMenu($this, $hoverMenu, event.type);
+                                                        }
+                                                        else {
+                                                            handleClickOnHoverMenuItem(event);
+                                                        }
+                                                        break;
+                                                }
                                             }
-                                        }
-                                        // It's a click, do the thing
-                                        else {
-                                            handleClickOnHoverMenuItem(event);
-                                        }
-                                    });
+                                            // It's a click, do the thing
+                                            if (event.type === "click") {
+                                                handleClickOnHoverMenuItem(event);
+                                            }
+                                        })
+                                        // Stop the page scrolling when we're navigating using the keyboard
+                                        .on("keydown", function (event) {
+                                            event.preventDefault(); 
+                                        });
 
                                     var $avatarMenu = $('li.useravatar');
                                     if ($avatarMenu.length) {
