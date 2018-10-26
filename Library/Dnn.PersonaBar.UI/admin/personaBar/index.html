@@ -30,7 +30,7 @@
                 <a class="update" target="_blank" data-bind="attr: {'href': updateLink}, html: updateText, css: {'normal-update': updateType() === 1, 'critical-update': updateType() === 2}"></a>
             </div>
             <div id="topLevelMenu">
-                <ul class="personabarnav">
+                <ul class="personabarnav" role="toolbar">
                     <!-- ko foreach: { data: menu.menuItems, as: 'menuItem' } -->
                     <li data-bind="
                         attr: {
@@ -44,17 +44,19 @@
                             'class': 'btn_panel ' + (menuItem.css || ''),
                             'href': menuItem.link,
                             'aria-haspopup': menuItem.menuItems.length > 0 ? 'true' : null,
-                            'aria-expanded': menuItem.menuItems.length > 0 ? 'false' : null
+                            'aria-expanded': menuItem.menuItems.length > 0 ? 'false' : null,
+                            'role': 'button',
+                            'tabindex': '0'
                         }">
                         <span data-bind="html: menuItem.displayName"></span>
-                        <span class="icon-loader" data-bind="visible: menuItem.icon.length > 0, attr: {'data-path': menuItem.icon, 'data-name': menuItem.displayName, 'data-id': menuItem.id}"></span>
+                        <span class="icon-loader" data-bind="visible: menuItem.icon.length > 0, attr: {'data-path': menuItem.icon, 'data-name': menuItem.displayName, 'aria-label': menuItem.displayName, 'data-id': menuItem.id}"></span>
                             <!-- ko if: menuItem.menuItems.length > 0 -->
                         <div class="hovermenu" data-bind="
                              attr: { 'id': menuItem.id + 'hovermenu' }, 
                              css: menuItem.id + 'hovermenu'">
                             <label data-bind="html: menuItem.displayName"></label>
                             <!-- ko foreach: { data: menuItem.menuItems, as: 'columnItem' } -->
-                            <ul data-bind="foreach: { data: columnItem, as: 'subMenuItem' }">
+                            <ul role="menu" data-bind="foreach: { data: columnItem, as: 'subMenuItem' }">
                                 <li data-bind="
                                             html: subMenuItem.displayName,
                                             attr: {
@@ -66,7 +68,9 @@
                                                 'data-name': subMenuItem.displayName,
                                                 'class': (subMenuItem.css || ''),
                                                 'href': subMenuItem.link,
-                                                'target': subMenuItem.link ? '_blank' : ''
+                                                'target': subMenuItem.link ? '_blank' : '',
+                                                'role': 'button',
+                                                'tabindex': '0'
                                             }"></li>
                             </ul>
                             <!-- /ko -->

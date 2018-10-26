@@ -799,6 +799,7 @@ transform: rotate(180deg);
     fill: #868484;
 }
 .personabarnav > li:hover > span.icon-loader svg,
+.personabarnav > li:focus > span.icon-loader svg,
 .personabarnav > li.active > span.icon-loader svg,
 .personabarnav > li.selected > span.icon-loader svg {
     fill: #FFFFFF;
@@ -810,15 +811,22 @@ transform: rotate(180deg);
     cursor: default;
 }
 
-.personabarnav > li.btn_panel.disabled:hover {
+.personabarnav > li.btn_panel.disabled:hover,
+.personabarnav > li.btn_panel.disabled:focus {
     background-position: -8px 10px;
     color: #6a6d6d;
 }
-.personabarnav > li:hover,.personabarnav > li.active {
+.personabarnav > li:hover,
+.personabarnav > li:focus,
+.personabarnav > li.active {
     color: #fff;
     background-color: #2f2f2f;
     border-right: none !important;
 }
+.personabarnav > li:focus {
+    outline: 1px dotted white;
+}
+
 .personabarnav > li.pending {
     border-right: 3px solid #9FDBF0;
 }
@@ -950,7 +958,8 @@ transform: rotate(180deg);
     color: #c8c8c8;
 }
 
-.hovermenu > ul > li:hover {
+.hovermenu > ul > li:hover,
+.hovermenu > ul > li:focus {
     color: #fff;
 }
 

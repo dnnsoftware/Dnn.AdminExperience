@@ -826,18 +826,193 @@ require(['jquery', 'knockout', 'moment', '../util', '../sf', '../config', './../
                             }
                             
                             if (config.visible) {
+
+                                // Variables related to the hover menus
+                                var showMenuHandlers = [];
+                                var leaveSubMenuHandlers = [];
+                                var mouseOnHovermenu = false;
+                                var mouseOnButton = false;
+                                var keyboardShowMenu = false;
                                 
+                                // Helper function to clear the various setTimeout used by the menus
+                                var resetHandlers = function() {
+                                    if (showMenuHandlers.length > 0) {
+                                        $.each(showMenuHandlers, function(index, item) {
+                                            clearTimeout(item);
+                                        });
+                                        showMenuHandlers = [];
+                                    }
+
+                                    if (leaveSubMenuHandlers.length > 0) {
+                                        $.each(leaveSubMenuHandlers, function(index, item) {
+                                            clearTimeout(item);
+                                        });
+                                        leaveSubMenuHandlers = [];
+                                    }
+                                };
+
+                                // Show the hover menu
+                                // eventType, string, e.g mouseenter or keyup
+                                var showHoverMenu = function ($this, $hoverMenu, eventType) {
+                                    // Don't do anything unless we have to
+                                    var hmVisible = false;
+                                    if ($hoverMenu.is(':visible')) {
+                                        return;
+                                    }
+                                    // Once menu is shown with keyboard, don't hide on mouseout/mouseleave
+                                    switch (eventType) {
+                                        case "mouseenter":
+                                            mouseOnButton = true;
+                                            break;
+                                        case "keyup":
+                                            keyboardShowMenu = true;
+                                            break;
+                                    }
+                                    if ($hoverMenu.css('display') === 'none' || $this.find('> div').length > 0) {
+                                        resetHandlers();
+                                        showMenuHandlers.push(setTimeout(function () {
+                                            var showMenu = false;
+                                            if (eventType === "mouseenter") {
+                                                if (($hoverMenu.css('display') === 'none' || $this.find('> div').length > 0) && mouseOnButton) {
+                                                    showMenu = true;
+                                                }    
+                                            } else {
+                                                if (($hoverMenu.css('display') === 'none' || $this.find('> div').length > 0)&& keyboardShowMenu) {
+                                                    showMenu = true;
+                                                }
+                                            }
+                                            if (showMenu) {
+                                                if (!activePath) iframe.style.width = "100%";
+
+                                                $hoverMenu.css({
+                                                    position: 'absolute',
+                                                    left: '-1000px'
+                                                });
+
+                                                $('.btn_panel').each(function () {
+                                                    var hoverMenuId = $(this).data('hovermenu-id');
+                                                    if (hoverMenuId === undefined) return;
+
+                                                    $('#' + hoverMenuId).hide();
+                                                });
+
+                                                // Set aria-expanded to true when menu is shown
+                                                $hoverMenu.show();
+                                                $this.attr('aria-expanded', 'true');
+
+                                                // Fix ie personabar hover menus
+                                                showMenuHandlers.push(setTimeout(function () {
+                                                    $('.hovermenu > ul').css('list-style-type', 'square');
+                                                    showMenuHandlers.push(setTimeout(function () {
+                                                        $('.hovermenu > ul').css('list-style-type', 'none');
+                                                        showMenuHandlers.push(setTimeout(function () {
+                                                            $hoverMenu.hide();
+                                                            $hoverMenu.removeAttr('style');
+                                                            calculateHoverMenuPosition($hoverMenu);
+                                                            showMenuHandlers.push(setTimeout(function () {
+                                                                $hoverMenu.fadeIn('fast', function () {
+                                                                    // Focus first item in the menu
+                                                                    if (eventType === "keyup") {
+                                                                        $hoverMenu.find("ul:first-of-type > li:first-of-type").focus();
+                                                                    }
+                                                                });
+                                                            }));
+                                                        }, 100));
+                                                    }));
+                                                }));
+
+                                            }
+                                        }, 50));
+                                    }
+                                };
+
+                                // Hide the hover menu
+                                // eventType, string, e.g mouseleave or keyup
+                                var hideHoverMenu = function ($this, $hoverMenu, eventType) {
+                                    // Return early if nothing to do
+                                    if ($hoverMenu === undefined) return;
+                                    if (eventType !== "keyup" && keyboardShowMenu === true) return;
+
+                                    var hideMenu = false;
+                                    mouseOnButton = false;
+
+                                    // When keyboard navigating, hide menu regardless of mouse cursor being on top of it
+                                    if (eventType === "keyup") {
+                                        keyboardShowMenu = false;
+                                        mouseOnHovermenu = false;
+                                    }
+                                    // Mouse has left menu OR keyup has told us to close menu
+                                    if (($hoverMenu.css('display') == 'block' || $this.find('> div').length > 0) && !mouseOnHovermenu && !keyboardShowMenu) {
+                                        hideMenu = true;
+                                    }
+                                    if (hideMenu) {
+                                        setTimeout(function () {
+                                            // Only hide the menu if the mouse doesn't go back over to the parent button
+                                            // Irrelevant if using keyboard to navigate
+                                            if (!keyboardShowMenu) {
+                                                var hideMenu = false;
+                                                if (($hoverMenu.css('display') == 'block' || $this.find('> div').length > 0) && !mouseOnButton && !mouseOnHovermenu) {
+                                                    hideMenu = true;
+                                                }
+                                            }
+                                            if (hideMenu) {
+                                                if (!activePath) {
+                                                    $iframe.width(personaBarMenuWidth);
+                                                }
+                                                // Set aria-expanded to false when menu is hidden
+                                                $hoverMenu.hide();
+                                                $this.attr('aria-expanded', 'false');
+                                                // If we're using the keyboard, focus the parent element again
+                                                if (eventType === "keyup") {
+                                                    $this.focus();
+                                                }
+                                                resetHandlers();
+                                            }
+                                        }, 50);
+                                    }
+                                };
+
+                                // Find the next focusable element for keyboard navigation
+                                // Can't just use .next() because of DOM structure - one menu can be multiple <ul>s
+                                var findNextFocusableElement = function ($el, parentSelector, targetSelector) {
+                                    if ($el === undefined) { return }
+                                    var $allElements = $el.parents(parentSelector).find(targetSelector);
+                                    var $targetElement;
+                                    for (var i = 0; i < $allElements.length; i++) {
+                                        if ($($allElements[i]).is($el) && i !== ($allElements.length - 1)) {
+                                            $targetElement = $allElements[i + 1];
+                                            break;
+                                        }
+                                    }
+                                    return $targetElement;
+                                };
+
+                                // Find the previous focusable element for keyboard navigation
+                                // Can't just use .prev() because of DOM structure - one menu can be multiple <ul>s
+                                var findPreviousFocusableElement = function ($el, parentSelector, targetSelector) {
+                                    if ($el === undefined) { return }
+                                    var $allElements = $el.parents(parentSelector).find(targetSelector);
+                                    var $targetElement;
+                                    for (var i = 0; i < $allElements.length; i++) {
+                                        if ($($allElements[i]).is($el) && i !== 0) {
+                                            $targetElement = $allElements[i - 1];
+                                            break;
+                                        }
+                                    }
+                                    return $targetElement;                                    
+                                };
 
                                 (function setupMenu() {
-                                    $(".btn_panel .hovermenu").click(function(e) {
-                                        e.stopPropagation();
+                                    $(".btn_panel .hovermenu").click(function(event) {
+                                        event.stopPropagation();
                                     });
 
-                                    $(".btn_panel, .hovermenu > ul > li").click(function handleClickOnHoverMenuItem(evt) {
-                                        evt.preventDefault();
-                                        evt.stopPropagation();
+                                    // Handle clicks on hover menu items (and top level buttons without hovermenus)
+                                    var handleClickOnHoverMenuItem = function(event) {
+                                        event.preventDefault();
+                                        event.stopPropagation();
 
-                                        var $this = $(this);
+                                        var $this = $(event.delegateTarget);
 
                                         if ($this.hasClass('selected')) {
                                             var panelId = utility.getPanelIdFromPath($this.data('path'));
@@ -892,7 +1067,85 @@ require(['jquery', 'knockout', 'moment', '../util', '../sf', '../config', './../
 
                                         util.loadPanel(identifier, params);
 
-                                        $('.btn_panel > .hovermenu').fadeOut('fast');
+                                        $('.btn_panel > .hovermenu').fadeOut('fast');                                        
+                                    }
+
+                                    // Handle all the keyup and click events here
+                                    $(".btn_panel, .hovermenu > ul > li").on("click keyup", function (event) {
+                                        event.stopPropagation();
+
+                                        // Get the currently focussed element;
+                                        var $this = $(document.activeElement);
+
+                                        // Does this item have a hovermenu?
+                                        var hoverMenuId = $this.data('hovermenu-id');
+                                        var hasHoverMenu = false;
+                                        if (hoverMenuId !== undefined) { hasHoverMenu = true; }
+                                        var $hoverMenu = $('#' + hoverMenuId);
+
+                                        // Or are we in a hovermenu?
+                                        var inHoverMenu = false;
+                                        if ($this.parents(".hovermenu").length > 0) {
+                                            inHoverMenu = true;
+                                            $hoverMenu = $this.parents(".hovermenu").first();
+                                            $hoverMenuParent = $hoverMenu.first().parent();
+                                        }
+
+                                        // Handle the various keyboard events
+                                        if (event.type === "keyup") {
+
+                                            // Used for finding next focusable element
+                                            var parentSelector = ".personabarnav";
+                                            var targetSelector = ".btn_panel";
+                                            if (inHoverMenu) {
+                                                parentSelector = ".hovermenu";
+                                                targetSelector = "li";
+                                            }
+
+                                            switch (event.keyCode) {
+                                                // esc: close hover menu if open
+                                                case 27:
+                                                    if (inHoverMenu) {
+                                                        hideHoverMenu($hoverMenuParent, $hoverMenu, event.type);
+                                                    }
+                                                    break;
+                                                // up: go to previous focusable item if there is one (same as shift+tab)
+                                                case 38:
+                                                    var $prev = findPreviousFocusableElement($this, parentSelector, targetSelector);
+                                                    if ($prev !== undefined) ( $prev.focus() );
+                                                    break;
+                                                // down: go to next focusable item if there is one (same as tab)
+                                                case 40:
+                                                    var $next = findNextFocusableElement($this, parentSelector, targetSelector);
+                                                    if ($next !== undefined) ( $next.focus() );
+                                                    break;
+                                                // left: close hover menu if open
+                                                case 37:
+                                                    if (inHoverMenu) {
+                                                        hideHoverMenu($hoverMenuParent, $hoverMenu, event.type);
+                                                    }
+                                                    break;
+                                                // right: open hover menu if we have one
+                                                case 39:
+                                                    if (hasHoverMenu) {
+                                                        showHoverMenu($this, $hoverMenu, event.type);
+                                                    }
+                                                    break;
+                                                // enter: open hover menu or fire action
+                                                case 13:
+                                                    if (hasHoverMenu) {
+                                                        showHoverMenu($this, $hoverMenu, event.type);
+                                                    }
+                                                    else {
+                                                        handleClickOnHoverMenuItem(event);
+                                                    }
+                                                    break;
+                                            }
+                                        }
+                                        // It's a click, do the thing
+                                        else {
+                                            handleClickOnHoverMenuItem(event);
+                                        }
                                     });
 
                                     var $avatarMenu = $('li.useravatar');
@@ -917,98 +1170,35 @@ require(['jquery', 'knockout', 'moment', '../util', '../sf', '../config', './../
                                     });
                                 }());
 
+                                /*
+
+                                So:
+
+                                1. When user mouseover .btn_panel, open submenu
+                                2. When user mouseleave hovermenu, close it
+                                3. When user mouseleave hovermenu but return to parent .btn_panel, keep open
+                                4. When user keyboard focus .btn_panel and push enter or right, open hovermenu
+                                5. When tab focused, ignore mouseout unless they open another menu
+                                6. When user is in hovermenu and pushes esc or left, close hovermenu and return focus to parent .btn_panel
+
+                                */
+
                                 (function setupHoverMenu() {
-
-
-                                    var showMenuHandlers = [];
-                                    var leaveSubMenuHandlers = [];
-                                    var mouseOnHovermenu = false;
-                                    var mouseOnButton = false;
-
-                                    var resetHandlers = function() {
-                                        if (showMenuHandlers.length > 0) {
-                                            $.each(showMenuHandlers, function(index, item) {
-                                                clearTimeout(item);
-                                            });
-                                            showMenuHandlers = [];
-                                        }
-
-                                        if (leaveSubMenuHandlers.length > 0) {
-                                            $.each(leaveSubMenuHandlers, function(index, item) {
-                                                clearTimeout(item);
-                                            });
-                                            leaveSubMenuHandlers = [];
-                                        }
-                                    };
 
                                     $('.btn_panel').each(function () {
                                         var $this = $(this);
                                         var hoverMenuId = $this.data('hovermenu-id');
                                         if (hoverMenuId === undefined) return;
 
+                                        // Hover / mouse events are handled here.
+                                        // Keyboard/click events are handed in setupMenu.
                                         var $hoverMenu = $('#' + hoverMenuId);
-                                        $this.hover(function () {
-                                            mouseOnButton = true;
-                                            if ($hoverMenu.css('display') === 'none' || $this.find('> div').length > 0) {
-                                                resetHandlers();
-
-                                                showMenuHandlers.push(setTimeout(function () {
-                                                    if (($hoverMenu.css('display') === 'none' || $this.find('> div').length > 0) && mouseOnButton) {
-                                                        if (!activePath) iframe.style.width = "100%";
-
-                                                        $hoverMenu.css({
-                                                            position: 'absolute',
-                                                            left: '-1000px'
-                                                        });
-
-                                                        $('.btn_panel').each(function () {
-                                                            var hoverMenuId = $(this).data('hovermenu-id');
-                                                            if (hoverMenuId === undefined) return;
-
-                                                            $('#' + hoverMenuId).hide();
-                                                        });
-
-                                                        // Set aria-expanded to true when menu is shown
-                                                        $hoverMenu.show();
-                                                        $this.attr('aria-expanded', 'true');
-
-                                                        // Fix ie personabar hover menús
-                                                        showMenuHandlers.push(setTimeout(function () {
-                                                            $('.hovermenu > ul').css('list-style-type', 'square');
-                                                            showMenuHandlers.push(setTimeout(function () {
-                                                                $('.hovermenu > ul').css('list-style-type', 'none');
-                                                                showMenuHandlers.push(setTimeout(function () {
-                                                                    $hoverMenu.hide();
-                                                                    $hoverMenu.removeAttr('style');
-                                                                    calculateHoverMenuPosition($hoverMenu);
-                                                                    showMenuHandlers.push(setTimeout(function () {
-                                                                        $hoverMenu.fadeIn('fast');
-                                                                    }));
-
-                                                                }, 100));
-                                                            }));
-                                                        }));
-
-                                                    }
-                                                }, 50));
-                                            }
-                                        }, function () {
-                                            mouseOnButton = false;
-                                            if (($hoverMenu.css('display') == 'block' || $this.find('> div').length > 0) && !mouseOnHovermenu) {
-                                                setTimeout(function () {
-                                                    if (($hoverMenu.css('display') == 'block' || $this.find('> div').length > 0) && !mouseOnButton && !mouseOnHovermenu) {
-                                                        if (!activePath) {
-                                                            $iframe.width(personaBarMenuWidth);
-                                                        }
-                                                        // Set aria-expanded to false when menu is hidden
-                                                        $hoverMenu.hide();
-                                                        $this.attr('aria-expanded', 'false');
-
-                                                        resetHandlers();
-                                                    }
-                                                }, 50);
-                                            }
+                                        $this.hover(function (event) {
+                                            showHoverMenu($this, $hoverMenu, event.type);
+                                        }, function (event) {
+                                            hideHoverMenu($this, $hoverMenu, event.type);
                                         });
+
                                     });
 
                                     $(".hovermenu").each(function () {
@@ -1016,20 +1206,9 @@ require(['jquery', 'knockout', 'moment', '../util', '../sf', '../config', './../
 
                                         $this.hover(function () {
                                             mouseOnHovermenu = true;
-                                        }, function () {
+                                        }, function (event) {
                                             mouseOnHovermenu = false;
-                                            if ($this.css('display') === 'block' && !mouseOnButton) {
-                                                leaveSubMenuHandlers.push(setTimeout(function () {
-                                                    if ($this.css('display') === 'block' && !mouseOnButton && !mouseOnHovermenu) {
-                                                        if (!activePath) {
-                                                            $iframe.width(personaBarMenuWidth);
-                                                        }
-                                                        $this.hide();
-
-                                                        resetHandlers();
-                                                    }
-                                                }, 800));
-                                            }
+                                            hideHoverMenu($this.parent(), $this, event.type);
                                         });
                                     });
                                 })();
