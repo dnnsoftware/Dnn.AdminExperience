@@ -45,15 +45,16 @@
                             'href': menuItem.link,
                             'aria-haspopup': menuItem.menuItems.length > 0 ? 'true' : null,
                             'aria-expanded': menuItem.menuItems.length > 0 ? 'false' : null,
+                            'aria-labelledby': 'label_' + menuItem.id,
                             'role': 'button',
                             'tabindex': '0'
                         }">
-                        <span data-bind="html: menuItem.displayName"></span>
-                        <span class="icon-loader" data-bind="visible: menuItem.icon.length > 0, attr: {'data-path': menuItem.icon, 'data-name': menuItem.displayName, 'aria-label': menuItem.displayName, 'data-id': menuItem.id}"></span>
-                            <!-- ko if: menuItem.menuItems.length > 0 -->
+                        <span data-bind="html: menuItem.displayName, attr: { 'id': 'label_' + menuItem.id }"></span>
+                        <span class="icon-loader" data-bind="visible: menuItem.icon.length > 0, attr: {'data-path': menuItem.icon, 'data-name': menuItem.displayName, 'data-id': menuItem.id}"></span>
+                        <!-- ko if: menuItem.menuItems.length > 0 -->
                         <div class="hovermenu" data-bind="
-                             attr: { 'id': menuItem.id + 'hovermenu' }, 
-                             css: menuItem.id + 'hovermenu'">
+                            attr: { 'id': menuItem.id + 'hovermenu' }, 
+                            css: menuItem.id + 'hovermenu'">
                             <label data-bind="html: menuItem.displayName"></label>
                             <!-- ko foreach: { data: menuItem.menuItems, as: 'columnItem' } -->
                             <ul role="menu" data-bind="foreach: { data: columnItem, as: 'subMenuItem' }">
@@ -75,7 +76,7 @@
                             </ul>
                             <!-- /ko -->
                         </div>
-                            <!-- /ko -->
+                        <!-- /ko -->
                     </li>
                     <!-- /ko -->
                     <li id="showsite"><span data-bind="html: resx.nav_Site"></span></li>
