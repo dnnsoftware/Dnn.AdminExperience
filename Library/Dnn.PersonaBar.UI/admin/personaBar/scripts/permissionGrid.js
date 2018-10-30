@@ -17,6 +17,16 @@ if (typeof dnn.controls === "undefined" || dnn.controls === null) { dnn.controls
         return this;
     };
 
+    var permissionLabel = {
+        BROWSE_FOLDER: 'BROWSE_FOLDER',
+        VIEW_FOLDER: 'VIEW_FOLDER',
+        ADD: 'ADD',
+        COPY: 'COPY',
+        DELETE: 'DELETE',
+        MANAGE_SETTINGS: 'MANAGE_SETTINGS',
+        WRITE_TO_FOLDER: 'WRITE_TO_FOLDER'
+    };
+
     dnn.controls.PermissionGrid.prototype = {
         constructor: permissionGrid,
         init: function () {
@@ -28,7 +38,7 @@ if (typeof dnn.controls === "undefined" || dnn.controls === null) { dnn.controls
                     'css!../../../../../Resources/Shared/Components/Tokeninput/Themes/token-input-facebook.css'
             ]);
         },
-        getPermissionsDefinition: function () {
+        _getPermissionsDefinition: function () {
             var permissionsDefinitions = this.data.permissionDefinitions;
             var permissionsMap = {};
             permissionsDefinitions.forEach(function (curr) {
@@ -39,7 +49,9 @@ if (typeof dnn.controls === "undefined" || dnn.controls === null) { dnn.controls
             });
             return permissionsMap;
         },
-
+        getPermissionId: function (label) {
+            return this._getPermissionsDefinition()[label];
+        },
         getPermissions: function() { //get permissions from table
             var permissions = { rolePermissions: [], userPermissions: [] };
             this._getRolePermissions(permissions.rolePermissions); //fill role permissions
@@ -375,7 +387,7 @@ if (typeof dnn.controls === "undefined" || dnn.controls === null) { dnn.controls
 
             var defaultPermission = this.data.permissionDefinitions.find(
                 function(permission) {
-                    return permission.permissionId == this.getPermissionsDefinition().VIEW_FOLDER;
+                    return permission.permissionId == this.getPermissionId(permissionLabel.VIEW_FOLDER);
                 },
                 this
             );
