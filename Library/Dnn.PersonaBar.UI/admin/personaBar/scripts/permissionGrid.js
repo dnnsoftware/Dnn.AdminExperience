@@ -8,16 +8,6 @@ if (typeof dnn.controls === "undefined" || dnn.controls === null) { dnn.controls
 
 (function ($) {
 	
-	var permissionsMap = {
-		BROWSE_FOLDER: 8,
-		VIEW_FOLDER: 5,
-		ADD: 28,
-		COPY: 29,
-		DELETE: 30,
-		MANAGE_SETTINGS: 31,
-		WRITE_TO_FOLDER: 6
-	};
-	
     var permissionGrid = dnn.controls.PermissionGrid = function (parent, data, options) {
         this.options = options;
         this.data = data;
@@ -37,6 +27,17 @@ if (typeof dnn.controls === "undefined" || dnn.controls === null) { dnn.controls
             window.require(['css!../../css/permissionGrid.css',
                     'css!../../../../../Resources/Shared/Components/Tokeninput/Themes/token-input-facebook.css'
             ]);
+        },
+        getPermissionsDefinition: function () {
+            var permissionsDefinitions = this.data.permissionDefinitions;
+            var permissionsMap = {};
+            permissionsDefinitions.forEach(function (curr) {
+
+                var label = curr.permissionName.toUpperCase().replace(' ', '_');
+                var value = curr.permissionId;
+                permissionsMap[label] = value;
+            });
+            return permissionsMap;
         },
 
         getPermissions: function() { //get permissions from table
@@ -374,8 +375,9 @@ if (typeof dnn.controls === "undefined" || dnn.controls === null) { dnn.controls
 
             var defaultPermission = this.data.permissionDefinitions.find(
                 function(permission) {
-                    return permission.permissionId == permissionsMap.VIEW_FOLDER;
-                }
+                    return permission.permissionId == this.getPermissionsDefinition().VIEW_FOLDER;
+                },
+                this
             );
             defaultPermission.allowAccess = true;
             this._buildGridRow(this._rolesTable.find('tbody'), {
