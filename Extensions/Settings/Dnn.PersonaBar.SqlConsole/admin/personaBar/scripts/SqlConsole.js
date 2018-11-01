@@ -262,7 +262,7 @@ define(['jquery',
                 case 'boolean':
                     return value;
                 case 'number':
-                    return parseFloat(value);
+                    return value;
                 case 'string':
                     var lcValue = value.toLowerCase();
                     if(isFinite(lcValue)) {
