@@ -17,16 +17,6 @@ if (typeof dnn.controls === "undefined" || dnn.controls === null) { dnn.controls
         return this;
     };
 
-    var permissionLabel = {
-        BROWSE_FOLDER: 'BROWSE_FOLDER',
-        VIEW_FOLDER: 'VIEW_FOLDER',
-        ADD: 'ADD',
-        COPY: 'COPY',
-        DELETE: 'DELETE',
-        MANAGE_SETTINGS: 'MANAGE_SETTINGS',
-        WRITE_TO_FOLDER: 'WRITE_TO_FOLDER'
-    };
-
     dnn.controls.PermissionGrid.prototype = {
         constructor: permissionGrid,
         init: function () {
@@ -38,19 +28,10 @@ if (typeof dnn.controls === "undefined" || dnn.controls === null) { dnn.controls
                     'css!../../../../../Resources/Shared/Components/Tokeninput/Themes/token-input-facebook.css'
             ]);
         },
-        _getPermissionsDefinition: function () {
-            var permissionsDefinitions = this.data.permissionDefinitions;
-            var permissionsMap = {};
-            permissionsDefinitions.forEach(function (curr) {
-
-                var label = curr.permissionName.toUpperCase().replace(' ', '_');
-                var value = curr.permissionId;
-                permissionsMap[label] = value;
+        getPermission: function (permissionKey) {
+            return this.data.permissionDefinitions.find(function (permission) {
+                return permission.permissionKey == permissionKey;
             });
-            return permissionsMap;
-        },
-        getPermissionId: function (label) {
-            return this._getPermissionsDefinition()[label];
         },
         getPermissions: function() { //get permissions from table
             var permissions = { rolePermissions: [], userPermissions: [] };
@@ -385,13 +366,9 @@ if (typeof dnn.controls === "undefined" || dnn.controls === null) { dnn.controls
                 return false;
             }
 
-            var defaultPermission = this.data.permissionDefinitions.find(
-                function(permission) {
-                    return permission.permissionId == this.getPermissionId(permissionLabel.VIEW_FOLDER);
-                },
-                this
-            );
+            var defaultPermission = this.getPermission('READ');
             defaultPermission.allowAccess = true;
+
             this._buildGridRow(this._rolesTable.find('tbody'), {
                 roleId: roleId,
                 roleName: roleName,
