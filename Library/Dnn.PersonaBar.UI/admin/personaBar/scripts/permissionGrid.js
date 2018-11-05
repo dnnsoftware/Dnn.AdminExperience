@@ -28,9 +28,10 @@ if (typeof dnn.controls === "undefined" || dnn.controls === null) { dnn.controls
                     'css!../../../../../Resources/Shared/Components/Tokeninput/Themes/token-input-facebook.css'
             ]);
         },
-        getPermission: function (permissionKey) {
+        getPermission: function (permissionObj) {
             return this.data.permissionDefinitions.find(function (permission) {
-                return permission.permissionKey == permissionKey;
+                return permission.permissionKey == permissionObj.permissionKey
+                    && permission.permissionCode == permissionObj.permissionCode;
             });
         },
         getPermissions: function() { //get permissions from table
@@ -366,7 +367,10 @@ if (typeof dnn.controls === "undefined" || dnn.controls === null) { dnn.controls
                 return false;
             }
 
-            var defaultPermission = this.getPermission('READ');
+            var defaultPermission = this.getPermission({
+                permissionCode: 'SYSTEM_FOLDER',
+                permissionKey: 'READ'
+            });
             defaultPermission.allowAccess = true;
 
             this._buildGridRow(this._rolesTable.find('tbody'), {

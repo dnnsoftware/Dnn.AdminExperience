@@ -35,6 +35,9 @@ namespace Dnn.PersonaBar.Library.DTO
         [DataMember(Name = "permissionKey")]
         public string PermissionKey { get; set; }
 
+        [DataMember(Name = "permissionCode")]
+        public string PermissionCode { get; set; }
+
         [DataMember(Name = "fullControl")]
         public bool FullControl { get; set; }
 
