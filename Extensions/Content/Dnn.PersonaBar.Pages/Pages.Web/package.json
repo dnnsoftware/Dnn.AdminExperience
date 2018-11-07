@@ -61,7 +61,7 @@
     "raw-loader": "0.5.1",
     "react-custom-scrollbars": "4.2.1",
     "react-hot-loader": "4.3.12",
-    "react-test-renderer": "^16.6.0",
+    "react-test-renderer": "^16.6.1",
     "react-widgets": "4.4.6",
     "string.prototype.startswith": "0.2.0",
     "style-loader": "^0.23.1",
