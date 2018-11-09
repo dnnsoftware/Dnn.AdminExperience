@@ -8,16 +8,6 @@ if (typeof dnn.controls === "undefined" || dnn.controls === null) { dnn.controls
 
 (function ($) {
 	
-	var permissionsMap = {
-		BROWSE_FOLDER: 8,
-		VIEW_FOLDER: 5,
-		ADD: 28,
-		COPY: 29,
-		DELETE: 30,
-		MANAGE_SETTINGS: 31,
-		WRITE_TO_FOLDER: 6
-	};
-	
     var permissionGrid = dnn.controls.PermissionGrid = function (parent, data, options) {
         this.options = options;
         this.data = data;
@@ -38,7 +28,12 @@ if (typeof dnn.controls === "undefined" || dnn.controls === null) { dnn.controls
                     'css!../../../../../Resources/Shared/Components/Tokeninput/Themes/token-input-facebook.css'
             ]);
         },
-
+        getPermission: function (permissionObj) {
+            return this.data.permissionDefinitions.find(function (permission) {
+                return permission.permissionKey == permissionObj.permissionKey
+                    && permission.permissionCode == permissionObj.permissionCode;
+            });
+        },
         getPermissions: function() { //get permissions from table
             var permissions = { rolePermissions: [], userPermissions: [] };
             this._getRolePermissions(permissions.rolePermissions); //fill role permissions
@@ -372,10 +367,16 @@ if (typeof dnn.controls === "undefined" || dnn.controls === null) { dnn.controls
                 return false;
             }
 
+            var defaultPermission = this.getPermission({
+                permissionCode: 'SYSTEM_FOLDER',
+                permissionKey: 'READ'
+            });
+            defaultPermission.allowAccess = true;
+
             this._buildGridRow(this._rolesTable.find('tbody'), {
                 roleId: roleId,
                 roleName: roleName,
-                permissions: []
+                permissions: [defaultPermission]
             }, 'roles');
 
             if (typeof this.options.onPermissionChanged == "function") {
@@ -390,16 +391,16 @@ if (typeof dnn.controls === "undefined" || dnn.controls === null) { dnn.controls
         _addUserToGrid: function (e) {
             var tokenInput = $("#permissionGrid_txtUser").data('tokenInputObject');
             var selectedUsers = tokenInput.getTokens();
+
+            var defaultPermission = this.getPermission({
+                permissionCode: 'SYSTEM_FOLDER',
+                permissionKey: 'READ'
+            });
+            defaultPermission.allowAccess = true;
+
             for (var i = 0; i < selectedUsers.length; i++) {
                 var user = selectedUsers[i];
                 if (!this._userExistsInGrid(user.id)) {
-
-                    var defaultPermission = this.data.permissionDefinitions.find(
-                        function(permission) {
-                            return permission.permissionId == permissionsMap.VIEW_FOLDER;
-                        }
-                    );
-                    defaultPermission.allowAccess = true;
                     this._buildGridRow(this._usersTable.find('tbody'), {
                         userId: user.id,
                         displayName: user.name,
