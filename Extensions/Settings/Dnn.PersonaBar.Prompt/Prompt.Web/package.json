@@ -76,7 +76,7 @@
     "dnn-webpack-externals": "1.1.2",
     "localization": "^1.0.2",
     "react": "^16.6.2",
-    "react-dom": "^16.6.1",
+    "react-dom": "^16.6.2",
     "react-redux": "^4.4.8",
     "redux": "^3.7.2",
     "redux-thunk": "2.1.0"
