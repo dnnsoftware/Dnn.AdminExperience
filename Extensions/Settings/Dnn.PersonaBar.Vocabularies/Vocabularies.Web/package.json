@@ -30,7 +30,7 @@
     "jwt-decode": "2.2.0",
     "less": "3.8.1",
     "less-loader": "4.1.0",
-    "nuka-carousel": "4.4.2",
+    "nuka-carousel": "4.4.3",
     "object-path": "0.11.4",
     "raw-loader": "0.5.1",
     "react-hot-loader": "4.3.12",
