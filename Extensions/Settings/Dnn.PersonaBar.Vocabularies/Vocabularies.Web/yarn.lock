@@ -8,10 +8,6 @@
   dependencies:
     "@babel/highlight" "^7.0.0"
 
-"@babel/helper-plugin-utils@^7.0.0":
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/@babel/helper-plugin-utils/-/helper-plugin-utils-7.0.0.tgz#bbb3fbee98661c569034237cc03967ba99b4f250"
-
 "@babel/highlight@^7.0.0":
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/@babel/highlight/-/highlight-7.0.0.tgz#f710c38c8d458e6dd9a201afb637fcb781ce99e4"
@@ -19,19 +15,6 @@
     chalk "^2.0.0"
     esutils "^2.0.2"
     js-tokens "^4.0.0"
-
-"@babel/plugin-proposal-object-rest-spread@^7.0.0":
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-object-rest-spread/-/plugin-proposal-object-rest-spread-7.0.0.tgz#9a17b547f64d0676b6c9cecd4edf74a82ab85e7e"
-  dependencies:
-    "@babel/helper-plugin-utils" "^7.0.0"
-    "@babel/plugin-syntax-object-rest-spread" "^7.0.0"
-
-"@babel/plugin-syntax-object-rest-spread@^7.0.0":
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/@babel/plugin-syntax-object-rest-spread/-/plugin-syntax-object-rest-spread-7.0.0.tgz#37d8fbcaf216bd658ea1aebbeb8b75e88ebc549b"
-  dependencies:
-    "@babel/helper-plugin-utils" "^7.0.0"
 
 "@webassemblyjs/ast@1.7.11":
   version "1.7.11"
@@ -3435,11 +3418,10 @@ npmlog@^4.0.2:
     gauge "~2.7.3"
     set-blocking "~2.0.0"
 
-nuka-carousel@4.4.2:
-  version "4.4.2"
-  resolved "https://registry.yarnpkg.com/nuka-carousel/-/nuka-carousel-4.4.2.tgz#d5a3e148f03a348fd7f5cfe793f07bacb038a6cb"
+nuka-carousel@4.4.3:
+  version "4.4.3"
+  resolved "https://registry.yarnpkg.com/nuka-carousel/-/nuka-carousel-4.4.3.tgz#ae815cb7ffa2ae2d4b2572da244d85a1574d8a31"
   dependencies:
-    "@babel/plugin-proposal-object-rest-spread" "^7.0.0"
     d3-ease "^1.0.3"
     exenv "^1.2.0"
     prop-types "^15.6.0"
