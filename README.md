@@ -1,3 +1,6 @@
+[![Build status](https://dev.azure.com/dotnet/DNN/_apis/build/status/Dnn.AdminExperience%20%5BCI%5D)](https://dotnet.visualstudio.com/DNN/_build/latest?definitionId=38) 
+[![Greenkeeper badge](https://badges.greenkeeper.io/dnnsoftware/Dnn.AdminExperience.svg)](https://greenkeeper.io/)
+
 # Dnn.AdminExperience
 
 The Persona Bar Library, Extensions and EditBar for Dnn (DotNetNuke) is the core of the admin experience in Dnn. 

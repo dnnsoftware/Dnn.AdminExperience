@@ -48,6 +48,10 @@ namespace Dnn.PersonaBar.SiteSettings.Services.Dto
 
         public int Custom500TabId { get; set; }
 
+        public int TermsTabId { get; set; }
+
+        public int PrivacyTabId { get; set; }
+
         public string PageHeadText { get; set; }
     }
 }
