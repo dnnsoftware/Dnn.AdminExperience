@@ -1,4 +1,5 @@
-import React, {Component, PropTypes } from "react";
+import React, {Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import "./style.less";
 import util from "../../../../utils";
@@ -35,9 +36,7 @@ class RoleGroupEditor extends Component {
         document.removeEventListener("click", this.handleClick);
         this._isMounted = false;
     }
-    componentWillReceiveProps(newProps) {
-        this.setState(newProps);
-    }
+
     handleClick(event) {
         // Note: this workaround is needed in IE. The remove event listener in the componentWillUnmount is called
         // before the handleClick handler is called, but in spite of that, the handleClick is executed. To avoid

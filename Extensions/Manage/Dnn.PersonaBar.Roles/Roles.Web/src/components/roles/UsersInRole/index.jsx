@@ -1,5 +1,6 @@
-import React, {Component, PropTypes } from "react";
-import ReactDOM, { findDOMNode } from "react-dom";
+import React, {Component } from "react";
+import PropTypes from "prop-types";
+import { findDOMNode } from "react-dom";
 import {debounce} from "throttle-debounce";
 import { connect } from "react-redux";
 import resx from "../../../resources";
@@ -36,15 +37,9 @@ class UsersInRole extends Component {
         this.comboBoxDom =null;
         this.debounceGetSuggestUsers = debounce(500, this.debounceGetSuggestUsers);
     }
-    componentWillReceiveProps(newProps) {
-        this.setState(newProps);
-    }
 
-    componentWillMount() {
+    componentDidMount() {
         this.getUsers();
-    }
-
-    componentDidMount(){
         findDOMNode(this.comboBoxDom).childNodes[1].setAttribute('aria-label', 'Suggestion');
     }
 
@@ -135,10 +130,11 @@ class UsersInRole extends Component {
         let roleUsers = this.props.roleUsers;
         let userRows = roleUsers.map((user, index) => {
             return <UserRow
+                key={index}
                 userDetails={user}
                 index={index}
                 saveUser={this.saveUser.bind(this, false) }
-                >
+            >
             </UserRow>;
         });
         return <div className="role-user-body">{(roleUsers.length > 0) ?
@@ -166,7 +162,7 @@ class UsersInRole extends Component {
             { name: "", width: 35 }
         ];
         let tableHeaders = tableFields.map((field) => {
-            return <GridCell columnSize={field.width} style={{ fontWeight: "bolder" }}>
+            return <GridCell key={field.name} columnSize={field.width} style={{ fontWeight: "bolder" }}>
                 {
                     field.name !== "" ?
                         <span>{resx.get(field.name + ".Header") }</span>

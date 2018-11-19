@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
 import "./style.less";
 import Collapse from "dnn-collapsible";
@@ -20,6 +21,11 @@ class RoleRow extends Component {
         canEdit = util.settings.isHost || util.settings.isAdmin || util.settings.permissions.EDIT;
     }
     componentDidMount() {
+        let opened = (this.props.openId !== "" && this.props.id === this.props.openId);
+        this.setState({
+            opened
+        });
+
         document.addEventListener("click", this.handleClick);
         this._isMounted = true;
     }
@@ -28,12 +34,7 @@ class RoleRow extends Component {
         document.removeEventListener("click", this.handleClick);
         this._isMounted = false;
     }
-    componentWillMount() {
-        let opened = (this.props.openId !== "" && this.props.id === this.props.openId);
-        this.setState({
-            opened
-        });
-    }
+    
     handleClick(event) {
         // Note: this workaround is needed in IE. The remove event listener in the componentWillUnmount is called
         // before the handleClick handler is called, but in spite of that, the handleClick is executed. To avoid

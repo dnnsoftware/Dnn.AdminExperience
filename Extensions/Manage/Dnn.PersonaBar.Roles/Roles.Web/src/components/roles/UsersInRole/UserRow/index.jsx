@@ -1,4 +1,5 @@
-import React, {Component, PropTypes } from "react";
+import React, {Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import "./style.less";
 import GridCell from "dnn-grid-cell";
@@ -24,13 +25,7 @@ class UserRow extends Component {
             isCalendarVisible: false
         };
     }
-    componentDidMount() {
-    }
 
-    componentWillUnmount() {
-    }
-    componentWillMount() {
-    }
     formateDate(dateValue) {
         let date = new Date(dateValue);
 

@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import "./style.less";
 import Switch from "dnn-switch";
@@ -357,7 +358,7 @@ class RolesEditor extends Component {
         /* eslint-disable react/no-danger */
         return (
             <div className="role-details-editor">
-                <Grid children={children} numberOfColumns={2} />
+                <Grid numberOfColumns={2}>{children}</Grid>
                 <div className="buttons-box">
                     {
                         this.props.roleId > 0 && (!state.roleDetails.isSystem && state.roleDetails.id > -1) ?

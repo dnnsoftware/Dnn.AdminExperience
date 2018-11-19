@@ -1,4 +1,5 @@
-import React, {Component, PropTypes } from "react";
+import React, {Component } from "react";
+import PropTypes from "prop-types";
 import { AddIcon,
     EditIcon,
     CardViewIcon,
@@ -58,7 +59,7 @@ class IconButton extends Component {
             case "lock-closed":
                 return LockClosedIcon;
             default:
-                return require("!raw!../../../img/common/" + props.type.toLowerCase() + ".svg");
+                return require("!raw-loader!../../../img/common/" + props.type.toLowerCase() + ".svg");
         }
     }
 

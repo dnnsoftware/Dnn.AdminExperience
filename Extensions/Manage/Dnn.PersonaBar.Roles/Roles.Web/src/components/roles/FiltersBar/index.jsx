@@ -1,4 +1,5 @@
-import React, {Component, PropTypes } from "react";
+import React, {Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import "./style.less";
 import "react-widgets/lib/less/react-widgets.less";
@@ -26,14 +27,6 @@ class FiltersBar extends Component {
             showPopup: false
         };
         canEdit = util.settings.isHost || util.settings.isAdmin || util.settings.permissions.EDIT;
-    }
-    componentWillMount() {
-    }
-    componentDidMount() {
-    }
-    componentWillUnmount() {
-    }
-    componentWillReceiveProps() {
     }
     onDeleteGroup() {
         const {props} = this;
@@ -63,9 +56,9 @@ class FiltersBar extends Component {
     }
     closeDropDown() {
         /*This is done in order to keep the dropdown closed on click on edit/delete*/
-        let {state} = this.refs["groupsDropdown"];
+        let {state} = this.groupsDropdownRef.current;
         state.dropDownOpen = false;
-        this.refs["groupsDropdown"].setState({
+        this.groupsDropdownRef.current.setState({
             state
         });
     }
@@ -136,8 +129,8 @@ class FiltersBar extends Component {
             options={roleGroupsOptions}
             label={label }
             onSelect={this.onSelect.bind(this) }
-            ref="groupsDropdown"
-            />;
+            ref={node => this.groupsDropdownRef = node}
+        />;
         return <div className="groups-filter">{GroupsDropDown}<div className="clear"></div></div>;
     }
 
