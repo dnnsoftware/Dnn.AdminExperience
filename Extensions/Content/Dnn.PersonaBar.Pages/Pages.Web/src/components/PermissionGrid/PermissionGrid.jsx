@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from "react";
+import React, {Component} from "react";
+import PropTypes from "prop-types";
 import DnnPermissionGrid from "dnn-permission-grid";
 import utils from "../../utils";
 import cloneDeep from "lodash/cloneDeep";

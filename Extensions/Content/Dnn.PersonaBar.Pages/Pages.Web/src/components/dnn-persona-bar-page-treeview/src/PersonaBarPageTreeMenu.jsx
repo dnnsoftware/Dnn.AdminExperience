@@ -54,9 +54,9 @@ export class PersonaBarPageTreeMenu extends Component {
     render_li() {
         const { listItems, _traverse } = this.props;
 
-        return listItems.map((item) => {
+        return listItems.map((item, index) => {
             return (
-                <li className="list-item-menu">
+                <li key={"pageTreeListItem" + index} className="list-item-menu">
                     <div
                         className={(item.selected) ? "list-item-highlight" : null}
                         style={{ height: "28px", lineHeight: "35px" }}>

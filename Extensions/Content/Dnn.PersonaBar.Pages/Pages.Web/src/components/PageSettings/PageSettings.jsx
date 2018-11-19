@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import Tabs from "dnn-tabs";
 import Localization from "../../localization";
 import PageDetails from "../PageDetails/PageDetails";
@@ -16,7 +17,7 @@ import permissionTypes from "../../services/permissionTypes";
 
 class PageSettings extends Component {
 
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         this.setState({ selectedPageName: "" });
     }
     hasPageErrors() {
@@ -34,11 +35,13 @@ class PageSettings extends Component {
         const pageErrors = this.hasPageErrors();
 
         let buttons = [<Button
+            key="cancelButton"
             type="secondary"
             onClick={onCancel}>
             {Localization.get("Cancel")}
         </Button>,
         <Button
+            key="saveButton"
             type="primary"
             disabled={(!selectedPageDirty || pageErrors) ? true : false}
             onClick={onSave.bind(this)}>

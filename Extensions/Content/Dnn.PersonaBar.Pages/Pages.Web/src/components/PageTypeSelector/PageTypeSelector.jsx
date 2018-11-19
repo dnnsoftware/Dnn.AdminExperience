@@ -37,7 +37,7 @@ class PageTypeSelector extends Component {
     }
 
     componentDidMount() {
-        const pageSelectorDOM = ReactDOM.findDOMNode(this);
+        const pageSelectorDOM = this.node;
         if (pageSelectorDOM.querySelector("#parentPageValue").offsetWidth > MAX_PAGE_PARENT_SIZE_TOOGLE) {
             pageSelectorDOM.querySelector("#pageParent").className = "page-info-item page-parent-info-style-large";
             pageSelectorDOM.querySelector("#pageParentLabel").className = "page-info-item-label parent-page-style-label-large";
@@ -66,7 +66,7 @@ class PageTypeSelector extends Component {
         const components = this.getComponents();
                 
         return (
-            <div className={styles.pageTypeSelector}>
+            <div className={styles.pageTypeSelector} ref={node => this.node = node}>
                 <div>
                     {components}
                 </div>

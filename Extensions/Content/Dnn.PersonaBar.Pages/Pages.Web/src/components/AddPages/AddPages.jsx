@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from "react";
+import React, {Component} from "react";
+import PropTypes from "prop-types";
 import Button from "dnn-button";
 import Localization from "../../localization";
 import styles from "./style.less";
@@ -35,15 +36,15 @@ class AddPages extends Component {
         const tags = bulkPage.tags ? bulkPage.tags.split(",") : [];
 
         const defaultLeftColumnComponents = [
-            <BranchParent parentId={bulkPage.parentId}
+            <BranchParent key="branchParent" parentId={bulkPage.parentId}
                 onChangeValue={this.onChangeValue.bind(this)} />,
-            <KeyWords keywords={bulkPage.keywords}
+            <KeyWords key="keywords" keywords={bulkPage.keywords}
                 onChangeEvent={this.onChangeEvent.bind(this)} />,
-            <Tags tags={tags}
+            <Tags key="tags" tags={tags}
                 onChangeTags={this.onChangeTags.bind(this)} />,
-            <DisplayInMenu includeInMenu={bulkPage.includeInMenu}
+            <DisplayInMenu key="displayInMenu" includeInMenu={bulkPage.includeInMenu}
                 onChangeValue={this.onChangeValue.bind(this)} />,
-            <EnableScheduling startDate={bulkPage.startDate}
+            <EnableScheduling key="enableScheduling" startDate={bulkPage.startDate}
                 endDate={bulkPage.endDate}
                 onChangeValue={this.onChangeValue.bind(this)} />
         ];

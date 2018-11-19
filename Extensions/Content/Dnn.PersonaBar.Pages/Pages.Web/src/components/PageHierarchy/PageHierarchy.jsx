@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from "react";
+import React, {Component} from "react";
+import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
 import {pageHierarchyManager} from "./pages.pageHierarchy";
 import utils from "../../utils";
@@ -7,8 +8,6 @@ import "./css/pages-hierarchy.css";
 class PageHierarchy extends Component {
     componentDidMount() {
         const {itemTemplate, dragItemTemplate, searchKeyword} = this.props;
-
-        this.node = ReactDOM.findDOMNode(this);
         pageHierarchyManager.utility = utils.getUtilities();
         pageHierarchyManager.resx = pageHierarchyManager.utility.resx.Pages;
         pageHierarchyManager._viewModel = {};
@@ -21,7 +20,7 @@ class PageHierarchy extends Component {
         pageHierarchyManager.selectedPagePathChanged = p => this.props.onSelectedPagePathChanged([...p]);
     }
 
-    componentWillReceiveProps(nextProps) {
+    UNSAFE_componentWillReceiveProps(nextProps) {
         const {itemTemplate, dragItemTemplate, searchKeyword, selectedPage} = this.props;
         if (itemTemplate !== nextProps.itemTemplate) {
             pageHierarchyManager.setItemTemplate(nextProps.itemTemplate);
@@ -54,8 +53,8 @@ class PageHierarchy extends Component {
     }
     
     render() {
-        const html = require("raw!./pages.html");
-        return <div dangerouslySetInnerHTML={{__html: html}} />; // eslint-disable-line react/no-danger
+        const html = require("raw-loader!./pages.html");
+        return <div ref={node => this.node = node} dangerouslySetInnerHTML={{__html: html}} />; // eslint-disable-line react/no-danger
     }
 } 
 

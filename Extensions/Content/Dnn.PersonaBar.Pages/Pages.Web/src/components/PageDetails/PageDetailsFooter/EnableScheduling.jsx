@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import Switch from "dnn-switch";
 import Label from "dnn-label";
 import DatePicker from "dnn-date-picker";

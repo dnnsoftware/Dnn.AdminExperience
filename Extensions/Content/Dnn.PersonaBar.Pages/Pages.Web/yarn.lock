@@ -196,7 +196,7 @@
     esutils "^2.0.2"
     js-tokens "^4.0.0"
 
-"@babel/parser@^7.1.2", "@babel/parser@^7.1.6":
+"@babel/parser@^7.0.0", "@babel/parser@^7.1.2", "@babel/parser@^7.1.6":
   version "7.1.6"
   resolved "https://www.myget.org/F/dnn-software-public/npm/@babel/parser/-/@babel/parser-7.1.6.tgz#16e97aca1ec1062324a01c5a6a7d0df8dd189854"
 
@@ -553,7 +553,7 @@
     "@babel/parser" "^7.1.2"
     "@babel/types" "^7.1.2"
 
-"@babel/traverse@^7.1.0", "@babel/traverse@^7.1.5", "@babel/traverse@^7.1.6":
+"@babel/traverse@^7.0.0", "@babel/traverse@^7.1.0", "@babel/traverse@^7.1.5", "@babel/traverse@^7.1.6":
   version "7.1.6"
   resolved "https://www.myget.org/F/dnn-software-public/npm/@babel/traverse/-/@babel/traverse-7.1.6.tgz#c8db9963ab4ce5b894222435482bd8ea854b7b5c"
   dependencies:
@@ -1013,6 +1013,17 @@ babel-core@^6.0.0, babel-core@^6.26.0, babel-core@^6.26.3:
     private "^0.1.8"
     slash "^1.0.0"
     source-map "^0.5.7"
+
+babel-eslint@^10.0.1:
+  version "10.0.1"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/babel-eslint/-/babel-eslint-10.0.1.tgz#919681dc099614cd7d31d45c8908695092a1faed"
+  dependencies:
+    "@babel/code-frame" "^7.0.0"
+    "@babel/parser" "^7.0.0"
+    "@babel/traverse" "^7.0.0"
+    "@babel/types" "^7.0.0"
+    eslint-scope "3.7.1"
+    eslint-visitor-keys "^1.0.0"
 
 babel-generator@^6.18.0, babel-generator@^6.26.0:
   version "6.26.1"
@@ -2714,6 +2725,13 @@ eslint-plugin-spellcheck@0.0.11:
     globals "^11.3.0"
     hunspell-spellchecker "^1.0.2"
     lodash "^4.14.2"
+
+eslint-scope@3.7.1:
+  version "3.7.1"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/eslint-scope/-/eslint-scope-3.7.1.tgz#3d63c3edfda02e06e01a452ad88caacc7cdcb6e8"
+  dependencies:
+    esrecurse "^4.1.0"
+    estraverse "^4.1.1"
 
 eslint-scope@^4.0.0:
   version "4.0.0"

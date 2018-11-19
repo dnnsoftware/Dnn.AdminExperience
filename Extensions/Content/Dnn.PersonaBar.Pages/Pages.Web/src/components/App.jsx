@@ -1,5 +1,6 @@
 
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -150,7 +151,7 @@ class App extends Component {
         }
     }
 
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         let { selectedPage } = this.props;
         if (securityService.userHasPermission(permissionTypes.MANAGE_PAGE, selectedPage)) {
             this.props.getContentLocalizationEnabled();
@@ -162,7 +163,7 @@ class App extends Component {
     }
 
 
-    componentWillReceiveProps(newProps) {
+    UNSAFE_componentWillReceiveProps(newProps) {
         this.notifyErrorIfNeeded(newProps);
         window.dnn.utility.closeSocialTasks();
         const { selectedPage } = newProps;
@@ -579,8 +580,8 @@ class App extends Component {
             }
             
             setTimeout(()=>{
-                if (ReactDOM.findDOMNode(this).querySelector("#name")) {
-                    ReactDOM.findDOMNode(this).querySelector("#name").focus();
+                if (this.node.querySelector("#name")) {
+                    this.node.querySelector("#name").focus();
                 }    
             },100);
         };
@@ -1567,7 +1568,7 @@ class App extends Component {
          /* eslint-disable react/no-danger */
         return (
 
-            <div className="pages-app personaBar-mainContainer">
+            <div ref={node => this.node = node} className="pages-app personaBar-mainContainer">
                 { isListPagesAllowed &&
                     <PersonaBarPage fullWidth={true} isOpen={true}>
                         <PersonaBarPageHeader title={Localization.get(inSearch ? "PagesSearchHeader" : "Pages")}>

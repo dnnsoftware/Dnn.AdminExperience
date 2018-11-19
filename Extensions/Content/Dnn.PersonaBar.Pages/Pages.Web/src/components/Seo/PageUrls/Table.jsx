@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import GridCell from "dnn-grid-cell";
 import Localization from "../../../localization";
 import UrlRow from "./UrlRow";
@@ -16,7 +17,9 @@ class Table extends Component {
         const { siteAliases, primaryAliasId, onSave, onCancel, onDelete, onChange, editedUrl,
             pageHasParent, editingUrl, onOpenEditForm } = this.props;
         return pageUrls.map(url => {
-            return <UrlRow url={url}
+            return <UrlRow 
+                key={url.id}
+                url={url}
                 editedUrl={editedUrl}
                 onOpenEditForm={onOpenEditForm}
                 pageHasParent={pageHasParent}

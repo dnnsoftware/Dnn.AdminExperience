@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from "react";
+import React, {Component} from "react";
+import PropTypes from "prop-types";
 import SingleLineInputWithError from "dnn-single-line-input-with-error";
 import Localization from "../../../localization";
 

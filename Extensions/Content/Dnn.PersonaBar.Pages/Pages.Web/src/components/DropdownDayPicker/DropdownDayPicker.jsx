@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from "react";
+import React, {Component} from "react";
+import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
 
 import DayPicker from "../DayPicker/DayPicker.jsx";
@@ -29,7 +30,7 @@ class DropdownDayPicker extends Component  {
     handleClick(e) {
         const {toggleDropdownCalendar, dropdownIsActive} = this.props;
         if (!this._isMounted) { return; }
-        if (!ReactDOM.findDOMNode(this).contains(e.target)) {
+        if (!this.node.contains(e.target)) {
             dropdownIsActive ? toggleDropdownCalendar(false) : null;
         }
     }
@@ -39,7 +40,7 @@ class DropdownDayPicker extends Component  {
         const {dropdownIsActive, onDayClick, applyChanges, clearChanges, startDate, endDate, CalendarIcon, toggleDropdownCalendar} = this.props;
 
         return (
-            <div className="date-picker">
+            <div className="date-picker" ref={node => this.node = node}>
                 <GridCell className="calendar-dropdown-container" columnSize={100} style={{padding: "0px 5px"}}>
                     <GridCell className="selected-date" columnSize={90}>
                         <p>{this.props.label}</p>

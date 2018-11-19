@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 class LazyLoad extends Component {
     constructor(props) {
@@ -9,7 +10,7 @@ class LazyLoad extends Component {
         };
     }
 
-    componentWillReceiveProps(newProps){
+    UNSAFE_componentWillReceiveProps(newProps){
         if (newProps.filtersUpdated) {
             this.setState({
                 page:0

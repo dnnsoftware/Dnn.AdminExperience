@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from "react";
+import React, {Component} from "react";
+import PropTypes from "prop-types";
 import styles from "./style.less";
 import GridSystem from "dnn-grid-system";
 import GridCell from "dnn-grid-cell";

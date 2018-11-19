@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from "react";
+import React, {Component} from "react";
+import PropTypes from "prop-types";
 import Localization from "localization";
 import Module from "./Module";
 import Checkbox from "dnn-checkbox";
@@ -62,6 +63,7 @@ class PageLanguage extends Component {
         const modules = this.props.modules || [];
         const moduleComponents = modules.map((module, index) => {
             return <Module
+                key={module.id}
                 isDefault={this.props.isDefault}
                 module={module}
                 onUpdateModules={this.props.onUpdateModules}

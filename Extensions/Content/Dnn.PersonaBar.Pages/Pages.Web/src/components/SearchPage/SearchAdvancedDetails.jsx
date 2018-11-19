@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
 import Localization from "../../localization";
 import GridCell from "dnn-grid-cell";
@@ -19,7 +20,7 @@ class SearchAdvancedDetails extends Component {
         };
     }
 
-    componentWillReceiveProps(newProps) {
+    UNSAFE_componentWillReceiveProps(newProps) {
         if (newProps.tags) {
             this.setState({
                 tags:newProps.tags.split(",")
@@ -68,7 +69,7 @@ class SearchAdvancedDetails extends Component {
     }
 
     onTagClick() {
-        ReactDOM.findDOMNode(this).getElementsByClassName("input-container")[0].childNodes[0].focus();
+        this.node.getElementsByClassName("input-container")[0].childNodes[0].focus();
     }
 
     applyDateFilter() {
@@ -83,7 +84,7 @@ class SearchAdvancedDetails extends Component {
 
     render() {
         return (
-            <div className="search-more-flyout">
+            <div className="search-more-flyout" ref={node => this.node = node}>
                 <GridCell columnSize={70} style={{ padding: "5px 5px 5px 10px" }}>
                     <h1>{Localization.get("lblGeneralFilters").toUpperCase()}</h1>
                 </GridCell>

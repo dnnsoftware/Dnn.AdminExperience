@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from "react";
+import React, {Component} from "react";
+import PropTypes from "prop-types";
 import {pageActions as PageActions} from "../../../actions";
 import utils from "../../../utils";
 
@@ -23,7 +24,7 @@ class ModuleEdit extends Component {
     }
 
     onIFrameLoad() {
-        const iframe = this.refs.iframe;
+        const iframe = this.iframeRef;
         const location = iframe.contentWindow.location.href;
         if(location.indexOf("popUp") === -1){
             if(this.closeOnEndRequest){
@@ -53,7 +54,7 @@ class ModuleEdit extends Component {
         }
     }
 
-    componentWillMount(){
+    UNSAFE_componentWillMount(){
         const {state, props} = this;
 
         PageActions.viewPage(props.selectedPage.tabId, null, () => {
@@ -97,14 +98,14 @@ class ModuleEdit extends Component {
     }
 
     addEventListener(){
-        const iframe = this.refs.iframe;
+        const iframe = this.iframeRef;
         if(iframe){
             iframe.addEventListener("load", this.onIFrameLoad);
         }
     }
 
     removeEventListener(){
-        const iframe = this.refs.iframe;
+        const iframe = this.iframeRef;
         if(iframe){
             iframe.removeEventListener("load", this.onIFrameLoad);
         }
@@ -122,7 +123,7 @@ class ModuleEdit extends Component {
         const {state, props} = this;
 
         return (state.userMode === "edit" && 
-            <iframe ref="iframe" src={state.editUrl} style={iFrameStyle} frameBorder={0}></iframe>
+            <iframe ref={node => this.iframeRef = node} src={state.editUrl} style={iFrameStyle} frameBorder={0}></iframe>
         );
     }
 }

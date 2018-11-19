@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from "react";
+import React, {Component} from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import GridCell from "dnn-grid-cell";
@@ -14,7 +15,7 @@ import style from "./style.less";
 
 class Appearance extends Component {
 
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         const { page, onRetrieveThemes, onRetrieveThemeFiles } = this.props;
 
         onRetrieveThemes().then(data => {
@@ -30,7 +31,7 @@ class Appearance extends Component {
 		});
     }
 
-    componentWillReceiveProps(newProps) {
+    UNSAFE_componentWillReceiveProps(newProps) {
         const { page, containers, defaultPortalThemeName, defaultPortalThemeLevel, onRetrieveThemeFiles } = this.props;
 
         if (newProps.containers !== containers) {

@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from "react";
+import React, {Component} from "react";
+import PropTypes from "prop-types";
 import OverflowText from "dnn-text-overflow-wrapper";
 import styles from "./style.less";
 import localization from "../../../localization";

@@ -18,8 +18,8 @@ module.exports = {
             {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
-                use: "eslint-loader",
-                enforce: "pre"
+                use: { loader: "eslint-loader", options: { fix: true } },
+                enforce: "pre"               
             },
             {
                 test: /\.(js|jsx)$/,
@@ -67,7 +67,7 @@ module.exports = {
         minimizer: [new UglifyJsPlugin()]
     } : {
 
-        },
+    },
     plugins: isProduction ? [
         new webpack.DefinePlugin({
             VERSION: JSON.stringify(packageJson.version),
@@ -76,8 +76,8 @@ module.exports = {
             }
         })
     ] : [
-            new webpack.DefinePlugin({
-                VERSION: JSON.stringify(packageJson.version)
-            })
-        ]
+        new webpack.DefinePlugin({
+            VERSION: JSON.stringify(packageJson.version)
+        })
+    ]
 };

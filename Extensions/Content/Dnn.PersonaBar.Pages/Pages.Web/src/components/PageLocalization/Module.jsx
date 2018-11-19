@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from "react";
+import React, {Component} from "react";
+import PropTypes from "prop-types";
 import Localization from "localization";
 import Tooltip from "dnn-tooltip";
 import Checkbox from "dnn-checkbox";

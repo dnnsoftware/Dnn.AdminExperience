@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from "react";
+import React, {Component} from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Button from "dnn-button";
 import Localization from "../../localization";
@@ -25,7 +26,7 @@ class PageLocalization extends Component {
         };
     }
 
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         this.getLanguages();
     }
 

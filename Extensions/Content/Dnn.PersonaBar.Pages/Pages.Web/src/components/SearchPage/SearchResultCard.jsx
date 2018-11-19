@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import Localization from "../../localization";
 import utils from "../../utils";
 import cloneDeep from "lodash/clonedeep";
@@ -89,7 +90,7 @@ class SearchResultCard extends Component {
         if (!this.thumbRendered && this.props.pageTypeSelectorComponents && this.props.pageTypeSelectorComponents.length > 0) { 
             return this.props.pageTypeSelectorComponents.map(function (component) {
                 const Component = component.component;
-                return <div className="search-item-thumbnail"><Component page={item} /></div>;
+                return <div className="search-item-thumbnail" key={item.id}><Component page={item} /></div>;
             });
         }
         this.thumbRendered = true;                             
@@ -153,7 +154,7 @@ class SearchResultCard extends Component {
                                     <p title={this.props.item.tags.join(",").trim(",")}>{
                                         this.props.item.tags.map((tag, count) => {
                                             return (
-                                                <span>
+                                                <span key={"tag-" + count}>
                                                     <span style={{ marginLeft: "5px" }} onClick={() => this.addToTags(tag)}>
                                                         {tag}
                                                     </span>

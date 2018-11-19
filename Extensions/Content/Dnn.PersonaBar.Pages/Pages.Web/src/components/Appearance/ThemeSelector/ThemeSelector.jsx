@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from "react";
+import React, {Component} from "react";
+import PropTypes from "prop-types";
 import Label from "dnn-label";
 import localization from "../../../localization";
 import Card from "../Card/Card";
@@ -38,6 +39,7 @@ class ThemeSelector extends Component {
         }
         return themes.map(theme => {
             return <Card
+                key={theme.packageName}
                 cardId={theme.packageName}
                 onClick={this.onThemeClick.bind(this, theme) }
                 hoverText={localization.get("SetPageTheme") }

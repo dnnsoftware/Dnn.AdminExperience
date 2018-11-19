@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import GridSystem from "dnn-grid-system";
@@ -14,7 +15,7 @@ import { pageActions as PageActions } from "../../actions";
 import styles from "./style.less";
 
 class More extends Component {
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         this.props.onFetchCacheProviderList();
         if (this.props.page.cacheProvider && !this.props.cachedPageCount) {
             this.props.onGetCachedPageCount(this.props.page.cacheProvider);

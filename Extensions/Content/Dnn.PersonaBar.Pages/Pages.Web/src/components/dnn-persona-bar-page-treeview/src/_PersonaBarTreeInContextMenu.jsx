@@ -16,7 +16,7 @@ export class PersonaBarTreeInContextMenu extends Component {
         this.showMenu = false;
     }
 
-    componentWillMount() {
+    UNSAFE_UNSAFE_componentWillMount() {
         let { props } = this;
         if (props.item === undefined) {
             this.showMenu = false;
@@ -129,7 +129,7 @@ export class PersonaBarTreeInContextMenu extends Component {
             return (<Menu>
                 {
                     visibleMenus.map(menu => {
-                        return <MenuItem onMenuAction={menu.onClick.bind(this, menu.key, item, menu.OnClickAction)}>
+                        return <MenuItem key={menu.key} onMenuAction={menu.onClick.bind(this, menu.key, item, menu.OnClickAction)}>
                             <div className="icon" dangerouslySetInnerHTML={{ __html: menu.icon }} />
                             <div className="label">{menu.title}</div>
                         </MenuItem>;
