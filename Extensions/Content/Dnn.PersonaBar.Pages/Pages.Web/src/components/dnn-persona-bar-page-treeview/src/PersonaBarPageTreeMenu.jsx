@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import GridCell from "dnn-grid-cell";
 import { PropTypes } from "prop-types";
-import { DragSource } from 'react-dnd';
 
 
 import "./styles.less";

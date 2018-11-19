@@ -39,7 +39,7 @@ class PersonaBarPageTreeviewInteractor extends Component {
     componentDidMount() {
         this.init();
     }
-    UNSAFE_UNSAFE_componentWillReceiveProps(newProps) {
+    UNSAFE_componentWillReceiveProps(newProps) {
         let setTreeViewExpanded = null;
         const {
             activePage,
