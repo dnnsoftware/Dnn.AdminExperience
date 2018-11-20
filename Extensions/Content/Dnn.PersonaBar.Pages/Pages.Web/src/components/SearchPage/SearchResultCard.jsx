@@ -2,9 +2,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Localization from "../../localization";
 import utils from "../../utils";
-import cloneDeep from "lodash/clonedeep";
+import cloneDeep from "lodash/cloneDeep";
 import securityService from "../../services/securityService";
-
 import GridCell from "dnn-grid-cell";
 import OverflowText from "dnn-text-overflow-wrapper";
 import { EyeIcon, TreeEdit } from "dnn-svg-icons";

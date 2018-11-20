@@ -4,7 +4,7 @@ import Localization from "localization";
 import { TreeAddPage, TreeCopy, TreeEdit, EyeIcon } from "dnn-svg-icons";
 import Menu from "./InContextMenu/Menu";
 import MenuItem from "./InContextMenu/MenuItem";
-import cloneDeep from 'lodash/clonedeep';
+import cloneDeep from 'lodash/cloneDeep';
 import securityService from "../../../services/securityService";
 
 import "./styles.less";
