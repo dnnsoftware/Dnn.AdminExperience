@@ -28,8 +28,8 @@ module.exports = {
     resolve: {
         extensions: [".js", ".json", ".jsx"],
         modules: [
-            path.resolve('./src'),          // Look in src first
-            path.resolve('./node_modules')  // Last fallback to node_modules
+            path.resolve("./src"),          // Look in src first
+            path.resolve("./node_modules")  // Last fallback to node_modules
         ]        
     },
 
@@ -43,8 +43,8 @@ module.exports = {
             }
         })
     ] : [
-            new webpack.DefinePlugin({
-                VERSION: JSON.stringify(packageJson.version)
-            })
-        ]
+        new webpack.DefinePlugin({
+            VERSION: JSON.stringify(packageJson.version)
+        })
+    ]
 };

@@ -1,4 +1,5 @@
-import React, {PropTypes} from "react";
+import PropTypes from 'prop-types';
+import React from "react";
 import styles from "./style.less";
 import { ArrowBack } from "dnn-svg-icons";
 
