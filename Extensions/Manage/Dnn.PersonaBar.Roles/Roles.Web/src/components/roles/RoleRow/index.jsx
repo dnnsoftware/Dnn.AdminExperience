@@ -2,8 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
 import "./style.less";
-import Collapse from "dnn-collapsible";
-import GridCell from "dnn-grid-cell";
+import { Collapsible, GridCell }  from "@dnnsoftware/dnn-react-common";
 import IconButton from "../../common/IconButton";
 import resx from "resources";
 import util from "utils";
@@ -100,9 +99,9 @@ class RoleRow extends Component {
                         }
                     </div>
                     }
-                    <Collapse accordion={true} isOpened={opened} className="role-row-collapsible">
+                    <Collapsible accordion={true} isOpened={opened} className="role-row-collapsible">
                         {opened && props.children}
-                    </Collapse>
+                    </Collapsible>
                 </div>
             );
         } else {

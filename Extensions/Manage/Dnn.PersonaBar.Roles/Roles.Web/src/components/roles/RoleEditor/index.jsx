@@ -2,16 +2,11 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import "./style.less";
-import Switch from "dnn-switch";
-import Grid from "dnn-grid-system";
-import Button from "dnn-button";
-import Select from "dnn-dropdown";
+//import Select from "dnn-dropdown";
 import util from "../../../utils";
 import resx from "../../../resources";
-import SingleLineInputWithError from "dnn-single-line-input-with-error";
-import MultiLineInput from "dnn-multi-line-input";
+import { Select, GridSystem as Grid, Switch, Button, SingleLineInputWithError, MultiLineInput, Label }  from "@dnnsoftware/dnn-react-common";
 import RoleGroupEditor from "./RoleGroupEditor";
-import Label from "dnn-label";
 import {
     roles as RolesActions
 } from "../../../actions";

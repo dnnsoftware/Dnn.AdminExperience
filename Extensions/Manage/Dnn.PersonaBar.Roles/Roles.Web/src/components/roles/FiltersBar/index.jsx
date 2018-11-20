@@ -3,12 +3,10 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import "./style.less";
 import "react-widgets/lib/less/react-widgets.less";
-import DropDown from "dnn-dropdown";
 import "./style.less";
 import resx from "../../../resources";
 import IconButton from "../../common/IconButton";
-import SearchBox from "dnn-search-box";
-import GridCell from "dnn-grid-cell";
+import { GridCell, SearchBox, Dropdown }  from "@dnnsoftware/dnn-react-common";
 import RoleGroupEditor from "../RoleEditor/RoleGroupEditor";
 import {
     roles as RolesActions
@@ -124,7 +122,7 @@ class FiltersBar extends Component {
     getRoleGroupsDropDown() {
         let label = this.getCurrentLabel();
         let roleGroupsOptions = this.BuildRoleGroupsOptions();
-        let GroupsDropDown = <DropDown  style={{ width: "100%" }}
+        let GroupsDropDown = <Dropdown  style={{ width: "100%" }}
             withBorder={false}
             options={roleGroupsOptions}
             label={label }

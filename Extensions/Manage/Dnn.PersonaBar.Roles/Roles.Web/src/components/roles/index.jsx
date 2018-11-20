@@ -8,7 +8,7 @@ import {
 } from "../../actions";
 import FiltersBar from "./FiltersBar";
 import RoleRow from "./RoleRow";
-import GridCell from "dnn-grid-cell";
+import { GridCell }  from "@dnnsoftware/dnn-react-common";
 import UsersInRole from "./UsersInRole";
 import RoleEditor from "./RoleEditor";
 import CollapsibleSwitcher from "../common/CollapsibleSwitcher";

@@ -4,11 +4,8 @@ import { connect } from "react-redux";
 import "./style.less";
 import util from "../../../../utils";
 import resx from "../../../../resources";
-import SingleLineInputWithError from "dnn-single-line-input-with-error";
-import MultiLineInput from "dnn-multi-line-input";
-import Button from "dnn-button";
+import { SingleLineInputWithError, MultiLineInput, Button, Label }  from "@dnnsoftware/dnn-react-common";
 import ReactDOM from "react-dom";
-import Label from "dnn-label";
 import {
     roles as RolesActions
 } from "../../../../actions";

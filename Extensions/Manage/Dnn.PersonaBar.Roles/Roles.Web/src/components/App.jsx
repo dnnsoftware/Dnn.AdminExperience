@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import Button from "dnn-button";
-import PersonaBarPageHeader from "dnn-persona-bar-page-header";
-import PersonaBarPage from "dnn-persona-bar-page";
+import { Button, PersonaBarPageHeader, PersonaBarPage}  from "@dnnsoftware/dnn-react-common";
 import RolesPanel from "./roles";
 import {
     visiblePanelActions as VisiblePanelActions

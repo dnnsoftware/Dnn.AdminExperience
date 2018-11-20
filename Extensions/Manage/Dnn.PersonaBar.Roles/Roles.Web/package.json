@@ -8,6 +8,7 @@
     "analyze": "set NODE_ENV=production&&webpack -p --json | webpack-bundle-size-analyzer"
   },
   "devDependencies": {
+    "@dnnsoftware/dnn-react-common": "^2.0.5",
     "array.prototype.find": "^2.0.0",
     "array.prototype.findindex": "^2.0.0",
     "babel-core": "6.26.3",
@@ -20,8 +21,6 @@
     "babel-preset-react": "6.24.1",
     "create-react-class": "^15.6.3",
     "css-loader": "1.0.1",
-    "dnn-global-styles": "0.0.5",
-    "dnn-webpack-externals": "1.1.10",
     "es6-object-assign": "^1.0.3",
     "eslint": "5.9.0",
     "eslint-loader": "2.1.1",
@@ -40,7 +39,7 @@
     "react-dom": "^16.6.3",
     "react-hot-loader": "4.3.12",
     "style-loader": "0.23.1",
-    "throttle-debounce": "^2.0.1",
+    "throttle-debounce": "2.0.1",
     "url-loader": "1.1.2",
     "webpack": "4.26.0",
     "webpack-bundle-size-analyzer": "3.0.0",
