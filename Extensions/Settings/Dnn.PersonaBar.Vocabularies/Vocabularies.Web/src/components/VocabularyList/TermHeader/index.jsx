@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
 import Collapse from "dnn-collapsible";
 import TextOverflowWrapper from "dnn-text-overflow-wrapper";
@@ -9,8 +10,8 @@ import GridCell from "dnn-grid-cell";
 import Button from "dnn-button";
 
 /* eslint-disable quotes */
-const SimpleType = require(`!raw!./svg/vocabulary_simple.svg`);
-const HierarchyType = require(`!raw!./svg/vocabulary_hierarchy.svg`);
+const SimpleType = require(`!raw-loader!./svg/vocabulary_simple.svg`);
+const HierarchyType = require(`!raw-loader!./svg/vocabulary_hierarchy.svg`);
 
 
 class TermHeader extends Component {
