@@ -1,8 +1,7 @@
 module.exports = {
     "parser": "babel-eslint",
     "plugins": [
-        "react",
-        "spellcheck"
+        "react"
     ],
     "env": {
         "browser": true,
@@ -27,21 +26,7 @@ module.exports = {
         "it" : false,
         "expect" :false
     },
-    "rules": {
-       "spellcheck/spell-checker": [1,
-        {
-            "comments": true,
-            "strings": true,
-            "identifiers": true,
-            "skipWords": require("./.eslintskipwords"),
-            "skipIfMatch": [
-                "http://[^s]*",
-                "https://[^s]*",
-                "lodash",
-                "(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)" // CSS hex color
-            ]
-        }
-      ],      
+    "rules": {            
       "semi": "error",
       "no-var": "error",
       "indent": ["warn", 4, {"SwitchCase": 1}],
