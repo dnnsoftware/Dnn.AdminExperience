@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import ReactDOM from "react-dom";
 import "./style.less";
 import { Collapsible, GridCell }  from "@dnnsoftware/dnn-react-common";
 import IconButton from "../../common/IconButton";
@@ -39,7 +38,7 @@ class RoleRow extends Component {
         // before the handleClick handler is called, but in spite of that, the handleClick is executed. To avoid
         // the "findDOMNode was called on an unmounted component." error we need to check if the component is mounted before execute this code
         if (!this._isMounted) { return; }
-        if (!ReactDOM.findDOMNode(this).contains(event.target) && (typeof event.target.className === "string" && event.target.className.indexOf("do-not-close") === -1)
+        if (! this.node.contains(event.target) && (typeof event.target.className === "string" && event.target.className.indexOf("do-not-close") === -1)
             && !(event.target.id === "confirmbtn" || event.target.id === "cancelbtn") && this.props.openId !== "add") {
 
             this.timeout = 475;
@@ -73,7 +72,7 @@ class RoleRow extends Component {
 
         if (props.visible) {
             return (
-                <div className={"collapsible-component1 " + opened} id={uniqueId}>
+                <div ref={node => this.node = node} className={"collapsible-component1 " + opened} id={uniqueId}>
                     {!props.addIsClosed && <div className={"collapsible-header1 " + !opened}>
                         <GridCell style={roleLabelStyle} title={props.roleName} columnSize={40} className="ellipsis">
                             {props.roleName}</GridCell>
