@@ -218,6 +218,7 @@
 "@babel/plugin-proposal-object-rest-spread@^7.0.0":
   version "7.0.0"
   resolved "https://www.myget.org/F/dnn-software-public/npm/@babel/plugin-proposal-object-rest-spread/-/@babel/plugin-proposal-object-rest-spread-7.0.0.tgz#9a17b547f64d0676b6c9cecd4edf74a82ab85e7e"
+  integrity sha1-mhe1R/ZNBna2yc7NTt90qCq4Xn4=
   dependencies:
     "@babel/helper-plugin-utils" "^7.0.0"
     "@babel/plugin-syntax-object-rest-spread" "^7.0.0"
@@ -5920,16 +5921,6 @@ react-widgets@4.4.6:
     react-transition-group "^2.4.0"
     uncontrollable "^5.0.0"
     warning "^3.0.0"
-
-react@^16.6.3:
-  version "16.6.3"
-  resolved "https://www.myget.org/F/dnn-software-public/npm/react/-/react-16.6.3.tgz#25d77c91911d6bbdd23db41e70fb094cc1e0871c"
-  integrity sha1-Jdd8kZEda73SPbQecPsJTMHghxw=
-  dependencies:
-    loose-envify "^1.1.0"
-    object-assign "^4.1.1"
-    prop-types "^15.6.2"
-    scheduler "^0.11.2"
 
 read-pkg-up@^1.0.1:
   version "1.0.1"
