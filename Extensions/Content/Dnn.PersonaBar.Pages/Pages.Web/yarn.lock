@@ -4938,6 +4938,7 @@ moment@2.13.0:
 moment@^2.22.2:
   version "2.22.2"
   resolved "https://www.myget.org/F/dnn-software-public/npm/moment/-/moment-2.22.2.tgz#3c257f9839fc0e93ff53149632239eb90783ff66"
+  integrity sha1-PCV/mDn8DpP/UxSWMiOeuQeD/2Y=
 
 moo@^0.4.3:
   version "0.4.3"
@@ -5923,6 +5924,7 @@ react-widgets@4.4.6:
 react@^16.6.3:
   version "16.6.3"
   resolved "https://www.myget.org/F/dnn-software-public/npm/react/-/react-16.6.3.tgz#25d77c91911d6bbdd23db41e70fb094cc1e0871c"
+  integrity sha1-Jdd8kZEda73SPbQecPsJTMHghxw=
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
