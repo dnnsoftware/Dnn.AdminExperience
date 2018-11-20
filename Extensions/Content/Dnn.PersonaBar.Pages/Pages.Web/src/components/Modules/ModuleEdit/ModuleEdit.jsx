@@ -55,7 +55,7 @@ class ModuleEdit extends Component {
     }
 
     UNSAFE_componentWillMount(){
-        const {state, props} = this;
+        const {props} = this;
 
         PageActions.viewPage(props.selectedPage.tabId, null, () => {
             this.setState({
@@ -68,8 +68,7 @@ class ModuleEdit extends Component {
     }
 
     checkUrlType(){
-        const {state, props} = this;
-        const module = props.module;
+        const {props} = this;
         let editUrl = "";
         switch(props.editType){
             case "content":
@@ -120,7 +119,7 @@ class ModuleEdit extends Component {
     }
 
     render() {
-        const {state, props} = this;
+        const {state} = this;
 
         return (state.userMode === "edit" && 
             <iframe ref={node => this.iframeRef = node} src={state.editUrl} style={iFrameStyle} frameBorder={0}></iframe>

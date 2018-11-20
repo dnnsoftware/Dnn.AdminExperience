@@ -1,6 +1,5 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
-import ReactDOM from "react-dom";
 
 import DayPicker from "../DayPicker/DayPicker.jsx";
 import GridCell from "dnn-grid-cell";

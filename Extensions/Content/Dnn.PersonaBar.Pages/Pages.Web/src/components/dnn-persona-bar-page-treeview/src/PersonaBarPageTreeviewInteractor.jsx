@@ -52,7 +52,7 @@ class PersonaBarPageTreeviewInteractor extends Component {
         });
         if (activePage || NoPermissionSelectionPageId) {
             const tabId = (activePage && activePage.tabId) || NoPermissionSelectionPageId;
-            this.props._traverse((item, list, updateStore) => {
+            this.props._traverse((item, list) => {
                 item.selected = false;
                 
                 if (item.id === tabId) {
@@ -67,7 +67,7 @@ class PersonaBarPageTreeviewInteractor extends Component {
             });
         }
         else {
-            this.props._traverse((item, list, updateStore) => {
+            this.props._traverse((item, list) => {
                 item.selected = false;
                 this.setState({
                     pageList: list
@@ -254,7 +254,7 @@ class PersonaBarPageTreeviewInteractor extends Component {
         !this.state.dragDebounce ? move() : nothing();
     }
 
-    onDragEnd(e, item) {
+    onDragEnd(e) {
         e.preventDefault();
 
         let pageList = null;
@@ -340,7 +340,7 @@ class PersonaBarPageTreeviewInteractor extends Component {
         };
 
         const right = () => null;
-        (item.id !== this.state.draggedItem.id && item.id != this.state.draggedItem.parentId) ? left() : right();
+        (item.id !== this.state.draggedItem.id && item.id !== this.state.draggedItem.parentId) ? left() : right();
     }
 
 
@@ -389,7 +389,7 @@ class PersonaBarPageTreeviewInteractor extends Component {
     }
 
     removeDropZones() {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
             let pageList = null;
             let runUpdateStore = null;
             this.props._traverse((item, list, updateStore) => {
@@ -413,7 +413,7 @@ class PersonaBarPageTreeviewInteractor extends Component {
         ParentId,
         RelatedPageId
 }) {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
 
             let cachedItem = null;
             let itemIndex = null;
@@ -428,11 +428,11 @@ class PersonaBarPageTreeviewInteractor extends Component {
                     switch (true) {
                         case item.id === RelatedPageId && Action === "before":
                             newParentId = item.parentId;
-                            this.props._traverse((child, list, updateStore) => {
+                            this.props._traverse((child) => {
                                 if (child.id === PageId) {
                                     const parentId = child.parentId;
                                     this.props._traverse((parent, list) => {
-                                        if (parent.id == parentId) {
+                                        if (parent.id === parentId) {
                                             parent.childListItems.forEach((elm, index) => {
                                                 if (elm.id === child.id) {
                                                     cachedItem = child;

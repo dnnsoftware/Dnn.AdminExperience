@@ -161,7 +161,7 @@ export class PersonaBarPageTreeview extends Component {
             index++;
 
             const style = item.canManagePage ? { "white-space": "nowrap", height: "28px", lineHeight: "35px", marginLeft: "15px" } : { height: "28px", marginLeft: "15px" };
-            const itemNameHidden = item.status == "Hidden" ? "item-name-hidden" : "";
+            const itemNameHidden = item.status === "Hidden" ? "item-name-hidden" : "";
             return (
                 <li key={item.id} id={`list-item-${item.name}-${item.id}`}>
                     <div className={item.onDragOverState && item.id !== draggedItem.id ? "dropZoneActive" : "dropZoneInactive"} >
@@ -178,7 +178,7 @@ export class PersonaBarPageTreeview extends Component {
                             onDragStart={(e) => { canManagePage(e, item, onDragStart); }}
                             onDragLeave={(e) => canManagePage(e, item, onDragLeave)}
                             onDragEnd={(e) => { canManagePage(e, item, onDragEnd); }}
-                            onClick={(e) => { item.canManagePage ? onSelection(item) : onNoPermissionSelection(item); }}
+                            onClick={() => { item.canManagePage ? onSelection(item) : onNoPermissionSelection(item); }}
                         >
                         </div>
 
@@ -186,7 +186,7 @@ export class PersonaBarPageTreeview extends Component {
                             <PersonaBarPageIcon iconType={item.pageType} selected={item.selected} />
                             <span
                                 className={`item-name ${itemNameHidden}`}
-                                onClick={e => item.canManagePage ? onSelection(item) : onNoPermissionSelection(item)}>
+                                onClick={() => item.canManagePage ? onSelection(item) : onNoPermissionSelection(item)}>
                                 { (item.tabId === 0) || (item.selected && selectedPageDirty) ? 
                                     (
                                         <SingleLineInput 

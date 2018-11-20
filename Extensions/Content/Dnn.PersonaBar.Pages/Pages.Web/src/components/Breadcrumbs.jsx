@@ -18,7 +18,7 @@ const Breadcrumbs = ({ items, onSelectedItem }) => {
                         onClick={() => onClick(0)}>&nbsp;</span>
                 </div>}
 
-            {items.slice(Math.max(items.length - maxItems, 0)).map((item, i) => {
+            {items.slice(Math.max(items.length - maxItems, 0)).map((item) => {
 
                 return (
                     <div key={item.id} onClick={() => onClick(item.tabId)}>

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { PropTypes } from "prop-types";
 import Localization from "localization";
-import { TreeAddPage, TreeAnalytics, TreeCopy, TreeEdit, EyeIcon } from "dnn-svg-icons";
+import { TreeAddPage, TreeCopy, TreeEdit, EyeIcon } from "dnn-svg-icons";
 import Menu from "./InContextMenu/Menu";
 import MenuItem from "./InContextMenu/MenuItem";
 import cloneDeep from 'lodash/clonedeep';

@@ -1,14 +1,8 @@
 import React, { Component } from "react";
-import GridCell from "dnn-grid-cell";
 import { PropTypes } from "prop-types";
-
-
 import "./styles.less";
-
-import PersonaBarPageIcon from "./_PersonaBarPageIcon";
 import PersonaBarSelectionArrow from "./_PersonaBarSelectionArrow";
 import PersonaBarExpandCollapseIcon from "./_PersonaBarExpandCollapseIcon";
-import PersonaBarDraftPencilIcon from "./_PersonaBarDraftPencilIcon";
 
 export class PersonaBarPageTreeMenu extends Component {
 
@@ -16,8 +10,6 @@ export class PersonaBarPageTreeMenu extends Component {
         super();
         this.state = {};
     }
-
-
 
     render_tree(childListItems) {
         return (

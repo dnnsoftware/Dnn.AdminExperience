@@ -1,7 +1,6 @@
 
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import ReactDOM from "react-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import PersonaBarPageHeader from "dnn-persona-bar-page-header";
@@ -322,7 +321,7 @@ class App extends Component {
                 const left = () => {
                     const { pageList } = this.props;
                     pageList.forEach((item, index) => {
-                        if (item.id == update.tabId) {
+                        if (item.id === update.tabId) {
                             cachedItem = item;
                             const arr1 = pageList.slice(0, index);
                             const arr2 = pageList.slice(index + 1);
@@ -336,7 +335,7 @@ class App extends Component {
                 const right = () => {
 
                     this._traverse((item, list, updateStore) => {
-                        if (item.id == update.oldParentId) {
+                        if (item.id === update.oldParentId) {
                             item.childListItems.forEach((child, index) => {
                                 if (child.id === update.tabId) {
                                     cachedItem = child;
@@ -355,7 +354,7 @@ class App extends Component {
             };
 
             const addToNewParent = () => {
-                if (update.parentId == -1) {
+                if (update.parentId === -1) {
                     this._traverse((item, list, updateStore) => {
                         if (item.id === list[list.length - 1].id) {
                             (cachedItem) ? cachedItem.parentId = -1 : null;
@@ -365,7 +364,7 @@ class App extends Component {
                     });
                 } else {
                     this._traverse((item, list, updateStore) => {
-                        if (item.id == update.parentId) {
+                        if (item.id === update.parentId) {
 
                             (cachedItem) ? cachedItem.parentId = item.id : null;
 
@@ -377,7 +376,7 @@ class App extends Component {
                                         updateStore(list);
                                     });
                                     break;
-                                case item.childCount == 0 && !item.childListItems:
+                                case item.childCount === 0 && !item.childListItems:
                                     item.childCount++;
                                     item.childListItems = [];
                                     item.childListItems.push(cachedItem);
@@ -486,14 +485,13 @@ class App extends Component {
     }
 
     onCancelPage(parentPageId) {
-        const {props, state} = this;
         this._removePageFromTree(parentPageId);
         this.props.changeSelectedPagePath("");
         (parentPageId !== -1) ? this.props.onCancelPage(parentPageId) : this.props.onCancelPage();
         this.setState({inDuplicateMode: false});
     }
 
-    onChangeParentId(newParentId) {
+    onChangeParentId() {
         this.onChangePageField('oldParentId', this.props.selectedPage.parentId);
     }
 
@@ -767,7 +765,7 @@ class App extends Component {
     }
 
     getSettingsButtons() {
-        const { selectedPage, settingsButtonComponents, onLoadSavePageAsTemplate, onDuplicatePage, onShowPageSettings, onHidePageSettings } = this.props;
+        const { selectedPage, settingsButtonComponents, onLoadSavePageAsTemplate, onShowPageSettings, onHidePageSettings } = this.props;
         const SaveAsTemplateButton = settingsButtonComponents.SaveAsTemplateButton || Button;
         
         return (
@@ -1159,8 +1157,8 @@ class App extends Component {
         const searchDateRange = startAndEndDateDirty ? { publishDateStart: fullStartDate, publishDateEnd: fullEndDate } : {};
 
         if (tags) {
-            tags = tags[0] == "," ? tags.replace(",", "") : tags;
-            tags = tags[tags.length - 1] == "," ? tags.split(",").filter(t => !!t).join() : tags;
+            tags = tags[0] === "," ? tags.replace(",", "") : tags;
+            tags = tags[tags.length - 1] === "," ? tags.split(",").filter(t => !!t).join() : tags;
         }
 
         let search = { 

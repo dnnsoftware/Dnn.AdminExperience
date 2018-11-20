@@ -1,6 +1,5 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
-import ReactDOM from "react-dom";
 import {pageHierarchyManager} from "./pages.pageHierarchy";
 import utils from "../../utils";
 import "./css/pages-hierarchy.css";

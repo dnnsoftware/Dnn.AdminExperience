@@ -32,7 +32,7 @@ class Appearance extends Component {
     }
 
     UNSAFE_componentWillReceiveProps(newProps) {
-        const { page, containers, defaultPortalThemeName, defaultPortalThemeLevel, onRetrieveThemeFiles } = this.props;
+        const { page, containers, defaultPortalThemeName, onRetrieveThemeFiles } = this.props;
 
         if (newProps.containers !== containers) {
             this.autoSelectFirstContainerIfNoOneIsSelected(newProps.page, newProps.containers);

@@ -33,7 +33,7 @@ module.exports = {
       "no-unused-vars": "warn",
       "no-console": "warn",      
       "keyword-spacing": "warn", 
-      "eqeqeq": "warn",
+      "eqeqeq": ["warn", "smart"],
       "space-before-function-paren": ["warn", { "anonymous": "always", "named": "never" }],
       "space-before-blocks": "warn",
       "no-multiple-empty-lines":  "warn",

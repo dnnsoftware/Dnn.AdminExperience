@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import ReactDOM from "react-dom";
 import styles from "./style.less";
 import Localization from "../../localization";
 import RadioButtons from "dnn-radio-buttons";

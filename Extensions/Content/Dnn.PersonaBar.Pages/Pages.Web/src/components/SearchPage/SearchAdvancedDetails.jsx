@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import ReactDOM from "react-dom";
 import Localization from "../../localization";
 import GridCell from "dnn-grid-cell";
 import Tags from "dnn-tags";
