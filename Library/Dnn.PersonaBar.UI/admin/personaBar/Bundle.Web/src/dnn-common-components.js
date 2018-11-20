@@ -45,9 +45,9 @@ import {
     TextOverflowWrapperNew,
     Tooltip,
     TransitionModal,
-    TreeControlInteractor
+    TreeControlInteractor,
+    SvgIcons
 } from "@dnnsoftware/dnn-react-common";
-import * as SvgIcons from "dnn-svg-icons";
 
 export {
     BackToLink,
