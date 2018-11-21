@@ -52,7 +52,6 @@ module.exports = {
       "space-before-blocks": "warn",
       "no-multiple-empty-lines":  "warn",
       "react/jsx-equals-spacing": ["warn", "never"],
-      "id-match": ["error", "^([A-Za-z0-9_])+$", {"properties": true}],
-      "react/no-find-dom-node": "warn"
+      "id-match": ["error", "^([A-Za-z0-9_])+$", {"properties": true}]
     }
 };
