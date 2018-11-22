@@ -5,6 +5,9 @@ const isProduction = process.env.NODE_ENV === "production";
 const moduleName = "vocabulary";
 module.exports = {
     entry: "./src/main.jsx",
+    optimization: {
+        minimize: isProduction
+    },
     output: {
         path: path.resolve(__dirname, '../admin/personaBar/scripts/bundles/'),
         publicPath: isProduction ? "" : "http://localhost:8080/dist/",
