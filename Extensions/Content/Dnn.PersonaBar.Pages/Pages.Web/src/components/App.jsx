@@ -155,7 +155,7 @@ class App extends Component {
     }
 
     componentWillUnmount() {
-        document.removeAllListeners("viewPageSettings");
+        document.removeEventListener("viewPageSettings");
     }
 
 

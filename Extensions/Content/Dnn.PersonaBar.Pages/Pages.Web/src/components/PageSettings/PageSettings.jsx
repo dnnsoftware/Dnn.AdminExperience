@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Localization from "../../localization";
 import PageDetails from "../PageDetails/PageDetails";
 import PermissionGrid from "../PermissionGrid/PermissionGrid";
-import { Button, Tabs } from "@dnnsoftware/dnn-react-common";
+import { Button, DnnTabs } from "@dnnsoftware/dnn-react-common";
 import styles from "./style.less";
 import Modules from "../Modules/Modules";
 import Seo from "../Seo/Seo";
@@ -222,22 +222,22 @@ class PageSettings extends Component {
         if (!isEditingExistingPage ||securityService.userHasPermission(permissionTypes.MANAGE_PAGE, selectedPage)) {
             headers.push(Localization.get("Advanced"));
             tabs.push(<div>
-                <Tabs
+                <DnnTabs
                     tabHeaders={advancedTabs.map(tab => tab.label)}
                     type="secondary">
                     {advancedTabs.map(tab => tab.component)}
-                </Tabs>
+                </DnnTabs>
             </div>);
         }
         return (
             <div>
-                <Tabs
+                <DnnTabs
                     tabHeaders={headers}
                     className={styles.pageSettings}
                     onSelect={this.props.selectPageSettingTab.bind(this)}
                     selectedIndex={this.props.selectedPageSettingTab}>
                     {tabs}
-                </Tabs>
+                </DnnTabs>
             </div>
         );
     }
