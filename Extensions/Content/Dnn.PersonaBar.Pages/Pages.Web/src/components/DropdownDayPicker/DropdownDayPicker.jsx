@@ -1,12 +1,8 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
-
 import DayPicker from "../DayPicker/DayPicker.jsx";
-import GridCell from "dnn-grid-cell";
-import Button from "dnn-button";
-
+import { Button, GridCell } from "@dnnsoftware/dnn-react-common";
 import "./styles.less";
-
 import Localization from "../../localization";
 
 class DropdownDayPicker extends Component  {

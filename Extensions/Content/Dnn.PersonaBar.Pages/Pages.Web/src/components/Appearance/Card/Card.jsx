@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
-import OverflowText from "dnn-text-overflow-wrapper";
+import { OverflowText } from "@dnnsoftware/dnn-react-common";
 import styles from "./style.less";
 import localization from "../../../localization";
 

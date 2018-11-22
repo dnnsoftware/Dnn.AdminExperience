@@ -1,10 +1,8 @@
-﻿const isAnalyze = process.env.NODE_ENV === "analyze";
-const isProduction = process.env.NODE_ENV === "production";
+﻿const isProduction = process.env.NODE_ENV === "production";
 const packageJson = require("./package.json");
 const path = require("path");
-const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const webpack = require("webpack");
-const webpackExternals = require("dnn-webpack-externals");
+const webpackExternals = require("@dnnsoftware/dnn-react-common/WebpackExternals");
 
 module.exports = {
     entry: "./src/main.jsx",
@@ -25,8 +23,7 @@ module.exports = {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
                 use: { 
-                    loader: "babel-loader", 
-                    options: { presets: ["@babel/preset-env", "@babel/preset-react"] } 
+                    loader: "babel-loader"
                 }
             },
             { 
@@ -63,10 +60,8 @@ module.exports = {
         ]
     },
     externals: webpackExternals,
-    optimization: isProduction ? {
-        minimizer: [new UglifyJsPlugin()]
-    } : {
-
+    optimization: {
+        minimize: isProduction
     },
     plugins: isProduction ? [
         new webpack.DefinePlugin({

@@ -1,12 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Localization from "../../localization";
-import GridCell from "dnn-grid-cell";
-import Tags from "dnn-tags";
-import Dropdown from "dnn-dropdown";
-import Button from "dnn-button";
+import { GridCell, Tags, Dropdown, Button, SvgIcons } from "@dnnsoftware/dnn-react-common";
 import DropdownDayPicker from "../DropdownDayPicker/DropdownDayPicker";
-import {CalendarIcon} from "dnn-svg-icons";
 import utils from "../../utils";
 
 class SearchAdvancedDetails extends Component {
@@ -122,7 +118,7 @@ class SearchAdvancedDetails extends Component {
                                 startDate={this.props.startDate}
                                 endDate={this.props.endDate}
                                 toggleDropdownCalendar={this.toggleDropdownCalendar.bind(this)}
-                                CalendarIcon={CalendarIcon}
+                                CalendarIcon={SvgIcons.CalendarIcon}
                                 label={this.getDateLabel()}
                             />
                         </GridCell>

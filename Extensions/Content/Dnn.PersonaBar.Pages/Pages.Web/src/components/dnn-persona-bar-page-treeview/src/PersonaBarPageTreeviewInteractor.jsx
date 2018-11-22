@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import ScrollBar from "dnn-scrollbar";
+import { ScrollBar, GridCell } from "@dnnsoftware/dnn-react-common";
 import { PersonaBarPageTreeview } from "./PersonaBarPageTreeview";
 import { PersonaBarPageTreeMenu } from "./PersonaBarPageTreeMenu";
 import { PersonaBarPageTreeParentExpand } from "./PersonaBarPageTreeParentExpand";
@@ -9,7 +9,6 @@ import utils from "../../../utils";
 import cloneDeep from "lodash/cloneDeep";
 import { PropTypes } from "prop-types";
 import Promise from "promise";
-import GridCell from "dnn-grid-cell";
 import "./styles.less";
 import Localization from "localization";
 

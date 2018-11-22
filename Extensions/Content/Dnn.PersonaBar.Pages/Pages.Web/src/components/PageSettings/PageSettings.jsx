@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import Tabs from "dnn-tabs";
 import Localization from "../../localization";
 import PageDetails from "../PageDetails/PageDetails";
 import PermissionGrid from "../PermissionGrid/PermissionGrid";
-import Button from "dnn-button";
+import { Button, Tabs } from "@dnnsoftware/dnn-react-common";
 import styles from "./style.less";
 import Modules from "../Modules/Modules";
 import Seo from "../Seo/Seo";

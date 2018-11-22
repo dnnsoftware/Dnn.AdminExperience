@@ -1,9 +1,6 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
-import FileUpload from 'dnn-file-upload';
-import GridSystem from "dnn-grid-system";
-import GridCell from "dnn-grid-cell";
-import Label from 'dnn-label';
+import { FileUpload, GridSystem, GridCell, Label } from "@dnnsoftware/dnn-react-common";
 import Localization from '../../../localization';
 import util from '../../../utils';
 import styles from './styles.less';

@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Localization from "../../localization";
-import Label from "dnn-label";
-import Switch from "dnn-switch";
+import { Label, Switch } from "@dnnsoftware/dnn-react-common";
 
 class DisplayInMenu extends Component {
 

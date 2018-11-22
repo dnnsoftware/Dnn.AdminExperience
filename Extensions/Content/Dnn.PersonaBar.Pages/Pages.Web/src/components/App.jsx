@@ -3,8 +3,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import PersonaBarPageHeader from "dnn-persona-bar-page-header";
-import PersonaBarPage from "dnn-persona-bar-page";
+import { PersonaBarPageHeader, PersonaBarPage, Button, GridCell } from "@dnnsoftware/dnn-react-common";
 import {
     pageActions as PageActions,
     addPagesActions as AddPagesActions,
@@ -19,14 +18,12 @@ import AddPages from "./AddPages/AddPages";
 import Localization from "../localization";
 import PageList from "./PageList/PageList";
 import SaveAsTemplate from "./SaveAsTemplate/SaveAsTemplate";
-import Button from "dnn-button";
 import utils from "../utils";
 import panels from "../constants/panels";
 import Sec from "./Security/Sec";
 import securityService from "../services/securityService";
 import permissionTypes from "../services/permissionTypes";
 import BreadCrumbs from "./BreadCrumbs";
-import GridCell from "dnn-grid-cell";
 import Promise from "promise";
 import SearchPageInput from "./SearchPage/SearchPageInput";
 
@@ -158,7 +155,7 @@ class App extends Component {
     }
 
     componentWillUnmount() {
-        document.removeEventListener("viewPageSettings");
+        document.removeAllListeners("viewPageSettings");
     }
 
 

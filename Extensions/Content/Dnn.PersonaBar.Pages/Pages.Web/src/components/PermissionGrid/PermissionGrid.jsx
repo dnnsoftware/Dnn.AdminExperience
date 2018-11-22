@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
-import DnnPermissionGrid from "dnn-permission-grid";
+import { DnnPermissionGrid } from "@dnnsoftware/dnn-react-common";
 import utils from "../../utils";
 import cloneDeep from "lodash/cloneDeep";
 import style from "./style.less";

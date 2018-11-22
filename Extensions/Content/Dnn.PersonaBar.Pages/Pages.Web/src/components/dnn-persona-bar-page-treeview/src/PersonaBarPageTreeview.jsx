@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import { PropTypes } from "prop-types";
 import utils from "utils";
-
 import "./styles.less";
-import SingleLineInput from "dnn-single-line-input";
-
+import { SingleLineInput } from "@dnnsoftware/dnn-react-common";
 import PersonaBarPageIcon from "./_PersonaBarPageIcon";
 import PersonaBarDraftPencilIcon from "./_PersonaBarDraftPencilIcon";
 

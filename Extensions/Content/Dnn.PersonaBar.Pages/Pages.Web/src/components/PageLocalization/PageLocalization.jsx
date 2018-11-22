@@ -1,11 +1,10 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import Button from "dnn-button";
+import { Button, TextOverflowWrapper } from "@dnnsoftware/dnn-react-common";
 import Localization from "../../localization";
 import Scrollbars from "react-custom-scrollbars";
 import PageLanguage from "./PageLanguage";
-import TextOverflowWrapper from "dnn-text-overflow-wrapper";
 import NotifyModal from "./NotifyModal";
 import utils from "../../utils";
 import "./style.less";

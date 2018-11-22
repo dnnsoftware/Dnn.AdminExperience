@@ -1,10 +1,8 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
-import Button from "dnn-button";
+import { Button, MultiLineInput, Label } from "@dnnsoftware/dnn-react-common/";
 import Localization from "../../localization";
 import styles from "./style.less";
-import MultiLineInput from "dnn-multi-line-input";
-import Label from "dnn-label";
 import BranchParent from "./BranchParent";
 import KeyWords from "./KeyWords";
 import Tags from "./Tags";

@@ -4,9 +4,7 @@ import Localization from "../../localization";
 import utils from "../../utils";
 import cloneDeep from "lodash/cloneDeep";
 import securityService from "../../services/securityService";
-import GridCell from "dnn-grid-cell";
-import OverflowText from "dnn-text-overflow-wrapper";
-import { EyeIcon, TreeEdit } from "dnn-svg-icons";
+import { OverflowText, GridCell, SvgIcons, TreeEdit } from "@dnnsoftware/dnn-react-common";
 
 
 class SearchResultCard extends Component {
@@ -98,7 +96,7 @@ class SearchResultCard extends Component {
     /* eslint-disable react/no-danger */
     render() {
         let visibleMenus = [];
-        this.props.item.canViewPage && visibleMenus.push(<li onClick={() => this.props.onViewPage(this.props.item)}><div title={Localization.get("View")} dangerouslySetInnerHTML={{ __html: EyeIcon }} /></li>);
+        this.props.item.canViewPage && visibleMenus.push(<li onClick={() => this.props.onViewPage(this.props.item)}><div title={Localization.get("View")} dangerouslySetInnerHTML={{ __html: SvgIcons.EyeIcon }} /></li>);
         this.props.item.canAddContentToPage && visibleMenus.push(<li onClick={() => this.props.onViewEditPage(this.props.item)}><div title={Localization.get("Edit")} dangerouslySetInnerHTML={{ __html: TreeEdit }} /></li>);
         if (this.props.pageInContextComponents && securityService.isSuperUser() && !utils.isPlatform()) {
             let additionalMenus = cloneDeep(this.props.pageInContextComponents || []);

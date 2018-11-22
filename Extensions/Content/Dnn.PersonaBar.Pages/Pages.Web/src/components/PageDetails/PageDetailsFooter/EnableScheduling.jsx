@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import Switch from "dnn-switch";
-import Label from "dnn-label";
-import DatePicker from "dnn-date-picker";
+import { Switch, Label, DatePicker } from "@dnnsoftware/dnn-react-common";
 import Localization from "../../../localization";
 
 class EnableScheduling extends Component {

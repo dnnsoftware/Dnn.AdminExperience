@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { PropTypes } from "prop-types";
 import Localization from "localization";
-import { TreeAddPage, TreeCopy, TreeEdit, EyeIcon } from "dnn-svg-icons";
+import { SvgIcons } from "@dnnsoftware/dnn-react-common";
 import Menu from "./InContextMenu/Menu";
 import MenuItem from "./InContextMenu/MenuItem";
 import cloneDeep from 'lodash/cloneDeep';
@@ -61,7 +61,7 @@ export class PersonaBarTreeInContextMenu extends Component {
                 key: "Add",
                 title: Localization.get("AddPage"),
                 index: 10,
-                icon: TreeAddPage,
+                icon: SvgIcons.TreeAddPage,
                 onClick: this.onItemClick
             });
         }
@@ -70,7 +70,7 @@ export class PersonaBarTreeInContextMenu extends Component {
                 key: "View",
                 title: Localization.get("View"),
                 index: 20,
-                icon: EyeIcon,
+                icon: SvgIcons.EyeIcon,
                 onClick: this.onItemClick
             });
         }
@@ -80,7 +80,7 @@ export class PersonaBarTreeInContextMenu extends Component {
                 key: "Edit",
                 title: Localization.get("Edit"),
                 index: 30,
-                icon: TreeEdit,
+                icon: SvgIcons.TreeEdit,
                 onClick: this.onItemClick
             });
         }
@@ -90,7 +90,7 @@ export class PersonaBarTreeInContextMenu extends Component {
                 key: "Duplicate",
                 title: Localization.get("Duplicate"),
                 index: 40,
-                icon: TreeCopy,
+                icon: SvgIcons.TreeCopy,
                 onClick: this.onItemClick
             });
         }

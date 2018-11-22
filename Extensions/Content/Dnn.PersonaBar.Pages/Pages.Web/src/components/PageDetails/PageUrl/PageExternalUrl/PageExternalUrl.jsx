@@ -2,8 +2,7 @@ import React, {Component} from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import styles from "./style.less";
-import SingleLineInputWithError from "dnn-single-line-input-with-error";
-import InputGroup from "dnn-input-group";
+import { SingleLineInputWithError, InputGroup } from "@dnnsoftware/dnn-react-common";
 import Localization from "../../../../localization";
 import PageUrlCommons from "../PageUrlCommons/PageUrlCommons";
 

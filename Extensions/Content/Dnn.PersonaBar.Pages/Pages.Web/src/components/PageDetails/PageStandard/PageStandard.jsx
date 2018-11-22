@@ -1,16 +1,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import GridSystem from "dnn-grid-system";
-import GridCell from "dnn-grid-cell";
-import InputGroup from "dnn-input-group";
-import SingleLineInputWithError from "dnn-single-line-input-with-error";
-import MultiLineInputWithError from "dnn-multi-line-input-with-error";
+import { GridSystem, GridCell, InputGroup, SingleLineInputWithError, MultiLineInputWithError, Tags, Label, PagePicker } from "@dnnsoftware/dnn-react-common";
 import Localization from "../../../localization";
 import styles from "./style.less";
-import Tags from "dnn-tags";
-import Label from "dnn-label";
-import PagePicker from "dnn-page-picker";
 import Utils from "../../../utils";
 
 class PageDetails extends Component {

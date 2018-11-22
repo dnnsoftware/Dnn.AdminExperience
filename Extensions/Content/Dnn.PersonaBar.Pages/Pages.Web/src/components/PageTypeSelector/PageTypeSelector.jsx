@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import styles from "./style.less";
 import Localization from "../../localization";
-import RadioButtons from "dnn-radio-buttons";
+import { RadioButtons } from "@dnnsoftware/dnn-react-common";
 import utils from "../../utils";
 
 

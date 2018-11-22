@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
-import Label from "dnn-label";
+import { Label } from "@dnnsoftware/dnn-react-common";
 import localization from "../../../localization";
 import Card from "../Card/Card";
 import Gallery from "../Gallery/Gallery";

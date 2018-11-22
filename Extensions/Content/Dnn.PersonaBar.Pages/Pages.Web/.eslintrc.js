@@ -11,15 +11,28 @@ module.exports = {
     "extends": ["eslint:recommended", "plugin:react/recommended"],
     "settings": {
         "react": {
-            "version": "16.6"
+            "version": "16"
         }
     },
     "parserOptions": {
         "ecmaFeatures": {
+            "arrowFunctions": true,
+            "blockBindings": true,
+            "classes": true,
+            "defaultParams": true,
+            "destructuring": true,
+            "forOf": true,
+            "generators": true,
             "jsx": true,
-            "experimentalObjectRestSpread": true
+            "modules": true,
+            "objectLiteralComputedproperties": true,
+            "regexUFlag": true,
+            "regexYFlag": true,
+            "spread": true,
+            "superInFunctions": false,
+            "templateStrings": true
         },
-        "ecmaVersion": 6,
+        "ecmaVersion": 2018,
         "sourceType": "module"
     },        
     "globals": {

@@ -2,9 +2,7 @@ import React, {Component} from "react";
 import PropTypes from "prop-types";
 import Localization from "../../../localization";
 import styles from "./style.less";
-import Switch from "dnn-switch";
-import Label from "dnn-label";
-import DatePicker from "dnn-date-picker";
+import { Switch, Label, DatePicker } from "@dnnsoftware/dnn-react-common";
 
 class Scheduler extends Component {
     constructor() {

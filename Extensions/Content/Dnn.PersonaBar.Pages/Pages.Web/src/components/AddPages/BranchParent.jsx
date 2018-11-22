@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
-import PagePicker from "dnn-page-picker";
-import Label from "dnn-label";
+import { PagePicker, Label } from "@dnnsoftware/dnn-react-common";
 import Localization from "../../localization";
 import utils from "../../utils";
 

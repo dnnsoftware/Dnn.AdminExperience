@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
 import Localization from "../../localization";
-import Button from "dnn-button";
+import { Button } from "@dnnsoftware/dnn-react-common";
 
 class Notify extends Component {
     render() {
