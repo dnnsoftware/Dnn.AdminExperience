@@ -61,8 +61,6 @@ module.exports = {
     externals: require("dnn-webpack-externals"),
 
     plugins: isProduction ? [
-        new webpack.optimize.UglifyJsPlugin(),
-        new webpack.optimize.DedupePlugin(),
         new webpack.DefinePlugin({
             VERSION: JSON.stringify(packageJson.version),
             "process.env": {
