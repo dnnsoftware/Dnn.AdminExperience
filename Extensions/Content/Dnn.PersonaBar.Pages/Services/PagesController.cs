@@ -303,7 +303,7 @@ namespace Dnn.PersonaBar.Pages.Services
 
             try
             {
-                _pagesController.DeletePage(page, PortalSettings, hardDelete);
+                _pagesController.DeletePage(page, hardDelete, PortalSettings);
                 return Request.CreateResponse(HttpStatusCode.OK, new { Status = 0 });
             }
             catch (PageNotFoundException)

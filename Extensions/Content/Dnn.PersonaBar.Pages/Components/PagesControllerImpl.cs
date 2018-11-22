@@ -241,7 +241,12 @@ namespace Dnn.PersonaBar.Pages.Components
             return TabController.Instance.GetTab(request.PageId, portalSettings.PortalId);
         }
 
-        public void DeletePage(PageItem page, PortalSettings portalSettings = null, bool hardDelete = false)
+        public void DeletePage(PageItem page, PortalSettings portalSettings = null)
+        {
+            DeletePage(page, false, portalSettings);
+        }
+
+        public void DeletePage(PageItem page, bool hardDelete, PortalSettings portalSettings = null)
         {
             var currentPortal = portalSettings ?? PortalController.Instance.GetCurrentPortalSettings();
             var tab = TabController.Instance.GetTab(page.Id, currentPortal.PortalId);

@@ -23,7 +23,9 @@ namespace Dnn.PersonaBar.Pages.Components
 
         TabInfo MovePage(PageMoveRequest request);
 
-        void DeletePage(PageItem page, PortalSettings portalSettings = null, bool hardDelete = false);
+        void DeletePage(PageItem page, PortalSettings portalSettings = null);
+
+        void DeletePage(PageItem page, bool hardDelete, PortalSettings portalSettings = null);
 
         void EditModeForPage(int pageId, int userId);
 
