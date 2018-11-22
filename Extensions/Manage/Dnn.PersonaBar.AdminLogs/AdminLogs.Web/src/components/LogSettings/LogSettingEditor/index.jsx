@@ -1,4 +1,5 @@
-import React, {Component, PropTypes } from "react";
+import PropTypes from "prop-types";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import "./style.less";
 import Switch from "dnn-switch";
@@ -208,10 +209,10 @@ class LogSettingEditor extends Component {
                 </div>
                 <div className="right">
                     <Switch 
-                    value={this.getEnabledStatus("Logging") } 
-                    onChange={this.OnCheckboxChanged.bind(this, "LoggingIsActive") }
-                    onText={Localization.get("SwitchOn")}
-                    offText={Localization.get("SwitchOff")}
+                        value={this.getEnabledStatus("Logging") } 
+                        onChange={this.OnCheckboxChanged.bind(this, "LoggingIsActive") }
+                        onText={Localization.get("SwitchOn")}
+                        offText={Localization.get("SwitchOff")}
                     />
                 </div>
             </div>
@@ -243,10 +244,10 @@ class LogSettingEditor extends Component {
                 </div>
                 <div className="right">
                     <Switch 
-                    value={this.getEnabledStatus("EmailNotification") } 
-                    onChange={this.OnCheckboxChanged.bind(this, "EmailNotificationIsActive") }
-                    onText={Localization.get("SwitchOn")}
-                    offText={Localization.get("SwitchOff")}
+                        value={this.getEnabledStatus("EmailNotification") } 
+                        onChange={this.OnCheckboxChanged.bind(this, "EmailNotificationIsActive") }
+                        onText={Localization.get("SwitchOn")}
+                        offText={Localization.get("SwitchOff")}
                     />
                 </div>
             </div>
@@ -276,7 +277,7 @@ class LogSettingEditor extends Component {
         /* eslint-disable react/no-danger */
         return (
             <div className="log-setting-editor">
-                <Grid children={children} numberOfColumns={2} />
+                <Grid numberOfColumns={2}>{children}</Grid>
                 <div className="buttons-box">
                     {this.props.logTypeSettingId !== "" && <Button type="secondary" onClick={this.deleteLogSetting.bind(this) }>{Localization.get("ConfigBtnDelete") }</Button>}
                     <Button type="secondary" onClick={this.props.Collapse.bind(this) }>{Localization.get("ConfigBtnCancel") }</Button>

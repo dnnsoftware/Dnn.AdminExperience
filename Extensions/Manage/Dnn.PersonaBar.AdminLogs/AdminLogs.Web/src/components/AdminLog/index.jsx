@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from "react";
+import PropTypes from 'prop-types';
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import {
     log as LogActions
@@ -198,7 +199,7 @@ class AdminLogPanelBody extends Component {
 
         let tableHeaders = tableFields.map((field) => {
             let className = "logHeader logHeader-" + field.id;
-            return <div className={className}>
+            return <div key={field.id} className={className}>
                 <span>{field.name}&nbsp; </span>
             </div>;
         });
@@ -293,7 +294,7 @@ class AdminLogPanelBody extends Component {
             { "name": Localization.get("SecurityException"), "id": "SecurityException" }
         ];
         let legend = legendItems.map((item) => {
-            return <div className="logLegend-item">
+            return <div key={item.id} className="logLegend-item">
                 <div className={item.id}>
                     <span></span>
                 </div>

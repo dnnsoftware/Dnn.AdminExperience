@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from "react";
+import PropTypes from 'prop-types';
+import React, { Component } from "react";
 import PersonaBarPageHeader from "dnn-persona-bar-page-header";
 import PersonaBarPageBody from "dnn-persona-bar-page-body";
 import Tabs from "dnn-tabs";

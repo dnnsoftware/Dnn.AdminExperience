@@ -1,4 +1,5 @@
-import React, {Component, PropTypes } from "react";
+import PropTypes from 'prop-types';
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import {
     logSettings as LogSettingActions,
@@ -50,7 +51,7 @@ class LogSettingsPanel extends Component {
             { "name": "", "width": 5 }
         ];
         let tableHeaders = tableFields.map((field) => {
-            return <GridCell columnSize={field.width} style={{ fontWeight: "bolder" }}>
+            return <GridCell key={field.name} columnSize={field.width} style={{ fontWeight: "bolder" }}>
                 <span>{field.name}&nbsp; </span>
             </GridCell>;
         });
