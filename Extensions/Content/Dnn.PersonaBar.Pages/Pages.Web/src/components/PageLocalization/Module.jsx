@@ -35,7 +35,7 @@ class Module extends Component {
 
         if (module.Exist) {
             const className = "module-row" + (module.IsDeleted ? " deleted" : "");
-            const toolTip = ["Shared: " + module.IsShared, module.ModuleInfoHelp].join("<br>");
+            const toolTip = [Localization.get("Shared") + ": " + module.IsShared, module.ModuleInfoHelp].join("<br>");
             return <div className={className}>
                 <Tooltip
                     messages={[toolTip]}
