@@ -16,7 +16,7 @@ export class PersonaBarTreeInContextMenu extends Component {
         this.showMenu = false;
     }
 
-    UNSAFE_componentWillMount() {
+    componentDidMount() {
         let { props } = this;
         if (props.item === undefined) {
             this.showMenu = false;

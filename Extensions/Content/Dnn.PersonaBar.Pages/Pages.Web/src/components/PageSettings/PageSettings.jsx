@@ -16,9 +16,11 @@ import permissionTypes from "../../services/permissionTypes";
 
 class PageSettings extends Component {
 
-    UNSAFE_componentWillMount() {
-        this.setState({ selectedPageName: "" });
+    constructor(){
+        super();
+        this.state = { selectedPageName: "" }
     }
+
     hasPageErrors() {
         const { selectedPageErrors } = this.props;
         return Object.keys(selectedPageErrors)

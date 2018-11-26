@@ -13,7 +13,7 @@ import style from "./style.less";
 
 class Appearance extends Component {
 
-    UNSAFE_componentWillMount() {
+    componentDidMount() {
         const { page, onRetrieveThemes, onRetrieveThemeFiles } = this.props;
 
         onRetrieveThemes().then(data => {

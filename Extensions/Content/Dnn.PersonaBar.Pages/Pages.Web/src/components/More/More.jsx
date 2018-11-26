@@ -8,7 +8,7 @@ import { pageActions as PageActions } from "../../actions";
 import styles from "./style.less";
 
 class More extends Component {
-    UNSAFE_componentWillMount() {
+    componentDidMount() {
         this.props.onFetchCacheProviderList();
         if (this.props.page.cacheProvider && !this.props.cachedPageCount) {
             this.props.onGetCachedPageCount(this.props.page.cacheProvider);

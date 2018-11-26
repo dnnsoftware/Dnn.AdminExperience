@@ -25,7 +25,7 @@ class PageLocalization extends Component {
         };
     }
 
-    UNSAFE_componentWillMount() {
+    componentDidMount() {
         this.getLanguages();
     }
 

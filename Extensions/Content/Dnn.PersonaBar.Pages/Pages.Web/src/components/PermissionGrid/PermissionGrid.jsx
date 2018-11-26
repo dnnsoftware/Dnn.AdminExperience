@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
-import { DnnPermissionGrid } from "@dnnsoftware/dnn-react-common";
+import { PermissionGrid as DnnPermissionGrid } from "@dnnsoftware/dnn-react-common";
 import utils from "../../utils";
 import cloneDeep from "lodash/cloneDeep";
 import style from "./style.less";
@@ -20,7 +20,6 @@ class PermissionGrid extends Component {
 
     render() {
         const serviceFramework = utils.getServiceFramework(); 
-
         return (
             <div className={style.permissionGrid}>
                 <DnnPermissionGrid 

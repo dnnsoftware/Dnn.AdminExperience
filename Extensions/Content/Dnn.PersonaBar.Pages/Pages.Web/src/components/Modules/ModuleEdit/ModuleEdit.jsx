@@ -54,19 +54,6 @@ class ModuleEdit extends Component {
         }
     }
 
-    UNSAFE_componentWillMount(){
-        const {props} = this;
-
-        PageActions.viewPage(props.selectedPage.tabId, null, () => {
-            this.setState({
-                userMode: 'edit'
-            }, () => {
-                this.checkUrlType();
-                this.addEventListener();
-            });
-        });
-    }
-
     checkUrlType(){
         const {props} = this;
         let editUrl = "";
@@ -111,6 +98,16 @@ class ModuleEdit extends Component {
     }
 
     componentDidMount() {
+        const {props} = this;
+
+        PageActions.viewPage(props.selectedPage.tabId, null, () => {
+            this.setState({
+                userMode: 'edit'
+            }, () => {
+                this.checkUrlType();
+                this.addEventListener();
+            });
+        });
         this.addEventListener();
     }
 

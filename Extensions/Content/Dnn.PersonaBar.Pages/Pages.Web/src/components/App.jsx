@@ -83,6 +83,11 @@ class App extends Component {
     }
 
     componentDidMount() {
+        let { selectedPage } = this.props;
+        if (securityService.userHasPermission(permissionTypes.MANAGE_PAGE, selectedPage)) {
+            this.props.getContentLocalizationEnabled();
+        }
+
         const viewName = utils.getViewName();
         const viewParams = utils.getViewParams();
         window.dnn.utility.setConfirmationDialogPosition();
@@ -146,14 +151,7 @@ class App extends Component {
             this.updateReferral(viewParams.referral, viewParams.referralText);
         }
     }
-
-    UNSAFE_componentWillMount() {
-        let { selectedPage } = this.props;
-        if (securityService.userHasPermission(permissionTypes.MANAGE_PAGE, selectedPage)) {
-            this.props.getContentLocalizationEnabled();
-        }
-    }
-
+    
     componentWillUnmount() {
         document.removeEventListener("viewPageSettings");
     }
