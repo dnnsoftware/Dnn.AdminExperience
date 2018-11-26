@@ -1,9 +1,7 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import React, { Component } from "react";
-import Collapse from "dnn-collapsible";
-import GridCell from "dnn-grid-cell";
+import { GridCell, CollapsibleRow as Collapse, SvgIcons } from "@dnnsoftware/dnn-react-common";
 import "./style.less";
-import { EditIcon } from "dnn-svg-icons";
 
 
 class LogSettingRow extends Component {
@@ -70,7 +68,7 @@ class LogSettingRow extends Component {
                         {props.fileName}&nbsp; </GridCell>
                     {!props.readOnly &&
                         <GridCell columnSize={5} >
-                            <div className={"edit-icon " + !opened} dangerouslySetInnerHTML={{ __html: EditIcon }} onClick={this.toggle.bind(this) }>
+                            <div className={"edit-icon " + !opened} dangerouslySetInnerHTML={{ __html: SvgIcons.EditIcon }} onClick={this.toggle.bind(this) }>
                             </div>
                         </GridCell>
                     }

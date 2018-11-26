@@ -66,6 +66,6 @@ module.exports = {
       "no-multiple-empty-lines":  "warn",
       "react/jsx-equals-spacing": ["warn", "never"],
       "id-match": ["error", "^([A-Za-z0-9_])+$", {"properties": true}],
-      "no-useless-escape": "warn"
+      "no-useless-escape": "off"
     }
 };

@@ -6,13 +6,10 @@ import {
 } from "../../actions";
 import LogItemRow from "./LogItemRow";
 import EmailPanel from "./EmailPanel";
-import Checkbox from "dnn-checkbox";
-import DropDown from "dnn-dropdown";
-import Pager from "dnn-pager";
+import { Checkbox, Dropdown, Pager, TextOverflowWrapper } from "@dnnsoftware/dnn-react-common"
 import "./style.less";
 import util from "../../utils";
 import Localization from "localization";
-import TextOverflowWrapper from "dnn-text-overflow-wrapper";
 import {
     createPortalOptions,
     createLogTypeOptions
@@ -316,7 +313,7 @@ class AdminLogPanelBody extends Component {
                 <div className="toolbar">
                     {state.portalList.length > 0 &&
                         <div className="adminlogs-filter-container">
-                            <DropDown
+                            <Dropdown
                                 value={state.currentPortalId}
                                 style={{ width: "100%" }}
                                 options={portalOptions}
@@ -327,7 +324,7 @@ class AdminLogPanelBody extends Component {
                     }
                     {state.logTypeList.length > 0 &&
                         <div className="adminlogs-filter-container">
-                            <DropDown
+                            <Dropdown
                                 value={state.currentLogTypeKey}
                                 style={{ width: "100%" }}
                                 options={logTypeOptions}

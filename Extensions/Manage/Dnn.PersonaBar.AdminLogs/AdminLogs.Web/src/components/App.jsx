@@ -1,9 +1,6 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import React, { Component } from "react";
-import PersonaBarPageHeader from "dnn-persona-bar-page-header";
-import PersonaBarPageBody from "dnn-persona-bar-page-body";
-import Tabs from "dnn-tabs";
-import GridCell from "dnn-grid-cell";
+import { PersonaBarPageHeader, PersonaBarPageBody, DnnTabs as Tabs, GridCell } from "@dnnsoftware/dnn-react-common";
 import { connect } from "react-redux";
 import { visiblePanel as VisiblePanelActions } from "../actions";
 import Localization from "localization";

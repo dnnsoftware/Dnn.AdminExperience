@@ -1,10 +1,8 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import ReactDOM from "react-dom";
-import Collapse from "dnn-collapsible";
+import { CollapsibleRow as Collapse, Checkbox } from "@dnnsoftware/dnn-react-common";
 import "./style.less";
-import Checkbox from "dnn-checkbox";
 import {
     log as LogActions
 } from "../../../actions";
