@@ -10,12 +10,12 @@ class LazyLoad extends Component {
         };
     }
 
-    UNSAFE_componentWillReceiveProps(newProps){
-        if (newProps.filtersUpdated) {
+    componentDidUpdate(){
+        if (this.props.filtersUpdated) {
             this.setState({
                 page:0
             });
-        }
+        }        
     }
 
     addListenerToFindBottom() {

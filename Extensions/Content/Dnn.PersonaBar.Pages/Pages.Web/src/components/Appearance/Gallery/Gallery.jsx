@@ -31,8 +31,8 @@ class Gallery extends Component {
         }
     }
 
-    UNSAFE_componentWillReceiveProps(newProps) {
-        setTimeout(() => this.scrollToSelectedItem(newProps.scrollToIndex), 0);
+    componentDidUpdate() {
+        setTimeout(() => this.scrollToSelectedItem(this.props.scrollToIndex), 0);
     }
     
     componentDidMount() {

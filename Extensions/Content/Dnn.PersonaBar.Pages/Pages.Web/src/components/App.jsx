@@ -156,11 +156,13 @@ class App extends Component {
         document.removeEventListener("viewPageSettings");
     }
 
-
-    UNSAFE_componentWillReceiveProps(newProps) {
-        this.notifyErrorIfNeeded(newProps);
+    componentDidUpdate(prevProps) {
+        if (this.props.error && this.props.error && this.props.error !== prevProps.error){
+            const errorMessage = (this.props.error && this.props.error.message) || Localization.get("AnErrorOccurred");
+            utils.notify(errorMessage);
+        }
         window.dnn.utility.closeSocialTasks();
-        const { selectedPage } = newProps;
+        const { selectedPage } = this.props;
         if (selectedPage && selectedPage.tabId > 0 && selectedPage.canManagePage !== undefined && !selectedPage.canManagePage) {
             this.noPermissionSelectionPageId = utils.getCurrentPageId();
             this.setEmptyStateMessage(Localization.get("NoPermissionEditPage"));
@@ -214,12 +216,6 @@ class App extends Component {
             callAPI();
         };
         this.props.getPageHierarchy(selectedId).then(buildTreeInternal);
-    }
-    notifyErrorIfNeeded(newProps) {
-        if (newProps.error !== this.props.error) {
-            const errorMessage = (newProps.error && newProps.error.message) || Localization.get("AnErrorOccurred");
-            utils.notifyError(errorMessage);
-        }
     }
 
     onPageSettings(pageId) {

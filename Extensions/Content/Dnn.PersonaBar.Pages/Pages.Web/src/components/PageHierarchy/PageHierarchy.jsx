@@ -19,22 +19,22 @@ class PageHierarchy extends Component {
         pageHierarchyManager.selectedPagePathChanged = p => this.props.onSelectedPagePathChanged([...p]);
     }
 
-    UNSAFE_componentWillReceiveProps(nextProps) {
-        const {itemTemplate, dragItemTemplate, searchKeyword, selectedPage} = this.props;
-        if (itemTemplate !== nextProps.itemTemplate) {
-            pageHierarchyManager.setItemTemplate(nextProps.itemTemplate);
+    componentDidUpdate(prevProps) {
+        const {itemTemplate, dragItemTemplate, searchKeyword, selectedPage} = prevProps;
+        if (itemTemplate && itemTemplate !== this.props.itemTemplate) {
+            pageHierarchyManager.setItemTemplate(this.props.itemTemplate);
         }    
 
-        if (dragItemTemplate !== nextProps.dragItemTemplate) {
-            pageHierarchyManager.setDragItemTemplate(nextProps.dragItemTemplate);
+        if (dragItemTemplate && dragItemTemplate !== this.props.dragItemTemplate) {
+            pageHierarchyManager.setDragItemTemplate(this.props.dragItemTemplate);
         }    
 
-        if (searchKeyword !== nextProps.searchKeyword) {
-            pageHierarchyManager.setSearchKeyword(nextProps.searchKeyword);
+        if (searchKeyword && searchKeyword !== this.props.searchKeyword) {
+            pageHierarchyManager.setSearchKeyword(this.props.searchKeyword);
         }
 
-        if (selectedPage !== nextProps.selectedPage) {
-            pageHierarchyManager.selectPageFromBreadCrumbs(nextProps.selectedPage);
+        if (selectedPage && selectedPage !== this.props.selectedPage) {
+            pageHierarchyManager.selectPageFromBreadCrumbs(this.props.selectedPage);
         }
     }
     

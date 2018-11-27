@@ -15,10 +15,10 @@ class SearchAdvancedDetails extends Component {
         };
     }
 
-    UNSAFE_componentWillReceiveProps(newProps) {
-        if (newProps.tags) {
+    componentDidUpdate() {
+        if (this.props.tags) {
             this.setState({
-                tags:newProps.tags.split(",")
+                tags:this.props.tags.split(",")
             });
         }
     }

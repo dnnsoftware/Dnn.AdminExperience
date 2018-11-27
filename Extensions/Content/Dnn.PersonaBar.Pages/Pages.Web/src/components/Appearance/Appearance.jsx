@@ -29,19 +29,19 @@ class Appearance extends Component {
 		});
     }
 
-    UNSAFE_componentWillReceiveProps(newProps) {
-        const { page, containers, defaultPortalThemeName, onRetrieveThemeFiles } = this.props;
+    componentDidUpdate(prevProps) {
+        const { page, containers, defaultPortalThemeName, onRetrieveThemeFiles } = prevProps;
 
-        if (newProps.containers !== containers) {
-            this.autoSelectFirstContainerIfNoOneIsSelected(newProps.page, newProps.containers);
+        if (this.props.containers && this.props.containers !== containers) {
+            this.autoSelectFirstContainerIfNoOneIsSelected(this.props.page, this.props.containers);
         }
 
         if (page.themeName) {
             return;
         }
 
-        if (defaultPortalThemeName !== newProps.defaultPortalThemeName && newProps.defaultPortalThemeName !== null) {
-            onRetrieveThemeFiles(newProps.defaultPortalThemeName,newProps.defaultPortalThemeLevel);
+        if (this.props.defaultPortalThemeName && this.props.defaultPortalThemeName !== defaultPortalThemeName && this.props.defaultPortalThemeName && this.props.defaultPortalThemeName !== null) {
+            onRetrieveThemeFiles(this.props.defaultPortalThemeName,this.props.defaultPortalThemeLevel);
         }
     }
 
