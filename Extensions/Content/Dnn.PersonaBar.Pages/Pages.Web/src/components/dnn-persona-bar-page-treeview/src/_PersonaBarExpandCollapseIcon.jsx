@@ -17,6 +17,6 @@ export default class PersonaBarExpandCollapseIcon extends Component {
 }
 
 PersonaBarExpandCollapseIcon.propTypes = {
-    isOpen: PropTypes.bool.isRequired,
+    isOpen: PropTypes.bool,
     item: PropTypes.object.isRequired
 };

@@ -153,7 +153,7 @@ class App extends Component {
     }
     
     componentWillUnmount() {
-        document.removeEventListener("viewPageSettings");
+        document.removeEventListener("viewPageSettings", this.resolveTabBeingViewed);
     }
 
     componentDidUpdate(prevProps) {
@@ -1312,7 +1312,7 @@ class App extends Component {
             const { props } = this;
             const { isContentLocalizationEnabled } = props;
             return (
-                <PageSettings
+                <PageSettings key={"pageDetails" + this.props.selectedPage.tabId}
                     selectedPage={this.props.selectedPage}
                     AllowContentLocalization={isContentLocalizationEnabled}
                     selectedPageErrors={{}}
@@ -1356,7 +1356,7 @@ class App extends Component {
         const AllowContentLocalization = !!props.isContentLocalizationEnabled;
         return (
             <GridCell columnSize={100} className="treeview-page-details" >
-                <PageSettings selectedPage={props.selectedPage}
+                <PageSettings key="newPageSettings" selectedPage={props.selectedPage}
                     AllowContentLocalization={AllowContentLocalization}
                     selectedPageErrors={props.selectedPageErrors}
                     selectedPageDirty={props.selectedPageDirty}
@@ -1619,7 +1619,6 @@ class App extends Component {
 }
 
 App.propTypes = {
-    dispatch: PropTypes.func.isRequired,
     pageList: PropTypes.array.isRequired,
     searchPageList: PropTypes.func.isRequired,
     searchAndFilterPagedPageList: PropTypes.func.isRequired,
@@ -1628,11 +1627,11 @@ App.propTypes = {
     selectedView: PropTypes.number,
     selectedPage: PropTypes.object,
     selectedPageErrors: PropTypes.object,
-    selectedPageDirty: PropTypes.boolean,
-    selectedTemplateDirty: PropTypes.boolean,
-    filtersUpdated: PropTypes.boolean,
+    selectedPageDirty: PropTypes.bool,
+    selectedTemplateDirty: PropTypes.bool,
+    filtersUpdated: PropTypes.bool,
     bulkPage: PropTypes.object,
-    dirtyBulkPage : PropTypes.boolean, 
+    dirtyBulkPage : PropTypes.bool, 
     editingSettingModuleId: PropTypes.number,
     onCancelPage: PropTypes.func.isRequired,
     onCreatePage: PropTypes.func.isRequired,
@@ -1640,7 +1639,7 @@ App.propTypes = {
     onDeletePage: PropTypes.func.isRequired,
     getPageList: PropTypes.func.isRequired,
     getPage: PropTypes.func.isRequired,
-    updatePageListStore: PropTypes.func.isRequire,
+    updatePageListStore: PropTypes.func.isRequired,
     getNewPage: PropTypes.func.isRequired,
     onLoadPage: PropTypes.func.isRequired,
     onCancelAddMultiplePages: PropTypes.func.isRequired,
@@ -1672,20 +1671,20 @@ App.propTypes = {
     onHidePanel: PropTypes.func.isRequired,
     onShowPageSettings: PropTypes.func,
     onHidePageSettings: PropTypes.func,
-    isContentLocalizationEnabled: PropTypes.object.isRequired,
+    isContentLocalizationEnabled: PropTypes.bool,
     getContentLocalizationEnabled: PropTypes.func.isRequired,
     selectPage: PropTypes.func.isRequired,
     selectedPagePath: PropTypes.array.isRequired,
     changeSelectedPagePath: PropTypes.func.isRequired,
-    onGetCachedPageCount: PropTypes.array.isRequired,
+    onGetCachedPageCount: PropTypes.func,
     onClearCache: PropTypes.func.isRequired,
     clearSelectedPage: PropTypes.func.isRequired,
     onModuleCopyChange: PropTypes.func,
     workflowList: PropTypes.array.isRequired,
     customPageSettingsComponents: PropTypes.array,
     getPageHierarchy: PropTypes.func.isRequired,
-    dirtyTemplate: PropTypes.boolean,
-    dirtyCustomDetails: PropTypes.boolean,
+    dirtyTemplate: PropTypes.bool,
+    dirtyCustomDetails: PropTypes.bool,
     onChangeCustomDetails: PropTypes.func
 };
 

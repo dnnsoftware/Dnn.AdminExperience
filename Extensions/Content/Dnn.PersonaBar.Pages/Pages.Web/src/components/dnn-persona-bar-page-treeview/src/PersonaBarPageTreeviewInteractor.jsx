@@ -773,10 +773,10 @@ PersonaBarPageTreeviewInteractor.propTypes = {
     _traverse: PropTypes.func.isRequired,
     clearSelectedPage: PropTypes.func.isRequired,
     pageList: PropTypes.array.isRequired,
-    showCancelDialog: PropTypes.func.showCancelDialog,
-    setEmptyPageMessage: PropTypes.func.setEmptyPageMessage,
+    showCancelDialog: PropTypes.func.isRequired,
+    setEmptyPageMessage: PropTypes.func.isRequired,
     selectedPageDirty: PropTypes.bool.isRequired,
-    activePage: PropTypes.object.isRequired,
+    activePage: PropTypes.object,
     getPage: PropTypes.func.isRequired,
     onSelection: PropTypes.func.isRequired,
     onMovePage: PropTypes.func.isRequired,
@@ -788,11 +788,11 @@ PersonaBarPageTreeviewInteractor.propTypes = {
     setActivePage: PropTypes.func.isRequired,
     saveDropState: PropTypes.func.isRequired,
     getChildPageList: PropTypes.func.isRequired,
-    getPageList: PropTypes.func.isRequired,
+    getPageList: PropTypes.func,
     pageInContextComponents: PropTypes.array.isRequired,
-    Localization: PropTypes.func.isRequired,
+    Localization: PropTypes.object.isRequired,
     onNoPermissionSelection: PropTypes.func.isRequired,
-    NoPermissionSelectionPageId: PropTypes.number.isRequired,
+    NoPermissionSelectionPageId: PropTypes.number,
     enabled: PropTypes.bool
 };
 

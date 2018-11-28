@@ -5,7 +5,7 @@ import Localization from "../../localization";
 import styles from "./style.less";
 import BranchParent from "./BranchParent";
 import KeyWords from "./KeyWords";
-import Tags from "./Tags";
+import PageTags from "./Tags";
 import DisplayInMenu from "./DisplayInMenu";
 import EnableScheduling from "./EnableScheduling";
 
@@ -38,7 +38,7 @@ class AddPages extends Component {
                 onChangeValue={this.onChangeValue.bind(this)} />,
             <KeyWords key="keywords" keywords={bulkPage.keywords}
                 onChangeEvent={this.onChangeEvent.bind(this)} />,
-            <Tags key="tags" tags={tags}
+            <PageTags key="tags" tags={tags}
                 onChangeTags={this.onChangeTags.bind(this)} />,
             <DisplayInMenu key="displayInMenu" includeInMenu={bulkPage.includeInMenu}
                 onChangeValue={this.onChangeValue.bind(this)} />,

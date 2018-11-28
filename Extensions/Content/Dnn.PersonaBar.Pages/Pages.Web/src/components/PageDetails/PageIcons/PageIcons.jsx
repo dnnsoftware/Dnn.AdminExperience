@@ -93,5 +93,5 @@ PageIcons.propTypes = {
     page: PropTypes.object.isRequired,
     errors: PropTypes.object.isRequired,
     onChangeField: PropTypes.func.isRequired,
-    components: PropTypes.func.isRequired
+    components: PropTypes.array.isRequired
 };

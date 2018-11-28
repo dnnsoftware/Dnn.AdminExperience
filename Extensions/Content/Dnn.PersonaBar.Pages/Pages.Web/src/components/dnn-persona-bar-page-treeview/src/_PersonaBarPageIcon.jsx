@@ -38,6 +38,6 @@ export default class PersonaBarPageIcon extends Component {
 }
 
 PersonaBarPageIcon.propTypes = {
-    iconType: PropTypes.number.isRequired,
+    iconType: PropTypes.string.isRequired,
     selected: PropTypes.bool.isRequired
 };

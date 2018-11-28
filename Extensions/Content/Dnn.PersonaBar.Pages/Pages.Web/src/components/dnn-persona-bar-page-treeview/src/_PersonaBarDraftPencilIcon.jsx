@@ -30,5 +30,5 @@ export default class PersonaBarPageIcon extends Component {
 }
 
 PersonaBarPageIcon.propTypes = {
-    display: PropTypes.number.isRequired
+    display: PropTypes.bool
 };
