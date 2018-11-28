@@ -13,15 +13,15 @@ export class PersonaBarTreeInContextMenu extends Component {
 
     constructor(props) {
         super(props);
-        this.showMenu = false;
+        this.state = {showMenu:false};
     }
 
     componentDidMount() {
         let { props } = this;
         if (props.item === undefined) {
-            this.showMenu = false;
+            this.setState({showMenu: false});
         } else {
-            this.showMenu = true;
+            this.setState({showMenu: true});
         }
     }
 
@@ -125,7 +125,7 @@ export class PersonaBarTreeInContextMenu extends Component {
     renderActionable(item) {
         const visibleMenus = this.buildMenuItems(item);
         /*eslint-disable react/no-danger*/
-        if (this.showMenu && visibleMenus.length) {
+        if (this.state.showMenu && visibleMenus.length) {
             return (<Menu>
                 {
                     visibleMenus.map(menu => {
