@@ -752,6 +752,10 @@ acorn@^6.0.1, acorn@^6.0.2:
   version "6.0.4"
   resolved "https://www.myget.org/F/dnn-software-public/npm/acorn/-/acorn-6.0.4.tgz#77377e7353b72ec5104550aa2d2097a2fd40b754"
 
+add-px-to-style@1.0.0:
+  version "1.0.0"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/add-px-to-style/-/add-px-to-style-1.0.0.tgz#d0c135441fa8014a8137904531096f67f28f263a"
+
 ajv-errors@^1.0.0:
   version "1.0.0"
   resolved "https://www.myget.org/F/dnn-software-public/npm/ajv-errors/-/ajv-errors-1.0.0.tgz#ecf021fa108fd17dfb5e6b383f2dd233e31ffc59"
@@ -768,6 +772,14 @@ ajv@^6.1.0, ajv@^6.5.3, ajv@^6.5.5:
     fast-json-stable-stringify "^2.0.0"
     json-schema-traverse "^0.4.1"
     uri-js "^4.2.2"
+
+align-text@^0.1.1, align-text@^0.1.3:
+  version "0.1.4"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/align-text/-/align-text-0.1.4.tgz#0cd90a561093f35d0a99256c22b7069433fad117"
+  dependencies:
+    kind-of "^3.0.2"
+    longest "^1.0.1"
+    repeat-string "^1.5.2"
 
 ansi-colors@^3.0.0:
   version "3.2.1"
@@ -799,6 +811,13 @@ ansi-styles@^3.2.0, ansi-styles@^3.2.1:
   dependencies:
     color-convert "^1.9.0"
 
+any@^1.0.0:
+  version "1.0.0"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/any/-/any-1.0.0.tgz#0a7b348c589faf6ba708d4a2241069ea51628b5e"
+  dependencies:
+    for-own "^0.1.2"
+    make-iterator "^0.1.0"
+
 anymatch@^2.0.0:
   version "2.0.0"
   resolved "https://www.myget.org/F/dnn-software-public/npm/anymatch/-/anymatch-2.0.0.tgz#bcb24b4f37934d9aa7ac17b4adaf89e7c76ef2eb"
@@ -829,6 +848,13 @@ argparse@^1.0.7:
   dependencies:
     sprintf-js "~1.0.2"
 
+arr-diff@^1.1.0:
+  version "1.1.0"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/arr-diff/-/arr-diff-1.1.0.tgz#687c32758163588fef7de7b36fabe495eb1a399a"
+  dependencies:
+    arr-flatten "^1.0.1"
+    array-slice "^0.2.3"
+
 arr-diff@^2.0.0:
   version "2.0.0"
   resolved "https://www.myget.org/F/dnn-software-public/npm/arr-diff/-/arr-diff-2.0.0.tgz#8f3b827f955a8bd669697e4a4256ac3ceae356cf"
@@ -843,9 +869,19 @@ arr-flatten@^1.0.1, arr-flatten@^1.1.0:
   version "1.1.0"
   resolved "https://www.myget.org/F/dnn-software-public/npm/arr-flatten/-/arr-flatten-1.1.0.tgz#36048bbff4e7b47e136644316c99669ea5ae91f1"
 
-arr-union@^3.1.0:
+arr-map@^2.0.0:
+  version "2.0.2"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/arr-map/-/arr-map-2.0.2.tgz#3a77345ffc1cf35e2a91825601f9e58f2e24cac4"
+  dependencies:
+    make-iterator "^1.0.0"
+
+arr-union@^3.0.0, arr-union@^3.1.0:
   version "3.1.0"
   resolved "https://www.myget.org/F/dnn-software-public/npm/arr-union/-/arr-union-3.1.0.tgz#e39b09aea9def866a8f206e288af63919bae39c4"
+
+array-each@^0.1.0, array-each@^0.1.1:
+  version "0.1.1"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/array-each/-/array-each-0.1.1.tgz#c5d52ba8225f36d728178ba7aec413acfaddd0f9"
 
 array-equal@^1.0.0:
   version "1.0.0"
@@ -865,6 +901,10 @@ array-includes@^3.0.3:
   dependencies:
     define-properties "^1.1.2"
     es-abstract "^1.7.0"
+
+array-slice@^0.2.3:
+  version "0.2.3"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/array-slice/-/array-slice-0.2.3.tgz#dd3cfb80ed7973a75117cdac69b0b99ec86186f5"
 
 array-union@^1.0.1:
   version "1.0.2"
@@ -1068,7 +1108,7 @@ babel-register@^6.26.0:
     mkdirp "^0.5.1"
     source-map-support "^0.4.15"
 
-babel-runtime@^6.22.0, babel-runtime@^6.26.0:
+babel-runtime@^6.2.0, babel-runtime@^6.22.0, babel-runtime@^6.26.0, babel-runtime@^6.6.1:
   version "6.26.0"
   resolved "https://www.myget.org/F/dnn-software-public/npm/babel-runtime/-/babel-runtime-6.26.0.tgz#965c7058668e82b55d7bfe04ff2337bc8b5647fe"
   dependencies:
@@ -1115,6 +1155,10 @@ babylon@^6.18.0:
 balanced-match@^1.0.0:
   version "1.0.0"
   resolved "https://www.myget.org/F/dnn-software-public/npm/balanced-match/-/balanced-match-1.0.0.tgz#89b4d199ab2bee49de164ea02b89ce462d71b767"
+
+base16@^1.0.0:
+  version "1.0.0"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/base16/-/base16-1.0.0.tgz#e297f60d7ec1014a7a971a39ebc8a98c0b681e70"
 
 base64-js@^1.0.2:
   version "1.3.0"
@@ -1396,6 +1440,13 @@ caseless@~0.12.0:
   version "0.12.0"
   resolved "https://www.myget.org/F/dnn-software-public/npm/caseless/-/caseless-0.12.0.tgz#1b681c21ff84033c826543090689420d187151dc"
 
+center-align@^0.1.1:
+  version "0.1.3"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/center-align/-/center-align-0.1.3.tgz#aa0d32629b6ee972200411cbd4461c907bc2b7ad"
+  dependencies:
+    align-text "^0.1.3"
+    lazy-cache "^1.0.3"
+
 chalk@^1.1.3:
   version "1.1.3"
   resolved "https://www.myget.org/F/dnn-software-public/npm/chalk/-/chalk-1.1.3.tgz#a8115c55e4a702fe4d150abd3872822a7e09fc98"
@@ -1471,7 +1522,7 @@ class-utils@^0.3.5:
     isobject "^3.0.0"
     static-extend "^0.1.1"
 
-classnames@^2.2.6:
+classnames@^2.2.5, classnames@^2.2.6:
   version "2.2.6"
   resolved "https://www.myget.org/F/dnn-software-public/npm/classnames/-/classnames-2.2.6.tgz#43935bffdd291f326dad0a205309b38d00f650ce"
 
@@ -1630,6 +1681,10 @@ copy-descriptor@^0.1.0:
   version "0.1.1"
   resolved "https://www.myget.org/F/dnn-software-public/npm/copy-descriptor/-/copy-descriptor-0.1.1.tgz#676f6eb3c39997c2ee1ac3a924fd6124748f578d"
 
+core-js@^1.0.0:
+  version "1.2.7"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/core-js/-/core-js-1.2.7.tgz#652294c14651db28fa93bd2d5ff2983a4f08c636"
+
 core-js@^2.4.0, core-js@^2.5.0:
   version "2.5.7"
   resolved "https://www.myget.org/F/dnn-software-public/npm/core-js/-/core-js-2.5.7.tgz#f972608ff0cead68b841a16a932d0b183791814e"
@@ -1665,6 +1720,14 @@ create-hmac@^1.1.0, create-hmac@^1.1.2, create-hmac@^1.1.4:
     ripemd160 "^2.0.0"
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
+
+create-react-class@^15.5.2:
+  version "15.6.3"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/create-react-class/-/create-react-class-15.6.3.tgz#2d73237fb3f970ae6ebe011a9e66f46dbca80036"
+  dependencies:
+    fbjs "^0.8.9"
+    loose-envify "^1.3.1"
+    object-assign "^4.1.1"
 
 cross-spawn@^5.0.1:
   version "5.1.0"
@@ -1917,9 +1980,79 @@ diffie-hellman@^5.0.0:
     miller-rabin "^4.0.0"
     randombytes "^2.0.0"
 
-dnn-global-styles@0.0.5:
+dnn-back-to-link@0.0.5:
+  version "0.0.5"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/dnn-back-to-link/-/dnn-back-to-link-0.0.5.tgz#8632eb8d6304fac1de48be77151ab67c7c813cb6"
+  dependencies:
+    dnn-global-styles "^0.0.5"
+    dnn-svg-icons "0.1.22"
+
+dnn-button@^0.0.11:
+  version "0.0.11"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/dnn-button/-/dnn-button-0.0.11.tgz#2e9d40b500c3dd68a69cf7400f0062384deedc81"
+  dependencies:
+    dnn-global-styles "^0.0.5"
+
+dnn-dropdown@^1.0.20:
+  version "1.0.22"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/dnn-dropdown/-/dnn-dropdown-1.0.22.tgz#14c1e58af6860d8fbdb4dfdc09a6896465822805"
+  dependencies:
+    dnn-global-styles "^0.0.5"
+    dnn-svg-icons "^0.1.20"
+    lodash "4.17.4"
+    react-collapse "~4.0.3"
+    react-custom-scrollbars "^4.2.1"
+    react-motion "^0.4.4"
+    react-test-utils "0.0.1"
+    scroll "^2.0.0"
+
+dnn-global-styles@0.0.5, dnn-global-styles@^0.0.5:
   version "0.0.5"
   resolved "https://www.myget.org/F/dnn-software-public/npm/dnn-global-styles/-/dnn-global-styles-0.0.5.tgz#f83d873d9ff0351930af55b49a0ae3b614c1ceae"
+
+dnn-grid-cell@0.0.6, dnn-grid-cell@^0.0.6:
+  version "0.0.6"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/dnn-grid-cell/-/dnn-grid-cell-0.0.6.tgz#72a6aac639d33329baa0aebb4c941c8213518a26"
+
+dnn-pager@^0.0.18:
+  version "0.0.18"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/dnn-pager/-/dnn-pager-0.0.18.tgz#ec2be5eb5543eaef2b81a9ce3adf7b90c6882381"
+  dependencies:
+    dnn-dropdown "^1.0.20"
+    dnn-global-styles "^0.0.5"
+    dnn-svg-icons "^0.1.20"
+
+dnn-persona-bar-page-body@^0.0.6:
+  version "0.0.6"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/dnn-persona-bar-page-body/-/dnn-persona-bar-page-body-0.0.6.tgz#ab6876fcfd0c63d6c64c2020488d70c54a12cf4c"
+  dependencies:
+    dnn-back-to-link "0.0.5"
+    dnn-global-styles "^0.0.5"
+    dnn-grid-cell "0.0.6"
+
+dnn-persona-bar-page-header@^0.0.33:
+  version "0.0.33"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/dnn-persona-bar-page-header/-/dnn-persona-bar-page-header-0.0.33.tgz#dca9434eca3bd52aef7856da1dc98743e3692eae"
+  dependencies:
+    dnn-global-styles "^0.0.5"
+    dnn-text-overflow-wrapper-new "0.0.9"
+
+dnn-persona-bar-page@^0.0.6:
+  version "0.0.6"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/dnn-persona-bar-page/-/dnn-persona-bar-page-0.0.6.tgz#b16e22f4c1924d090043dbca8cb4019413a5b5e9"
+  dependencies:
+    dnn-global-styles "^0.0.5"
+
+dnn-svg-icons@0.1.22, dnn-svg-icons@^0.1.20:
+  version "0.1.22"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/dnn-svg-icons/-/dnn-svg-icons-0.1.22.tgz#16e78c0393595a6de5b35596d6f9997009d2b6a7"
+
+dnn-text-overflow-wrapper-new@0.0.9:
+  version "0.0.9"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/dnn-text-overflow-wrapper-new/-/dnn-text-overflow-wrapper-new-0.0.9.tgz#3c480cff00e341df515783e8efb9ed0ba16e4bd8"
+  dependencies:
+    dnn-global-styles "^0.0.5"
+    react-tooltip "^3.4.0"
 
 dnn-webpack-externals@1.1.10:
   version "1.1.10"
@@ -1948,11 +2081,26 @@ doctrine@^2.1.0:
   dependencies:
     esutils "^2.0.2"
 
+dom-css@^2.0.0:
+  version "2.1.0"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/dom-css/-/dom-css-2.1.0.tgz#fdbc2d5a015d0a3e1872e11472bbd0e7b9e6a202"
+  dependencies:
+    add-px-to-style "1.0.0"
+    prefix-style "2.0.1"
+    to-camel-case "1.0.0"
+
 dom-helpers@^3.3.1:
   version "3.4.0"
   resolved "https://www.myget.org/F/dnn-software-public/npm/dom-helpers/-/dom-helpers-3.4.0.tgz#e9b369700f959f62ecde5a6babde4bccd9169af8"
   dependencies:
     "@babel/runtime" "^7.1.2"
+
+dom-serializer@0:
+  version "0.1.0"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/dom-serializer/-/dom-serializer-0.1.0.tgz#073c697546ce0780ce23be4a28e293e40bc30c82"
+  dependencies:
+    domelementtype "~1.1.1"
+    entities "~1.1.1"
 
 dom-walk@^0.1.0:
   version "0.1.1"
@@ -1962,11 +2110,36 @@ domain-browser@^1.1.1:
   version "1.2.0"
   resolved "https://www.myget.org/F/dnn-software-public/npm/domain-browser/-/domain-browser-1.2.0.tgz#3d31f50191a6749dd1375a7f522e823d42e54eda"
 
+domelementtype@1:
+  version "1.2.1"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/domelementtype/-/domelementtype-1.2.1.tgz#578558ef23befac043a1abb0db07635509393479"
+
+domelementtype@^1.3.0:
+  version "1.3.0"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/domelementtype/-/domelementtype-1.3.0.tgz#b17aed82e8ab59e52dd9c19b1756e0fc187204c2"
+
+domelementtype@~1.1.1:
+  version "1.1.3"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/domelementtype/-/domelementtype-1.1.3.tgz#bd28773e2642881aec51544924299c5cd822185b"
+
 domexception@^1.0.1:
   version "1.0.1"
   resolved "https://www.myget.org/F/dnn-software-public/npm/domexception/-/domexception-1.0.1.tgz#937442644ca6a31261ef36e3ec677fe805582c90"
   dependencies:
     webidl-conversions "^4.0.2"
+
+domhandler@^2.3.0:
+  version "2.4.2"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/domhandler/-/domhandler-2.4.2.tgz#8805097e933d65e85546f726d60f5eb88b44f803"
+  dependencies:
+    domelementtype "1"
+
+domutils@^1.5.1:
+  version "1.7.0"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/domutils/-/domutils-1.7.0.tgz#56ea341e834e06e6748af7a1cb25da67ea9f8c2a"
+  dependencies:
+    dom-serializer "0"
+    domelementtype "1"
 
 duplexify@^3.4.2, duplexify@^3.6.0:
   version "3.6.1"
@@ -2012,6 +2185,12 @@ encodeurl@~1.0.2:
   version "1.0.2"
   resolved "https://www.myget.org/F/dnn-software-public/npm/encodeurl/-/encodeurl-1.0.2.tgz#ad3ff4c86ec2d029322f5a02c3a9a606c95b3f59"
 
+encoding@^0.1.11:
+  version "0.1.12"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/encoding/-/encoding-0.1.12.tgz#538b66f3ee62cd1ab51ec323829d1f9480c74beb"
+  dependencies:
+    iconv-lite "~0.4.13"
+
 end-of-stream@^1.0.0, end-of-stream@^1.1.0:
   version "1.4.1"
   resolved "https://www.myget.org/F/dnn-software-public/npm/end-of-stream/-/end-of-stream-1.4.1.tgz#ed29634d19baba463b6ce6b80a37213eab71ec43"
@@ -2025,6 +2204,17 @@ enhanced-resolve@^4.1.0:
     graceful-fs "^4.1.2"
     memory-fs "^0.4.0"
     tapable "^1.0.0"
+
+entities@^1.1.1, entities@~1.1.1:
+  version "1.1.2"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/entities/-/entities-1.1.2.tgz#bdfa735299664dfafd34529ed4f8522a275fea56"
+
+envify@~0.2.0:
+  version "0.2.0"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/envify/-/envify-0.2.0.tgz#645091cfaf1279f7f8364a893b0cf81c680ecbe0"
+  dependencies:
+    falafel "~0.2.1"
+    through "~2.3.4"
 
 errno@^0.1.1, errno@^0.1.3, errno@~0.1.7:
   version "0.1.7"
@@ -2177,6 +2367,10 @@ esprima@^4.0.0:
   version "4.0.1"
   resolved "https://www.myget.org/F/dnn-software-public/npm/esprima/-/esprima-4.0.1.tgz#13b04cdb3e6c5d19df91ab6987a8695619b0aa71"
 
+esprima@substack/esprima#is-keyword:
+  version "1.1.0-dev"
+  resolved "https://codeload.github.com/substack/esprima/tar.gz/0a7f8489a11b44b019ce168506f535f22d0be290"
+
 esquery@^1.0.1:
   version "1.0.1"
   resolved "https://www.myget.org/F/dnn-software-public/npm/esquery/-/esquery-1.0.1.tgz#406c51658b1f5991a5f9b62b1dc25b00e3e5c708"
@@ -2291,6 +2485,16 @@ expect@^23.6.0:
     jest-message-util "^23.4.0"
     jest-regex-util "^23.3.0"
 
+export-dirs@^0.2.4:
+  version "0.2.4"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/export-dirs/-/export-dirs-0.2.4.tgz#2e16b9b46ebc2c07acb657ccdfbe3845393fe742"
+
+export-files@^2.1.0:
+  version "2.1.1"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/export-files/-/export-files-2.1.1.tgz#bbf64574053a09e4eb98e5f43501d572b2c3ce7f"
+  dependencies:
+    lazy-cache "^1.0.3"
+
 express@^4.16.2:
   version "4.16.4"
   resolved "https://www.myget.org/F/dnn-software-public/npm/express/-/express-4.16.4.tgz#fddef61926109e24c515ea97fd2f1bdbf62df12e"
@@ -2378,6 +2582,12 @@ extsprintf@^1.2.0:
   version "1.4.0"
   resolved "https://www.myget.org/F/dnn-software-public/npm/extsprintf/-/extsprintf-1.4.0.tgz#e2689f8f356fad62cca65a3a91c5df5f9551692f"
 
+falafel@~0.2.1:
+  version "0.2.1"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/falafel/-/falafel-0.2.1.tgz#9efc51ce19ec5729086b22ae889e5d7d0e256601"
+  dependencies:
+    esprima substack/esprima#is-keyword
+
 fast-deep-equal@^2.0.1:
   version "2.0.1"
   resolved "https://www.myget.org/F/dnn-software-public/npm/fast-deep-equal/-/fast-deep-equal-2.0.1.tgz#7b05218ddf9667bf7f370bf7fdb2cb15fdd0aa49"
@@ -2411,6 +2621,18 @@ fb-watchman@^2.0.0:
   resolved "https://www.myget.org/F/dnn-software-public/npm/fb-watchman/-/fb-watchman-2.0.0.tgz#54e9abf7dfa2f26cd9b1636c588c1afc05de5d58"
   dependencies:
     bser "^2.0.0"
+
+fbjs@^0.8.9:
+  version "0.8.17"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/fbjs/-/fbjs-0.8.17.tgz#c4d598ead6949112653d6588b01a5cdcd9f90fdd"
+  dependencies:
+    core-js "^1.0.0"
+    isomorphic-fetch "^2.1.1"
+    loose-envify "^1.0.0"
+    object-assign "^4.1.0"
+    promise "^7.1.1"
+    setimmediate "^1.0.5"
+    ua-parser-js "^0.7.18"
 
 figgy-pudding@^3.1.0, figgy-pudding@^3.5.1:
   version "3.5.1"
@@ -2547,11 +2769,15 @@ follow-redirects@^1.0.0:
   dependencies:
     debug "=3.1.0"
 
+for-in@^0.1.4:
+  version "0.1.8"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/for-in/-/for-in-0.1.8.tgz#d8773908e31256109952b1fdb9b3fa867d2775e1"
+
 for-in@^1.0.1, for-in@^1.0.2:
   version "1.0.2"
   resolved "https://www.myget.org/F/dnn-software-public/npm/for-in/-/for-in-1.0.2.tgz#81068d295a8142ec0ac726c6e2200c30fb6d5e80"
 
-for-own@^0.1.4:
+for-own@^0.1.1, for-own@^0.1.2, for-own@^0.1.3, for-own@^0.1.4:
   version "0.1.5"
   resolved "https://www.myget.org/F/dnn-software-public/npm/for-own/-/for-own-0.1.5.tgz#5265c681a4f294dabbf17c9509b6763aa84510ce"
   dependencies:
@@ -2690,7 +2916,7 @@ global-modules-path@^2.3.0:
   version "2.3.0"
   resolved "https://www.myget.org/F/dnn-software-public/npm/global-modules-path/-/global-modules-path-2.3.0.tgz#b0e2bac6beac39745f7db5c59d26a36a0b94f7dc"
 
-global@^4.3.0:
+global@^4.3.0, global@~4.3.0:
   version "4.3.2"
   resolved "https://www.myget.org/F/dnn-software-public/npm/global/-/global-4.3.2.tgz#e76989268a6c74c38908b1305b10fc0e394e9d0f"
   dependencies:
@@ -2786,7 +3012,7 @@ has-value@^1.0.0:
     has-values "^1.0.0"
     isobject "^3.0.0"
 
-has-values@^0.1.4:
+has-values@^0.1.3, has-values@^0.1.4:
   version "0.1.4"
   resolved "https://www.myget.org/F/dnn-software-public/npm/has-values/-/has-values-0.1.4.tgz#6d61de95d91dfca9b9a02089ad384bff8f62b771"
 
@@ -2829,6 +3055,12 @@ hoist-non-react-statics@^2.5.0:
   version "2.5.5"
   resolved "https://www.myget.org/F/dnn-software-public/npm/hoist-non-react-statics/-/hoist-non-react-statics-2.5.5.tgz#c5903cf409c0dfd908f388e619d86b9c1174cb47"
 
+hoist-non-react-statics@^3.1.0:
+  version "3.2.0"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/hoist-non-react-statics/-/hoist-non-react-statics-3.2.0.tgz#d21b9fc72b50fdc38c5d88f6e2c52f2c2dbe5ee2"
+  dependencies:
+    react-is "^16.3.2"
+
 home-or-tmp@^2.0.0:
   version "2.0.0"
   resolved "https://www.myget.org/F/dnn-software-public/npm/home-or-tmp/-/home-or-tmp-2.0.0.tgz#e36c3f2d2cae7d746a857e38d18d5f32a7882db8"
@@ -2858,6 +3090,17 @@ html-encoding-sniffer@^1.0.2:
 html-entities@^1.2.0:
   version "1.2.1"
   resolved "https://www.myget.org/F/dnn-software-public/npm/html-entities/-/html-entities-1.2.1.tgz#0df29351f0721163515dfb9e5543e5f6eed5162f"
+
+htmlparser2@^3.9.0:
+  version "3.10.0"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/htmlparser2/-/htmlparser2-3.10.0.tgz#5f5e422dcf6119c0d983ed36260ce9ded0bee464"
+  dependencies:
+    domelementtype "^1.3.0"
+    domhandler "^2.3.0"
+    domutils "^1.5.1"
+    entities "^1.1.1"
+    inherits "^2.0.1"
+    readable-stream "^3.0.6"
 
 http-deceiver@^1.2.7:
   version "1.2.7"
@@ -2919,7 +3162,7 @@ iconv-lite@0.4.23:
   dependencies:
     safer-buffer ">= 2.1.2 < 3"
 
-iconv-lite@0.4.24, iconv-lite@^0.4.24, iconv-lite@^0.4.4:
+iconv-lite@0.4.24, iconv-lite@^0.4.24, iconv-lite@^0.4.4, iconv-lite@~0.4.13:
   version "0.4.24"
   resolved "https://www.myget.org/F/dnn-software-public/npm/iconv-lite/-/iconv-lite-0.4.24.tgz#2022b4b25fbddc21d2f524974a474aafe733908b"
   dependencies:
@@ -3027,7 +3270,7 @@ interpret@^1.1.0:
   version "1.1.0"
   resolved "https://www.myget.org/F/dnn-software-public/npm/interpret/-/interpret-1.1.0.tgz#7ed1b1410c6a0e0f78cf95d3b8440c63f78b8614"
 
-invariant@^2.2.2, invariant@^2.2.4:
+invariant@^2.1.0, invariant@^2.2.2, invariant@^2.2.4:
   version "2.2.4"
   resolved "https://www.myget.org/F/dnn-software-public/npm/invariant/-/invariant-2.2.4.tgz#610f3c92c9359ce1db616e538008d23ff35158e6"
   dependencies:
@@ -3079,7 +3322,7 @@ is-binary-path@^1.0.0:
   dependencies:
     binary-extensions "^1.0.0"
 
-is-buffer@^1.1.5:
+is-buffer@^1.0.2, is-buffer@^1.1.5:
   version "1.1.6"
   resolved "https://www.myget.org/F/dnn-software-public/npm/is-buffer/-/is-buffer-1.1.6.tgz#efaa2ea9daa0d7ab2ea13a97b2b8ad51fefbe8be"
 
@@ -3197,7 +3440,7 @@ is-glob@^4.0.0:
   dependencies:
     is-extglob "^2.1.1"
 
-is-number@^2.1.0:
+is-number@^2.0.2, is-number@^2.1.0:
   version "2.1.0"
   resolved "https://www.myget.org/F/dnn-software-public/npm/is-number/-/is-number-2.1.0.tgz#01fcbbb393463a548f2f466cce16dece49db908f"
   dependencies:
@@ -3257,7 +3500,7 @@ is-resolvable@^1.1.0:
   version "1.1.0"
   resolved "https://www.myget.org/F/dnn-software-public/npm/is-resolvable/-/is-resolvable-1.1.0.tgz#fb18f87ce1feb925169c9a407c19318a3206ed88"
 
-is-stream@^1.1.0:
+is-stream@^1.0.1, is-stream@^1.1.0:
   version "1.1.0"
   resolved "https://www.myget.org/F/dnn-software-public/npm/is-stream/-/is-stream-1.1.0.tgz#12d4a3dd4e68e0b79ceb8dbc84173ae80d91ca44"
 
@@ -3291,6 +3534,10 @@ isexe@^2.0.0:
   version "2.0.0"
   resolved "https://www.myget.org/F/dnn-software-public/npm/isexe/-/isexe-2.0.0.tgz#e8fbf374dc556ff8947a10dcb0572d633f2cfa10"
 
+isobject@^1.0.0:
+  version "1.0.2"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/isobject/-/isobject-1.0.2.tgz#f0f9b8ce92dd540fa0740882e3835a2e022ec78a"
+
 isobject@^2.0.0:
   version "2.1.0"
   resolved "https://www.myget.org/F/dnn-software-public/npm/isobject/-/isobject-2.1.0.tgz#f065561096a3f1da2ef46272f815c840d87e0c89"
@@ -3300,6 +3547,13 @@ isobject@^2.0.0:
 isobject@^3.0.0, isobject@^3.0.1:
   version "3.0.1"
   resolved "https://www.myget.org/F/dnn-software-public/npm/isobject/-/isobject-3.0.1.tgz#4e431e92b11a9731636aa1f9c8d1ccbcfdab78df"
+
+isomorphic-fetch@^2.1.1:
+  version "2.2.1"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/isomorphic-fetch/-/isomorphic-fetch-2.2.1.tgz#611ae1acf14f5e81f729507472819fe9733558a9"
+  dependencies:
+    node-fetch "^1.0.1"
+    whatwg-fetch ">=0.10.0"
 
 isstream@~0.1.2:
   version "0.1.2"
@@ -3740,7 +3994,7 @@ json-stable-stringify-without-jsonify@^1.0.1:
   version "1.0.1"
   resolved "https://www.myget.org/F/dnn-software-public/npm/json-stable-stringify-without-jsonify/-/json-stable-stringify-without-jsonify-1.0.1.tgz#9db7b59496ad3f3cfef30a75142d2d930ad72651"
 
-json-stringify-safe@~5.0.1:
+json-stringify-safe@^5.0.1, json-stringify-safe@~5.0.1:
   version "5.0.1"
   resolved "https://www.myget.org/F/dnn-software-public/npm/json-stringify-safe/-/json-stringify-safe-5.0.1.tgz#1296a2d58fd45f19a0f6ce01d65701e2c735b6eb"
 
@@ -3777,6 +4031,12 @@ killable@^1.0.0:
   version "1.0.1"
   resolved "https://www.myget.org/F/dnn-software-public/npm/killable/-/killable-1.0.1.tgz#4c8ce441187a061c7474fb87ca08e2a638194892"
 
+kind-of@^2.0.1:
+  version "2.0.1"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/kind-of/-/kind-of-2.0.1.tgz#018ec7a4ce7e3a86cb9141be519d24c8faa981b5"
+  dependencies:
+    is-buffer "^1.0.2"
+
 kind-of@^3.0.2, kind-of@^3.0.3, kind-of@^3.2.0:
   version "3.2.2"
   resolved "https://www.myget.org/F/dnn-software-public/npm/kind-of/-/kind-of-3.2.2.tgz#31ea21a734bab9bbb0f32466d893aea51e4a3c64"
@@ -3800,6 +4060,10 @@ kind-of@^6.0.0, kind-of@^6.0.2:
 kleur@^2.0.1:
   version "2.0.2"
   resolved "https://www.myget.org/F/dnn-software-public/npm/kleur/-/kleur-2.0.2.tgz#b704f4944d95e255d038f0cb05fb8a602c55a300"
+
+lazy-cache@^1.0.3:
+  version "1.0.4"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/lazy-cache/-/lazy-cache-1.0.4.tgz#a1d78fc3a50474cb80845d3b3b6e1da49a446e8e"
 
 lcid@^1.0.0:
   version "1.0.0"
@@ -3880,6 +4144,10 @@ loader-utils@^1.0.2, loader-utils@^1.1.0:
     emojis-list "^2.0.0"
     json5 "^0.5.0"
 
+localization@^1.0.2:
+  version "1.0.2"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/localization/-/localization-1.0.2.tgz#3f393d84bef04a724798e4a2d8812abc3d377a9e"
+
 locate-path@^2.0.0:
   version "2.0.0"
   resolved "https://www.myget.org/F/dnn-software-public/npm/locate-path/-/locate-path-2.0.0.tgz#2b568b265eec944c6d9c0de9c3dbbbca0354cd8e"
@@ -3894,21 +4162,47 @@ locate-path@^3.0.0:
     p-locate "^3.0.0"
     path-exists "^3.0.0"
 
-lodash.debounce@^4.0.8:
+lodash._getnative@^3.0.0:
+  version "3.9.1"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/lodash._getnative/-/lodash._getnative-3.9.1.tgz#570bc7dede46d61cdcde687d65d3eecbaa3aaff5"
+
+lodash.curry@^4.0.1:
+  version "4.1.1"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/lodash.curry/-/lodash.curry-4.1.1.tgz#248e36072ede906501d75966200a86dab8b23170"
+
+lodash.debounce@^3.1.1:
+  version "3.1.1"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/lodash.debounce/-/lodash.debounce-3.1.1.tgz#812211c378a94cc29d5aa4e3346cf0bfce3a7df5"
+  dependencies:
+    lodash._getnative "^3.0.0"
+
+lodash.debounce@^4.0.4, lodash.debounce@^4.0.8:
   version "4.0.8"
   resolved "https://www.myget.org/F/dnn-software-public/npm/lodash.debounce/-/lodash.debounce-4.0.8.tgz#82d79bff30a67c4005ffd5e2515300ad9ca4d7af"
+
+lodash.flow@^3.3.0:
+  version "3.5.0"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/lodash.flow/-/lodash.flow-3.5.0.tgz#87bf40292b8cf83e4e8ce1a3ae4209e20071675a"
 
 lodash.sortby@^4.7.0:
   version "4.7.0"
   resolved "https://www.myget.org/F/dnn-software-public/npm/lodash.sortby/-/lodash.sortby-4.7.0.tgz#edd14c824e2cc9c1e0b0a1b42bb5210516a42438"
 
-lodash@^4.13.1, lodash@^4.14.2, lodash@^4.17.10, lodash@^4.17.11, lodash@^4.17.4, lodash@^4.17.5:
+lodash@4.17.4:
+  version "4.17.4"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/lodash/-/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
+
+lodash@^4.13.1, lodash@^4.14.2, lodash@^4.17.10, lodash@^4.17.11, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.2.0:
   version "4.17.11"
   resolved "https://www.myget.org/F/dnn-software-public/npm/lodash/-/lodash-4.17.11.tgz#b39ea6229ef607ecd89e2c8df12536891cac9b8d"
 
 loglevel@^1.4.1:
   version "1.6.1"
   resolved "https://www.myget.org/F/dnn-software-public/npm/loglevel/-/loglevel-1.6.1.tgz#e0fc95133b6ef276cdc8887cdaf24aa6f156f8fa"
+
+longest@^1.0.1:
+  version "1.0.1"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/longest/-/longest-1.0.1.tgz#30a0b2da38f73770e8294a0d22e6625ed77d0097"
 
 loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.3.1, loose-envify@^1.4.0:
   version "1.4.0"
@@ -3928,6 +4222,24 @@ make-dir@^1.0.0:
   resolved "https://www.myget.org/F/dnn-software-public/npm/make-dir/-/make-dir-1.3.0.tgz#79c1033b80515bd6d24ec9933e860ca75ee27f0c"
   dependencies:
     pify "^3.0.0"
+
+make-iterator@^0.1.0:
+  version "0.1.1"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/make-iterator/-/make-iterator-0.1.1.tgz#873d27b8198a465a81483b6f5d16da4e863ecf5b"
+  dependencies:
+    for-own "^0.1.1"
+
+make-iterator@^0.2.0:
+  version "0.2.1"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/make-iterator/-/make-iterator-0.2.1.tgz#a19c660132b54ae6d64f881ec14056c746dbe972"
+  dependencies:
+    kind-of "^3.0.3"
+
+make-iterator@^1.0.0:
+  version "1.0.1"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/make-iterator/-/make-iterator-1.0.1.tgz#29b33f312aa8f547c4a5e490f56afcec99133ad6"
+  dependencies:
+    kind-of "^6.0.2"
 
 makeerror@1.0.x:
   version "1.0.11"
@@ -4226,6 +4538,13 @@ nice-try@^1.0.4:
   version "1.0.5"
   resolved "https://www.myget.org/F/dnn-software-public/npm/nice-try/-/nice-try-1.0.5.tgz#a3378a7696ce7d223e88fc9b764bd7ef1089e366"
 
+node-fetch@^1.0.1:
+  version "1.7.3"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/node-fetch/-/node-fetch-1.7.3.tgz#980f6f72d85211a5347c6b2bc18c5b84c3eb47ef"
+  dependencies:
+    encoding "^0.1.11"
+    is-stream "^1.0.1"
+
 node-forge@0.7.5:
   version "0.7.5"
   resolved "https://www.myget.org/F/dnn-software-public/npm/node-forge/-/node-forge-0.7.5.tgz#6c152c345ce11c52f465c2abd957e8639cd674df"
@@ -4378,6 +4697,22 @@ object-visit@^1.0.0:
   dependencies:
     isobject "^3.0.0"
 
+object.defaults@^0.3.0:
+  version "0.3.0"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/object.defaults/-/object.defaults-0.3.0.tgz#b1eb9cbc78c4c7bd56cac6cae3dead5a7113882a"
+  dependencies:
+    array-each "^0.1.0"
+    array-slice "^0.2.3"
+    for-own "^0.1.3"
+    isobject "^1.0.0"
+
+object.filter@^0.3.0:
+  version "0.3.0"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/object.filter/-/object.filter-0.3.0.tgz#1091c69394b44f96d9d6356dd08785028ad6bff9"
+  dependencies:
+    for-own "^0.1.2"
+    make-iterator "^0.1.0"
+
 object.getownpropertydescriptors@^2.0.3:
   version "2.0.3"
   resolved "https://www.myget.org/F/dnn-software-public/npm/object.getownpropertydescriptors/-/object.getownpropertydescriptors-2.0.3.tgz#8758c846f5b407adab0f236e0986f14b051caa16"
@@ -4392,11 +4727,17 @@ object.omit@^2.0.0:
     for-own "^0.1.4"
     is-extendable "^0.1.1"
 
-object.pick@^1.3.0:
+object.pick@^1.1.1, object.pick@^1.3.0:
   version "1.3.0"
   resolved "https://www.myget.org/F/dnn-software-public/npm/object.pick/-/object.pick-1.3.0.tgz#87a10ac4c1694bd2e1cbf53591a66141fb5dd747"
   dependencies:
     isobject "^3.0.1"
+
+object.reduce@^0.1.7:
+  version "0.1.7"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/object.reduce/-/object.reduce-0.1.7.tgz#d180e84f72d218348af45352b55165246b95046d"
+  dependencies:
+    for-own "^0.1.3"
 
 obuf@^1.0.0, obuf@^1.1.1:
   version "1.1.2"
@@ -4574,6 +4915,10 @@ parse-json@^2.2.0:
   dependencies:
     error-ex "^1.2.0"
 
+parse-key@^0.2.1:
+  version "0.2.1"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/parse-key/-/parse-key-0.2.1.tgz#7bcf76595536e36075664be4d687e4bdd910208f"
+
 parse5@4.0.0:
   version "4.0.0"
   resolved "https://www.myget.org/F/dnn-software-public/npm/parse5/-/parse5-4.0.0.tgz#6d78656e3da8d78b4ec0b906f7c08ef1dfe3f608"
@@ -4641,6 +4986,10 @@ pbkdf2@^3.0.3:
     ripemd160 "^2.0.1"
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
+
+performance-now@^0.2.0:
+  version "0.2.0"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/performance-now/-/performance-now-0.2.0.tgz#33ef30c5c77d4ea21c5a53869d91b56d8f2555e5"
 
 performance-now@^2.1.0:
   version "2.1.0"
@@ -4741,6 +5090,10 @@ postcss@^6.0.1, postcss@^6.0.23:
     source-map "^0.6.1"
     supports-color "^5.4.0"
 
+prefix-style@2.0.1:
+  version "2.0.1"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/prefix-style/-/prefix-style-2.0.1.tgz#66bba9a870cfda308a5dc20e85e9120932c95a06"
+
 prelude-ls@~1.1.2:
   version "1.1.2"
   resolved "https://www.myget.org/F/dnn-software-public/npm/prelude-ls/-/prelude-ls-1.1.2.tgz#21932a549f5e52ffd9a827f570e04be62a97da54"
@@ -4800,7 +5153,7 @@ prop-types-extra@^1.0.1:
     react-is "^16.3.2"
     warning "^3.0.0"
 
-prop-types@^15.6.1, prop-types@^15.6.2:
+prop-types@^15.0.0, prop-types@^15.5.10, prop-types@^15.5.7, prop-types@^15.5.8, prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2:
   version "15.6.2"
   resolved "https://www.myget.org/F/dnn-software-public/npm/prop-types/-/prop-types-15.6.2.tgz#05d5ca77b4453e985d60fc7ff8c859094a497102"
   dependencies:
@@ -4871,6 +5224,10 @@ punycode@^2.1.0:
   version "2.1.1"
   resolved "https://www.myget.org/F/dnn-software-public/npm/punycode/-/punycode-2.1.1.tgz#b58b010ac40c22c5657616c8d2c2c02c7bf479ec"
 
+pure-color@^1.2.0:
+  version "1.3.0"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/pure-color/-/pure-color-1.3.0.tgz#1fe064fb0ac851f0de61320a8bf796836422f33e"
+
 qs@6.5.2, qs@~6.5.2:
   version "6.5.2"
   resolved "https://www.myget.org/F/dnn-software-public/npm/qs/-/qs-6.5.2.tgz#cb3ae806e8740444584ef154ce8ee98d403f3e36"
@@ -4886,6 +5243,18 @@ querystring@0.2.0:
 querystringify@^2.0.0:
   version "2.1.0"
   resolved "https://www.myget.org/F/dnn-software-public/npm/querystringify/-/querystringify-2.1.0.tgz#7ded8dfbf7879dcc60d0a644ac6754b283ad17ef"
+
+raf@^3.1.0:
+  version "3.4.1"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/raf/-/raf-3.4.1.tgz#0742e99a4a6552f445d73e3ee0328af0ff1ede39"
+  dependencies:
+    performance-now "^2.1.0"
+
+rafl@~1.2.1:
+  version "1.2.2"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/rafl/-/rafl-1.2.2.tgz#fe930f758211020d47e38815f5196a8be4150740"
+  dependencies:
+    global "~4.3.0"
 
 randomatic@^3.0.0:
   version "3.1.1"
@@ -4934,12 +5303,42 @@ rc@^1.2.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
+react-base16-styling@^0.5.1:
+  version "0.5.3"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/react-base16-styling/-/react-base16-styling-0.5.3.tgz#3858f24e9c4dd8cbd3f702f3f74d581ca2917269"
+  dependencies:
+    base16 "^1.0.0"
+    lodash.curry "^4.0.1"
+    lodash.flow "^3.3.0"
+    pure-color "^1.2.0"
+
+react-collapse@~4.0.3:
+  version "4.0.3"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/react-collapse/-/react-collapse-4.0.3.tgz#b96de959ed0092a43534630b599a4753dd76d543"
+  dependencies:
+    prop-types "^15.5.8"
+
 react-component-managers@^3.1.0:
   version "3.2.2"
   resolved "https://www.myget.org/F/dnn-software-public/npm/react-component-managers/-/react-component-managers-3.2.2.tgz#b02a965465a32118ffc967f59730618370432412"
   dependencies:
     prop-types "^15.6.1"
     spy-on-component "^1.1.0"
+
+react-custom-scrollbars@^4.2.1:
+  version "4.2.1"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/react-custom-scrollbars/-/react-custom-scrollbars-4.2.1.tgz#830fd9502927e97e8a78c2086813899b2a8b66db"
+  dependencies:
+    dom-css "^2.0.0"
+    prop-types "^15.5.10"
+    raf "^3.1.0"
+
+react-dock@^0.2.4:
+  version "0.2.4"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/react-dock/-/react-dock-0.2.4.tgz#e727dc7550b3b73116635dcb9c0e04d0b7afe17c"
+  dependencies:
+    lodash.debounce "^3.1.1"
+    prop-types "^15.5.8"
 
 react-dom@^16.6.3:
   version "16.6.3"
@@ -4961,13 +5360,61 @@ react-hot-loader@4.3.12:
     react-lifecycles-compat "^3.0.4"
     shallowequal "^1.0.2"
 
-react-is@^16.3.2:
+react-is@^16.3.2, react-is@^16.6.0:
   version "16.6.3"
   resolved "https://www.myget.org/F/dnn-software-public/npm/react-is/-/react-is-16.6.3.tgz#d2d7462fcfcbe6ec0da56ad69047e47e56e7eac0"
 
-react-lifecycles-compat@^3.0.4:
+react-json-tree@^0.11.0:
+  version "0.11.0"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/react-json-tree/-/react-json-tree-0.11.0.tgz#f5b17e83329a9c76ae38be5c04fda3a7fd684a35"
+  dependencies:
+    babel-runtime "^6.6.1"
+    prop-types "^15.5.8"
+    react-base16-styling "^0.5.1"
+
+react-lifecycles-compat@^3.0.0, react-lifecycles-compat@^3.0.4:
   version "3.0.4"
   resolved "https://www.myget.org/F/dnn-software-public/npm/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
+
+react-motion@^0.4.4:
+  version "0.4.8"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/react-motion/-/react-motion-0.4.8.tgz#23bb2dd27c2d8e00d229e45572d105efcf40a35e"
+  dependencies:
+    create-react-class "^15.5.2"
+    performance-now "^0.2.0"
+    prop-types "^15.5.8"
+    raf "^3.1.0"
+
+react-pure-render@^1.0.2:
+  version "1.0.2"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/react-pure-render/-/react-pure-render-1.0.2.tgz#9d8a928c7f2c37513c2d064e57b3e3c356e9fabb"
+
+react-redux@^5.1.1:
+  version "5.1.1"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/react-redux/-/react-redux-5.1.1.tgz#88e368682c7fa80e34e055cd7ac56f5936b0f52f"
+  dependencies:
+    "@babel/runtime" "^7.1.2"
+    hoist-non-react-statics "^3.1.0"
+    invariant "^2.2.4"
+    loose-envify "^1.1.0"
+    prop-types "^15.6.1"
+    react-is "^16.6.0"
+    react-lifecycles-compat "^3.0.0"
+
+react-test-utils@0.0.1:
+  version "0.0.1"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/react-test-utils/-/react-test-utils-0.0.1.tgz#cd69a37c3e4d726e3497e325462a32785a19c026"
+  dependencies:
+    envify "~0.2.0"
+    react "~0.8.0"
+
+react-tooltip@^3.4.0:
+  version "3.9.0"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/react-tooltip/-/react-tooltip-3.9.0.tgz#d874df922c3b34b2e547ec62ff8b2eef42017b51"
+  dependencies:
+    classnames "^2.2.5"
+    prop-types "^15.6.0"
+    sanitize-html-react "^1.13.0"
 
 react-transition-group@^2.4.0:
   version "2.5.0"
@@ -5002,6 +5449,10 @@ react@^16.6.3:
     prop-types "^15.6.2"
     scheduler "^0.11.2"
 
+react@~0.8.0:
+  version "0.8.0"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/react/-/react-0.8.0.tgz#9aef0dbc3e05b44d96139cdbdaa5d727b0506e1e"
+
 read-pkg-up@^1.0.1:
   version "1.0.1"
   resolved "https://www.myget.org/F/dnn-software-public/npm/read-pkg-up/-/read-pkg-up-1.0.1.tgz#9d63c13276c065918d57f002a57f40a1b643fb02"
@@ -5029,6 +5480,14 @@ read-pkg@^1.0.0:
     string_decoder "~1.1.1"
     util-deprecate "~1.0.1"
 
+readable-stream@^3.0.6:
+  version "3.0.6"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/readable-stream/-/readable-stream-3.0.6.tgz#351302e4c68b5abd6a2ed55376a7f9a25be3057a"
+  dependencies:
+    inherits "^2.0.3"
+    string_decoder "^1.1.1"
+    util-deprecate "^1.0.1"
+
 readdirp@^2.0.0:
   version "2.2.1"
   resolved "https://www.myget.org/F/dnn-software-public/npm/readdirp/-/readdirp-2.2.1.tgz#0e87622a3325aa33e892285caf8b4e846529a525"
@@ -5042,6 +5501,65 @@ realpath-native@^1.0.0:
   resolved "https://www.myget.org/F/dnn-software-public/npm/realpath-native/-/realpath-native-1.0.2.tgz#cd51ce089b513b45cf9b1516c82989b51ccc6560"
   dependencies:
     util.promisify "^1.0.0"
+
+redux-devtools-dock-monitor@^1.1.3:
+  version "1.1.3"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/redux-devtools-dock-monitor/-/redux-devtools-dock-monitor-1.1.3.tgz#1205e823c82536570aac8551a1c4b70972cba6aa"
+  dependencies:
+    babel-runtime "^6.2.0"
+    parse-key "^0.2.1"
+    prop-types "^15.5.8"
+    react-dock "^0.2.4"
+    react-pure-render "^1.0.2"
+
+redux-devtools-instrument@^1.9.0:
+  version "1.9.2"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/redux-devtools-instrument/-/redux-devtools-instrument-1.9.2.tgz#c8bb81f295c60f1629164391c9c8552346d551c0"
+  dependencies:
+    lodash "^4.2.0"
+    symbol-observable "^1.0.2"
+
+redux-devtools-log-monitor@^1.4.0:
+  version "1.4.0"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/redux-devtools-log-monitor/-/redux-devtools-log-monitor-1.4.0.tgz#716b9580eda2a331cd359a36aa09e3a1602a854b"
+  dependencies:
+    lodash.debounce "^4.0.4"
+    prop-types "^15.0.0"
+    react-json-tree "^0.11.0"
+    react-pure-render "^1.0.2"
+    redux-devtools-themes "^1.0.0"
+
+redux-devtools-themes@^1.0.0:
+  version "1.0.0"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/redux-devtools-themes/-/redux-devtools-themes-1.0.0.tgz#c482dce3c5373976045f40134907d9dcb3ae3d5d"
+  dependencies:
+    base16 "^1.0.0"
+
+redux-devtools@^3.4.2:
+  version "3.4.2"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/redux-devtools/-/redux-devtools-3.4.2.tgz#000a8987a61569be446a497a8da7dbd2848c6bf5"
+  dependencies:
+    lodash "^4.2.0"
+    prop-types "^15.5.7"
+    redux-devtools-instrument "^1.9.0"
+
+redux-immutable-state-invariant@^2.1.0:
+  version "2.1.0"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/redux-immutable-state-invariant/-/redux-immutable-state-invariant-2.1.0.tgz#308fd3cc7415a0e7f11f51ec997b6379c7055ce1"
+  dependencies:
+    invariant "^2.1.0"
+    json-stringify-safe "^5.0.1"
+
+redux-thunk@^2.3.0:
+  version "2.3.0"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/redux-thunk/-/redux-thunk-2.3.0.tgz#51c2c19a185ed5187aaa9a2d08b666d0d6467622"
+
+redux@^4.0.1:
+  version "4.0.1"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/redux/-/redux-4.0.1.tgz#436cae6cc40fbe4727689d7c8fae44808f1bfef5"
+  dependencies:
+    loose-envify "^1.4.0"
+    symbol-observable "^1.2.0"
 
 regenerate-unicode-properties@^7.0.0:
   version "7.0.0"
@@ -5079,6 +5597,10 @@ regex-not@^1.0.0, regex-not@^1.0.2:
   dependencies:
     extend-shallow "^3.0.2"
     safe-regex "^1.1.0"
+
+regexp-quote@0.0.0:
+  version "0.0.0"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/regexp-quote/-/regexp-quote-0.0.0.tgz#1e0f4650c862dcbfed54fd42b148e9bb1721fcf2"
 
 regexpp@^2.0.1:
   version "2.0.1"
@@ -5238,6 +5760,12 @@ ret@~0.1.10:
   version "0.1.15"
   resolved "https://www.myget.org/F/dnn-software-public/npm/ret/-/ret-0.1.15.tgz#b8a4825d5bdb1fc3f6f53c2bc33f81388681c7bc"
 
+right-align@^0.1.3:
+  version "0.1.3"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/right-align/-/right-align-0.1.3.tgz#61339b722fe6a3515689210d24e14c96148613ef"
+  dependencies:
+    align-text "^0.1.1"
+
 rimraf@^2.2.8, rimraf@^2.5.4, rimraf@^2.6.1, rimraf@^2.6.2, rimraf@~2.6.2:
   version "2.6.2"
   resolved "https://www.myget.org/F/dnn-software-public/npm/rimraf/-/rimraf-2.6.2.tgz#2ed8150d24a16ea8651e6d6ef0f47c4158ce7a36"
@@ -5302,6 +5830,14 @@ sane@^2.0.0:
   optionalDependencies:
     fsevents "^1.2.3"
 
+sanitize-html-react@^1.13.0:
+  version "1.13.0"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/sanitize-html-react/-/sanitize-html-react-1.13.0.tgz#e757b9adbaf2c8a762f3d2dff70138838e05420a"
+  dependencies:
+    htmlparser2 "^3.9.0"
+    regexp-quote "0.0.0"
+    xtend "^4.0.0"
+
 sax@^1.2.4:
   version "1.2.4"
   resolved "https://www.myget.org/F/dnn-software-public/npm/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
@@ -5327,6 +5863,12 @@ schema-utils@^1.0.0:
     ajv "^6.1.0"
     ajv-errors "^1.0.0"
     ajv-keywords "^3.1.0"
+
+scroll@^2.0.0:
+  version "2.0.3"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/scroll/-/scroll-2.0.3.tgz#0951b785544205fd17753bc3d294738ba16fc2ab"
+  dependencies:
+    rafl "~1.2.1"
 
 select-hose@^2.0.0:
   version "2.0.0"
@@ -5385,6 +5927,13 @@ serve-static@1.13.2:
     parseurl "~1.3.2"
     send "0.16.2"
 
+services@^0.0.3:
+  version "0.0.3"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/services/-/services-0.0.3.tgz#337dfcae89a171a11fbfc1721b6962166bec0763"
+  dependencies:
+    underscore ">=1.3.0"
+    underscore.string ">=2.0.0"
+
 set-blocking@^2.0.0, set-blocking@~2.0.0:
   version "2.0.0"
   resolved "https://www.myget.org/F/dnn-software-public/npm/set-blocking/-/set-blocking-2.0.0.tgz#045f9782d011ae9a6803ddd382b24392b3d890f7"
@@ -5407,7 +5956,7 @@ set-value@^2.0.0:
     is-plain-object "^2.0.3"
     split-string "^3.0.1"
 
-setimmediate@^1.0.4:
+setimmediate@^1.0.4, setimmediate@^1.0.5:
   version "1.0.5"
   resolved "https://www.myget.org/F/dnn-software-public/npm/setimmediate/-/setimmediate-1.0.5.tgz#290cbb232e306942d7d7ea9b83732ab7856f8285"
 
@@ -5593,6 +6142,10 @@ split-string@^3.0.1, split-string@^3.0.2:
   dependencies:
     extend-shallow "^3.0.0"
 
+sprintf-js@^1.0.3:
+  version "1.1.1"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/sprintf-js/-/sprintf-js-1.1.1.tgz#36be78320afe5801f6cea3ee78b6e5aab940ea0c"
+
 sprintf-js@~1.0.2:
   version "1.0.3"
   resolved "https://www.myget.org/F/dnn-software-public/npm/sprintf-js/-/sprintf-js-1.0.3.tgz#04e6926f662895354f3dd015203633b857297e2c"
@@ -5700,6 +6253,12 @@ string_decoder@^1.0.0, string_decoder@~1.1.1:
   dependencies:
     safe-buffer "~5.1.0"
 
+string_decoder@^1.1.1:
+  version "1.2.0"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/string_decoder/-/string_decoder-1.2.0.tgz#fe86e738b19544afe70469243b2a1ee9240eae8d"
+  dependencies:
+    safe-buffer "~5.1.0"
+
 strip-ansi@^3.0.0, strip-ansi@^3.0.1:
   version "3.0.1"
   resolved "https://www.myget.org/F/dnn-software-public/npm/strip-ansi/-/strip-ansi-3.0.1.tgz#6a385fb8853d952d5ff05d0e8aaf94278dc63dcf"
@@ -5730,6 +6289,10 @@ strip-json-comments@^2.0.1, strip-json-comments@~2.0.1:
   version "2.0.1"
   resolved "https://www.myget.org/F/dnn-software-public/npm/strip-json-comments/-/strip-json-comments-2.0.1.tgz#3c531942e908c2697c0ec344858c286c7ca0a60a"
 
+striptags@^2.0.3:
+  version "2.2.1"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/striptags/-/striptags-2.2.1.tgz#4c450b708d41b8bf39cf24c49ff234fc6aabfd32"
+
 style-loader@^0.23.1:
   version "0.23.1"
   resolved "https://www.myget.org/F/dnn-software-public/npm/style-loader/-/style-loader-0.23.1.tgz#cb9154606f3e771ab6c4ab637026a1049174d925"
@@ -5752,6 +6315,10 @@ supports-color@^5.1.0, supports-color@^5.3.0, supports-color@^5.4.0, supports-co
   resolved "https://www.myget.org/F/dnn-software-public/npm/supports-color/-/supports-color-5.5.0.tgz#e2e69a44ac8772f78a1ec0b35b689df6530efc8f"
   dependencies:
     has-flag "^3.0.0"
+
+symbol-observable@^1.0.2, symbol-observable@^1.2.0:
+  version "1.2.0"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/symbol-observable/-/symbol-observable-1.2.0.tgz#c22688aed4eab3cdc2dfeacbb561660560a00804"
 
 symbol-tree@^3.2.2:
   version "3.2.2"
@@ -5832,7 +6399,7 @@ through2@^2.0.0:
     readable-stream "~2.3.6"
     xtend "~4.0.1"
 
-through@^2.3.6:
+through@^2.3.6, through@~2.3.4:
   version "2.3.8"
   resolved "https://www.myget.org/F/dnn-software-public/npm/through/-/through-2.3.8.tgz#0dd4c9ffaabc357960b1b724115d7e0e86a2e1f5"
 
@@ -5860,6 +6427,12 @@ to-arraybuffer@^1.0.0:
   version "1.0.1"
   resolved "https://www.myget.org/F/dnn-software-public/npm/to-arraybuffer/-/to-arraybuffer-1.0.1.tgz#7d229b1fcc637e466ca081180836a7aabff83f43"
 
+to-camel-case@1.0.0:
+  version "1.0.0"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/to-camel-case/-/to-camel-case-1.0.0.tgz#1a56054b2f9d696298ce66a60897322b6f423e46"
+  dependencies:
+    to-space-case "^1.0.0"
+
 to-fast-properties@^1.0.3:
   version "1.0.3"
   resolved "https://www.myget.org/F/dnn-software-public/npm/to-fast-properties/-/to-fast-properties-1.0.3.tgz#b83571fa4d8c25b82e231b06e3a3055de4ca1a47"
@@ -5867,6 +6440,10 @@ to-fast-properties@^1.0.3:
 to-fast-properties@^2.0.0:
   version "2.0.0"
   resolved "https://www.myget.org/F/dnn-software-public/npm/to-fast-properties/-/to-fast-properties-2.0.0.tgz#dc5e698cbd079265bc73e0377681a4e4e83f616e"
+
+to-no-case@^1.0.0:
+  version "1.0.2"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/to-no-case/-/to-no-case-1.0.2.tgz#c722907164ef6b178132c8e69930212d1b4aa16a"
 
 to-object-path@^0.3.0:
   version "0.3.0"
@@ -5889,6 +6466,12 @@ to-regex@^3.0.1, to-regex@^3.0.2:
     extend-shallow "^3.0.2"
     regex-not "^1.0.2"
     safe-regex "^1.1.0"
+
+to-space-case@^1.0.0:
+  version "1.0.0"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/to-space-case/-/to-space-case-1.0.0.tgz#b052daafb1b2b29dc770cea0163e5ec0ebc9fc17"
+  dependencies:
+    to-no-case "^1.0.0"
 
 tough-cookie@>=2.3.3, tough-cookie@^2.3.4, tough-cookie@~2.4.3:
   version "2.4.3"
@@ -5942,6 +6525,10 @@ typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://www.myget.org/F/dnn-software-public/npm/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
 
+ua-parser-js@^0.7.18:
+  version "0.7.19"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/ua-parser-js/-/ua-parser-js-0.7.19.tgz#94151be4c0a7fb1d001af7022fdaca4642659e4b"
+
 uglify-js@^3.1.4:
   version "3.4.9"
   resolved "https://www.myget.org/F/dnn-software-public/npm/uglify-js/-/uglify-js-3.4.9.tgz#af02f180c1207d76432e473ed24a28f4a782bae3"
@@ -5954,6 +6541,17 @@ uncontrollable@^5.0.0:
   resolved "https://www.myget.org/F/dnn-software-public/npm/uncontrollable/-/uncontrollable-5.1.0.tgz#7e9a1c50ea24e3c78b625e52d21ff3f758c7bd59"
   dependencies:
     invariant "^2.2.4"
+
+underscore.string@>=2.0.0:
+  version "3.3.5"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/underscore.string/-/underscore.string-3.3.5.tgz#fc2ad255b8bd309e239cbc5816fd23a9b7ea4023"
+  dependencies:
+    sprintf-js "^1.0.3"
+    util-deprecate "^1.0.2"
+
+underscore@>=1.3.0:
+  version "1.9.1"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/underscore/-/underscore-1.9.1.tgz#06dce34a0e68a7babc29b365b8e74b8925203961"
 
 unicode-canonical-property-names-ecmascript@^1.0.4:
   version "1.0.4"
@@ -6046,7 +6644,7 @@ use@^3.1.0:
   version "3.1.1"
   resolved "https://www.myget.org/F/dnn-software-public/npm/use/-/use-3.1.1.tgz#d50c8cac79a19fbc20f2911f56eb973f4e10070f"
 
-util-deprecate@~1.0.1:
+util-deprecate@^1.0.1, util-deprecate@^1.0.2, util-deprecate@~1.0.1:
   version "1.0.2"
   resolved "https://www.myget.org/F/dnn-software-public/npm/util-deprecate/-/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"
 
@@ -6072,6 +6670,37 @@ util@^0.10.3:
 utils-merge@1.0.1:
   version "1.0.1"
   resolved "https://www.myget.org/F/dnn-software-public/npm/utils-merge/-/utils-merge-1.0.1.tgz#9f95710f50a267947b2ccc124741c1028427e713"
+
+utils@^0.3.1:
+  version "0.3.1"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/utils/-/utils-0.3.1.tgz#04efaeb4290a67037a4cddfd2ff56144cc3a4581"
+  dependencies:
+    any "^1.0.0"
+    arr-diff "^1.1.0"
+    arr-flatten "^1.0.1"
+    arr-map "^2.0.0"
+    arr-union "^3.0.0"
+    array-each "^0.1.1"
+    array-slice "^0.2.3"
+    array-unique "^0.2.1"
+    center-align "^0.1.1"
+    export-dirs "^0.2.4"
+    export-files "^2.1.0"
+    for-in "^0.1.4"
+    for-own "^0.1.3"
+    has-values "^0.1.3"
+    is-number "^2.0.2"
+    is-plain-object "^2.0.1"
+    kind-of "^2.0.1"
+    make-iterator "^0.2.0"
+    object.defaults "^0.3.0"
+    object.filter "^0.3.0"
+    object.omit "^2.0.0"
+    object.pick "^1.1.1"
+    object.reduce "^0.1.7"
+    right-align "^0.1.3"
+    striptags "^2.0.3"
+    word-wrap "^1.1.0"
 
 uuid@^3.0.1, uuid@^3.3.2:
   version "3.3.2"
@@ -6274,6 +6903,10 @@ whatwg-encoding@^1.0.1, whatwg-encoding@^1.0.3:
   dependencies:
     iconv-lite "0.4.24"
 
+whatwg-fetch@>=0.10.0:
+  version "3.0.0"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/whatwg-fetch/-/whatwg-fetch-3.0.0.tgz#fc804e458cc460009b1a2b966bc8817d2578aefb"
+
 whatwg-mimetype@^2.1.0, whatwg-mimetype@^2.2.0:
   version "2.3.0"
   resolved "https://www.myget.org/F/dnn-software-public/npm/whatwg-mimetype/-/whatwg-mimetype-2.3.0.tgz#3d4b1e0312d2079879f826aff18dbeeca5960fbf"
@@ -6309,6 +6942,10 @@ wide-align@^1.1.0:
   resolved "https://www.myget.org/F/dnn-software-public/npm/wide-align/-/wide-align-1.1.3.tgz#ae074e6bdc0c14a431e804e624549c633b000457"
   dependencies:
     string-width "^1.0.2 || 2"
+
+word-wrap@^1.1.0:
+  version "1.2.3"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/word-wrap/-/word-wrap-1.2.3.tgz#610636f6b1f703891bd34771ccb17fb93b47079c"
 
 wordwrap@~0.0.2:
   version "0.0.3"

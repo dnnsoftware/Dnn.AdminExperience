@@ -40,7 +40,7 @@ class DetailsRow extends Component {
         // before the handleClick handler is called, but in spite of that, the handleClick is executed. To avoid
         // the "findDOMNode was called on an unmounted component." error we need to check if the component is mounted before execute this code
         if (!this._isMounted) { return; }
-        if (!this.rootElement.current.contains(event.target) && (typeof event.target.className === "string" && event.target.className.indexOf("do-not-close") === -1)
+        if ((typeof event.target.className === "string" && event.target.className.indexOf("do-not-close") === -1)
             && !(event.target.id === "confirmbtn" || event.target.id === "cancelbtn") && this.props.openId !== "add") {
             if ((this.props.openId !== "" && this.props.id === this.props.openId)) {
                 this.props.Collapse();
@@ -159,7 +159,7 @@ class DetailsRow extends Component {
         let userColumns = this.getUserColumns(user, props.id, opened);
         return (
             /* eslint-disable react/no-danger */
-            <GridCell className={"collapsible-component-users"} id={uniqueId} ref={this.rootElement}>
+            <GridCell className={"collapsible-component-users"} id={uniqueId} ref={(node) => this.rootElement = node}>
                 <GridCell  className={"collapsible-header-users " + !opened}>
                     <GridCell className={styles.extensionDetailRow + " " + props.addIsOpened} columnSize={100}>
                         {(!props.addIsOpened || props.addIsOpened === "add-opened") && <GridCell>

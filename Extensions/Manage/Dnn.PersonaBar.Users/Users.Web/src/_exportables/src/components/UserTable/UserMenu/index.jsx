@@ -23,7 +23,7 @@ class UserMenu extends Component {
     }
 
     handleClick(event) {
-        if (!this.rootElement.contains(event.target) && (typeof event.target.className !== "string" || (typeof event.target.className === "string" && event.target.className.indexOf("menu-item") === -1))) {
+        if ((typeof event.target.className !== "string" || (typeof event.target.className === "string" && event.target.className.indexOf("menu-item") === -1))) {
             this.props.onClose();
         }
     }
