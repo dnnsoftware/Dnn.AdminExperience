@@ -1,5 +1,5 @@
-import React, {Component, PropTypes } from "react";
-import ReactDOM from "react-dom";
+import PropTypes from "prop-types";
+import React, { Component } from "react";
 import GridCell from "dnn-grid-cell";
 import styles from "./style.less";
 import {formatDate, sort} from "../../../helpers";
@@ -40,7 +40,7 @@ class DetailsRow extends Component {
         // before the handleClick handler is called, but in spite of that, the handleClick is executed. To avoid
         // the "findDOMNode was called on an unmounted component." error we need to check if the component is mounted before execute this code
         if (!this._isMounted) { return; }
-        if (!ReactDOM.findDOMNode(this).contains(event.target) && (typeof event.target.className === "string" && event.target.className.indexOf("do-not-close") === -1)
+        if (!this.rootElement.current.contains(event.target) && (typeof event.target.className === "string" && event.target.className.indexOf("do-not-close") === -1)
             && !(event.target.id === "confirmbtn" || event.target.id === "cancelbtn") && this.props.openId !== "add") {
             if ((this.props.openId !== "" && this.props.id === this.props.openId)) {
                 this.props.Collapse();
@@ -91,16 +91,16 @@ class DetailsRow extends Component {
 
         let i = 0;
         let userActions = sort(actionIcons, "index", "desc").map((actionIcon) => {
-            let element = <div title={actionIcon.title} className={ "extension-action " + !(opened && this.props.currentIndex === i) } dangerouslySetInnerHTML={{ __html: actionIcon.icon }} onClick={ this.toggle.bind(this, i) } ></div>;
+            let element = <div key={`user_action_${i}`} title={actionIcon.title} className={ "extension-action " + !(opened && this.props.currentIndex === i) } dangerouslySetInnerHTML={{ __html: actionIcon.icon }} onClick={ this.toggle.bind(this, i) } ></div>;
             i++;
             return element;
         });
-        return ([<div style={{ position: "relative" }}>
+        return ([<div key={`user_action_wrapper_${user.userId}`} style={{ position: "relative" }}>
             <div className={"extension-action " + !this.state.showMenu} dangerouslySetInnerHTML={{ __html: MoreMenuIcon }}
                 onClick={this.toggleUserMenu.bind(this) }>
             </div>
             { this.state.showMenu && <UserMenu filter={this.props.filter} appSettings={this.props.appSettings} getUserMenu={this.props.getUserMenu && this.props.getUserMenu.bind(this)} userMenuAction={this.props.userMenuAction && this.props.userMenuAction.bind(this)} onClose={this.toggleUserMenu.bind(this) } 
-            userId={user.userId}/> }
+                userId={user.userId}/> }
         </div>]).concat(userActions);
     }
     getUserColumns(user, id, opened) {
@@ -112,7 +112,7 @@ class DetailsRow extends Component {
                 index: 5,
                 content: <GridCell columnSize={columnSizes.find(x=>x.index===5).size}  className={"user-names" + (user.isDeleted ? " deleted" : "") }>
                     <h6>
-                    <TextOverflowWrapper className="email-link" text={user.displayName} maxWidth={125}/>
+                        <TextOverflowWrapper className="email-link" text={user.displayName} maxWidth={125}/>
                     </h6>
                     {user.displayName !== "-" && <p>{user.userName}</p> }
                 </GridCell>
@@ -141,7 +141,6 @@ class DetailsRow extends Component {
         });
     }
 
-
     render() {
         const {props} = this;
         let {user} = this.props;
@@ -160,7 +159,7 @@ class DetailsRow extends Component {
         let userColumns = this.getUserColumns(user, props.id, opened);
         return (
             /* eslint-disable react/no-danger */
-            <GridCell className={"collapsible-component-users"} id={uniqueId}>
+            <GridCell className={"collapsible-component-users"} id={uniqueId} ref={this.rootElement}>
                 <GridCell  className={"collapsible-header-users " + !opened}>
                     <GridCell className={styles.extensionDetailRow + " " + props.addIsOpened} columnSize={100}>
                         {(!props.addIsOpened || props.addIsOpened === "add-opened") && <GridCell>

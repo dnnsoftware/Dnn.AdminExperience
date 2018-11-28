@@ -1,5 +1,5 @@
-import React, {Component, PropTypes } from "react";
-import ReactDOM, { findDOMNode } from "react-dom";
+import PropTypes from "prop-types";
+import React, { Component } from "react";
 import {debounce} from "throttle-debounce";
 import { connect } from "react-redux";
 import Localization from "localization";
@@ -36,8 +36,10 @@ class UserRoles extends Component {
         this.getRoles();
     }
 
-    componentDidMount(){
-         findDOMNode(this.comboBoxDom).childNodes[1].setAttribute('aria-label', 'Suggestion');
+    componentDidMount() {
+        if(this.comboBoxDom != null && this.comboBoxDom.hasChildNodes() && this.comboBoxDom.childNodes.length > 0) {
+            this.comboBoxDom.childNodes[1].setAttribute("aria-label", "Suggestion");
+        }
     }
  
 
@@ -123,6 +125,7 @@ class UserRoles extends Component {
             return <RoleRow
                 roleDetails={role}
                 index={index}
+                key={`role_row_${index}`}
                 saveRole={this.saveRole.bind(this) }>
             </RoleRow>;
         });
@@ -154,8 +157,8 @@ class UserRoles extends Component {
             { name: "Expires", width: 20 },
             { name: "", width: 35 }
         ];
-        let tableHeaders = tableFields.map((field) => {
-            return <GridCell columnSize={field.width} style={{ fontWeight: "bolder" }}>
+        let tableHeaders = tableFields.map((field, index) => {
+            return <GridCell key={`grid_cell_${index}`} columnSize={field.width} style={{ fontWeight: "bolder" }}>
                 {
                     field.name !== "" ?
                         <span>{Localization.get(field.name + ".Header") }</span>
@@ -178,7 +181,7 @@ class UserRoles extends Component {
                 totalRecords={this.props.totalRecords}
                 onPageChanged={this.onPageChanged.bind(this) }
                 culture={utilities.getCulture()}
-                />;
+            />;
     }
     render() {
         const {state} = this;

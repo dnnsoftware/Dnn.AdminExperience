@@ -1,4 +1,5 @@
-import React, {Component, PropTypes } from "react";
+import PropTypes from "prop-types";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import Localization from "localization";
 import Button from "dnn-button";
@@ -73,12 +74,12 @@ class Body extends Component {
                 <FiltersBar
                     onChange={this.onFilterChange.bind(this) }
                     userFilters={this.state.userFilters}
-                    />
+                />
             </GridCell>;
     }
 
     toggleCreateBox() {
-        this.refs["userTable"].getWrappedInstance().onAddUser();
+        this.userTable.onAddUser();
     }
     canAddUser()
     {
@@ -90,15 +91,15 @@ class Body extends Component {
         return (
             <GridCell>
                 <PersonaBarPageHeader title={Localization.get("nav_Users") }>
-                 {
-                    this.canAddUser() &&  
+                    {
+                        this.canAddUser() &&  
                     <Button type="primary" size="large" onClick={this.toggleCreateBox.bind(this) } title={Localization.get("btnCreateUser")}>
                         {Localization.get("btnCreateUser") }
                     </Button>
-                }
+                    }
                 </PersonaBarPageHeader>
                 <PersonaBarPageBody workSpaceTrayVisible={true} workSpaceTrayOutside={true} workSpaceTray={this.getWorkSpaceTray() } className={panelBodyMargin}>
-                    <UserTable ref="userTable" appSettings={appSettings} filter={state.searchParameters.filter}/>
+                    <UserTable ref={(node) => this.userTable = node} appSettings={appSettings} filter={state.searchParameters.filter}/>
                     {
                         <div className="users-paging">
                             <Pager pageSizeDropDownWithoutBorder={true} 
@@ -111,7 +112,7 @@ class Body extends Component {
                                 onPageChanged={this.onPageChanged.bind(this) }
                                 resetIndex={this.state.searchParameters.resetIndex}
                                 culture={utilities.getCulture() }
-                                />
+                            />
                         </div>
                     }
                 </PersonaBarPageBody >
