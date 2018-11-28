@@ -52,10 +52,10 @@ class EnableScheduling extends Component {
 }
 
 EnableScheduling.propTypes = {
-    schedulingEnabled: PropTypes.bool.isRequired,
+    schedulingEnabled: PropTypes.bool,
     onChangeSchedulingEnabled: PropTypes.func.isRequired,
-    startDate: PropTypes.date,
-    endDate: PropTypes.date,
+    startDate: PropTypes.instanceOf(Date),
+    endDate: PropTypes.instanceOf(Date),
     onChangeStartDate: PropTypes.func.isRequired,
     onChangeEndDate: PropTypes.func.isRequired
 };
