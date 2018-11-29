@@ -32,7 +32,7 @@ function extractDomain(url) {
         domain = url.split("/")[0];
     }
     [domain, port] = domain.split(":");
-    return port != undefined && port != 80 && port != 443 ? `${domain}:${port}` : domain;
+    return port !== undefined && port !== 80 && port !== 443 ? `${domain}:${port}` : domain;
 }
 function validateEmail(email) {
     let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
