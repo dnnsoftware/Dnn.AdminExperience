@@ -575,9 +575,9 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
-"@dnnsoftware/dnn-react-common@^2.0.5":
+"@dnnsoftware/dnn-react-common@^2.0.6":
   version "2.0.6"
-  resolved "https://www.myget.org/F/dnn-software-public/npm/@dnnsoftware/dnn-react-common/-/@dnnsoftware/dnn-react-common-2.0.6.tgz#d1be0ef7a419dda29247fc18d6e71235b8119f1e"
+  resolved "https://registry.yarnpkg.com/@dnnsoftware/dnn-react-common/-/dnn-react-common-2.0.6.tgz#d1be0ef7a419dda29247fc18d6e71235b8119f1e"
   dependencies:
     interact.js "^1.2.8"
     moment "^2.22.2"
@@ -3167,9 +3167,9 @@ less-loader@4.1.0:
     loader-utils "^1.1.0"
     pify "^3.0.0"
 
-less@3.8.1:
-  version "3.8.1"
-  resolved "https://www.myget.org/F/dnn-software-public/npm/less/-/less-3.8.1.tgz#f31758598ef5a1930dd4caefa9e4340641e71e1d"
+less@3.9.0:
+  version "3.9.0"
+  resolved "https://registry.yarnpkg.com/less/-/less-3.9.0.tgz#b7511c43f37cf57dc87dffd9883ec121289b1474"
   dependencies:
     clone "^2.1.2"
   optionalDependencies:
