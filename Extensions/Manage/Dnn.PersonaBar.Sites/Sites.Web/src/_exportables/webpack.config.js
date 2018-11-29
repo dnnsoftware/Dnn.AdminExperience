@@ -21,6 +21,8 @@ module.exports = {
         extensions: [".js", ".json", ".jsx"],
         modules: [
             path.resolve('./src'),
+            path.resolve('./src'),
+            path.resolve('./node_modules'),  // Last fallback to node_modules
             path.resolve('../') // Look in src first
         ]
     }
