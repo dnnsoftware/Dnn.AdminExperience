@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import "./style.less";
-import { Switch, Grid, Button, Dropdown, SingleLineInputWithError  } from "@dnnsoftware/dnn-react-common";
+import { Switch, GridSystem as Grid, Button, Dropdown, SingleLineInputWithError  } from "@dnnsoftware/dnn-react-common";
 import {
     logSettings as LogSettingActions
 } from "../../../actions";

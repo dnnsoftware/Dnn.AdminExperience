@@ -575,9 +575,9 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
-"@dnnsoftware/dnn-react-common@^2.0.5":
-  version "2.0.5"
-  resolved "https://www.myget.org/F/dnn-software-public/npm/@dnnsoftware/dnn-react-common/-/@dnnsoftware/dnn-react-common-2.0.5.tgz#35d0f3b0cadcf27dd547461d66d3a80a805e0fcd"
+"@dnnsoftware/dnn-react-common@^2.0.6":
+  version "2.0.6"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/@dnnsoftware/dnn-react-common/-/@dnnsoftware/dnn-react-common-2.0.6.tgz#d1be0ef7a419dda29247fc18d6e71235b8119f1e"
   dependencies:
     interact.js "^1.2.8"
     moment "^2.22.2"
@@ -966,7 +966,7 @@ babel-code-frame@^6.26.0:
     esutils "^2.0.2"
     js-tokens "^3.0.2"
 
-babel-loader@8.0.4:
+babel-loader@^8.0.4:
   version "8.0.4"
   resolved "https://www.myget.org/F/dnn-software-public/npm/babel-loader/-/babel-loader-8.0.4.tgz#7bbf20cbe4560629e2e41534147692d3fecbdce6"
   dependencies:

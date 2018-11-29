@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import React, { Component } from "react";
-import { GridCell, CollapsibleRow as Collapse, SvgIcons } from "@dnnsoftware/dnn-react-common";
+import { GridCell, Collapsible as Collapse, SvgIcons } from "@dnnsoftware/dnn-react-common";
 import "./style.less";
 
 
