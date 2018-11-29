@@ -1,19 +1,11 @@
-import React, { Component, PropTypes } from "react";
+import PropTypes from 'prop-types';
+import React, { Component } from "react";
 import { connect } from "react-redux";
-import PersonaBarPageHeader from "dnn-persona-bar-page-header";
-import PersonaBarPageBody from "dnn-persona-bar-page-body";
+import { Collapsible as Collapse, Switch, DropdownWithError, RadioButtons, Button, PersonaBarPageHeader, PersonaBarPageBody, GridCell, GridSystem, SingleLineInputWithError, MultiLineInputWithError } from "@dnnsoftware/dnn-react-common";
 import { CommonPortalListActions } from "dnn-sites-common-actions";
-import GridCell from "dnn-grid-cell";
-import GridSystem from "dnn-grid-system";
-import SingleLineInputWithError from "dnn-single-line-input-with-error";
-import MultiLineInputWithError from "dnn-multi-line-input-with-error";
-import RadioButtons from "dnn-radio-buttons";
-import Button from "dnn-button";
-import DropdownWithError from "dnn-dropdown-with-error";
-import Switch from "dnn-switch";
 import Localization from "localization";
-import Collapse from "dnn-collapsible";
 import "./style.less";
+
 const emptyNewPortal = {
     SiteTemplate: "",
     SiteName: "",
