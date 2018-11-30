@@ -3,7 +3,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import HeaderRow from "./HeaderRow";
 import DetailRow from "./DetailRow";
-import GridCell from "dnn-grid-cell";
 import CollapsibleSwitcher from "../common/CollapsibleSwitcher";
 import CreateUserBox from "../CreateUserBox";
 import UserSettings from "./UserSettings";
@@ -14,6 +13,7 @@ import {sort} from "../../helpers";
 import Localization from "localization";
 import ColumnSizes from "./columnSizes";
 import {canManageRoles, canManageProfile, canViewSettings, canAddUser} from "../permissionHelpers.js";
+import { GridCell } from "@dnnsoftware/dnn-react-common";
 
 class UserTable extends Component {
     constructor() {

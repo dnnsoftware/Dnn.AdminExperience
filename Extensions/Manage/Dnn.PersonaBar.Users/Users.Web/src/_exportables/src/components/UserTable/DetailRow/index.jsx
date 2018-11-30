@@ -1,20 +1,18 @@
 import PropTypes from "prop-types";
 import React, { Component } from "react";
-import GridCell from "dnn-grid-cell";
 import styles from "./style.less";
 import {formatDate, sort} from "../../../helpers";
-import Collapse from "dnn-collapsible";
 import UserMenu from "../UserMenu";
 import Localization from "localization";
-import { SettingsIcon, UserIcon, MoreMenuIcon, ShieldIcon } from "dnn-svg-icons";
 import ColumnSizes from "../columnSizes";
-import TextOverflowWrapper from "dnn-text-overflow-wrapper";
 import {canManageRoles, canManageProfile, canViewSettings} from "../../permissionHelpers.js";
+import { SvgIcons, GridCell, Collapsible, TextOverflowWrapper } from "@dnnsoftware/dnn-react-common";
 
 class DetailsRow extends Component {
     constructor() {
         super();
         this.handleClick = this.handleClick.bind(this);
+        this.rootElement = React.createRef();
         this.state = {
             opened: false,
             showMenu: false
@@ -68,14 +66,14 @@ class DetailsRow extends Component {
         {
             actionIcons = actionIcons.concat([{
                 index: 15,
-                icon: UserIcon,
+                icon: SvgIcons.UserIcon,
                 title: Localization.get("ManageProfile.title")
             }]);
         }
         if (canViewSettings(this.props.appSettings.applicationSettings.settings)) {
             actionIcons = actionIcons.concat([{
                 index: 10,
-                icon: SettingsIcon,
+                icon: SvgIcons.SettingsIcon,
                 title: Localization.get("ManageSettings.title")
             }]);
         }
@@ -84,7 +82,7 @@ class DetailsRow extends Component {
         {
             actionIcons = actionIcons.concat([{
                 index: 5,
-                icon: ShieldIcon,
+                icon: SvgIcons.ShieldIcon,
                 title: Localization.get("ManageRoles.title")
             }]);
         }
@@ -96,7 +94,7 @@ class DetailsRow extends Component {
             return element;
         });
         return ([<div key={`user_action_wrapper_${user.userId}`} style={{ position: "relative" }}>
-            <div className={"extension-action " + !this.state.showMenu} dangerouslySetInnerHTML={{ __html: MoreMenuIcon }}
+            <div className={"extension-action " + !this.state.showMenu} dangerouslySetInnerHTML={{ __html: SvgIcons.MoreMenuIcon }}
                 onClick={this.toggleUserMenu.bind(this) }>
             </div>
             { this.state.showMenu && <UserMenu filter={this.props.filter} appSettings={this.props.appSettings} getUserMenu={this.props.getUserMenu && this.props.getUserMenu.bind(this)} userMenuAction={this.props.userMenuAction && this.props.userMenuAction.bind(this)} onClose={this.toggleUserMenu.bind(this) } 
@@ -165,9 +163,9 @@ class DetailsRow extends Component {
                         {(!props.addIsOpened || props.addIsOpened === "add-opened") && <GridCell>
                             {userColumns}
                         </GridCell>}
-                        <Collapse accordion={true} isOpened={opened} keepCollapsedContent={true} className="user-detail-row">
+                        <Collapsible accordion={true} isOpened={opened} keepCollapsedContent={true} className="user-detail-row">
                             {opened && props.children }
-                        </Collapse>
+                        </Collapsible>
                     </GridCell>
                 </GridCell>
             </GridCell>

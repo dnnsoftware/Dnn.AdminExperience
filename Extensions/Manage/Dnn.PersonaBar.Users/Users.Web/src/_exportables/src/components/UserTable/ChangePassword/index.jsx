@@ -2,12 +2,9 @@ import PropTypes from 'prop-types';
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Localization from "localization";
-import GridCell from "dnn-grid-cell";
-import GridSystem from "dnn-grid-system";
 import { CommonUsersActions } from "../../../actions";
-import SingleLineInputWithError from "dnn-single-line-input-with-error";
 import utilities from "utils";
-import Button from "dnn-button";
+import { Button, SingleLineInputWithError, GridSystem, GridCell } from "@dnnsoftware/dnn-react-common";
 import "./style.less";
 
 const inputStyle = { width: "100%" };

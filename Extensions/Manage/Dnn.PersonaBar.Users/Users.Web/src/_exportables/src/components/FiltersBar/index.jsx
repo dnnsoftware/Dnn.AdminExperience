@@ -1,10 +1,8 @@
 import PropTypes from 'prop-types';
 import React, { Component } from "react";
 import "./style.less";
-import DropDown from "dnn-dropdown";
 import Localization from "localization";
-import SearchBox from "dnn-search-box";
-import GridCell from "dnn-grid-cell";
+import { Dropdown, SearchBox, GridCell } from "@dnnsoftware/dnn-react-common";
 
 class FiltersBar extends Component {
     constructor(props) {
@@ -69,7 +67,7 @@ class FiltersBar extends Component {
                 {this.userFiltersOptions != null &&
                     this.userFiltersOptions.length > 0 &&
                     <div className="user-filters-filter">
-                        <DropDown style={{ width: "100%" }}
+                        <Dropdown style={{ width: "100%" }}
                             withBorder={false}
                             options={userFiltersOptions}
                             label={this.state.selectedUserFilter.label}

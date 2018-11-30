@@ -6,7 +6,7 @@ import MenuItem from "./menu/MenuItem";
 import Localization from "localization";
 import { CommonUsersActions } from "../../../actions";
 import utilities from "utils";
-import GridCell from "dnn-grid-cell";
+import { GridCell } from "@dnnsoftware/dnn-react-common";
 import ChangePassword from "../ChangePassword";
 import "./style.less";
 import {canManagePassword, canDeleteUser, canAuthorizeUnAuthorizeUser, canPromoteDemote} from "../../permissionHelpers.js";

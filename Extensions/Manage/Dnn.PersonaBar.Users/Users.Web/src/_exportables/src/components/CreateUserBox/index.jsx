@@ -1,18 +1,13 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import GridCell from "dnn-grid-cell";
-import GridSystem from "dnn-grid-system";
-import SingleLineInputWithError from "dnn-single-line-input-with-error";
 import Localization from "localization";
-import Button from "dnn-button";
-import Switch from "dnn-switch";
-import CheckBox from "dnn-checkbox";
 import { CommonUsersActions } from "../../actions";
 import {validateEmail} from "../../helpers";
 import utilities from "utils";
 import styles from "./style.less";
 import Password from "../common/Password";
+import { GridCell, GridSystem, SingleLineInputWithError, Button, Switch, CheckBox } from "@dnnsoftware/dnn-react-common";
 
 
 const inputStyle = { width: "100%" };

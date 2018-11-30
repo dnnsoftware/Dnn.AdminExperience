@@ -1,7 +1,7 @@
 import React, { Component  } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import SingleLineInputWithError from "dnn-single-line-input-with-error";
+import { SingleLineInputWithError }from "@dnnsoftware/dnn-react-common";
 import Localization from "localization";
 import { getPasswordStrength } from "utils/PasswordStrength";
 import {CommonUsersActions as UserActions } from "../../../actions";

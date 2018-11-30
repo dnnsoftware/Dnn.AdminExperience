@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Component } from "react";
-import GridCell from "dnn-grid-cell";
+import { GridCell } from "@dnnsoftware/dnn-react-common";
 import "./style.less";
 
 class ExtensionHeader extends Component {

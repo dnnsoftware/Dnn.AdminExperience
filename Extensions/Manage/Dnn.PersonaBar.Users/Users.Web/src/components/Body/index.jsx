@@ -2,17 +2,13 @@ import PropTypes from "prop-types";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Localization from "localization";
-import Button from "dnn-button";
-import GridCell from "dnn-grid-cell";
-import PersonaBarPageHeader from "dnn-persona-bar-page-header";
-import PersonaBarPageBody from "dnn-persona-bar-page-body";
 import UserTable from "../../_exportables/src/components/UserTable";
 import FiltersBar from "../../_exportables/src/components/FiltersBar";
-import Pager from "dnn-pager";
 import "./style.less";
 import {CommonUsersActions } from "dnn-users-common-actions";
 import appSettings from "utils/applicationSettings";
 import utilities from "utils";
+import { Button, GridCell, PersonaBarPageHeader, PersonaBarPageBody, Pager } from "@dnnsoftware/dnn-react-common";
 
 const searchParameters = {
     searchText: "",

@@ -3,15 +3,11 @@ import React, { Component } from "react";
 import {debounce} from "throttle-debounce";
 import { connect } from "react-redux";
 import Localization from "localization";
-import Combobox from "react-widgets/lib/Combobox";
 import RoleRow from "./RoleRow";
-import GridCell from "dnn-grid-cell";
-import CheckBox from "dnn-checkbox";
 import "./style.less";
-import Pager from "dnn-pager";
-import { AddIcon } from "dnn-svg-icons";
 import { CommonUsersActions } from "../../../actions";
 import utilities from "utils";
+import { Combobox, GridCell, CheckBox, Pager, SvgIcons } from "@dnnsoftware/dnn-react-common";
 
 class UserRoles extends Component {
     constructor(props) {
@@ -197,7 +193,7 @@ class UserRoles extends Component {
                                 valueField="roleId"
                                 textField="roleName"/>
                             <div className="add-role-button" onClick={this.onAddRole.bind(this) }>
-                                <div className={"extension-action"} title={Localization.get("Add")} dangerouslySetInnerHTML={{ __html: AddIcon }}></div>
+                                <div className={"extension-action"} title={Localization.get("Add")} dangerouslySetInnerHTML={{ __html: SvgIcons.AddIcon }}></div>
                                 {Localization.get("Add") }
                             </div>
                         </span>

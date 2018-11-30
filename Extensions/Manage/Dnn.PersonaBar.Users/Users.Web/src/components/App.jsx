@@ -2,8 +2,9 @@ import PropTypes from 'prop-types';
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Body from "./Body";
-import PersonaBarPage from "dnn-persona-bar-page";
 import {CommonUsersActions } from "dnn-users-common-actions";
+import { PersonaBarPage } from "@dnnsoftware/dnn-react-common";
+
 class App extends Component {
     constructor() {
         super();
