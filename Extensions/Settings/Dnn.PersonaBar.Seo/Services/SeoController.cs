@@ -275,7 +275,7 @@ namespace Dnn.PersonaBar.Seo.Services
             {
                 if (PortalId == Null.NullInteger)
                 {
-                    HostController.Instance.Update(value.Key, value.Value, false);                    
+                    HostController.Instance.Update(value.Key, value.Value, false);
                 }
                 else
                 {
