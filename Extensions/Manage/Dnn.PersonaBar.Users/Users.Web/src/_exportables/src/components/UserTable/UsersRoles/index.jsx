@@ -7,7 +7,7 @@ import RoleRow from "./RoleRow";
 import "./style.less";
 import { CommonUsersActions } from "../../../actions";
 import utilities from "utils";
-import { Combobox, GridCell, CheckBox, Pager, SvgIcons } from "@dnnsoftware/dnn-react-common";
+import { Combobox, GridCell, Checkbox, Pager, SvgIcons } from "@dnnsoftware/dnn-react-common";
 
 class UserRoles extends Component {
     constructor(props) {
@@ -173,9 +173,9 @@ class UserRoles extends Component {
                 <div className="add-box">
                     <GridCell columnSize={30}>
                         <div className="send-email-box">
-                            <CheckBox value={this.state.sendEmail} onChange={this.onSendEmailClick.bind(this) }
+                            <Checkbox value={this.state.sendEmail} onChange={this.onSendEmailClick.bind(this) }
                                 label={  Localization.get("SendEmail") } labelPlace="right"    />
-                            {this.state.allowOwner && <CheckBox value={this.state.isOwner} onChange={this.onIsOwnerClick.bind(this) }
+                            {this.state.allowOwner && <Checkbox value={this.state.isOwner} onChange={this.onIsOwnerClick.bind(this) }
                                 label={  Localization.get("IsOwner") } labelPlace="right"   />}
                         </div>
                     </GridCell>

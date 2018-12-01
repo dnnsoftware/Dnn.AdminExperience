@@ -7,7 +7,7 @@ import {validateEmail} from "../../helpers";
 import utilities from "utils";
 import styles from "./style.less";
 import Password from "../common/Password";
-import { GridCell, GridSystem, SingleLineInputWithError, Button, Switch, CheckBox } from "@dnnsoftware/dnn-react-common";
+import { GridCell, GridSystem, SingleLineInputWithError, Button, Switch, Checkbox } from "@dnnsoftware/dnn-react-common";
 
 
 const inputStyle = { width: "100%" };
@@ -277,7 +277,7 @@ class CreateUserBox extends Component {
                     </GridSystem>
                     }
                     <GridCell columnSize={100} className="email-notification-line">
-                        <CheckBox value={state.UserDetails.notify}
+                        <Checkbox value={state.UserDetails.notify}
                             label={Localization.get("Notify")}
                             onChange={this.onChange.bind(this, "notify") }  tabIndex={9}/>
                     </GridCell>
