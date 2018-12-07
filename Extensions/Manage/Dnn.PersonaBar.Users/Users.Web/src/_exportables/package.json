@@ -16,7 +16,7 @@
     "@babel/preset-env": "^7.1.6",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "8.0.4",
-    "css-loader": "1.0.1",
+    "css-loader": "2.0.0",
     "dnn-svg-icons": "^0.1.22",
     "eslint": "5.8.0",
     "eslint-config-dnn": "*",
