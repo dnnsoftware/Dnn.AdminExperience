@@ -10,6 +10,9 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 module.exports = {
     context: path.resolve(__dirname, '.'),
     entry: "./src/main.jsx",
+    optimization: {
+        minimize: isProduction
+    },
     output: {
         path: path.resolve(__dirname, '../admin/personaBar/scripts/bundles/'),
         publicPath: isProduction ? "" : "http://localhost:8100/dist/",
@@ -61,13 +64,11 @@ module.exports = {
             }
         ]
     },
-    externals: require("dnn-webpack-externals"),
+    externals: require("@dnnsoftware/dnn-react-common/WebpackExternals"),
     plugins:
     isProduction
         ?
         [
-            new webpack.optimize.UglifyJsPlugin(),
-            new webpack.optimize.DedupePlugin(),
             new webpack.DefinePlugin({
                 VERSION: JSON.stringify(packageJson.version),
                 "process.env": {
