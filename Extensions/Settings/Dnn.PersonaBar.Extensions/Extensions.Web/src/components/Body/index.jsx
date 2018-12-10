@@ -1,16 +1,11 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import Tabs from "dnn-tabs";
+import { Tabs, PersonaBarPageBody, TextOverflowWrapper, PersonaBarPageHeader, GridCell, Button } from "@dnnsoftware/dnn-react-common";
 import { PaginationActions, VisiblePanelActions, ExtensionActions, InstallationActions } from "actions";
-import PersonaBarPageBody from "dnn-persona-bar-page-body";
 import Localization from "localization";
-import TextOverflowWrapper from "dnn-text-overflow-wrapper";
 import InstalledExtensions from "./InstalledExtensions";
 import AvailableExtensions from "./AvailableExtensions";
-import PersonaBarPageHeader from "dnn-persona-bar-page-header";
-import GridCell from "dnn-grid-cell";
-import Button from "dnn-button";
 import utilities from "utils";
 import { validationMapExtensionBeingEdited } from "utils/helperFunctions";
 import { ModuleCustomSettings, CoreLanguagePack, ExtensionLanguagePack } from "./packageCustomSettings";
