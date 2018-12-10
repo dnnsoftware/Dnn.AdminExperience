@@ -2,7 +2,6 @@ module.exports = {
     "parser": "babel-eslint",
     "plugins": [
         "react",
-        "spellcheck",
         "jest"
     ],
     "env": {
@@ -17,9 +16,13 @@ module.exports = {
         "plugin:jest/recommended"
     ],
     "settings": {
+        "react": {
+            "version": "16"
+        },
         "import/resolver":{
             "node":{
-                "extensions":[".js", ".jsx"]
+                "extensions": [".js", ".jsx"],
+                "paths": ["../node_modules", "src"]
             }
         }
     },
@@ -50,24 +53,9 @@ module.exports = {
         "Promise": false,
     },
     "rules": {
-       "spellcheck/spell-checker": [1,
-        {
-            "comments": "true",
-            "strings": "true",
-            "identifiers": "true",
-            "skipWords": require("./.eslintskipwords"),
-            "skipIfMatch": [
-                "http://[^s]*",
-                "https://[^s]*",
-                "util(s)?",
-                "(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)" // CSS hex color
-            ],
-            "jest/no-disabled-tests": "warn",
-            "jest/no-focused-tests": "error",
-            "jest/no-identical-title": "error",
-            "jest/valid-expect": "error"
-        }
-      ],
-
+        "jest/no-disabled-tests": "warn",
+        "jest/no-focused-tests": "error",
+        "jest/no-identical-title": "error",
+        "jest/valid-expect": "error"       
     }
 };
