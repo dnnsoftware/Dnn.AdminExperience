@@ -384,7 +384,7 @@ class EditExtension extends Component {
                         {this.getTabUI()}
                     </DnnTabs>
                 </PersonaBarPageBody>
-            </GridCell >
+            </GridCell>
         );
         // <p className="modal-pagination"> --1 of 2 -- </p>
     }

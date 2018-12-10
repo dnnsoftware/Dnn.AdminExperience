@@ -5,7 +5,7 @@ import { GridCell, PersonaBarPageBody, PersonaBarPageHeader, Button, Checkbox } 
 import InstallLog from "./InstallLog";
 import { ExtensionActions, InstallationActions, PaginationActions } from "actions";
 import PackageInformation from "../EditExtension/PackageInformation";
-import ReleaseNotes from "../Editextension/ReleaseNotes";
+import ReleaseNotes from "../EditExtension/ReleaseNotes";
 import License from "../EditExtension/License";
 import Localization from "localization";
 import utilities from "utils";

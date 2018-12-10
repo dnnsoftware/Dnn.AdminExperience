@@ -24,7 +24,7 @@ class InstalledExtensions extends Component {
         return !props.installedPackages || props.installedPackages.length === 0;
     }
 
-    UNSAFE_scomponentWillMount() {
+    UNSAFE_componentWillMount() {        
         const {props} = this;
         if (this.checkIfPackageTypesEmpty(props)) {
             props.dispatch(ExtensionActions.getPackageTypes());
