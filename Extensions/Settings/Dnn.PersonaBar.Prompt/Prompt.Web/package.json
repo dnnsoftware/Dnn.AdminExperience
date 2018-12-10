@@ -47,7 +47,7 @@
     "moment": "^2.15.0",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "prop-types": "^15.6.2",
-    "raw-loader": "0.5.1",
+    "raw-loader": "1.0.0",
     "react-click-outside": "^3.0.1",
     "react-hot-loader": "4.3.12",
     "react-redux": "5.1.0",
