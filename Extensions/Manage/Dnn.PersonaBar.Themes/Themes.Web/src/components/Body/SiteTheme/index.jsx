@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Tabs, GridCell } from "@dnnsoftware/dnn-react-common";
+import { DnnTabs as Tabs, GridCell } from "@dnnsoftware/dnn-react-common";
 import {
     theme as ThemeActions
 } from "actions";
