@@ -2,11 +2,9 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Localization from "localization";
-import GridCell from "dnn-grid-cell";
-import SearchBox from "dnn-search-box";
+import { GridCell, SearchBox, DropDown } from "@dnnsoftware/dnn-react-common";
 import utils from "utils";
 import RestoreTheme from "./RestoreTheme";
-import DropDown from "dnn-dropdown";
 import "./style.less";
 
 let canEdit = false;
