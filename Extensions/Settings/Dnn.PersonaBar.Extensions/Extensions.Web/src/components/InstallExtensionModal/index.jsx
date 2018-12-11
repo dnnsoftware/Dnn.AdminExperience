@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { GridCell, PersonaBarPageBody, PersonaBarPageHeader, Button, Checkbox } from "@dnnsoftware/dnn-react-common";
+import { GridCell, PersonaBarPageBody, PersonaBarPageHeader, Button } from "@dnnsoftware/dnn-react-common";
 import InstallLog from "./InstallLog";
 import { ExtensionActions, InstallationActions, PaginationActions } from "actions";
 import PackageInformation from "../EditExtension/PackageInformation";
@@ -279,12 +279,8 @@ class InstallExtensionModal extends Component {
                                 primaryButtonText={Localization.get("Next.Button")}
                                 disabled={true}
                                 primaryButtonDisabled={!props.licenseAccepted || this.state.installingPackage}
-                                acceptLicenseCheckbox={
-                                    <Checkbox
-                                        label={Localization.get("InstallExtension_AcceptLicense.Label")}
-                                        value={props.licenseAccepted}
-                                        onCancel={this.cancelInstall.bind(this)}
-                                        onChange={this.onToggleLicenseAccept.bind(this)} />}
+                                licenseAccepted={props.licenseAccepted}
+                                onToggleLicenseAccept={this.onToggleLicenseAccept.bind(this)}
                             />}
                         {wizardStep === 4 &&
                             <InstallLog

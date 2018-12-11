@@ -167,7 +167,7 @@ PackageInformation.propTypes = {
     onCancel: PropTypes.func,
     onPrimaryButtonClick: PropTypes.func,
     onChange: PropTypes.func,
-    disabled: PropTypes.func,
+    disabled: PropTypes.bool,
     primaryButtonText: PropTypes.string,
     triedToSave: PropTypes.bool,
     validateFields: PropTypes.func,
