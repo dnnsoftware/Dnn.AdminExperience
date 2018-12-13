@@ -34,7 +34,7 @@
     "prop-types": "^15.6.2",
     "raw-loader": "0.5.1",
     "react-custom-scrollbars": "4.2.1",
-    "react-hot-loader": "4.3.12",
+    "react-hot-loader": "4.6.0",
     "react-modal": "3.6.1",
     "source-map-loader": "^0.2.3",
     "style-loader": "^0.23.1",
