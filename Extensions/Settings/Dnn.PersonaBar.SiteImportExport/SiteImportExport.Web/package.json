@@ -38,7 +38,7 @@
     "raw-loader": "0.5.1",
     "rc-progress": "^2.0.6",
     "react-click-outside": "^3.0.1",
-    "react-hot-loader": "4.3.12",
+    "react-hot-loader": "4.6.0",
     "redux-devtools": "3.4.1",
     "redux-devtools-dock-monitor": "1.1.3",
     "redux-devtools-log-monitor": "1.4.0",
