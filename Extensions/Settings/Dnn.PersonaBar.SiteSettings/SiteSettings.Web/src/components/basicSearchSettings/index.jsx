@@ -4,15 +4,8 @@ import { connect } from "react-redux";
 import {
     search as SearchActions
 } from "../../actions";
-import InputGroup from "dnn-input-group";
-import SingleLineInputWithError from "dnn-single-line-input-with-error";
-import DropdownWithError from "dnn-dropdown-with-error";
-import NumberSlider from "dnn-slider";
-import Grid from "dnn-grid-system";
-import Switch from "dnn-switch";
-import Label from "dnn-label";
-import Button from "dnn-button";
-import Tooltip from "dnn-tooltip";
+
+import { InputGroup, SingleLineInputWithError, DropdownWithError, NumberSlider, GridSystem, Switch, Label, Button, Tooltip } from "@dnnsoftware/dnn-react-common";
 import "./style.less";
 import util from "../../utils";
 import resx from "../../resources";
@@ -273,7 +266,7 @@ class BasicSearchSettingsPanelBody extends Component {
                 </div>;
                 return (
                     <div className={styles.basicSearchSettings}>
-                        <Grid numberOfColumns={2}>{[columnOne, columnTwo]}</Grid>
+                        <GridSystem numberOfColumns={2}>{[columnOne, columnTwo]}</GridSystem>
                         <div className="sectionTitle">{resx.get("SearchPriorities")}</div>
                         <InputGroup>
                             <div className="basicSearchSettings-row_slider">

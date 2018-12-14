@@ -2,16 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import "./style.less";
-import SingleLineInputWithError from "dnn-single-line-input-with-error";
-import Grid from "dnn-grid-system";
-import Label from "dnn-label";
-import Button from "dnn-button";
-import Switch from "dnn-switch";
-import DropdownWithError from "dnn-dropdown-with-error";
-import MultiLineInput from "dnn-multi-line-input";
-import InputGroup from "dnn-input-group";
-import ListEntries from "./listEntries";
-import Dropdown from "dnn-dropdown";
+import { SingleLineInputWithError, GridSystem, Label, Button, Switch, DropdownWithError, MultiLineInput, InputGroup, ListEntries, Dropdown } from "@dnnsoftware/dnn-react-common";
 import {
     siteBehavior as SiteBehaviorActions
 } from "../../../../actions";
@@ -56,64 +47,6 @@ class ProfilePropertyEditor extends Component {
 
         const domComponent = this.node.querySelector("#profilePropertyName");
         domComponent && domComponent.focus();
-    }
-
-    componentDidUpdate(props) {
-        let { state } = this;
-
-        if (!props.profileProperty) {
-            return;
-        }
-
-        if (props.profileProperty["PropertyName"] === undefined || props.profileProperty["PropertyName"] === "") {
-            state.error.name["required"] = true;
-        }
-        else {
-            state.error.name["required"] = false;
-        }
-        
-        if (this.props.id === ADD_PROPERTY_FLAG && !this.isValidName(props.profileProperty["PropertyName"])) {
-            state.error.name["noSpecialCharacter"] = true; 
-        } 
-        else {
-            state.error.name["noSpecialCharacter"] = false;
-        }
-
-        if (props.profileProperty["PropertyCategory"] === "" || props.profileProperty["PropertyCategory"] === undefined) {
-            state.error["category"] = true;
-        }
-        else {
-            state.error["category"] = false;
-        }
-        if (props.profileProperty["DataType"] === "" || props.profileProperty["DataType"] === undefined) {
-            state.error["datatype"] = true;
-        }
-        else {
-            state.error["datatype"] = false;
-        }
-        let length = props.profileProperty["Length"];
-        if (this.isValidLength(length)) {
-            state.error["length"] = false;
-        }
-        else {
-            state.error["length"] = true;
-        }
-
-        if (props.propertyLocalization) {
-            if (props.propertyLocalization["PropertyName"] === "" || props.propertyLocalization["PropertyName"] === undefined) {
-                state.error["localeName"] = true;
-            }
-            else {
-                state.error["localeName"] = false;
-            }
-        }
-
-        this.setState({
-            profileProperty: Object.assign({}, props.profileProperty),
-            propertyLocalization: Object.assign({}, props.propertyLocalization),
-            triedToSubmit: state.triedToSubmit,
-            error: state.error
-        });
     }
 
     isValidName(name) {
@@ -402,7 +335,7 @@ class ProfilePropertyEditor extends Component {
     render() {
         /* eslint-disable react/no-danger */
         if (this.state.profileProperty !== undefined || this.props.id === ADD_PROPERTY_FLAG) {
-            const columnOne = <div className="left-column">
+            const columnOne = <div key="column-one" className="left-column">
                 <InputGroup>
                     <Label
                         tooltipMessage={resx.get("ProfilePropertyDefinition_PropertyName.Help")}
@@ -488,7 +421,7 @@ class ProfilePropertyEditor extends Component {
                     />
                 </InputGroup>
             </div>;
-            const columnTwo = <div className="right-column">
+            const columnTwo = <div key="column-two" className="right-column">
                 <InputGroup>
                     <Label
                         tooltipMessage={resx.get("ProfilePropertyDefinition_DataType.Help")}
@@ -554,7 +487,7 @@ class ProfilePropertyEditor extends Component {
                 </InputGroup>
             </div>;
 
-            const columnThree = <div className="left-column2">
+            const columnThree = <div key="column-three" className="left-column2">
                 <InputGroup>
                     <Label
                         tooltipMessage={resx.get("plPropertyName.Help")}
@@ -602,7 +535,7 @@ class ProfilePropertyEditor extends Component {
                     }
                 </InputGroup>
             </div>;
-            const columnFour = <div className="right-column2">
+            const columnFour = <div key="column-four" className="right-column2">
                 <InputGroup style={{ paddingTop: "10px" }}>
                     <Label
                         tooltipMessage={resx.get("plPropertyHelp.Help")}
@@ -636,7 +569,7 @@ class ProfilePropertyEditor extends Component {
             return (
                 <div className="property-editor" ref={node => this.node = node}>
                     <div className={this.state.showFirstPage ? "property-editor-page" : "property-editor-page-hidden"}>
-                        <Grid numberOfColumns={2}>{[columnOne, columnTwo]}</Grid>
+                        <GridSystem numberOfColumns={2}>{[columnOne, columnTwo]}</GridSystem>
                         <div className="editor-buttons-box">
                             <Button
                                 type="secondary"
@@ -684,7 +617,7 @@ class ProfilePropertyEditor extends Component {
                                     onSelect={this.onLanguageChange.bind(this)}
                                 />
                             </InputGroup>
-                            <Grid numberOfColumns={2}>{[columnThree, columnFour]}</Grid>
+                            <GridSystem numberOfColumns={2}>{[columnThree, columnFour]}</GridSystem>
                             <div className="editor-buttons-box">
                                 <Button
                                     type="secondary"

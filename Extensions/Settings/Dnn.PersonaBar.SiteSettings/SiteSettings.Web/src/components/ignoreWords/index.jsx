@@ -7,8 +7,7 @@ import {
 import IgnoreWordsRow from "./ignoreWordsRow";
 import IgnoreWordsEditor from "./ignoreWordsEditor";
 import "./style.less";
-import DropDown from "dnn-dropdown";
-import { AddIcon } from "dnn-svg-icons";
+import { Dropdown, SvgIcons } from "@dnnsoftware/dnn-react-common";
 import util from "../../utils";
 import resx from "../../resources";
 
@@ -234,13 +233,13 @@ class IgnoreWordsPanel extends Component {
                             <div className="sectionTitle">{resx.get("IgnoreWords")}</div>
                             {!props.ignoreWords.StopWords &&
                                 <div className={opened ? "AddItemBox-active" : "AddItemBox"} onClick={this.toggle.bind(this, opened ? "" : "add")}>
-                                    <div className="add-icon" dangerouslySetInnerHTML={{ __html: AddIcon }}>
+                                    <div className="add-icon" dangerouslySetInnerHTML={{ __html: SvgIcons.AddIcon }}>
                                     </div> {resx.get("cmdAddWord")}
                                 </div>
                             }
                             {this.props.cultures && this.props.cultures.length > 1 &&
                                 <div className="language-filter">
-                                    <DropDown
+                                    <Dropdown
                                         value={this.state.culture}
                                         style={{ width: "auto" }}
                                         options={this.getCultureOptions()}

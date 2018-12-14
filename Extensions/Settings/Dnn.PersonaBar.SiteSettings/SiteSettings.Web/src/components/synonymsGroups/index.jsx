@@ -6,9 +6,9 @@ import {
 } from "../../actions";
 import SynonymsGroupRow from "./synonymsGroupRow";
 import SynonymsGroupEditor from "./synonymsGroupEditor";
-import DropDown from "dnn-dropdown";
+import { Dropdown } from "@dnnsoftware/dnn-react-common";
 import "./style.less";
-import { AddIcon } from "dnn-svg-icons";
+import { SvgIcons } from "@dnnsoftware/dnn-react-common";
 import util from "../../utils";
 import resx from "../../resources";
 
@@ -254,12 +254,12 @@ class SynonymsGroupsPanel extends Component {
                     <div className="AddItemRow">
                         <div className="sectionTitle">{resx.get("Synonyms")}</div>
                         <div className={opened ? "AddItemBox-active" : "AddItemBox"} onClick={this.toggle.bind(this, opened ? "" : "add")}>
-                            <div className="add-icon" dangerouslySetInnerHTML={{ __html: AddIcon }}>
+                            <div className="add-icon" dangerouslySetInnerHTML={{ __html: SvgIcons.AddIcon }}>
                             </div> {resx.get("cmdAddGroup")}
                         </div>
                         {this.props.cultures && this.props.cultures.length > 1 &&
                             <div className="synonyms-filter">
-                                <DropDown
+                                <Dropdown
                                     value={this.state.culture}
                                     style={{ width: "auto" }}
                                     options={this.getCultureOptions()}

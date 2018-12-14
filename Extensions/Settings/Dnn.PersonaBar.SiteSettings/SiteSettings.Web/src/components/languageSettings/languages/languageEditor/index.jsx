@@ -2,13 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import "./style.less";
-import Grid from "dnn-grid-system";
-import Label from "dnn-label";
-import Button from "dnn-button";
-import Switch from "dnn-switch";
-import InputGroup from "dnn-input-group";
-import Dropdown from "dnn-dropdown";
-import Flag from "dnn-flag";
+import { GridSystem,Label,Button,Switch,InputGroup,Dropdown,Flag } from "@dnnsoftware/dnn-react-common";
 import Roles from "./roles";
 import {
     languages as LanguagesActions
@@ -43,15 +37,6 @@ class LanguageEditor extends Component {
                 languageDetail: Object.assign({}, props.languageDetail)
             });
         }
-    }
-
-    componentDidUpdate(props) {
-        if (!props.languageDetail) {
-            return;
-        }
-        this.setState({
-            languageDetail: Object.assign({}, props.languageDetail)
-        });
     }
 
     getFlagItem(name, code) {
@@ -171,17 +156,6 @@ class LanguageEditor extends Component {
         }
     }
 
-    getLanguageDisplayModes() {
-        const {props} = this;
-        let options = [];
-        if (props.languageDisplayModes !== undefined) {
-            options = props.languageDisplayModes.map((item) => {
-                return { label: item.Key, value: item.Value };
-            });
-        }
-        return options;
-    }
-
     getLanguageValue(code) {
         let {state} = this;
         if (code) {
@@ -245,41 +219,9 @@ class LanguageEditor extends Component {
     }
 
     renderNewForm() {
-        let {state, props} = this;
-        const columnOne = <div className="left-column">
-            <InputGroup>
-                <Label
-                    tooltipMessage={resx.get("languageLabel.Help")}
-                    label={resx.get("languageLabel")}
-                />
-                <Dropdown
-                    options={this.getLanguageOptions()}
-                    value={this.getLanguageValue(state.languageDetail.Code)}
-                    onSelect={this.onSettingChange.bind(this, "Code")}
-                    enabled={props.id === "add"}
-                    getLabelText={(label) => label.props.title}
-                />
-            </InputGroup>
-        </div>;
-        const columnTwo = <div className="right-column">
-            <InputGroup>
-                <Label
-                    tooltipMessage={resx.get("fallBackLabel.Help")}
-                    label={resx.get("fallBackLabel")}
-                />
-                <Dropdown
-                    options={this.getFallbackOptions()}
-                    fixedHeight={100}
-                    value={state.languageDetail.Fallback}
-                    onSelect={this.onSettingChange.bind(this, "Fallback")}
-                    enabled={true}
-                    getLabelText={(label) => label.props.title}
-                />
-            </InputGroup>
-        </div>;
         return (
             <div className="language-editor">
-                <Grid numberOfColumns={2}>{[columnOne, columnTwo]}</Grid>
+
                 <div className="editor-buttons-box">
                     <Button
                         type="secondary"
@@ -342,7 +284,7 @@ class LanguageEditor extends Component {
         </div>;
         return (
             <div className="language-editor">
-                <Grid numberOfColumns={2}>{[columnOne, columnTwo]}</Grid>
+                <GridSystem numberOfColumns={2}>{[columnOne, columnTwo]}</GridSystem>
                 <div className="editor-buttons-box">
                     <Button
                         type="secondary"

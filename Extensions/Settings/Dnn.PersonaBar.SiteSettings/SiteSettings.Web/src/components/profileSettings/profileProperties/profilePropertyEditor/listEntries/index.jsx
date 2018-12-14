@@ -6,9 +6,8 @@ import {
 } from "actions";
 import ListEntryRow from "./listEntryRow";
 import ListEntryEditor from "./listEntryEditor";
-import Collapse from "dnn-collapsible";
+import { Collapsible, SvgIcons } from "@dnnsoftware/dnn-react-common";
 import "./style.less";
-import { AddIcon } from "dnn-svg-icons";
 import Sortable from "dnn-sortable";
 import util from "utils";
 import resx from "resources";
@@ -146,13 +145,13 @@ class ListEntriesPanel extends Component {
                         </div>
                         <div className={opened ? "AddItemBox-active" : "AddItemBox"}
                             onClick={this.toggle.bind(this, opened ? "" : "add")}>
-                            <div className="add-icon" dangerouslySetInnerHTML={{ __html: AddIcon }}>
+                            <div className="add-icon" dangerouslySetInnerHTML={{ __html: SvgIcons.AddIcon }}>
                             </div> {resx.get("cmdAddEntry")}
                         </div>
                     </div>
                     <div className="list-items-grid">
                         {this.renderHeader()}
-                        <Collapse isOpened={opened}
+                        <Collapsible isOpened={opened}
                             style={{ float: "left", width: "100%" }}>
                             <ListEntryRow
                                 text={"-"}
@@ -177,7 +176,7 @@ class ListEntriesPanel extends Component {
                                     id={"add"}
                                     openId={this.state.openId} />
                             </ListEntryRow>
-                        </Collapse>
+                        </Collapsible>
                         {this.props.entries &&
                             this.props.entries.length > 0 &&
                             (this.state.openId || !this.props.enableSortOrder) &&

@@ -5,11 +5,7 @@ import {
     siteBehavior as SiteBehaviorActions
 } from "../../actions";
 import SiteAliases from "./siteAliases";
-import InputGroup from "dnn-input-group";
-import Switch from "dnn-switch";
-import RadioButtons from "dnn-radio-buttons";
-import Label from "dnn-label";
-import Button from "dnn-button";
+import { InputGroup, Switch, RadioButtons, Label, Button } from "@dnnsoftware/dnn-react-common";
 import "./style.less";
 import util from "../../utils";
 import resx from "../../resources";
@@ -51,12 +47,6 @@ class SiteAliasSettingsPanelBody extends Component {
                 urlMappingSettings: Object.assign({}, data.Settings)
             });
         }));
-    }
-
-    componentDidUpdate(props) {
-        this.setState({
-            urlMappingSettings: Object.assign({}, props.urlMappingSettings)
-        });
     }
 
     getMappingModeOptions() {

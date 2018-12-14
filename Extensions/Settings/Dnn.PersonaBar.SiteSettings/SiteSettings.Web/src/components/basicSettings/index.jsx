@@ -4,14 +4,7 @@ import { connect } from "react-redux";
 import {
     siteInfo as SiteInfoActions
 } from "../../actions";
-import InputGroup from "dnn-input-group";
-import SingleLineInputWithError from "dnn-single-line-input-with-error";
-import MultiLineInputWithError from "dnn-multi-line-input-with-error";
-import Grid from "dnn-grid-system";
-import Dropdown from "dnn-dropdown";
-import FileUpload from "dnn-file-upload";
-import Label from "dnn-label";
-import Button from "dnn-button";
+import { InputGroup, SingleLineInputWithError, MultiLineInputWithError, GridSystem, Dropdown, FileUpload, Label, Button } from "@dnnsoftware/dnn-react-common";
 import "./style.less";
 import util from "../../utils";
 import resx from "../../resources";
@@ -77,9 +70,10 @@ class BasicSettingsPanelBody extends Component {
     }
 
     componentDidUpdate(props) {
+        /*
         let {state} = this;
 
-        let title = props.basicSettings["PortalName"];
+        let title = props.basicSettings !== undefined && props.basicSettings["PortalName"] !== undefined ? props.basicSettings["PortalName"] : "";
         if (title === "") {
             state.error["title"] = true;
         }
@@ -95,7 +89,7 @@ class BasicSettingsPanelBody extends Component {
             });
             return;
         }
-        
+
         props.dispatch(SiteInfoActions.getPortalSettings(props.portalId, props.cultureCode, (data) => {
             this.setState({
                 basicSettings: Object.assign({}, data.Settings),
@@ -105,6 +99,7 @@ class BasicSettingsPanelBody extends Component {
                 triedToSubmit: false
             });
         }));
+        */
     }
 
     onSettingChange(key, event) {
@@ -190,7 +185,7 @@ class BasicSettingsPanelBody extends Component {
     render() {
         const {props, state} = this;
         if (state.basicSettings) {
-            const columnOne = <div className="left-column">
+            const columnOne = <div key="column-one" className="left-column">
                 <InputGroup>
                     <Label
                         tooltipMessage={resx.get("plDescription.Help") }
@@ -230,7 +225,7 @@ class BasicSettingsPanelBody extends Component {
                     />
                 </InputGroup>
             </div>;
-            const columnTwo = <div className="right-column">
+            const columnTwo = <div key="column-two" className="right-column">
                 <InputGroup>
                     <Label
                         tooltipMessage={resx.get("plKeyWords.Help") }
@@ -239,7 +234,7 @@ class BasicSettingsPanelBody extends Component {
                     <MultiLineInputWithError
                         value={state.basicSettings.KeyWords}
                         onChange={this.onSettingChange.bind(this, "KeyWords") }
-                        enabled={canEdit} 
+                        enabled={canEdit}
                     />
                 </InputGroup>
                 <InputGroup>
@@ -271,7 +266,7 @@ class BasicSettingsPanelBody extends Component {
                     />
                 </InputGroup>
             </div>;
-            const columnThree = <div className="left-column">
+            const columnThree = <div key="column-three" className="left-column">
                 <InputGroup>
                     <Label
                         tooltipMessage={resx.get("plLogo.Help") }
@@ -307,7 +302,7 @@ class BasicSettingsPanelBody extends Component {
                     />
                 </InputGroup>
             </div>;
-            const columnFour = <div className="right-column">
+            const columnFour = <div key="column-four" className="right-column">
                 <InputGroup>
                     <Label
                         tooltipMessage={resx.get("plFavIcon.Help") }
@@ -362,14 +357,14 @@ class BasicSettingsPanelBody extends Component {
                             enabled={canEdit}
                         />
                     </InputGroup>
-                    <Grid numberOfColumns={2}>{[columnOne, columnTwo]}</Grid>
+                    <GridSystem numberOfColumns={2}>{[columnOne, columnTwo]}</GridSystem>
                     <InputGroup>
                         <Label
                             className={"sectionLabel"}
                             label={resx.get("plLogoIcon") }
                         />
                     </InputGroup>
-                    {canEdit && <Grid numberOfColumns={2}>{[columnThree, columnFour]}</Grid>}
+                    {canEdit && <GridSystem numberOfColumns={2}>{[columnThree, columnFour]}</GridSystem>}
                     <InputGroup style={{ paddingTop: "10px" }}>
                         <Label
                             tooltipMessage={resx.get("plIconSet.Help") }
@@ -399,7 +394,9 @@ class BasicSettingsPanelBody extends Component {
                 </div>
             );
         }
-        else return <div />;
+        else {
+            return <div />;
+        }
     }
 }
 

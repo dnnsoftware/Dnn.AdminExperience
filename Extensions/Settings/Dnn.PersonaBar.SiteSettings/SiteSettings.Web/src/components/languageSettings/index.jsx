@@ -4,20 +4,12 @@ import { connect } from "react-redux";
 import {
     languages as LanguagesActions
 } from "../../actions";
-import InputGroup from "dnn-input-group";
 import Languages from "./languages";
-import Grid from "dnn-grid-system";
-import Dropdown from "dnn-dropdown";
-import Flag from "dnn-flag";
-import RadioButtons from "dnn-radio-buttons";
-import Switch from "dnn-switch";
-import Tooltip from "dnn-tooltip";
-import Label from "dnn-label";
-import Button from "dnn-button";
 import "./style.less";
 import util from "../../utils";
 import resx from "../../resources";
 import styles from "./style.less";
+import { InputGroup, GridSystem, Dropdown, Flag, RadioButtons, Switch, Tooltip, Label, Button } from "@dnnsoftware/dnn-react-common";
 
 let isHost = false;
 let defaultAllowContentLocalization = null;
@@ -74,15 +66,6 @@ class LanguageSettingsPanelBody extends Component {
                 languageSettings: Object.assign({}, data.Settings)
             });
         }));
-    }
-
-    componentDidUpdate(props) {
-        this.setState({
-            languageSettings: Object.assign({}, props.languageSettings)
-        });
-        if (defaultAllowContentLocalization === null) {
-            defaultAllowContentLocalization = props.languageSettings.AllowContentLocalization;
-        }
     }
 
     onSettingChange(key, event) {
@@ -348,7 +331,7 @@ class LanguageSettingsPanelBody extends Component {
                         contentLocalizationEnabled={state.languageSettings.ContentLocalizationEnabled}
                     />
                     <div className="sectionTitle">{resx.get("LanguageSettings")}</div>
-                    <Grid numberOfColumns={2}>{[columnOne, columnTwo]}</Grid>
+                    <GridSystem numberOfColumns={2}>{[columnOne, columnTwo]}</GridSystem>
                     <div className={isHost ? "buttons-box-alter" : "buttons-box"}>
                         <Button
                             disabled={!this.props.languageSettingsClientModified}

@@ -4,12 +4,7 @@ import { connect } from "react-redux";
 import {
     siteBehavior as SiteBehaviorActions
 } from "../../actions";
-import InputGroup from "dnn-input-group";
-import MultiLineInputWithError from "dnn-multi-line-input-with-error";
-import PagePicker from "dnn-page-picker";
-import Grid from "dnn-grid-system";
-import Label from "dnn-label";
-import Button from "dnn-button";
+import { InputGroup, MultiLineInputWithError, PagePicker, GridSystem, Label, Button } from "@dnnsoftware/dnn-react-common";
 import "./style.less";
 import util from "../../utils";
 import resx from "../../resources";
@@ -61,20 +56,6 @@ class DefaultPagesSettingsPanelBody extends Component {
         if (!this.loadData()) {
             this.setState({
                 defaultPagesSettings: props.defaultPagesSettings
-            });
-            return;
-        }
-        props.dispatch(SiteBehaviorActions.getDefaultPagesSettings(props.portalId, props.cultureCode, (data) => {
-            this.setState({
-                defaultPagesSettings: Object.assign({}, data.Settings)
-            });
-        }));
-    }
-
-    componentDidUpdate(props) {
-        if (!this.loadData(props)) {
-            this.setState({
-                defaultPagesSettings: Object.assign({}, props.defaultPagesSettings)                
             });
             return;
         }
@@ -152,7 +133,7 @@ class DefaultPagesSettingsPanelBody extends Component {
         let TabParameters_Login = Object.assign(Object.assign({}, TabParameters), { disabledNotSelectable: false, validateTab: "Account Login" });
         let TabParameters_Search = Object.assign(Object.assign({}, TabParameters), { disabledNotSelectable: false, validateTab: "Search Results" });
         if (state.defaultPagesSettings) {
-            const columnOne = <div className="left-column">
+            const columnOne = <div key="column-one" className="left-column">
                 <InputGroup>
                     <Label
                         tooltipMessage={resx.get("plSplashTabId.Help")}
@@ -234,7 +215,7 @@ class DefaultPagesSettingsPanelBody extends Component {
                     />
                 </InputGroup>
             </div>;
-            const columnTwo = <div className="right-column">
+            const columnTwo = <div key="column-two" className="right-column">
                 <InputGroup>
                     <Label
                         tooltipMessage={resx.get("plSearchTabId.Help")}
@@ -319,7 +300,9 @@ class DefaultPagesSettingsPanelBody extends Component {
 
             return (
                 <div className={styles.defaultPagesSettings}>
-                    <Grid numberOfColumns={2}>{[columnOne, columnTwo]}</Grid>
+                    <GridSystem numberOfColumns={2}>
+                        {[columnOne, columnTwo]}
+                    </GridSystem>
                     {isHost &&
                         <div className="sectionTitle">{resx.get("PageOutputSettings")}</div>}
                     {isHost &&

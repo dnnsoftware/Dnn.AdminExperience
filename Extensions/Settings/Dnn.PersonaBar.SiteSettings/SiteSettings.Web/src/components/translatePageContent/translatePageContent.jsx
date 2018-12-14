@@ -4,13 +4,7 @@ import { connect } from "react-redux";
 import "./style.less";
 import resx from "../../resources";
 import { Scrollbars } from "react-custom-scrollbars";
-import InputGroup from "dnn-input-group";
-import Switch from "dnn-switch";
-import Label from "dnn-label";
-import PersonaBarPageBody from "dnn-persona-bar-page-body";
-import TranslationProgressBars from "../languageSettings/TranslationProgressBars";
-import Button from "dnn-button";
-import TextOverflowWrapper from "dnn-text-overflow-wrapper";
+import { InputGroup, Switch, Label, PersonaBarPageBody, TranslationProgressBars, Button, TextOverflowWrapper } from "@dnnsoftware/dnn-react-common";
 import {
     languages as LanguagesActions,
     siteInfo as SiteInfoActions,
