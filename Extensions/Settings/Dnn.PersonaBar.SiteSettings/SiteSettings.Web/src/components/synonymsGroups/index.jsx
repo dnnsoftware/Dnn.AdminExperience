@@ -89,15 +89,6 @@ class SynonymsGroupsPanel extends Component {
         }
     }
 
-    componentDidUpdate(props) {
-        if (props.synonymsGroups) {
-            this.setState({
-                synonymsGroups: props.synonymsGroups
-            });
-            return;
-        }
-    }
-
     renderHeader() {
         if (this.props.synonymsGroups) {
             let tableHeaders = tableFields.map((field) => {

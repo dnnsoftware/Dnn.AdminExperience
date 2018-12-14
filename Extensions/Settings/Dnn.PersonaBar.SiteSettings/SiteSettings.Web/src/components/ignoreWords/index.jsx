@@ -88,15 +88,6 @@ class IgnoreWordsPanel extends Component {
 
     }
 
-    componentDidUpdate(props) {
-        if (props.ignoreWords) {
-            this.setState({
-                ignoreWords: props.ignoreWords
-            });
-            return;
-        }
-    }
-
     renderHeader() {
         let tableHeaders = tableFields.map((field) => {
             let className = "words-items header-" + field.id;

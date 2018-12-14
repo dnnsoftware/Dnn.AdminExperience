@@ -47,34 +47,6 @@ class BasicSearchSettingsPanelBody extends Component {
         }
     }
 
-    componentDidUpdate(props) {
-        let {state} = this;
-        if (isHost) {
-            let minWordLength = props.basicSearchSettings["MinWordLength"];
-            if (!re.test(minWordLength)) {
-                state.error["minlength"] = true;
-            }
-            else if (re.test(minWordLength)) {
-                state.error["minlength"] = false;
-            }
-
-            let maxWordLength = props.basicSearchSettings["MaxWordLength"];
-
-            if (!re.test(maxWordLength) || parseInt(minWordLength) >= parseInt(maxWordLength)) {
-                state.error["maxlength"] = true;
-            }
-            else if (re.test(maxWordLength) && parseInt(maxWordLength) > parseInt(minWordLength)) {
-                state.error["maxlength"] = false;
-            }
-
-            this.setState({
-                basicSearchSettings: Object.assign({}, props.basicSearchSettings),
-                error: state.error,
-                triedToSubmit: false
-            });
-        }
-    }
-
     onSettingChange(key, event) {
         let {state, props} = this;
         let basicSearchSettings = Object.assign({}, state.basicSearchSettings);

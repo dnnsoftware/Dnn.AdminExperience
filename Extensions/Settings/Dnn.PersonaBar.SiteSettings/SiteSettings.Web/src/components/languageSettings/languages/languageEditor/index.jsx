@@ -167,9 +167,6 @@ class LanguageEditor extends Component {
             if (languages.length > 0) {
                 let languageDetail = Object.assign({}, state.languageDetail);
                 languageDetail["Code"] = languages[0].value;
-                this.setState({
-                    languageDetail: languageDetail
-                });
             }
 
             return languages.length > 0 ? languages[0].value : "";
@@ -219,9 +216,41 @@ class LanguageEditor extends Component {
     }
 
     renderNewForm() {
+        let {state, props} = this;
+        const columnOne = <div className="left-column">
+            <InputGroup>
+                <Label
+                    tooltipMessage={resx.get("languageLabel.Help")}
+                    label={resx.get("languageLabel")}
+                />
+                <Dropdown
+                    options={this.getLanguageOptions()}
+                    value={this.getLanguageValue(state.languageDetail.Code)}
+                    onSelect={this.onSettingChange.bind(this, "Code")}
+                    enabled={props.id === "add"}
+                    getLabelText={(label) => label.props.title}
+                />
+            </InputGroup>
+        </div>;
+        const columnTwo = <div className="right-column">
+            <InputGroup>
+                <Label
+                    tooltipMessage={resx.get("fallBackLabel.Help")}
+                    label={resx.get("fallBackLabel")}
+                />
+                <Dropdown
+                    options={this.getFallbackOptions()}
+                    fixedHeight={100}
+                    value={state.languageDetail.Fallback}
+                    onSelect={this.onSettingChange.bind(this, "Fallback")}
+                    enabled={true}
+                    getLabelText={(label) => label.props.title}
+                />
+            </InputGroup>
+        </div>;
         return (
             <div className="language-editor">
-
+                <GridSystem numberOfColumns={2}>{[columnOne, columnTwo]}</GridSystem>
                 <div className="editor-buttons-box">
                     <Button
                         type="secondary"
