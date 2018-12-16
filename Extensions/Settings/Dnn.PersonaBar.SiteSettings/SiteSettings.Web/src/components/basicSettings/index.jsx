@@ -54,14 +54,8 @@ class BasicSettingsPanelBody extends Component {
         }
     }
 
-    componentDidMount() {
+    getPortalSettings() {
         const {props} = this;
-        if (!this.loadData()) {
-            this.setState({
-                basicSettings: props.basicSettings
-            });
-            return;
-        }
         props.dispatch(SiteInfoActions.getPortalSettings(props.portalId, props.cultureCode, (data) => {
             this.setState({
                 basicSettings: Object.assign({}, data.Settings)
@@ -69,37 +63,19 @@ class BasicSettingsPanelBody extends Component {
         }));
     }
 
-    componentDidUpdate(props) {
-        /*
-        let {state} = this;
+    componentDidMount() {
+        this.getPortalSettings();
+    }
 
-        let title = props.basicSettings !== undefined && props.basicSettings["PortalName"] !== undefined ? props.basicSettings["PortalName"] : "";
-        if (title === "") {
-            state.error["title"] = true;
-        }
-        else if (title !== "") {
-            state.error["title"] = false;
-        }
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        let {state, props} = this;
 
-        if (!this.loadData(props)) {
-            this.setState({
-                basicSettings: Object.assign({}, props.basicSettings),
-                error: state.error,
-                triedToSubmit: false
-            });
-            return;
-        }
+        const portalIdChanged = !prevProps.portalId && prevProps.portalId !== props.portalId;
+        const cultureCodeChanged = !prevProps.cultureCode && prevProps.cultureCode !== props.cultureCode;
 
-        props.dispatch(SiteInfoActions.getPortalSettings(props.portalId, props.cultureCode, (data) => {
-            this.setState({
-                basicSettings: Object.assign({}, data.Settings),
-                error: {
-                    title: false
-                },
-                triedToSubmit: false
-            });
-        }));
-        */
+        if(portalIdChanged || cultureCodeChanged) {
+            this.getPortalSettings();
+        }
     }
 
     onSettingChange(key, event) {
@@ -417,7 +393,8 @@ function mapStateToProps(state) {
         basicSettings: state.siteInfo.settings,
         timeZones: state.siteInfo.timeZones,
         iconSets: state.siteInfo.iconSets,
-        clientModified: state.siteInfo.clientModified
+        clientModified: state.siteInfo.clientModified,
+        portalId: state.siteInfo.settings ? state.siteInfo.settings.PortalId : undefined,
     };
 }
 
