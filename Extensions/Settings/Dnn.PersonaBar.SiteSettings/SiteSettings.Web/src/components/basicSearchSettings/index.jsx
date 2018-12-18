@@ -12,7 +12,6 @@ import resx from "../../resources";
 import styles from "./style.less";
 
 const re = /^[1-9]\d*$/;
-let isHost = false;
 
 class BasicSearchSettingsPanelBody extends Component {
     constructor() {
@@ -28,11 +27,11 @@ class BasicSearchSettingsPanelBody extends Component {
         };
     }
 
+
     componentDidMount() {
         const {props} = this;
         this._mounted = true;
-        isHost = util.settings.isHost;
-        if (isHost) {
+        if (this.isHost()) {
             props.dispatch(SearchActions.getBasicSearchSettings((data) => {
                 if(this._mounted) {
                     this.setState({
@@ -43,13 +42,14 @@ class BasicSearchSettingsPanelBody extends Component {
         }
     }
 
-    componentWillUnmount() {
-        this._mounted = false;
+    isHost() {
+        return util.settings.isHost;
     }
 
     onSettingChange(key, event) {
         let {state, props} = this;
         let basicSearchSettings = Object.assign({}, state.basicSearchSettings);
+        const error = {};
 
         if (key === "TitleBoost" || key === "TagBoost" || key === "ContentBoost" || key === "DescriptionBoost" || key === "AuthorBoost") {
             basicSearchSettings[key] = event;
@@ -62,24 +62,24 @@ class BasicSearchSettingsPanelBody extends Component {
         }
 
         if (!re.test(basicSearchSettings[key]) && key === "MinWordLength") {
-            state.error["minlength"] = true;
+            error["minlength"] = true;
         }
         else if (re.test(basicSearchSettings[key]) && key === "MinWordLength") {
-            state.error["minlength"] = false;
+            error["minlength"] = false;
         }
 
         if (key === "MaxWordLength" && (!re.test(basicSearchSettings[key])
             || parseInt(basicSearchSettings["MinWordLength"]) >= parseInt(basicSearchSettings["MaxWordLength"]))) {
-            state.error["maxlength"] = true;
+            error["maxlength"] = true;
         }
         else if (key === "MaxWordLength" && re.test(basicSearchSettings[key])
             && parseInt(basicSearchSettings["MaxWordLength"]) > parseInt(basicSearchSettings["MinWordLength"])) {
-            state.error["maxlength"] = false;
+            error["maxlength"] = false;
         }
 
         this.setState({
             basicSearchSettings: basicSearchSettings,
-            error: state.error,
+            error,
             triedToSubmit: false
         });
 
@@ -104,10 +104,6 @@ class BasicSearchSettingsPanelBody extends Component {
         this.setState({
             triedToSubmit: true
         });
-
-        if (state.error.minlength || state.error.maxlength) {
-            return;
-        }
 
         props.dispatch(SearchActions.updateBasicSearchSettings(state.basicSearchSettings, () => {
             util.utilities.notify(resx.get("SettingsUpdateSuccess"));
@@ -151,7 +147,7 @@ class BasicSearchSettingsPanelBody extends Component {
     /* eslint-disable react/no-danger */
     render() {
         const {state} = this;
-        if (isHost) {
+        if (this.isHost()) {
             if (state.basicSearchSettings) {
                 const columnOne = <div className="left-column">
                     <InputGroup>
