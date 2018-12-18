@@ -14,6 +14,7 @@ let canEdit = false;
 class BasicSettingsPanelBody extends Component {
     constructor() {
         super();
+        this._mounted = false;
         this.state = {
             basicSettings: undefined,
             error: {
@@ -24,51 +25,24 @@ class BasicSettingsPanelBody extends Component {
         canEdit = util.settings.isHost || util.settings.isAdmin || util.settings.permissions.SITE_INFO_EDIT;
     }
 
-    loadData(newProps) {
-        const props = newProps ? newProps : this.props;
-        if (props.basicSettings) {
-            let portalIdChanged = false;
-            let cultureCodeChanged = false;
-
-            if (props.portalId === undefined || props.basicSettings.PortalId === props.portalId) {
-                portalIdChanged = false;
-            }
-            else {
-                portalIdChanged = true;
-            }
-
-            if (props.cultureCode === undefined || props.basicSettings.CultureCode === props.cultureCode) {
-                cultureCodeChanged = false;
-            }
-            else {
-                cultureCodeChanged = true;
-            }
-
-            if (portalIdChanged || cultureCodeChanged) {
-                return true;
-            }
-            else return false;
-        }
-        else {
-            return true;
-        }
-    }
-
     getPortalSettings() {
         const {props} = this;
         props.dispatch(SiteInfoActions.getPortalSettings(props.portalId, props.cultureCode, (data) => {
-            this.setState({
-                basicSettings: Object.assign({}, data.Settings)
-            });
+            if(this._mounted) {
+                this.setState({
+                    basicSettings: Object.assign({}, data.Settings)
+                });
+            }
         }));
     }
 
     componentDidMount() {
+        this._mounted = true;
         this.getPortalSettings();
     }
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        let {state, props} = this;
+    componentDidUpdate(prevProps) {
+        let { props} = this;
 
         const portalIdChanged = !prevProps.portalId && prevProps.portalId !== props.portalId;
         const cultureCodeChanged = !prevProps.cultureCode && prevProps.cultureCode !== props.cultureCode;
@@ -76,6 +50,10 @@ class BasicSettingsPanelBody extends Component {
         if(portalIdChanged || cultureCodeChanged) {
             this.getPortalSettings();
         }
+    }
+
+    componentWillUnmount() {
+        this._mounted = false;
     }
 
     onSettingChange(key, event) {

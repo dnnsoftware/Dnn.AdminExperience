@@ -19,29 +19,20 @@ class SiteAliasSettingsPanelBody extends Component {
         };
     }
 
-    loadData() {
-        const {props} = this;
-        if (props.urlMappingSettings) {
-            if (props.portalId === undefined || props.urlMappingSettings.PortalId === props.portalId) {
-                return false;
-            }
-            else {
-                return true;
-            }
-        }
-        else {
-            return true;
+    componentDidMount() {
+        this.loadData();
+    }
+
+    componentDidUpdate(prevProps) {
+        const { props } = this;
+        const portalIdChanged = !prevProps || prevProps.portalId !== props.portalId;
+        if(portalIdChanged) {
+            this.loadData();
         }
     }
 
-    componentDidMount() {
+    loadData() {
         const {props} = this;
-        if (!this.loadData()) {
-            this.setState({
-                urlMappingSettings: props.urlMappingSettings
-            });
-            return;
-        }
         props.dispatch(SiteBehaviorActions.getUrlMappingSettings(props.portalId, (data) => {
             this.setState({
                 urlMappingSettings: Object.assign({}, data.Settings)
@@ -173,7 +164,8 @@ function mapStateToProps(state) {
         tabIndex: state.pagination.tabIndex,
         urlMappingSettings: state.siteBehavior.urlMappingSettings,
         portalAliasMappingModes: state.siteBehavior.portalAliasMappingModes,
-        urlMappingSettingsClientModified: state.siteBehavior.urlMappingSettingsClientModified
+        urlMappingSettingsClientModified: state.siteBehavior.urlMappingSettingsClientModified,
+        portalId: state.siteInfo.settings ? state.siteInfo.settings.PortalId : undefined,
     };
 }
 

@@ -6,9 +6,8 @@ import {
 } from "actions";
 import ListEntryRow from "./listEntryRow";
 import ListEntryEditor from "./listEntryEditor";
-import { Collapsible, SvgIcons } from "@dnnsoftware/dnn-react-common";
+import { Collapsible, Sortable, SvgIcons } from "@dnnsoftware/dnn-react-common";
 import "./style.less";
-import Sortable from "dnn-sortable";
 import util from "utils";
 import resx from "resources";
 
@@ -152,7 +151,7 @@ class ListEntriesPanel extends Component {
                     <div className="list-items-grid">
                         {this.renderHeader()}
                         <Collapsible isOpened={opened}
-                            style={{ float: "left", width: "100%" }}>
+                            style={{ overflow: "visible", width: "100%" }}>
                             <ListEntryRow
                                 text={"-"}
                                 value={"-"}

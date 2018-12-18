@@ -19,8 +19,6 @@
     "babel-loader": "^8.0.4",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.21",
     "css-loader": "1.0.1",
-    "dnn-global-styles": "0.0.5",
-    "dnn-webpack-externals": "1.1.2",
     "eslint": "5.8.0",
     "eslint-loader": "2.1.1",
     "eslint-plugin-react": "7.11.1",

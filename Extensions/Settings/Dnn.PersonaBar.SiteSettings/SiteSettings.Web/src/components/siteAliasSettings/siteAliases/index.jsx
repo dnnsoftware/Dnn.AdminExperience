@@ -179,7 +179,7 @@ class SiteAliasesPanel extends Component {
                     </div>
                     <div className="alias-items-grid">
                         {this.renderHeader()}
-                        <Collapsible isOpened={opened} style={{ float: "left", width: "100%" }}>
+                        <Collapsible isOpened={opened} style={{width: "100%", overflow: "visible" }}>
                             <SiteAliasRow
                                 alias={"-"}
                                 browser={"-"}

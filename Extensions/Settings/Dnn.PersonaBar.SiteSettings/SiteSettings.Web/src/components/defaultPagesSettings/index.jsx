@@ -15,54 +15,41 @@ let isHost = false;
 class DefaultPagesSettingsPanelBody extends Component {
     constructor() {
         super();
+        this._mounted = false;
         this.state = {
             defaultPagesSettings: undefined
         };
         isHost = util.settings.isHost;
     }
 
-    loadData(newProps) {
-        const props = newProps ? newProps : this.props;
-        if (props.defaultPagesSettings) {
-            let portalIdChanged = false;
-            let cultureCodeChanged = false;
+    componentDidMount() {
+        this._mounted = true;
+        this.loadData();
+    }
 
-            if (props.portalId === undefined || props.defaultPagesSettings.PortalId === props.portalId) {
-                portalIdChanged = false;
-            }
-            else {
-                portalIdChanged = true;
-            }
+    componentDidUpdate(prevProps) {
+        let { props} = this;
 
-            if (props.cultureCode === undefined || props.defaultPagesSettings.CultureCode === props.cultureCode) {
-                cultureCodeChanged = false;
-            }
-            else {
-                cultureCodeChanged = true;
-            }
+        const portalIdChanged = !prevProps.portalId && prevProps.portalId !== props.portalId;
+        const cultureCodeChanged = !prevProps.cultureCode && prevProps.cultureCode !== props.cultureCode;
 
-            if (portalIdChanged || cultureCodeChanged) {
-                return true;
-            }
-            else return false;
-        }
-        else {
-            return true;
+        if(portalIdChanged || cultureCodeChanged) {
+            this.loadData();
         }
     }
 
-    componentDidMount() {
-        const {props} = this;
-        if (!this.loadData()) {
-            this.setState({
-                defaultPagesSettings: props.defaultPagesSettings
-            });
-            return;
-        }
+    componentWillUnmount() {
+        this._mounted = false;
+    }
+
+    loadData() {
+        const { props } = this;
         props.dispatch(SiteBehaviorActions.getDefaultPagesSettings(props.portalId, props.cultureCode, (data) => {
-            this.setState({
-                defaultPagesSettings: Object.assign({}, data.Settings)
-            });
+            if(this._mounted) {
+                this.setState({
+                    defaultPagesSettings: Object.assign({}, data.Settings)
+                });
+            }
         }));
     }
 
@@ -352,7 +339,8 @@ function mapStateToProps(state) {
     return {
         tabIndex: state.pagination.tabIndex,
         defaultPagesSettings: state.siteBehavior.defaultPagesSettings,
-        defaultPagesSettingsClientModified: state.siteBehavior.defaultPagesSettingsClientModified
+        defaultPagesSettingsClientModified: state.siteBehavior.defaultPagesSettingsClientModified,
+        portalId: state.siteInfo.settings ? state.siteInfo.settings.PortalId : undefined,
     };
 }
 

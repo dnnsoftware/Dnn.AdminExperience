@@ -187,7 +187,7 @@ class ProfilePropertyEditor extends Component {
         if (this.props.languageOptions !== undefined) {
             options = this.props.languageOptions.map((item) => {
                 return {
-                    label: <div style={{ float: "left", display: "flex" }}>
+                    label: <div style={{display: "flex" }}>
                         <div className="language-flag">
                             <img src={item.Icon} alt={item.Text} />
                         </div>

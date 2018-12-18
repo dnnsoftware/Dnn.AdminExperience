@@ -69,7 +69,7 @@ class ProfilePropertyRow extends Component {
                         </div>
                     </div>
                 </div>
-                <Collapsible isOpened={opened} autoScroll={true} style={{ float: "left", width: "100%", overflow: "inherit" }}>
+                <Collapsible isOpened={opened} autoScroll={true} style={{ width: "100%", overflow: "visible" }}>
                     {opened && props.children}
                 </Collapsible>
             </div>

@@ -18,44 +18,6 @@ class PrivacySettingsPanelBody extends Component {
 
     loadData() {
         const { props } = this;
-        if (props.privacySettings) {
-            let portalIdChanged = false;
-            let cultureCodeChanged = false;
-
-            if (
-                props.portalId === undefined ||
-                props.privacySettings.PortalId === props.portalId
-            ) {
-                portalIdChanged = false;
-            } else {
-                portalIdChanged = true;
-            }
-
-            if (
-                props.cultureCode === undefined ||
-                props.privacySettings.CultureCode === props.cultureCode
-            ) {
-                cultureCodeChanged = false;
-            } else {
-                cultureCodeChanged = true;
-            }
-
-            if (portalIdChanged || cultureCodeChanged) {
-                return true;
-            } else return false;
-        } else {
-            return true;
-        }
-    }
-
-    componentDidMount() {
-        const { props } = this;
-        if (!this.loadData()) {
-            this.setState({
-                privacySettings: props.privacySettings
-            });
-            return;
-        }
         props.dispatch(
             SiteBehaviorActions.getPrivacySettings(props.portalId, data => {
                 this.setState({
@@ -63,6 +25,27 @@ class PrivacySettingsPanelBody extends Component {
                 });
             })
         );
+    }
+
+    componentDidMount() {
+        const { props } = this;
+        props.dispatch(
+            SiteBehaviorActions.getPrivacySettings(props.portalId, data => {
+                this.setState({
+                    privacySettings: Object.assign({}, data.Settings)
+                });
+            })
+        );
+    }
+
+    componentDidUpdate(prevProps) {
+        const { props } = this;
+        const portalIdChanged = !prevProps.portalId && prevProps.portalId !== props.portalId;
+        const cultureCodeChanged = !prevProps.cultureCode && prevProps.cultureCode !== props.cultureCode;
+
+        if(portalIdChanged || cultureCodeChanged) {
+            this.loadData();
+        }
     }
 
     onSettingChange(key, event) {
@@ -239,7 +222,6 @@ class PrivacySettingsPanelBody extends Component {
             </div>
         );
 
-        if(props.privacySettingsClientModified) {
             return (
                 <div className={styles.privacySettings}>
                     <div className="sectionTitle">
@@ -266,7 +248,6 @@ class PrivacySettingsPanelBody extends Component {
                     </div>
                 </div>
             );
-        } else return <div />;
     }
 }
 
@@ -283,7 +264,8 @@ function mapStateToProps(state) {
     return {
         tabIndex: state.pagination.tabIndex,
         privacySettings: state.siteBehavior.privacySettings,
-        privacySettingsClientModified: state.siteBehavior.privacySettingsClientModified
+        privacySettingsClientModified: state.siteBehavior.privacySettingsClientModified,
+        portalId: state.siteInfo.settings ? state.siteInfo.settings.PortalId : undefined,
     };
 }
 
