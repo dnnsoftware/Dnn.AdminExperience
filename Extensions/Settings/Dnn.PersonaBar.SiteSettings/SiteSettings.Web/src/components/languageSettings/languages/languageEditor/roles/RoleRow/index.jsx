@@ -23,10 +23,13 @@ class RoleRow extends Component {
         });
     }
 
-    componentDidUpdate(props) {
-        this.setState({
-            selected: props.selected
-        });
+    componentDidUpdate(prevProps) {
+        const { props } = this;
+        if(props.selected !== prevProps.selected) {
+            this.setState({
+                selected: props.selected
+            });
+        }
     }
 
     onChange(role, event) {

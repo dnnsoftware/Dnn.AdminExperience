@@ -24,67 +24,49 @@ class SynonymsGroupsPanel extends Component {
     }
 
     loadData() {
-        const {props} = this;
-        if (props.synonymsGroups) {
-            let portalIdChanged = false;
-            let cultureCodeChanged = false;
-
-            if (props.portalId === undefined || props.synonymsGroups.PortalId === props.portalId) {
-                portalIdChanged = false;
-            }
-            else {
-                portalIdChanged = true;
-            }
-
-            if (props.cultureCode === undefined || props.synonymsGroups.CultureCode === props.cultureCode) {
-                cultureCodeChanged = false;
-            }
-            else {
-                cultureCodeChanged = true;
-            }
-
-            if (portalIdChanged || cultureCodeChanged) {
-                return true;
-            }
-            else return false;
-        }
-        else {
-            return true;
-        }
+        const { props } = this;
+        const culture = this.getCurrentCulture();
+        props.dispatch(SearchActions.getSynonymsGroups(props.portalId, culture, (data) => {
+            this.setState({
+                synonymsGroups: Object.assign({}, data)
+            });
+        }));
     }
 
     componentDidMount() {
-        const {state, props} = this;
+        const { props } = this;
 
         if (tableFields.length === 0) {
             tableFields.push({ "name": resx.get("SynonymsGroup.Header"), "id": "Synonyms" });
         }
 
-        if (!this.loadData()) {
-            this.setState({
-                synonymsGroups: props.synonymsGroups,
-                culture: props.synonymsGroups.CultureCode
-            });
-            return;
-        }
         props.dispatch(SearchActions.getCultureList(props.portalId));
 
-        if (state.culture === "") {
+        this.loadData();
+    }
+
+    componentDidUpdate(prevProps) {
+        const { props } = this;
+
+        if (props.synonymsGroups !== prevProps.synonymsGroups) {
+            const culture = props.synonymsGroups.CultureCode ? props.synonymsGroups.CultureCode : props.cultureCode;
             this.setState({
-                culture: props.cultureCode
+                synonymsGroups: props.synonymsGroups,
+                culture
             });
-            props.dispatch(SearchActions.getSynonymsGroups(props.portalId, props.cultureCode, (data) => {
-                this.setState({
-                    synonymsGroups: Object.assign({}, data)
-                });
-            }));
         }
-        else {
-            props.dispatch(SearchActions.getSynonymsGroups(props.portalId, state.culture, (data) => {
-                this.setState({
-                    synonymsGroups: Object.assign({}, data)
-                });
-            }));
+    }
+
+    getCurrentCulture() {
+        const { state, props } = this;
+        if(state.culture) {
+            return state.culture;
+        } else {
+            if(props.synonymsGroups !== undefined && props.synonymsGroups.CultureCode !== undefined) {
+                return props.synonymsGroups.CultureCode;
+            } else {
+                return props.cultureCode;
+            }
         }
     }
 
@@ -106,7 +88,7 @@ class SynonymsGroupsPanel extends Component {
         }
     }
 
-    uncollapse(id) {
+    unCollapse(id) {
         this.setState({
             openId: id
         });
@@ -122,7 +104,7 @@ class SynonymsGroupsPanel extends Component {
 
     toggle(openId) {
         if (openId !== "") {
-            this.uncollapse(openId);
+            this.unCollapse(openId);
         }
     }
 
@@ -301,7 +283,8 @@ function mapStateToProps(state) {
     return {
         synonymsGroups: state.search.synonymsGroups,
         cultures: state.search.cultures,
-        tabIndex: state.pagination.tabIndex
+        tabIndex: state.pagination.tabIndex,
+        portalId: state.siteInfo.settings ? state.siteInfo.settings.PortalId : undefined,
     };
 }
 
