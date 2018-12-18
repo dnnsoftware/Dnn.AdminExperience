@@ -39,6 +39,15 @@ class LanguageEditor extends Component {
         }
     }
 
+    componentDidUpdate(newProps) {
+        const { props } = this;
+        if(props.languageDetail !== newProps.languageDetail) {
+            this.setState({
+                languageDetail: Object.assign({}, props.languageDetail)
+            });
+        }
+    }
+
     getFlagItem(name, code) {
         return (
             <div title={name}>
@@ -154,6 +163,17 @@ class LanguageEditor extends Component {
         else {
             props.Collapse();
         }
+    }
+
+    getLanguageDisplayModes() {
+        const {props} = this;
+        let options = [];
+        if (props.languageDisplayModes !== undefined) {
+            options = props.languageDisplayModes.map((item) => {
+                return { label: item.Key, value: item.Value };
+            });
+        }
+        return options;
     }
 
     getLanguageValue(code) {
@@ -402,7 +422,8 @@ function mapStateToProps(state) {
         fallbacks: state.languages.fallbacks,
         fullLanguageList: state.languages.fullLanguageList,
         languageDisplayModes: state.languages.languageDisplayModes,
-        languageClientModified: state.languages.languageClientModified
+        languageClientModified: state.languages.languageClientModified,
+        portalId: state.siteInfo.settings ? state.siteInfo.settings.PortalId : undefined,
     };
 }
 

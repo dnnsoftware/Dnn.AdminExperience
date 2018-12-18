@@ -566,7 +566,7 @@
     "@babel/plugin-transform-react-jsx-self" "^7.0.0"
     "@babel/plugin-transform-react-jsx-source" "^7.0.0"
 
-"@babel/runtime@^7.1.2":
+"@babel/runtime@^7.1.2", "@babel/runtime@^7.2.0":
   version "7.2.0"
   resolved "https://www.myget.org/F/dnn-software-public/npm/@babel/runtime/-/@babel/runtime-7.2.0.tgz#b03e42eeddf5898e00646e4c840fa07ba8dcad7f"
   dependencies:
@@ -602,9 +602,9 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
-"@dnnsoftware/dnn-react-common@^2.0.6":
-  version "2.0.6"
-  resolved "https://www.myget.org/F/dnn-software-public/npm/@dnnsoftware/dnn-react-common/-/@dnnsoftware/dnn-react-common-2.0.6.tgz#d1be0ef7a419dda29247fc18d6e71235b8119f1e"
+"@dnnsoftware/dnn-react-common@2.0.7":
+  version "2.0.7"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/@dnnsoftware/dnn-react-common/-/@dnnsoftware/dnn-react-common-2.0.7.tgz#ec828cdbd053fc332ecc474e4d7fc39cbf93585d"
   dependencies:
     interact.js "^1.2.8"
     moment "^2.22.2"
@@ -2658,6 +2658,12 @@ hoist-non-react-statics@^2.5.0:
   version "2.5.5"
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-2.5.5.tgz#c5903cf409c0dfd908f388e619d86b9c1174cb47"
 
+hoist-non-react-statics@^3.2.1:
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-3.2.1.tgz#c09c0555c84b38a7ede6912b61efddafd6e75e1e"
+  dependencies:
+    react-is "^16.3.2"
+
 hpack.js@^2.1.6:
   version "2.1.6"
   resolved "https://registry.yarnpkg.com/hpack.js/-/hpack.js-2.1.6.tgz#87774c0949e513f42e84575b3c45681fade2a0b2"
@@ -2856,15 +2862,15 @@ interpret@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/interpret/-/interpret-1.1.0.tgz#7ed1b1410c6a0e0f78cf95d3b8440c63f78b8614"
 
-invariant@^2.2.2:
-  version "2.2.2"
-  resolved "https://www.myget.org/F/dnn-software-public/npm/invariant/-/invariant-2.2.2.tgz#9e1f56ac0acdb6bf303306f338be3b204ae60360"
+invariant@^2.1.0, invariant@^2.2.4:
+  version "2.2.4"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/invariant/-/invariant-2.2.4.tgz#610f3c92c9359ce1db616e538008d23ff35158e6"
   dependencies:
     loose-envify "^1.0.0"
 
-invariant@^2.2.4:
-  version "2.2.4"
-  resolved "https://www.myget.org/F/dnn-software-public/npm/invariant/-/invariant-2.2.4.tgz#610f3c92c9359ce1db616e538008d23ff35158e6"
+invariant@^2.2.2:
+  version "2.2.2"
+  resolved "https://www.myget.org/F/dnn-software-public/npm/invariant/-/invariant-2.2.2.tgz#9e1f56ac0acdb6bf303306f338be3b204ae60360"
   dependencies:
     loose-envify "^1.0.0"
 
@@ -3124,7 +3130,7 @@ json-stable-stringify-without-jsonify@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/json-stable-stringify-without-jsonify/-/json-stable-stringify-without-jsonify-1.0.1.tgz#9db7b59496ad3f3cfef30a75142d2d930ad72651"
 
-json-stringify-safe@~5.0.1:
+json-stringify-safe@^5.0.1, json-stringify-safe@~5.0.1:
   version "5.0.1"
   resolved "https://www.myget.org/F/dnn-software-public/npm/json-stringify-safe/-/json-stringify-safe-5.0.1.tgz#1296a2d58fd45f19a0f6ce01d65701e2c735b6eb"
 
@@ -3297,7 +3303,7 @@ loose-envify@^1.0.0, loose-envify@^1.3.1:
   dependencies:
     js-tokens "^3.0.0"
 
-loose-envify@^1.4.0:
+loose-envify@^1.1.0, loose-envify@^1.4.0:
   version "1.4.0"
   resolved "https://www.myget.org/F/dnn-software-public/npm/loose-envify/-/loose-envify-1.4.0.tgz#71ee51fa7be4caec1a63839f7e682d8132d30caf"
   dependencies:
@@ -4255,6 +4261,15 @@ react-day-picker@^7.1.10:
   dependencies:
     prop-types "^15.6.2"
 
+react-dom@^16.6.3:
+  version "16.6.3"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.6.3.tgz#8fa7ba6883c85211b8da2d0efeffc9d3825cccc0"
+  dependencies:
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+    prop-types "^15.6.2"
+    scheduler "^0.11.2"
+
 react-height@^3.0.0:
   version "3.0.0"
   resolved "https://www.myget.org/F/dnn-software-public/npm/react-height/-/react-height-3.0.0.tgz#fae322f9da64d3e9e25536f26b77c73954261524"
@@ -4272,7 +4287,7 @@ react-hot-loader@4.3.12:
     react-lifecycles-compat "^3.0.4"
     shallowequal "^1.0.2"
 
-react-is@^16.3.2:
+react-is@^16.3.2, react-is@^16.6.3:
   version "16.6.3"
   resolved "https://www.myget.org/F/dnn-software-public/npm/react-is/-/react-is-16.6.3.tgz#d2d7462fcfcbe6ec0da56ad69047e47e56e7eac0"
 
@@ -4309,6 +4324,17 @@ react-motion@^0.5.2:
 react-portal-tooltip@^2.4.0:
   version "2.4.1"
   resolved "https://www.myget.org/F/dnn-software-public/npm/react-portal-tooltip/-/react-portal-tooltip-2.4.1.tgz#f5011e845eb4a5dbaecd329ecf92e237cc7fe80b"
+
+react-redux@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/react-redux/-/react-redux-6.0.0.tgz#09e86eeed5febb98e9442458ad2970c8f1a173ef"
+  dependencies:
+    "@babel/runtime" "^7.2.0"
+    hoist-non-react-statics "^3.2.1"
+    invariant "^2.2.4"
+    loose-envify "^1.4.0"
+    prop-types "^15.6.2"
+    react-is "^16.6.3"
 
 react-scrollbar@^0.5.4:
   version "0.5.4"
@@ -4368,6 +4394,15 @@ react-widgets@^4.4.4:
     uncontrollable "^5.0.0"
     warning "^3.0.0"
 
+react@^16.6.3:
+  version "16.6.3"
+  resolved "https://registry.yarnpkg.com/react/-/react-16.6.3.tgz#25d77c91911d6bbdd23db41e70fb094cc1e0871c"
+  dependencies:
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+    prop-types "^15.6.2"
+    scheduler "^0.11.2"
+
 react@~0.8.0:
   version "0.8.0"
   resolved "https://www.myget.org/F/dnn-software-public/npm/react/-/react-0.8.0.tgz#9aef0dbc3e05b44d96139cdbdaa5d727b0506e1e"
@@ -4413,9 +4448,27 @@ readdirp@^2.0.0:
     readable-stream "^2.0.2"
     set-immediate-shim "^1.0.1"
 
+redux-immutable-state-invariant@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/redux-immutable-state-invariant/-/redux-immutable-state-invariant-2.1.0.tgz#308fd3cc7415a0e7f11f51ec997b6379c7055ce1"
+  dependencies:
+    invariant "^2.1.0"
+    json-stringify-safe "^5.0.1"
+
+redux-thunk@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/redux-thunk/-/redux-thunk-2.3.0.tgz#51c2c19a185ed5187aaa9a2d08b666d0d6467622"
+
 redux-undo@^1.0.0-beta9:
   version "1.0.0-beta9-9-7"
   resolved "https://www.myget.org/F/dnn-software-public/npm/redux-undo/-/redux-undo-1.0.0-beta9-9-7.tgz#fe3baa1b271423d7ddbbfc3a82c71b029a2db8ba"
+
+redux@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/redux/-/redux-4.0.1.tgz#436cae6cc40fbe4727689d7c8fae44808f1bfef5"
+  dependencies:
+    loose-envify "^1.4.0"
+    symbol-observable "^1.2.0"
 
 regenerate-unicode-properties@^7.0.0:
   version "7.0.0"
@@ -4646,6 +4699,13 @@ sanitize-html-react@^1.13.0:
 sax@^1.2.4:
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
+
+scheduler@^0.11.2:
+  version "0.11.3"
+  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.11.3.tgz#b5769b90cf8b1464f3f3cfcafe8e3cd7555a2d6b"
+  dependencies:
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
 
 schema-utils@^0.4.4, schema-utils@^0.4.5:
   version "0.4.7"
@@ -5062,6 +5122,10 @@ supports-color@^5.1.0, supports-color@^5.3.0, supports-color@^5.4.0, supports-co
   resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-5.5.0.tgz#e2e69a44ac8772f78a1ec0b35b689df6530efc8f"
   dependencies:
     has-flag "^3.0.0"
+
+symbol-observable@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/symbol-observable/-/symbol-observable-1.2.0.tgz#c22688aed4eab3cdc2dfeacbb561660560a00804"
 
 table@^5.0.2:
   version "5.1.0"

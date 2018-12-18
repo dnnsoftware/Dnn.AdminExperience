@@ -260,7 +260,7 @@ class LanguagesPanel extends Component {
                     </div>
                     <div className="language-items-grid">
                         {this.renderHeader()}
-                        <Collapsible isOpened={opened} style={{ float: "left", width: "100%" }}>
+                        <Collapsible isOpened={opened} style={{ width: "100%", overflow: "visible" }}>
                             <LanguageRow
                                 name={"-"}
                                 code={""}

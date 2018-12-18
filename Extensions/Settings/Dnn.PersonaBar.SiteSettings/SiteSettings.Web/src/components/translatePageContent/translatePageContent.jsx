@@ -32,8 +32,11 @@ class TranslatePageContent extends Component {
         this.getProgressData();
     }
 
-    componentDidUpdate(props) {
-        this.setState({ languageBeingEdited: Object.assign({}, props.languageBeingEdited)  });
+    componentDidUpdate(newProps) {
+        const { props } = this;
+        if(newProps.languageBeingEdited !== props.languageBeingEdited) {
+            this.setState({languageBeingEdited: Object.assign({}, props.languageBeingEdited)});
+        }
     }
 
     getPageList() {
@@ -310,7 +313,8 @@ function mapStateToProps(state) {
     return {
         pageList: state.languages.pageList,
         languageBeingEdited: state.languageEditor.languageBeingEdited,
-        languageDisplayMode: (state.languages.languageSettings && state.languages.languageSettings.LanguageDisplayMode) || "NATIVE"
+        languageDisplayMode: (state.languages.languageSettings && state.languages.languageSettings.LanguageDisplayMode) || "NATIVE",
+        portalId: state.siteInfo.settings ? state.siteInfo.settings.PortalId : undefined,
     };
 }
 

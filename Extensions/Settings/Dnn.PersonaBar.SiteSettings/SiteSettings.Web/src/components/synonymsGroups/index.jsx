@@ -6,9 +6,8 @@ import {
 } from "../../actions";
 import SynonymsGroupRow from "./synonymsGroupRow";
 import SynonymsGroupEditor from "./synonymsGroupEditor";
-import { Dropdown } from "@dnnsoftware/dnn-react-common";
+import { Dropdown, SvgIcons } from "@dnnsoftware/dnn-react-common";
 import "./style.less";
-import { SvgIcons } from "@dnnsoftware/dnn-react-common";
 import util from "../../utils";
 import resx from "../../resources";
 
