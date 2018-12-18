@@ -17,6 +17,7 @@ let isHost = false;
 class BasicSearchSettingsPanelBody extends Component {
     constructor() {
         super();
+        this._mounted = false;
         this.state = {
             basicSearchSettings: undefined,
             error: {
@@ -29,22 +30,21 @@ class BasicSearchSettingsPanelBody extends Component {
 
     componentDidMount() {
         const {props} = this;
-
+        this._mounted = true;
         isHost = util.settings.isHost;
         if (isHost) {
-            if (props.basicSearchSettings) {
-                this.setState({
-                    basicSearchSettings: props.basicSearchSettings
-                });
-                return;
-            }
-
             props.dispatch(SearchActions.getBasicSearchSettings((data) => {
-                this.setState({
-                    basicSearchSettings: Object.assign({}, data.Settings)
-                });
+                if(this._mounted) {
+                    this.setState({
+                        basicSearchSettings: Object.assign({}, data.Settings)
+                    });
+                }
             }));
         }
+    }
+
+    componentWillUnmount() {
+        this._mounted = false;
     }
 
     onSettingChange(key, event) {

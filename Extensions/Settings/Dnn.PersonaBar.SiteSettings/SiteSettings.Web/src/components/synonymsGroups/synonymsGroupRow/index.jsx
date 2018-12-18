@@ -13,9 +13,8 @@ class SynonymsGroupRow extends Component {
 
     toggle() {
         if ((this.props.openId !== "" && this.props.id === this.props.openId)) {
-            //this.props.Collapsible();
-        }
-        else {
+            this.props.Collapse();
+        } else {
             this.props.OpenCollapse(this.props.id);
         }
     }
