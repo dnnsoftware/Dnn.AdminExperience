@@ -24,33 +24,14 @@ class IgnoreWordsPanel extends Component {
     }
 
     loadData() {
-        const {props} = this;
-        if (props.ignoreWords) {
-            let portalIdChanged = false;
-            let cultureCodeChanged = false;
-
-            if (props.portalId === undefined || props.ignoreWords.PortalId === props.portalId) {
-                portalIdChanged = false;
-            }
-            else {
-                portalIdChanged = true;
-            }
-
-            if (props.cultureCode === undefined || props.ignoreWords.CultureCode === props.cultureCode) {
-                cultureCodeChanged = false;
-            }
-            else {
-                cultureCodeChanged = true;
-            }
-
-            if (portalIdChanged || cultureCodeChanged) {
-                return true;
-            }
-            else return false;
-        }
-        else {
-            return true;
-        }
+        const { props, state } = this;
+        const culture = state.culture ? state.culture : props.cultureCode;
+        props.dispatch(SearchActions.getIgnoreWords(props.portalId, culture, (data) => {
+            this.setState({
+                ignoreWords: Object.assign({}, data),
+                culture: data.CultureCode
+            });
+        }));
     }
 
     componentDidMount() {
@@ -60,32 +41,20 @@ class IgnoreWordsPanel extends Component {
             tableFields.push({ "name": resx.get("IgnoreWords"), "id": "IgnoreWords" });
         }
 
-        if (!this.loadData()) {
-            this.setState({
-                ignoreWords: props.ignoreWords,
-                culture: props.ignoreWords.CultureCode
-            });
-            return;
-        }
         props.dispatch(SearchActions.getCultureList(props.portalId));
-        if (state.culture === "") {
-            this.setState({
-                culture: props.cultureCode
-            });
-            props.dispatch(SearchActions.getIgnoreWords(props.portalId, props.cultureCode, (data) => {
-                this.setState({
-                    ignoreWords: Object.assign({}, data.IgnoreWords)
-                });
-            }));
-        }
-        else {
-            props.dispatch(SearchActions.getIgnoreWords(props.portalId, state.culture, (data) => {
-                this.setState({
-                    ignoreWords: Object.assign({}, data.IgnoreWords)
-                });
-            }));
-        }
+        this.loadData();
+    }
 
+    componentDidUpdate(prevProps, prevState) {
+        const { props, state } = this;
+
+        const cultureCodeChanged = props.cultureCode !== prevProps.cultureCode;
+        const portalIdChanged = props.portalId !== prevProps.portalId;
+        const currentCultureChanged = state.culture !== prevState.culture;
+
+        if(cultureCodeChanged || portalIdChanged || currentCultureChanged) {
+            this.loadData();
+        }
     }
 
     renderHeader() {
@@ -283,7 +252,8 @@ function mapStateToProps(state) {
     return {
         ignoreWords: state.search.ignoreWords,
         tabIndex: state.pagination.tabIndex,
-        cultures: state.search.cultures
+        cultures: state.search.cultures,
+        portalId: state.siteInfo.settings ? state.siteInfo.settings.PortalId : undefined,
     };
 }
 

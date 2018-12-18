@@ -42,6 +42,10 @@ class BasicSearchSettingsPanelBody extends Component {
         }
     }
 
+    componentWillUnmount() {
+        this._mounted = false;
+    }
+
     isHost() {
         return util.settings.isHost;
     }
