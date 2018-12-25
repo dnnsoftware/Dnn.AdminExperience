@@ -18,7 +18,7 @@
     "array.prototype.findindex": "2.0.2",
     "babel-loader": "^8.0.4",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.21",
-    "css-loader": "1.0.1",
+    "css-loader": "2.1.0",
     "eslint": "5.8.0",
     "eslint-loader": "2.1.1",
     "eslint-plugin-react": "7.11.1",
