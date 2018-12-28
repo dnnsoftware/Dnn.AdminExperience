@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import React, { Component } from "react";
 import "./style.less";
 import Localization from "localization";
@@ -64,8 +64,8 @@ class FiltersBar extends Component {
         let userFiltersOptions = this.BuildUserFiltersOptions();
         return (<div className="users-filter-container">
             <GridCell columnSize={35} >
-                {this.userFiltersOptions != null &&
-                    this.userFiltersOptions.length > 0 &&
+                {userFiltersOptions != null &&
+                    userFiltersOptions.length > 0 &&
                     <div className="user-filters-filter">
                         <Dropdown style={{ width: "100%" }}
                             withBorder={false}
@@ -73,7 +73,7 @@ class FiltersBar extends Component {
                             label={this.state.selectedUserFilter.label}
                             onSelect={this.onSelect.bind(this)}
                             prependWith={Localization.get("ShowLabel")}
-                            />
+                        />
                         <div className="clear">
                         </div>
                     </div>}
