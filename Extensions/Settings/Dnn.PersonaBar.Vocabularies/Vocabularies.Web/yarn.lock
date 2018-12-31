@@ -243,7 +243,7 @@
     "@babel/helper-plugin-utils" "^7.0.0"
     "@babel/plugin-syntax-json-strings" "^7.2.0"
 
-"@babel/plugin-proposal-object-rest-spread@^7.0.0", "@babel/plugin-proposal-object-rest-spread@^7.2.0":
+"@babel/plugin-proposal-object-rest-spread@^7.2.0":
   version "7.2.0"
   resolved "https://www.myget.org/F/dnn-software-public/npm/@babel/plugin-proposal-object-rest-spread/-/@babel/plugin-proposal-object-rest-spread-7.2.0.tgz#88f5fec3e7ad019014c97f7ee3c992f0adbf7fb8"
   integrity sha1-iPX+w+etAZAUyX9+48mS8K2/f7g=
@@ -4266,12 +4266,11 @@ npmlog@^4.0.2:
     gauge "~2.7.3"
     set-blocking "~2.0.0"
 
-nuka-carousel@4.4.2:
-  version "4.4.2"
-  resolved "https://www.myget.org/F/dnn-software-public/npm/nuka-carousel/-/nuka-carousel-4.4.2.tgz#d5a3e148f03a348fd7f5cfe793f07bacb038a6cb"
-  integrity sha1-1aPhSPA6NI/X9c/nk/B7rLA4pss=
+nuka-carousel@4.4.5:
+  version "4.4.5"
+  resolved "https://registry.yarnpkg.com/nuka-carousel/-/nuka-carousel-4.4.5.tgz#852b25a17278d26165fa213c633cb2aab813f08a"
+  integrity sha512-PiIAq2nwUsGdk5kyzqDEqOnxgP7+jLlXQTwQfFAMFYp5vwHuFkqPtVMaj5wgWQ5G16EfAh690kVuZxJbExzp3w==
   dependencies:
-    "@babel/plugin-proposal-object-rest-spread" "^7.0.0"
     d3-ease "^1.0.3"
     exenv "^1.2.0"
     prop-types "^15.6.0"
