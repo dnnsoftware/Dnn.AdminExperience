@@ -350,7 +350,6 @@ class SchedulerEditor extends Component {
 
             return ( 
                 <div className="scheduler-setting-editor">
-                    CIAO
                     <div className="scheduler-item-container">
                         <div className="scheduler-item-column">
                             {columnOne}
