@@ -45,6 +45,7 @@ export function renderObject(data, fieldOrder) {
     const columns = !fieldOrder || fieldOrder.length === 0 ? getColumnsFromRow(data) : fieldOrder;
     const rows = columns.map((fldName, index) => {
         const lbl = formatLabel(fldName);
+        // explicitly checking for null and undefined to cover case where { data["isDeleted"] : false }
         const fldVal = data[fldName] !== undefined && data[fldName] !== null ? data[fldName].toString() : "";
         const cmd = data["__" + fldName] ? data["__" + fldName] : null;
 
