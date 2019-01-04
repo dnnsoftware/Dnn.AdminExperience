@@ -16,7 +16,7 @@
     "@dnnsoftware/dnn-react-common": "^2.0.8",
     "array.prototype.find": "2.0.4",
     "array.prototype.findindex": "2.0.2",
-    "babel-loader": "^8.0.4",
+    "babel-loader": "^8.0.5",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.21",
     "css-loader": "1.0.1",
     "eslint": "5.8.0",
