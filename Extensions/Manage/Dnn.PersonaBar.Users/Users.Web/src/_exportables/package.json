@@ -15,7 +15,7 @@
     "@babel/plugin-transform-react-jsx": "^7.1.6",
     "@babel/preset-env": "^7.1.6",
     "@babel/preset-react": "^7.0.0",
-    "babel-loader": "8.0.4",
+    "babel-loader": "8.0.5",
     "css-loader": "1.0.1",
     "eslint": "5.8.0",
     "eslint-import-resolver-webpack": "^0.10.1",
