@@ -276,7 +276,6 @@ class SchedulerEditor extends Component {
                     <Label label={resx.get("plScheduleStartDate")} style={{ margin: "0 0 5px 0" }} />
                     <DatePicker
                         date={this.getValue("ScheduleStartDate")}
-                        mode={}
                         updateDate={this.onSettingChange.bind(this, "ScheduleStartDate")}
                         isDateRange={false}
                         hasTimePicker={true}
