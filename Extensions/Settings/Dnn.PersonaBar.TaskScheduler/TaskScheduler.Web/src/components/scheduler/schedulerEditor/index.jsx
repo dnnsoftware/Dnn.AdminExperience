@@ -99,7 +99,7 @@ class SchedulerEditor extends Component {
     }
 
     getValue(selectKey) {
-        const { state, props } = this;
+        const { props } = this;
         switch (selectKey) {
             case "FriendlyName":
                 return props.scheduleItemDetail.FriendlyName !== undefined ? props.scheduleItemDetail.FriendlyName.toString() : "";
