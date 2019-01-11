@@ -141,10 +141,18 @@ define(['jquery'], function ($) {
                         if (typeof confirmHandler === 'function') confirmHandler.apply();
                         $('#confirmation-dialog').fadeOut(200, 'linear', function () { $('#mask').hide(); });
                     });
-                    $('#confirmation-dialog a#cancelbtn').html(cancelBtn).unbind('click').bind('click', function () {
-                        if (typeof cancelHandler === 'function') cancelHandler.apply();
-                        $('#confirmation-dialog').fadeOut(200, 'linear', function () { $('#mask').hide(); });
-                    });
+
+                    if (cancelBtn === undefined || cancelBtn === '') {
+                        $('#confirmation-dialog a#cancelbtn').hide();
+                    } else {
+                        var $cancelBtn = $('#confirmation-dialog a#cancelbtn');
+                        $cancelBtn.show();
+                        $cancelBtn.html(cancelBtn).unbind('click').bind('click', function () {
+                            if (typeof cancelHandler === 'function') cancelHandler.apply();
+                            $('#confirmation-dialog').fadeOut(200, 'linear', function () { $('#mask').hide(); });
+                        });
+                    }
+
                     $('#mask').show();
                     $('#confirmation-dialog').fadeIn(200, 'linear');
 
