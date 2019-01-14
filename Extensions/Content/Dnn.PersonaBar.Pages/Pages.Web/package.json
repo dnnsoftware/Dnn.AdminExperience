@@ -53,7 +53,7 @@
     "react-dom": "^16.6.3",
     "react-hot-loader": "4.3.12",
     "react-test-renderer": "^16.6.2",
-    "react-widgets": "4.4.7",
+    "react-widgets": "4.4.9",
     "string.prototype.startswith": "0.2.0",
     "style-loader": "^0.23.1",
     "throttle-debounce": "^2.0.1",
