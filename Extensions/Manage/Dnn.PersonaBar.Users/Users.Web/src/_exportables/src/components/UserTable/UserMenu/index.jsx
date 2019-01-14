@@ -30,13 +30,8 @@ class UserMenu extends Component {
     componentDidMount() {
         document.addEventListener("click", this.handleClick, false);
         let {props} = this;
-        if (props.userDetails === undefined || props.userDetails.userId !== props.userId) {
-            this.showMenu = false;
-            this.getUserDetails(props);
-        }
-        else {
-            this.showMenu = true;
-        }
+        this.showMenu = false;
+        this.getUserDetails(props);
     }
     componentDidUpdate() {
         if (this.props.userDetails === undefined && this.props.userDetails.userId !== this.props.userId) {
@@ -274,8 +269,8 @@ UserMenu.propTypes = {
     userId: PropTypes.number.isRequired,
     onClose: PropTypes.func.isRequired,
     userDetails: PropTypes.object,
-    getUserMenu: PropTypes.func.isRequired,
-    userMenuAction: PropTypes.func.isRequired,
+    getUserMenu: PropTypes.func,
+    userMenuAction: PropTypes.func,
     appSettings: PropTypes.object,
     filter: PropTypes.number
 };
