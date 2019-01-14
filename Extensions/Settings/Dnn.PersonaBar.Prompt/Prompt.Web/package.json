@@ -60,7 +60,7 @@
     "redux-mock-store": "^1.4.0",
     "redux-thunk": "2.3.0",
     "style-loader": "^0.23.1",
-    "throttle-debounce": "^2.0.1",
+    "throttle-debounce": "^2.1.0",
     "universal-cookie": "^3.0.4",
     "url-loader": "1.1.2",
     "webpack": "^4.25.1",
