@@ -420,7 +420,7 @@ class ProfilePropertyEditor extends Component {
                 <InputGroup>
                     <div className="profileProperty-row_switch">
                         <Label
-                            labelType="inline"                         
+                            labelType="inline"
                             tooltipMessage={resx.get("ProfilePropertyDefinition_Required.Help")}
                             label={resx.get("ProfilePropertyDefinition_Required")}
                             tooltipStyle={{ width: "1%" }}   
