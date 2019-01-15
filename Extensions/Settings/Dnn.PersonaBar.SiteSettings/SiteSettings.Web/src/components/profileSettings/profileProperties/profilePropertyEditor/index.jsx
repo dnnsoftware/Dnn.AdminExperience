@@ -419,10 +419,10 @@ class ProfilePropertyEditor extends Component {
                 </InputGroup>
                 <InputGroup>
                     <div className="profileProperty-row_switch">
-                        <Label
-                            labelType="inline"
+                        <Label                            
                             tooltipMessage={resx.get("ProfilePropertyDefinition_Required.Help")}
                             label={resx.get("ProfilePropertyDefinition_Required")}
+                            tooltipStyle={{ width: "1%" }}   
                         />
                         <Switch
                             onText={resx.get("SwitchOn")}
@@ -464,6 +464,7 @@ class ProfilePropertyEditor extends Component {
                     <Label
                         tooltipMessage={resx.get("ProfilePropertyDefinition_DataType.Help")}
                         label={resx.get("ProfilePropertyDefinition_DataType") + "*"}
+                        tooltipStyle={{ float: "", width: "52%" }}                        
                     />
                     <DropdownWithError
                         options={this.getProfileDataTypeOptions()}

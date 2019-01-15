@@ -173,6 +173,7 @@ class DefaultPagesSettingsPanelBody extends Component {
                     <Label
                         tooltipMessage={resx.get("plRegisterTabId.Help")}
                         label={resx.get("plRegisterTabId")}
+                        tooltipStyle={{ float: "", width : "68%"}}                        
                     />
                     <PagePicker
                         serviceFramework={util.utilities.sf}
