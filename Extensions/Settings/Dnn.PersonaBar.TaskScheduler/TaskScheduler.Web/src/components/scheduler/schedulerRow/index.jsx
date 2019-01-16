@@ -103,7 +103,7 @@ class SchedulerRow extends Component {
                         </div>
                     </div>
                 </div>
-                <Collapsible autoScroll={true} isOpened={opened} style={{ float: "left", width: "100%" }}>{opened && props.children}</Collapsible>
+                <Collapsible autoScroll={false} isOpened={opened} style={{ float: "left", width: "100%" }}>{opened && props.children}</Collapsible>
             </div>
         );
     }
