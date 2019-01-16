@@ -423,6 +423,8 @@ class ProfilePropertyEditor extends Component {
                             labelType="inline"
                             tooltipMessage={resx.get("ProfilePropertyDefinition_Required.Help")}
                             label={resx.get("ProfilePropertyDefinition_Required")}
+                            {/* Setting a style here to workaround this issue: https://github.com/romainberger/react-portal-tooltip/issues/84
+                            TODO: remove the style once the underlying issue is resolved */}
                             tooltipStyle={{ width: "1%" }}   
                         />
                         <Switch
@@ -465,6 +467,8 @@ class ProfilePropertyEditor extends Component {
                     <Label
                         tooltipMessage={resx.get("ProfilePropertyDefinition_DataType.Help")}
                         label={resx.get("ProfilePropertyDefinition_DataType") + "*"}
+                        {/* Setting a style here to workaround this issue: https://github.com/romainberger/react-portal-tooltip/issues/84
+                        TODO: remove the style once the underlying issue is resolved */}
                         tooltipStyle={{ float: "", width: "52%" }}                        
                     />
                     <DropdownWithError
