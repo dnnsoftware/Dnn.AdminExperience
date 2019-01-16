@@ -42,11 +42,18 @@ class SiteAliasesPanel extends Component {
 
         if (!this.loadData()) {
             return;
+        }        
+		else {
+            props.dispatch(SiteBehaviorActions.getSiteAliases(props.portalId, (data) => {
+                this.setState({
+                    pid: data.PortalId
+                });
+            }));
         }
-        props.dispatch(SiteBehaviorActions.getSiteAliases(props.portalId));
     }
 
     componentDidUpdate(props) {
+		tableFields = [];
         if (tableFields.length === 0) {
             tableFields.push({ "name": resx.get("Alias.Header"), "id": "Alias" });
             tableFields.push({ "name": resx.get("Browser.Header"), "id": "Browser" });
