@@ -35,7 +35,7 @@ class DeleteExtension extends Component {
     }
     render() {
         const {props} = this;
-        const { extensionBeingDeleted } = props;
+        const { extensionBeingDeleted, deleteExtensionFiles } = props;
         const version = extensionBeingDeleted.version.value ? extensionBeingDeleted.version.value.split(".") : [0, 0, 0];
         return (
             <GridCell className={styles.DeleteExtension}>
@@ -58,7 +58,7 @@ class DeleteExtension extends Component {
                         <GridCell className="delete-files-box">
                             <Checkbox
                                 label={Localization.get("DeleteFiles.Label")}
-                                value={props.deleteExtensionFiles}
+                                value={deleteExtensionFiles || false}
                                 labelPlace="left"
                                 onChange={this.onToggleDeleteFiles.bind(this)}
                                 tooltipMessage={Localization.get("DeleteFiles.HelpText")} />
