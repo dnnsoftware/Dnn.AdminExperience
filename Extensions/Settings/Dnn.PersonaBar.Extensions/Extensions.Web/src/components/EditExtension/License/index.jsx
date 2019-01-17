@@ -36,7 +36,7 @@ class License extends Component {
                 }
                 <Checkbox
                     label={Localization.get("InstallExtension_AcceptLicense.Label")}
-                    value={props.licenseAccepted || false}
+                    value={props.licenseAccepted}
                     onChange={props.onToggleLicenseAccept}                     
                 />                
                 {!props.buttonsAreHidden && <GridCell columnSize={100} className="modal-footer">
@@ -58,6 +58,10 @@ License.propTypes = {
     primaryButtonText: PropTypes.string,
     licenseAccepted: PropTypes.bool,
     onToggleLicenseAccept: PropTypes.func
+};
+
+License.defaultProps = { 
+    licenseAccepted: false
 };
 
 export default License;
