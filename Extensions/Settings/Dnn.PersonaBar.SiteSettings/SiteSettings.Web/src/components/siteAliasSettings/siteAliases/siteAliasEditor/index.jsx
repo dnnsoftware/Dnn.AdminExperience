@@ -34,6 +34,36 @@ class SiteAliasEditor extends Component {
             props.dispatch(SiteBehaviorActions.getSiteAlias(props.aliasId));
         }
     }
+	
+	componentDidUpdate(prevProps) {
+        let { state, props } = this;
+
+        const error = Object.assign({}, state.error);
+
+        if (!props.aliasDetail) {
+            return;
+        }
+
+        const { aliasDetail } = props;
+
+        let updateState = false;
+        Object.keys(aliasDetail).forEach((key) => {
+            const current = aliasDetail[key];
+            const previous = prevProps.aliasDetail ? prevProps.aliasDetail[key] : undefined;
+
+            if(current !== previous) {
+                updateState = true;
+            }
+        });
+
+        if(updateState) {
+            this.setState({
+                aliasDetail: Object.assign({}, aliasDetail),
+                triedToSubmit: state.triedToSubmit,
+                error
+            });
+        }    
+    }
 
     onSettingChange(key, event) {
         let {state, props} = this;
