@@ -28,7 +28,7 @@
     "enzyme": "^3.2.0",
     "enzyme-adapter-react-15": "^1.0.5",
     "es6-object-assign": "1.1.0",
-    "eslint": "5.8.0",
+    "eslint": "5.12.1",
     "eslint-config-dnn": "^0.0.12",
     "eslint-loader": "2.1.1",
     "eslint-plugin-babel": "^5.2.1",
