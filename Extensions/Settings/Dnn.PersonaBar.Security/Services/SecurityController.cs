@@ -1068,6 +1068,7 @@ namespace Dnn.PersonaBar.Security.Services
         {
             if (!String.IsNullOrEmpty(portalAlias))
             {
+                portalAlias = portalAlias.ToLowerInvariant().Trim('/');
                 if (portalAlias.IndexOf("://", StringComparison.Ordinal) != -1)
                 {
                     portalAlias = portalAlias.Remove(0, portalAlias.IndexOf("://", StringComparison.Ordinal) + 3);
