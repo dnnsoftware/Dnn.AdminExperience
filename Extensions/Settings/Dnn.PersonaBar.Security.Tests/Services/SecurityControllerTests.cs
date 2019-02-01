@@ -53,7 +53,7 @@ namespace Dnn.PersonaBar.Security.Tests.Services
         }
 
         [Test]
-        public void Services_Controller_AddPortalAlias_WhenAliasExists_AddIsInvoked()
+        public void Services_Controller_AddPortalAlias_WhenAliasDoesNotExist_AddIsInvoked()
         {
             // arrange
             var controllerMock = new Mock<Components.SecurityController>();
