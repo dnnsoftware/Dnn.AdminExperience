@@ -113,3 +113,6 @@ npm-debug.log
 
 [Ww]ebsite/
 .idea
+/**/yarn-error.log
+/**/*-bundle.js
+/Extensions/Manage/Dnn.PersonaBar.Users/admin/personaBar/scripts/exportables/Users/UsersCommon.js

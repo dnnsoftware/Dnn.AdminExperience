@@ -14,7 +14,9 @@ module.exports = {
         publicPath: isProduction ? "" : "http://localhost:8085/dist/",
         filename: "site-settings-bundle.js"
     },
-
+    devServer: {
+        disableHostCheck: !isProduction
+    },
     resolve: {
         extensions: ["*", ".js", ".json", ".jsx"],
         modules: [
@@ -28,9 +30,10 @@ module.exports = {
                 test: /\.(js|jsx)$/, 
                 exclude: /node_modules/, 
                 enforce: "pre",
-                use: [
-                    'eslint-loader'
-                ] 
+                loader: 'eslint-loader',
+                options: {
+                    fix: true
+                }                
             },
             { 
                 test: /\.js$/, 
@@ -75,7 +78,6 @@ module.exports = {
         ]
     },
     externals: webpackExternals,
-
     plugins: isProduction ? [
         new webpack.DefinePlugin({
             VERSION: JSON.stringify(packageJson.version),
