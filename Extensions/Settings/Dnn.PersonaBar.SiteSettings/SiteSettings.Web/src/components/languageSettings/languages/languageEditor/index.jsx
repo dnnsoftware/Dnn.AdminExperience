@@ -39,9 +39,9 @@ class LanguageEditor extends Component {
         }
     }
 
-    componentDidUpdate(newProps) {
+    componentDidUpdate(prevProps) {
         const { props } = this;
-        if(props.languageDetail !== newProps.languageDetail) {
+        if(props.languageDetail !== prevProps.languageDetail) {
             this.setState({
                 languageDetail: Object.assign({}, props.languageDetail)
             });
@@ -237,7 +237,7 @@ class LanguageEditor extends Component {
 
     renderNewForm() {
         let {state, props} = this;
-        const columnOne = <div className="left-column">
+        const columnOne = <div key="left-column" className="left-column">
             <InputGroup>
                 <Label
                     tooltipMessage={resx.get("languageLabel.Help")}
@@ -252,7 +252,7 @@ class LanguageEditor extends Component {
                 />
             </InputGroup>
         </div>;
-        const columnTwo = <div className="right-column">
+        const columnTwo = <div key="right-column" className="right-column">
             <InputGroup>
                 <Label
                     tooltipMessage={resx.get("fallBackLabel.Help")}

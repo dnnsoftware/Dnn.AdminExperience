@@ -14,10 +14,6 @@ class TaskStatusItemRow extends Component {
             collapsedClass: true,
             repainting: false
         };
-        this.timeout = 0;
-        // setInterval(() => {
-        //     console.log("Repainting: ", this.state.repainting);
-        // }, 500);
         this.handleClick = this.handleClick.bind(this);
     }
 
@@ -79,7 +75,7 @@ TaskStatusItemRow.propTypes = {
     scheduleId: PropTypes.number,
     friendlyName: PropTypes.string,
     overdue: PropTypes.bool,
-    remainingTime: PropTypes.number,
+    remainingTime: PropTypes.string,
     nextStart: PropTypes.string,
     objectDependencies: PropTypes.string,
     scheduleSource: PropTypes.string,

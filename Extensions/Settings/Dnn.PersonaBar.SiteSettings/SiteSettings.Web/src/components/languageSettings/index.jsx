@@ -11,10 +11,9 @@ import resx from "../../resources";
 import styles from "./style.less";
 import { InputGroup, GridSystem, Dropdown, Flag, RadioButtons, Switch, Tooltip, Label, Button } from "@dnnsoftware/dnn-react-common";
 
-
 class LanguageSettingsPanelBody extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             languageSettings: undefined
         };
@@ -40,6 +39,30 @@ class LanguageSettingsPanelBody extends Component {
 
     componentDidMount() {
         this.loadData();
+    }
+
+    componentDidUpdate() {
+        const { props } = this;
+        if (props.languageSettings) {
+            let portalIdChanged = false;
+            let cultureCodeChanged = false;            
+            if (props.portalId === undefined || props.languageSettings.PortalId === props.portalId) {
+                portalIdChanged = false;
+            }
+            else {
+                portalIdChanged = true;
+            }
+            if (props.cultureCode === undefined || props.languageSettings.CultureCode === props.cultureCode) {
+                cultureCodeChanged = false;
+            }
+            else {
+                cultureCodeChanged = true;
+            }
+
+            if (portalIdChanged || cultureCodeChanged) {
+                this.loadData();
+            }
+        }
     }
 
     onSettingChange(key, event) {
@@ -179,7 +202,7 @@ class LanguageSettingsPanelBody extends Component {
     render() {
         const {props, state} = this;
         if (state.languageSettings) {
-            const columnOne = <div className="left-column">
+            const columnOne = <div className="left-column" key="language-settings-left-column">
                 <InputGroup>
                     <Label
                         tooltipMessage={resx.get("systemDefaultLabel.Help")}
@@ -207,7 +230,7 @@ class LanguageSettingsPanelBody extends Component {
                     />
                 </InputGroup>
             </div>;
-            const columnTwo = <div className="right-column">
+            const columnTwo = <div className="right-column" key="language-settings-right-column">
                 <InputGroup>
                     <div className="languageSettings-row_switch">
                         <Label
@@ -360,7 +383,7 @@ function mapStateToProps(state) {
         languageDisplayModes: state.languages.languageDisplayModes,
         languageSettingsClientModified: state.languages.languageSettingsClientModified,
         languageList: state.languages.languageList,
-        portalId: state.siteInfo.settings ? state.siteInfo.settings.PortalId : undefined
+        portalId: state.siteInfo ? state.siteInfo.portalId : undefined
     };
 }
 
