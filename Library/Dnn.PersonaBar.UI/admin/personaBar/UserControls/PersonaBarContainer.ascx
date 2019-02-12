@@ -1,11 +1,11 @@
 <%@ Control language="C#" Inherits="Dnn.PersonaBar.UI.UserControls.PersonaBarContainer" AutoEventWireup="false"  Codebehind="PersonaBarContainer.ascx.cs" %>
 <%@ Register TagPrefix="dnnweb" Namespace="DotNetNuke.Web.UI.WebControls" Assembly="DotNetNuke.Web" %>
 <asp:Panel runat="server" ID="PersonaBarPanel" Visible="False" CssClass="personalBarContainer">
-    <div id="personabar-placeholder" class="personabar-placeholder">
+    <asp:Panel ID="PersonaBarPlaceholderPanel" runat="server" CssClass="personabar-placeholder">
         <!--
             A temporary UI placeholder to avoid the sliding effect when PersonaBar loads
         -->
-    </div>
+    </asp:Panel>
 	<iframe id="personaBar-iframe" allowTransparency="true" frameBorder="0" scrolling="false"></iframe>
     <script type="text/javascript">
         (function($) {
