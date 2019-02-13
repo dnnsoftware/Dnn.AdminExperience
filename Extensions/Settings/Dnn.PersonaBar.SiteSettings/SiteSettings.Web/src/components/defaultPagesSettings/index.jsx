@@ -27,14 +27,27 @@ class DefaultPagesSettingsPanelBody extends Component {
         this.loadData();
     }
 
-    componentDidUpdate(prevProps) {
+    componentDidUpdate() {
         let { props} = this;
+        if (props.defaultPagesSettings) {
+            let portalIdChanged = false;
+            let cultureCodeChanged = false;            
+            if (props.portalId === undefined || props.defaultPagesSettings.PortalId === props.portalId) {
+                portalIdChanged = false;
+            }
+            else {
+                portalIdChanged = true;
+            }
+            if (props.cultureCode === undefined || props.defaultPagesSettings.CultureCode === props.cultureCode) {
+                cultureCodeChanged = false;
+            }
+            else {
+                cultureCodeChanged = true;
+            }
 
-        const portalIdChanged = !prevProps.portalId && prevProps.portalId !== props.portalId;
-        const cultureCodeChanged = !prevProps.cultureCode && prevProps.cultureCode !== props.cultureCode;
-
-        if(portalIdChanged || cultureCodeChanged) {
-            this.loadData();
+            if (portalIdChanged || cultureCodeChanged) {
+                this.loadData();
+            }
         }
     }
 
@@ -170,9 +183,12 @@ class DefaultPagesSettingsPanelBody extends Component {
                     />
                 </InputGroup>
                 <InputGroup>
+                    {/* Setting a style here to workaround this issue: https://github.com/romainberger/react-portal-tooltip/issues/84
+                        TODO: remove the style once the underlying issue is resolved */}
                     <Label
                         tooltipMessage={resx.get("plRegisterTabId.Help")}
-                        label={resx.get("plRegisterTabId")}
+                        label={resx.get("plRegisterTabId")}                        
+                        tooltipStyle={{ float: "", width : "68%"}}                        
                     />
                     <PagePicker
                         serviceFramework={util.utilities.sf}
@@ -340,7 +356,7 @@ function mapStateToProps(state) {
         tabIndex: state.pagination.tabIndex,
         defaultPagesSettings: state.siteBehavior.defaultPagesSettings,
         defaultPagesSettingsClientModified: state.siteBehavior.defaultPagesSettingsClientModified,
-        portalId: state.siteInfo.settings ? state.siteInfo.settings.PortalId : undefined,
+        portalId: state.siteInfo ? state.siteInfo.portalId : undefined,
     };
 }
 
