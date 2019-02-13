@@ -24,6 +24,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Security;
 using System.Text.RegularExpressions;
 using Dnn.PersonaBar.Library;
 using Dnn.PersonaBar.Library.Common;
@@ -103,7 +104,7 @@ namespace Dnn.PersonaBar.Users.Components
             //ensure this user doesn't exist
             if (!string.IsNullOrEmpty(username) && UserController.GetUserByName(portalSettings.PortalId, username) != null)
             {
-                throw new Exception(Localization.GetString("RegistrationUsernameAlreadyPresent",
+                throw new SecurityException(Localization.GetString("RegistrationUsernameAlreadyPresent",
                     Library.Constants.SharedResources));
             }
 
