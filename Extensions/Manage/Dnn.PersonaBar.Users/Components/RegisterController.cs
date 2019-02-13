@@ -30,6 +30,7 @@ using Dnn.PersonaBar.Library;
 using Dnn.PersonaBar.Library.Common;
 using Dnn.PersonaBar.Users.Components.Contracts;
 using Dnn.PersonaBar.Users.Components.Dto;
+using Dnn.PersonaBar.Users.Components.Exceptions;
 using DotNetNuke.Common;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Portals;
@@ -104,7 +105,7 @@ namespace Dnn.PersonaBar.Users.Components
             //ensure this user doesn't exist
             if (!string.IsNullOrEmpty(username) && UserController.GetUserByName(portalSettings.PortalId, username) != null)
             {
-                throw new SecurityException(Localization.GetString("RegistrationUsernameAlreadyPresent",
+                throw new BadRequestException(Localization.GetString("RegistrationUsernameAlreadyPresent",
                     Library.Constants.SharedResources));
             }
 

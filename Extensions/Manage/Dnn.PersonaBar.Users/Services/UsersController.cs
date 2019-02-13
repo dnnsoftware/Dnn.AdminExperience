@@ -46,6 +46,7 @@ using DotNetNuke.Web.Api;
 using System.Collections.Generic;
 using System.IO;
 using DotNetNuke.Entities.Portals;
+using Dnn.PersonaBar.Users.Components.Exceptions;
 
 namespace Dnn.PersonaBar.Users.Services
 {
@@ -87,7 +88,7 @@ namespace Dnn.PersonaBar.Users.Services
                         userInfo.UserId))
                     : null);
             }
-            catch (SecurityException ex)
+            catch (BadRequestException ex)
             {
                 Logger.Error(ex);
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message);
