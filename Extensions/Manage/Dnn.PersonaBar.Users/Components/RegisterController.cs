@@ -24,7 +24,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Security;
 using System.Text.RegularExpressions;
 using Dnn.PersonaBar.Library;
 using Dnn.PersonaBar.Library.Common;
