@@ -24,7 +24,9 @@ module.exports = {
         publicPath: isProduction ? "" : "http://localhost:8080/dist/",
         filename: "security-settings-bundle.js"
     },
-
+    devServer: {
+        disableHostCheck: !isProduction
+    },
     resolve: {
         extensions: ["*", ".js", ".json", ".jsx"],
         modules: [
@@ -38,9 +40,10 @@ module.exports = {
                 test: /\.(js|jsx)$/, 
                 exclude: /node_modules/, 
                 enforce: "pre",
-                use: [
-                    'eslint-loader'
-                ] 
+                loader: 'eslint-loader',
+                options: {
+                    fix: true
+                }
             },
             { 
                 test: /\.less$/, 

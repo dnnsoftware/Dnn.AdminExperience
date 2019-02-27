@@ -24,9 +24,8 @@ class IgnoreWordsPanel extends Component {
     }
 
     loadData() {
-        const { props, state } = this;
-        const culture = state.culture ? state.culture : props.cultureCode;
-        props.dispatch(SearchActions.getIgnoreWords(props.portalId, culture, (data) => {
+        const { props } = this;
+        props.dispatch(SearchActions.getIgnoreWords(props.portalId, props.cultureCode, (data) => {
             this.setState({
                 ignoreWords: Object.assign({}, data),
                 culture: data.CultureCode
@@ -45,15 +44,29 @@ class IgnoreWordsPanel extends Component {
         this.loadData();
     }
 
-    componentDidUpdate(prevProps, prevState) {
-        const { props, state } = this;
+    componentDidUpdate(prevProps) {
+        const { props } = this;
 
-        const cultureCodeChanged = props.cultureCode !== prevProps.cultureCode;
-        const portalIdChanged = props.portalId !== prevProps.portalId;
-        const currentCultureChanged = state.culture !== prevState.culture;
+        if (props.ignoreWords) {
+            let portalIdChanged = false;
+            let cultureCodeChanged = false;
+            if (props.portalId === undefined || prevProps.portalId === props.portalId) {
+                portalIdChanged = false;
+            }
+            else {
+                portalIdChanged = true;
+            }
 
-        if(cultureCodeChanged || portalIdChanged || currentCultureChanged) {
-            this.loadData();
+            if (props.cultureCode === undefined || prevProps.cultureCode === props.cultureCode) {
+                cultureCodeChanged = false;
+            }
+            else {
+                cultureCodeChanged = true;
+            }
+
+            if (portalIdChanged || cultureCodeChanged) {
+                this.loadData();
+            }
         }
     }
 
@@ -253,7 +266,7 @@ function mapStateToProps(state) {
         ignoreWords: state.search.ignoreWords,
         tabIndex: state.pagination.tabIndex,
         cultures: state.search.cultures,
-        portalId: state.siteInfo.settings ? state.siteInfo.settings.PortalId : undefined,
+        portalId: state.siteInfo ? state.siteInfo.portalId : undefined,
     };
 }
 

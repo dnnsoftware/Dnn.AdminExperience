@@ -36,7 +36,9 @@ class PageDetailsFooter extends Component {
                 onChangeIncludeInMenu={this.onChangeValue.bind(this,"includeInMenu")} />];
             if (includeTemplates && page.tabId === 0) {
                 defaultLeftColumnComponents.push(
-                    <Template templates={page.templates} 
+                    <Template 
+                        key={"templateKey-" + page.tabId}
+                        templates={page.templates} 
                         selectedTemplateId={page.templateId}
                         onSelect={this.onChangeField.bind(this, "templateId")} />
                 );
@@ -56,7 +58,7 @@ class PageDetailsFooter extends Component {
         for (let i = 0; i < elements.length; i++) {
             let index = this.getInteger(elements[i].order);
             const Component = elements[i].component;
-            const instance = <Component page={this.props.page} onChange={this.onChangeValue.bind(this)} 
+            const instance = <Component key={"component" + i.toString()} page={this.props.page} onChange={this.onChangeValue.bind(this)} 
                 store={elements[i].store} />;
 
             if (index || index === 0) {
