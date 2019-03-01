@@ -13,8 +13,8 @@ import resx from "../../../../resources";
 let isHost = false;
 
 class LanguageEditor extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
             languageDetail: {
@@ -39,9 +39,9 @@ class LanguageEditor extends Component {
         }
     }
 
-    componentDidUpdate(newProps) {
+    componentDidUpdate(prevProps) {
         const { props } = this;
-        if(props.languageDetail !== newProps.languageDetail) {
+        if(props.languageDetail !== prevProps.languageDetail) {
             this.setState({
                 languageDetail: Object.assign({}, props.languageDetail)
             });
@@ -237,7 +237,7 @@ class LanguageEditor extends Component {
 
     renderNewForm() {
         let {state, props} = this;
-        const columnOne = <div className="left-column">
+        const columnOne = <div key="left-column" className="left-column">
             <InputGroup>
                 <Label
                     tooltipMessage={resx.get("languageLabel.Help")}
@@ -252,7 +252,7 @@ class LanguageEditor extends Component {
                 />
             </InputGroup>
         </div>;
-        const columnTwo = <div className="right-column">
+        const columnTwo = <div key="right-column" className="right-column">
             <InputGroup>
                 <Label
                     tooltipMessage={resx.get("fallBackLabel.Help")}
@@ -289,7 +289,7 @@ class LanguageEditor extends Component {
 
     renderEditForm() {
         let {state} = this;
-        const columnOne = <div className="left-column">
+        const columnOne = <div className="left-column" key="editForm-columnOne">
             <InputGroup>
                 <Label
                     tooltipMessage={resx.get("fallBackLabel.Help")}
@@ -305,7 +305,7 @@ class LanguageEditor extends Component {
                 />
             </InputGroup>
         </div>;
-        const columnTwo = <div className="right-column">
+        const columnTwo = <div className="right-column" key="editForm-columnTwo">
             <InputGroup>
                 <div className="languageDetailSettings-row_switch">
                     <Label
@@ -423,7 +423,7 @@ function mapStateToProps(state) {
         fullLanguageList: state.languages.fullLanguageList,
         languageDisplayModes: state.languages.languageDisplayModes,
         languageClientModified: state.languages.languageClientModified,
-        portalId: state.siteInfo.settings ? state.siteInfo.settings.PortalId : undefined,
+        portalId: state.siteInfo ? state.siteInfo.portalId : undefined,
     };
 }
 
