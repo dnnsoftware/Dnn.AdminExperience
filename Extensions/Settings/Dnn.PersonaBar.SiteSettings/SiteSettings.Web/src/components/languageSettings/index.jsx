@@ -175,7 +175,7 @@ class LanguageSettingsPanelBody extends Component {
         );
     }
 
-    /* eslint-disable react/no-danger */
+    /* eslint-disable react/no-danger test */
     render() {
         const {props, state} = this;
         if (state.languageSettings) {
