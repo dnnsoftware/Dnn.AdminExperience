@@ -5,7 +5,7 @@ const isProduction = process.env.NODE_ENV === "production";
 module.exports = {
     entry: "./index",
     optimization: {
-        minimize: false
+        minimize: isProduction
     },
     node: {
         fs: "empty"

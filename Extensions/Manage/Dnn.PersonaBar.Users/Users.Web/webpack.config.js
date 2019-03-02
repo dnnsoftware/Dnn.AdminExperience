@@ -6,7 +6,7 @@ const webpackExternals = require("@dnnsoftware/dnn-react-common/WebpackExternals
 module.exports = {
     entry: "./src/main.jsx",
     optimization: {
-        minimize: false
+        minimize: isProduction
     },
     output: {
         path: path.resolve("../admin/personaBar/scripts/bundles/"),
