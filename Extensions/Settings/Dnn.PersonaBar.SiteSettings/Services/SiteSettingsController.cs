@@ -1579,7 +1579,8 @@ namespace Dnn.PersonaBar.SiteSettings.Services
                         DisplayCopyright = HostController.Instance.GetBoolean("Copyright", true),
                         portalSettings.GdprActive,
                         GdprResetTerms = false,
-                        portalSettings.GdprConsentRedirect,
+                        GdprConsentRedirect = TabSanitizer(portalSettings.GdprConsentRedirect, pid)?.TabID,
+                        GdprConsentRedirectName = TabSanitizer(portalSettings.GdprConsentRedirect, pid)?.TabName,
                         GdprUserDeleteAction = (int)portalSettings.GdprUserDeleteAction
                     }
                 });
@@ -1621,7 +1622,7 @@ namespace Dnn.PersonaBar.SiteSettings.Services
                     PortalController.UpdatePortalSetting(pid, "GdprTermsLastChange", DateTime.Now.ToString("u"), false);
                     UserController.ResetTermsAgreement(pid);
                 }
-                PortalController.UpdatePortalSetting(pid, "GdprConsentRedirect", request.GdprConsentRedirect.ToString(), false);
+                PortalController.UpdatePortalSetting(pid, "GdprConsentRedirect", ValidateTabId(request.GdprConsentRedirect, pid).ToString(), false);
                 PortalController.UpdatePortalSetting(pid, "GdprUserDeleteAction", request.GdprUserDeleteAction.ToString(), false);
                 DataCache.ClearCache();
 
