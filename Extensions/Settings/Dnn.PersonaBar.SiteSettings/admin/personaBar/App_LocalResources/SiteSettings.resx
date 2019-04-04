@@ -1072,7 +1072,7 @@
     <value>Enable Localized Content</value>
   </data>
   <data name="EnableLocalizedContentHelpText.Text" xml:space="preserve">
-    <value>Enabling localized content allows you to provide translated module content in addition to displaying translated static text. Once localized contetnt is enabled the default site culture will be permanently set and <strong>cannot be changed</strong>.</value>
+    <value />
   </data>
   <data name="EnableLocalizedContentClickCancel.Text" xml:space="preserve">
     <value>Click Cancel now if you want to change the current site default.</value>
@@ -1367,5 +1367,47 @@
   </data>
   <data name="plDisplayCopyright.Text" xml:space="preserve">
     <value>Display Copyright</value>
+  </data>
+  <data name="GdprActive.Help" xml:space="preserve">
+    <value>When switched on, registered users will be forced to consent to the terms and conditions of this site</value>
+  </data>
+  <data name="GdprActive.Text" xml:space="preserve">
+    <value>GDPR Active</value>
+  </data>
+  <data name="GdprConsentRedirect.Help" xml:space="preserve">
+    <value>If a page is selected then users will be taken to this page to sign their consent. If not then DNN will offer a default screen for this.</value>
+  </data>
+  <data name="GdprConsentRedirect.Text" xml:space="preserve">
+    <value>Consent Redirect</value>
+  </data>
+  <data name="GdprResetTerms.Text" xml:space="preserve">
+    <value>Reset Terms and Conditions</value>
+  </data>
+  <data name="GdprResetTerms.Warning" xml:space="preserve">
+    <value>Switching this on means all users will need to reconsent to the terms and conditions! Only do this when terms and conditions have changed.</value>
+  </data>
+  <data name="GdprSettings.Text" xml:space="preserve">
+    <value>GDPR Settings</value>
+  </data>
+  <data name="GdprUserDelayedHardDelete.Text" xml:space="preserve">
+    <value>Delayed Hard Delete</value>
+  </data>
+  <data name="GdprUserDeleteAction.Help" xml:space="preserve">
+    <value>Specify what should happen when a user opts to delete their profile from the site</value>
+  </data>
+  <data name="GdprUserDeleteAction.Text" xml:space="preserve">
+    <value>User Delete Action</value>
+  </data>
+  <data name="GdprUserHardDelete.Text" xml:space="preserve">
+    <value>Hard Delete</value>
+  </data>
+  <data name="GdrpUserAnonymize.Text" xml:space="preserve">
+    <value>Anonymize</value>
+  </data>
+  <data name="Reset.Text" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="Warning.Text" xml:space="preserve">
+    <value>Warning</value>
   </data>
 </root>
