@@ -824,6 +824,30 @@ namespace Dnn.PersonaBar.Sites.Components
                 writer.WriteElementString("cookiemorelink", setting);
             }
 
+            settingsDictionary.TryGetValue("GdprActive", out setting);
+            if (!string.IsNullOrEmpty(setting))
+            {
+                writer.WriteElementString("gdpractive", setting);
+            }
+
+            settingsDictionary.TryGetValue("GdprTermsLastChange", out setting);
+            if (!string.IsNullOrEmpty(setting))
+            {
+                writer.WriteElementString("gdprtermslastchange", setting);
+            }
+
+            settingsDictionary.TryGetValue("GdprConsentRedirect", out setting);
+            if (!string.IsNullOrEmpty(setting))
+            {
+                writer.WriteElementString("gdprconsentredirect", setting);
+            }
+
+            settingsDictionary.TryGetValue("GdprUserDeleteAction", out setting);
+            if (!string.IsNullOrEmpty(setting))
+            {
+                writer.WriteElementString("gdpruserdeleteaction", setting);
+            }
+            
             //End Portal Settings
             writer.WriteEndElement();
         }

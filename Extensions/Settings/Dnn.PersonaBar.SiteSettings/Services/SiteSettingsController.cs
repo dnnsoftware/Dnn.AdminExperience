@@ -1576,7 +1576,11 @@ namespace Dnn.PersonaBar.SiteSettings.Services
                         portalSettings.CookieMoreLink,
                         CheckUpgrade = HostController.Instance.GetBoolean("CheckUpgrade", true),
                         DnnImprovementProgram = HostController.Instance.GetBoolean("DnnImprovementProgram", true),
-                        DisplayCopyright = HostController.Instance.GetBoolean("Copyright", true)
+                        DisplayCopyright = HostController.Instance.GetBoolean("Copyright", true),
+                        portalSettings.GdprActive,
+                        GdprResetTerms = false,
+                        portalSettings.GdprConsentRedirect,
+                        GdprUserDeleteAction = (int)portalSettings.GdprUserDeleteAction
                     }
                 });
             }
@@ -1611,6 +1615,14 @@ namespace Dnn.PersonaBar.SiteSettings.Services
                 HostController.Instance.Update("CheckUpgrade", request.CheckUpgrade ? "Y" : "N", false);
                 HostController.Instance.Update("DnnImprovementProgram", request.DnnImprovementProgram ? "Y" : "N", false);
                 HostController.Instance.Update("Copyright", request.DisplayCopyright ? "Y" : "N", false);
+                PortalController.UpdatePortalSetting(pid, "GdprActive", request.GdprActive.ToString(), false);
+                if (request.GdprResetTerms)
+                {
+                    PortalController.UpdatePortalSetting(pid, "GdprTermsLastChange", DateTime.Now.ToString("u"), false);
+                    UserController.ResetTermsAgreement(pid);
+                }
+                PortalController.UpdatePortalSetting(pid, "GdprConsentRedirect", request.GdprConsentRedirect.ToString(), false);
+                PortalController.UpdatePortalSetting(pid, "GdprUserDeleteAction", request.GdprUserDeleteAction.ToString(), false);
                 DataCache.ClearCache();
 
                 return Request.CreateResponse(HttpStatusCode.OK, new { Success = true });
