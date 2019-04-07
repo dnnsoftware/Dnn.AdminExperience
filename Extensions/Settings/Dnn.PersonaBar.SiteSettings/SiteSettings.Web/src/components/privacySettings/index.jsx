@@ -77,6 +77,16 @@ class PrivacySettingsPanelBody extends Component {
     ];
   }
 
+  onGdprResetTerms() {
+    if (confirm(resx.get("GdprResetTerms.Confirm"))) {
+      SiteBehaviorActions.resetTermsAgreement({
+        PortalId: this.state.privacySettings.PortalId
+      }, () => {
+        alert(resx.get("GdprResetTerms.Completed"));
+      });
+    }
+  }
+
   onSettingChange(key, event) {
     let { state, props } = this;
     let privacySettings = Object.assign({}, state.privacySettings);
@@ -108,7 +118,7 @@ class PrivacySettingsPanelBody extends Component {
           util.utilities.notify(resx.get("SettingsUpdateSuccess"));
           this.setState({
             privacySettings: Object.assign({}, this.state.privacySettings, {
-                GdprResetTerms: false
+              GdprResetTerms: false
             })
           });
         },
@@ -321,17 +331,14 @@ class PrivacySettingsPanelBody extends Component {
     const columnThreeRight = state.privacySettings ? (
       <div key="column-two-right" className="right-column">
         <div class="warningBox">
-          <InputGroup>
-            <Label labelType="inline" label={resx.get("GdprResetTerms")} />
-            <Switch
-              onText={resx.get("Reset")}
-              offText={""}
-              value={state.privacySettings.GdprResetTerms}
-              onChange={this.onSettingChange.bind(this, "GdprResetTerms")}
-            />
-          </InputGroup>
-          <div class="warning">{resx.get("Warning")}</div>
-          <div>{resx.get("GdprResetTerms.Warning")}</div>
+          <div className="warningText">
+            {resx.get("GdprResetTerms.Warning")}
+          </div>
+          <div className="warningButton">
+            <Button type="secondary" onClick={this.onGdprResetTerms.bind(this)}>
+              {resx.get("GdprResetTerms")}
+            </Button>
+          </div>
         </div>
       </div>
     ) : (

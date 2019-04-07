@@ -1617,15 +1617,39 @@ namespace Dnn.PersonaBar.SiteSettings.Services
                 HostController.Instance.Update("DnnImprovementProgram", request.DnnImprovementProgram ? "Y" : "N", false);
                 HostController.Instance.Update("Copyright", request.DisplayCopyright ? "Y" : "N", false);
                 PortalController.UpdatePortalSetting(pid, "GdprActive", request.GdprActive.ToString(), false);
-                if (request.GdprResetTerms)
-                {
-                    PortalController.UpdatePortalSetting(pid, "GdprTermsLastChange", DateTime.Now.ToString("u"), false);
-                    UserController.ResetTermsAgreement(pid);
-                }
                 PortalController.UpdatePortalSetting(pid, "GdprConsentRedirect", ValidateTabId(request.GdprConsentRedirect, pid).ToString(), false);
                 PortalController.UpdatePortalSetting(pid, "GdprUserDeleteAction", request.GdprUserDeleteAction.ToString(), false);
                 DataCache.ClearCache();
 
+                return Request.CreateResponse(HttpStatusCode.OK, new { Success = true });
+            }
+            catch (Exception exc)
+            {
+                Logger.Error(exc);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc);
+            }
+        }
+
+        /// POST: api/SiteSettings/ResetTermsAgreement
+        /// <summary>
+        /// Resets terms and conditions agreements
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [DnnAuthorize(StaticRoles = Constants.AdminsRoleName)]
+        public HttpResponseMessage ResetTermsAgreement(ResetTermsAgreementRequest request)
+        {
+            try
+            {
+                var pid = request.PortalId ?? PortalId;
+                if (!UserInfo.IsSuperUser && PortalId != pid)
+                {
+                    return Request.CreateErrorResponse(HttpStatusCode.Unauthorized, AuthFailureMessage);
+                }
+                UserController.ResetTermsAgreement(pid);
+                PortalController.UpdatePortalSetting(pid, "GdprTermsLastChange", DateTime.Now.ToString("u"), true);
                 return Request.CreateResponse(HttpStatusCode.OK, new { Success = true });
             }
             catch (Exception exc)
