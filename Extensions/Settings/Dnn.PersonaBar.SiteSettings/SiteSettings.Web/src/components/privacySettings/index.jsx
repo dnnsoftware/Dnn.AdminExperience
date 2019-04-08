@@ -78,13 +78,21 @@ class PrivacySettingsPanelBody extends Component {
   }
 
   onGdprResetTerms() {
-    if (confirm(resx.get("GdprResetTerms.Confirm"))) {
-      SiteBehaviorActions.resetTermsAgreement({
-        PortalId: this.state.privacySettings.PortalId
-      }, () => {
-        alert(resx.get("GdprResetTerms.Completed"));
-      });
-    }
+    util.utilities.confirm(
+      resx.get("GdprResetTerms.Confirm"),
+      resx.get("Yes"),
+      resx.get("No"),
+      function onGdprResetTermsConfirm() {
+        SiteBehaviorActions.resetTermsAgreement(
+          {
+            PortalId: this.state.privacySettings.PortalId
+          },
+          () => {
+            util.utilities.notify(resx.get("GdprResetTerms.Completed"));
+          }
+        );
+      }.bind(this)
+    );
   }
 
   onSettingChange(key, event) {

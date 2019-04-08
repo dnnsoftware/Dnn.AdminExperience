@@ -1372,7 +1372,7 @@
     <value>When switched on, registered users will be forced to consent to the terms and conditions of this site</value>
   </data>
   <data name="GdprActive.Text" xml:space="preserve">
-    <value>GDPR Active</value>
+    <value>Data Consent Active</value>
   </data>
   <data name="GdprConsentRedirect.Help" xml:space="preserve">
     <value>If a page is selected then users will be taken to this page to sign their consent. If not then DNN will offer a default screen for this.</value>
@@ -1384,10 +1384,10 @@
     <value>Reset Terms and Conditions</value>
   </data>
   <data name="GdprResetTerms.Warning" xml:space="preserve">
-    <value>Switching this on means all users will need to reconsent to the terms and conditions! Only do this when terms and conditions have changed.</value>
+    <value>Use the button below to force all users to consent to the terms and conditions again. Use this when terms and conditions have changed.</value>
   </data>
   <data name="GdprSettings.Text" xml:space="preserve">
-    <value>GDPR Settings</value>
+    <value>Data Consent Settings</value>
   </data>
   <data name="GdprUserDelayedHardDelete.Text" xml:space="preserve">
     <value>Delayed Hard Delete</value>
@@ -1409,5 +1409,11 @@
   </data>
   <data name="Warning.Text" xml:space="preserve">
     <value>Warning</value>
+  </data>
+  <data name="GdprResetTerms.Completed" xml:space="preserve">
+    <value>Consent for terms and conditions have been reset</value>
+  </data>
+  <data name="GdprResetTerms.Confirm" xml:space="preserve">
+    <value>Do you wish to reset all users consent and force everyone to consent to the terms and conditions again?</value>
   </data>
 </root>
