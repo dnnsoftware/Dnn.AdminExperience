@@ -1,13 +1,10 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import {
     languages as LanguagesActions
 } from "../../../actions";
-import PersonaBarPageBody from "dnn-persona-bar-page-body";
-import InputGroup from "dnn-input-group";
-import Label from "dnn-label";
-import Button from "dnn-button";
-import Switch from "dnn-switch";
+import { PersonaBarPageBody, InputGroup, Label, Button, Switch } from "@dnnsoftware/dnn-react-common";
 import resx from "../../../resources";
 import util from "../../../utils";
 import TranslationProgressBars from "../TranslationProgressBars";
@@ -103,7 +100,7 @@ class LocalizedContent extends Component {
                         <Label
                             tooltipMessage={resx.get("CurrentSiteDefault.Help") }
                             label={resx.get("CurrentSiteDefault") }
-                            />
+                        />
                         <div>
                             <div className="language-flag">
                                 {!!defaultLanguage.Icon && <img src={defaultLanguage.Icon} alt={defaultLanguage.EnglishName} />}
@@ -115,12 +112,12 @@ class LocalizedContent extends Component {
                             offText={resx.get("SwitchOff")}
                             value={state.allPagesTranslatable}
                             onChange={this.onChange.bind(this) }
-                            />
+                        />
                         <Label
                             className="float-right"
                             tooltipMessage={resx.get("AllPagesTranslatable.Help") }
                             label={resx.get("AllPagesTranslatable") }
-                            />
+                        />
                     </InputGroup>
 
                     {!state.showProgressBars && <div className="buttons-box">
@@ -146,8 +143,8 @@ class LocalizedContent extends Component {
                         TimeEstimated={this.state.TimeEstimated}
                         Error={this.state.Error}
                         CurrentOperationText={this.state.CurrentOperationText}
-                        closePersonaBarPage={props.closePersonaBarPage}
-                        />}
+                        closePersonaBarPage={props.closePersonaBarPage}/>
+                    }
                 </div>
             </PersonaBarPageBody>
         );
@@ -159,7 +156,7 @@ LocalizedContent.propTypes = {
     closePersonaBarPage: PropTypes.func,
     languages: PropTypes.array,
     isOpen: PropTypes.bool,
-    languageSettings: PropTypes.obj,
+    languageSettings: PropTypes.object,
     portalId: PropTypes.number
 };
 

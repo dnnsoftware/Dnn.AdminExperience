@@ -1,21 +1,20 @@
-import React, {Component, PropTypes} from "react";
+import React, {Component} from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import Button from "dnn-button";
-import PersonaBarPageHeader from "dnn-persona-bar-page-header";
+import { Button, PersonaBarPageHeader, PersonaBarPage } from "@dnnsoftware/dnn-react-common";
 import Body from "./Body/Body";
-import PersonaBarPage from "dnn-persona-bar-page";
 import localization from "../localization";
 import { bindActionCreators } from "redux";
 import ServerActions from "../actions/server";
 import utils from "../utils";
 
 const restartAppButtonStyle = {
-    "margin-right": "10px"
+    "marginRight": "10px"
 };
 
 class App extends Component { 
 
-    componentWillReceiveProps(newProps) {       
+    UNSAFE_componentWillReceiveProps(newProps) {       
         if (this.props.infoMessage !== newProps.infoMessage && newProps.infoMessage) {
             utils.notify(newProps.infoMessage);
         }
@@ -54,7 +53,7 @@ class App extends Component {
 }
 
 App.propTypes = {
-    dispatch: PropTypes.func.isRequired,
+    dispatch: PropTypes.func,
     selectedPage: PropTypes.number,
     selectedPageVisibleIndex: PropTypes.number,
     onRestartApplicationClicked: PropTypes.func.isRequired,

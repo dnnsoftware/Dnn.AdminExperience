@@ -2,56 +2,87 @@
 const packageJson = require("./package.json");
 const path = require("path");
 const isProduction = process.env.NODE_ENV === "production";
-const languages = {
-    "en": null
-    // TODO: create locallizaton files per language 
-    // "de": require("./localizations/de.json"),
-    // "es": require("./localizations/es.json"),
-    // "fr": require("./localizations/fr.json"),
-    // "it": require("./localizations/it.json"),
-    // "nl": require("./localizations/nl.json")
-};
-
-const webpackExternals = Object.assign({},
-    require("dnn-webpack-externals"), {
-        "dnn-back-to": "window.dnn.nodeModules.PersonaBarComponents.BackTo"
-    });
+const webpackExternals = require("@dnnsoftware/dnn-react-common/WebpackExternals");
 
 module.exports = {
     entry: "./src/main.jsx",
+    optimization: {
+        minimize: isProduction
+    },
     output: {
-        path: "../admin/personaBar/scripts/bundles/",
-        filename: "site-settings-bundle.js",
-        publicPath: isProduction ? "" : "http://localhost:8085/dist/"
+        path: path.resolve(__dirname, '../admin/personaBar/scripts/bundles/'),
+        publicPath: isProduction ? "" : "http://localhost:8085/dist/",
+        filename: "site-settings-bundle.js"
     },
-
-    module: {
-        loaders: [
-            { test: /\.(js|jsx)$/, exclude: /node_modules/, loaders: ["react-hot-loader", "babel-loader"] },
-            { test: /\.less$/, loader: "style-loader!css-loader!less-loader" },
-            { test: /\.(ttf|woff)$/, loader: "url-loader?limit=8192" },
-            { test: /\.(svg)$/, exclude: /node_modules/, loader: "raw-loader" }
-        ],
-
-        preLoaders: [
-            { test: /\.(js|jsx)$/, exclude: /node_modules/, loader: "eslint-loader" },
-            { test: /\.js$/, loader: "source-map-loader" }
-        ]
+    devServer: {
+        disableHostCheck: !isProduction
     },
-
     resolve: {
-        extensions: ["", ".js", ".json", ".jsx"],
-        root: [
-            path.resolve('./src'),          // Look in src first
-            path.resolve('./node_modules')  // Last fallback to node_modules
+        extensions: ["*", ".js", ".json", ".jsx"],
+        modules: [
+            path.resolve('./src'),           // Look in src first
+            path.resolve('./node_modules')   // Last fallback to node_modules
         ]
     },
-
+    module: {
+        rules: [
+            { 
+                test: /\.(js|jsx)$/, 
+                exclude: /node_modules/, 
+                enforce: "pre",
+                loader: 'eslint-loader',
+                options: {
+                    fix: true
+                }                
+            },
+            { 
+                test: /\.js$/, 
+                enforce: "pre",
+                use: [
+                    'source-map-loader'
+                ] 
+            },
+            { 
+                test: /\.less$/, 
+                use: [{
+                    loader: 'style-loader'  // creates style nodes from JS strings
+                }, {
+                    loader: 'css-loader'    // translates CSS into CommonJS
+                }, {
+                    loader: 'less-loader'   // compiles Less to CSS
+                }]
+            },
+            { 
+                test: /\.(js|jsx)$/, 
+                exclude: /node_modules/,
+                use: {
+                    loader:'babel-loader',
+                    options: { 
+                        presets: ['@babel/preset-env', '@babel/preset-react'], 
+                        "plugins": [
+                            "@babel/plugin-transform-react-jsx",
+                            "@babel/plugin-proposal-object-rest-spread"
+                        ] 
+                    }
+                }
+            },
+            {
+                test: /\.(ttf|woff)$/, 
+                use: {
+                    loader: 'url-loader?limit=8192'
+                }
+            },
+            { 
+                test: /\.(svg)$/, 
+                exclude: /node_modules/, 
+                use: [
+                    'raw-loader'
+                ] 
+            }
+        ]
+    },
     externals: webpackExternals,
-
     plugins: isProduction ? [
-        new webpack.optimize.UglifyJsPlugin(),
-        new webpack.optimize.DedupePlugin(),
         new webpack.DefinePlugin({
             VERSION: JSON.stringify(packageJson.version),
             "process.env": {

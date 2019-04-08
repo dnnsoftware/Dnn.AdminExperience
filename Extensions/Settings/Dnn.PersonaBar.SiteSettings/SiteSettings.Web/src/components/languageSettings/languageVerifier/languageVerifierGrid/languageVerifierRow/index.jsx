@@ -1,10 +1,11 @@
-import React, { Component, PropTypes } from "react";
-import Collapse from "dnn-collapsible";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { Collapsible, SvgIcons } from "@dnnsoftware/dnn-react-common";
 import "./style.less";
-import { ArrowDownIcon } from "dnn-svg-icons";
 
 class LanguageVerifierRow extends Component {
-    componentWillMount() {
+
+    componentDidMount() {
         let opened = (this.props.openId !== "" && this.props.id === this.props.openId);
         this.setState({
             opened
@@ -31,10 +32,10 @@ class LanguageVerifierRow extends Component {
                         <div className="verifier-item item-row-name">
                             {props.text}
                         </div>     
-                        <div className="arrow-icon" dangerouslySetInnerHTML={{ __html: ArrowDownIcon }} onClick={this.toggle.bind(this)} />                    
+                        <div className="arrow-icon" dangerouslySetInnerHTML={{ __html: SvgIcons.ArrowDownIcon }} onClick={this.toggle.bind(this)} />
                     </div>
                 </div>
-                <Collapse isOpened={opened} style={{ float: "left", width: "100%" }}>{opened && props.children}</Collapse>
+                <Collapsible isOpened={opened} style={{ width: "100%", overflow: "visible" }}>{opened && props.children}</Collapsible>
             </div>
         );
     }

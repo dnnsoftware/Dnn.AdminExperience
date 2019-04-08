@@ -13,7 +13,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Dnn.PersonaBar.Pages</RootNamespace>
     <AssemblyName>Dnn.PersonaBar.Pages</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <UseIISExpress>false</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
@@ -157,6 +157,7 @@
     <Compile Include="Services\Dto\DnnPageDto.cs" />
     <Compile Include="Services\Dto\DnnPagesRequest.cs" />
     <Compile Include="Services\Dto\DnnPagesDto.cs" />
+    <Compile Include="Services\Dto\FileDto.cs" />
     <Compile Include="Services\Dto\ModuleCopyType.cs" />
     <Compile Include="Services\Dto\ModuleItem.cs" />
     <Compile Include="Services\Dto\PageFolderTemplate.cs" />

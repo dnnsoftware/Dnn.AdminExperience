@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import { PropTypes } from "prop-types";
 import utils from "utils";
-
 import "./styles.less";
-import SingleLineInput from "dnn-single-line-input";
-
+import { SingleLineInput } from "@dnnsoftware/dnn-react-common";
 import PersonaBarPageIcon from "./_PersonaBarPageIcon";
 import PersonaBarDraftPencilIcon from "./_PersonaBarDraftPencilIcon";
 
@@ -160,10 +158,10 @@ export class PersonaBarPageTreeview extends Component {
             const onDragLeave = e => e.target.classList.remove("list-item-dragover");
             index++;
 
-            const style = item.canManagePage ? { "white-space": "nowrap", height: "28px", lineHeight: "35px", marginLeft: "15px" } : { height: "28px", marginLeft: "15px" };
-            const itemNameHidden = item.status == "Hidden" ? "item-name-hidden" : "";
+            const style = item.canManagePage ? { "whiteSpace": "nowrap", height: "28px", lineHeight: "35px", marginLeft: "15px" } : { height: "28px", marginLeft: "15px" };
+            const itemNameHidden = item.status === "Hidden" ? "item-name-hidden" : "";
             return (
-                <li id={`list-item-${item.name}-${item.id}`}>
+                <li key={"list-item-key-" + index} id={`list-item-${item.name}-${item.id}`}>
                     <div className={item.onDragOverState && item.id !== draggedItem.id ? "dropZoneActive" : "dropZoneInactive"} >
                         {this.renderDropZone("before", item)}
                         <div
@@ -178,19 +176,20 @@ export class PersonaBarPageTreeview extends Component {
                             onDragStart={(e) => { canManagePage(e, item, onDragStart); }}
                             onDragLeave={(e) => canManagePage(e, item, onDragLeave)}
                             onDragEnd={(e) => { canManagePage(e, item, onDragEnd); }}
-                            onClick={(e) => { item.canManagePage ? onSelection(item) : onNoPermissionSelection(item); }}
+                            onClick={() => { item.canManagePage ? onSelection(item) : onNoPermissionSelection(item); }}
                         >
                         </div>
 
                         <div style={style} className={this.getClassName(item)}>
-                            <PersonaBarPageIcon iconType={item.pageType} selected={item.selected} />
+                            <PersonaBarPageIcon iconType={item.pageType} selected={item.selected || false} />
                             <span
                                 className={`item-name ${itemNameHidden}`}
-                                onClick={e => item.canManagePage ? onSelection(item) : onNoPermissionSelection(item)}>
+                                onClick={() => item.canManagePage ? onSelection(item) : onNoPermissionSelection(item)}>
                                 { (item.tabId === 0) || (item.selected && selectedPageDirty) ? 
                                     (
                                         <SingleLineInput 
                                             style={{ marginBottom: "0px", width:"80%", height:"100%"}}
+                                            onChange={() => void(0)}
                                             value={name}/>
                                     ):
                                     name
@@ -220,9 +219,9 @@ export class PersonaBarPageTreeview extends Component {
 }
 
 PersonaBarPageTreeview.propTypes = {
-    draggedItem: PropTypes.object.isRequired,
-    droppedItem: PropTypes.object.isRequired,
-    dragOverItem: PropTypes.object.isRequired,
+    draggedItem: PropTypes.object,
+    droppedItem: PropTypes.object,
+    dragOverItem: PropTypes.object,
     onDrop: PropTypes.func.isRequired,
     onDrag: PropTypes.func.isRequired,
     onDragOver: PropTypes.func.isRequired,
@@ -235,10 +234,10 @@ PersonaBarPageTreeview.propTypes = {
     getChildListItems: PropTypes.func.isRequired,
     onSelection: PropTypes.func.isRequired,
     onNoPermissionSelection: PropTypes.func.isRequired,
-    icons: PropTypes.object.isRequired,
-    onSelect: PropTypes.func.isRequired,
+    icons: PropTypes.object,
+    onSelect: PropTypes.func,
     setEmptyPageMessage: PropTypes.func.isRequired,
-    Localization: PropTypes.func.isRequired,
+    Localization: PropTypes.object.isRequired,
     parentItem: PropTypes.object,
     selectedPageDirty: PropTypes.bool
 };

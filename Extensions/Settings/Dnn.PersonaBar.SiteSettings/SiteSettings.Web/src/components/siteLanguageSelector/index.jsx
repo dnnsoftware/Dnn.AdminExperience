@@ -1,13 +1,11 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import {
     siteInfo as SiteInfoActions,
     search as SearchActions
 } from "../../actions";
-import InputGroup from "dnn-input-group";
-import Dropdown from "dnn-dropdown";
-import Flag from "dnn-flag";
-import Label from "dnn-label";
+import { InputGroup, Dropdown, Flag, Label } from "@dnnsoftware/dnn-react-common";
 import "./style.less";
 import resx from "../../resources";
 import styles from "./style.less";
@@ -25,7 +23,7 @@ class SiteLanguageSelector extends Component {
         isHost = util.settings.isHost;
     }
 
-    componentWillMount() {
+    componentDidMount() {
         const {state, props} = this;
         this.setState({
             portalId: props.portalId,
@@ -41,15 +39,24 @@ class SiteLanguageSelector extends Component {
             }
         });
 
-        document.addEventListener("reloadPortalList", (e) => {
+        document.addEventListener("reloadPortalList", () => {
             props.dispatch(SiteInfoActions.getPortals());
         }, false);
     }
 
-    componentWillReceiveProps(props) {
-        const { state } = this;
-        if (props.portalId !== state.portalId && props.portalId !== undefined) {
-            this.onSiteChange({ value: props.portalId });
+    componentDidUpdate(prevProps) {
+        const { props, state } = this;
+        if (props.portals !== undefined) {
+            props.portals.map((item) => {
+                if (item.IsCurrentPortal && state.portalId === undefined) {
+                    this.setState({
+                        portalId: item.PortalID
+                    });
+                }
+            });
+        }
+        if (props.portalId !== undefined && props.portalId !== prevProps.portalId) {
+            this.onSiteChange({ value: props.portalId });         
         }
         if (props.cultureCode !== state.cultureCode) {
             this.onLanguageChange({ value: props.cultureCode });
@@ -104,15 +111,10 @@ class SiteLanguageSelector extends Component {
     }
 
     getSiteOptions() {
-        const {state, props} = this;
+        const {props} = this;
         let options = [];
         if (props.portals !== undefined) {
             options = props.portals.map((item) => {
-                if (item.IsCurrentPortal && state.portalId === undefined) {
-                    this.setState({
-                        portalId: item.PortalID
-                    });
-                }
                 return {
                     label: item.PortalName, value: item.PortalID
                 };
@@ -125,9 +127,9 @@ class SiteLanguageSelector extends Component {
         const {props} = this;
         let options = [];
         if (props.languages !== undefined) {
-            options = props.languages.map((item) => {
+            options = props.languages.map((item, i) => {
                 return (
-                    <div className={"language-flag" + (item.Code === this.state.cultureCode ? " selected": "")} onClick={this.onLanguageChange.bind(this, { value: item.Code })}>
+                    <div className={"language-flag" + (item.Code === this.state.cultureCode ? " selected": "")} onClick={this.onLanguageChange.bind(this, { value: item.Code })} key={i}>
                         <Flag culture={item.Code} title={item.Name} />
                     </div>
                 );
@@ -170,12 +172,12 @@ class SiteLanguageSelector extends Component {
                     <Label
                         labelType="inline"
                         label={resx.get("SiteSelectionLabel") + ":"}
-                        />
+                    />
                     <Dropdown
                         options={this.getSiteOptions()}
                         value={state.portalId}
                         onSelect={this.onSiteChange.bind(this)}
-                        />
+                    />
                 </InputGroup>
             </div>
             );

@@ -1,7 +1,6 @@
-import React, { Component, PropTypes } from "react";
-import Label from "dnn-label";
-import InputGroup from "dnn-input-group";
-import RadioButtons from "dnn-radio-buttons";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { Label, InputGroup, RadioButtons } from "@dnnsoftware/dnn-react-common";
 import GlobalIcon from "./GlobalIcon";
 
 export default class RadioButtonBlock extends Component {

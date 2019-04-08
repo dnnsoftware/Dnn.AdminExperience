@@ -1,5 +1,6 @@
-import React, {Component, PropTypes } from "react";
-import GridSystem from "dnn-grid-system";
+import React, {Component } from "react";
+import PropTypes from "prop-types";
+import { GridSystem } from "@dnnsoftware/dnn-react-common";
 import InfoBlock from "../common/InfoBlock";
 import Localization from "../../localization";
 import { connect } from "react-redux";
@@ -19,7 +20,7 @@ class Application extends Component {
         }        
     }
 
-    componentWillReceiveProps(newProps) {
+    UNSAFE_componentWillReceiveProps(newProps) {
         if (this.props.errorMessage !== newProps.errorMessage && newProps.errorMessage) {
             utils.notifyError(newProps.errorMessage);
         }

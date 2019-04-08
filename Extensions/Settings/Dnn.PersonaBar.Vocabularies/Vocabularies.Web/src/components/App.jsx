@@ -1,10 +1,9 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import Button from "dnn-button";
-import PersonaBarPageHeader from "dnn-persona-bar-page-header";
+import { Button, PersonaBarPageHeader, PersonaBarPage } from "@dnnsoftware/dnn-react-common";
 import VocabularyList from "./VocabularyList";
 import CreateVocabulary from "./CreateVocabulary";
-import PersonaBarPage from "dnn-persona-bar-page";
 import { visiblePanel as VisiblePanelActions } from "../actions";
 import LocalizedResources from "../resources";
 import util from "utils";
@@ -41,7 +40,7 @@ class App extends Component {
                     <PersonaBarPageHeader
                         title={LocalizedResources.get("Create")}
                         onCreateVocabulary={this.openCreateVocabulary.bind(this)}
-                        />
+                    />
                     {props.selectedPage === 1 && <CreateVocabulary onCloseVocabulary={this.closeCreateVocabulary.bind(this)} isOpen={props.selectedPage === 1} />}
                 </PersonaBarPage>
             </div>
@@ -49,11 +48,10 @@ class App extends Component {
     }
 }
 
-App.PropTypes = {
+App.propTypes = {
     dispatch: PropTypes.func.isRequired,
     selectedPage: PropTypes.number
 };
-
 
 function mapStateToProps(state) {
     return {
@@ -61,6 +59,5 @@ function mapStateToProps(state) {
         selectedPageVisibleIndex: state.visiblePanel.selectedPageVisibleIndex
     };
 }
-
 
 export default connect(mapStateToProps)(App);

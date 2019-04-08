@@ -1,12 +1,8 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import Button from "dnn-button";
-import PersonaBarPageHeader from "dnn-persona-bar-page-header";
-import PersonaBarPage from "dnn-persona-bar-page";
+import { Button, PersonaBarPageHeader, PersonaBarPage}  from "@dnnsoftware/dnn-react-common";
 import RolesPanel from "./roles";
-import {
-    visiblePanelActions as VisiblePanelActions
-} from "../actions";
 import resx from "../resources";
 import util from "utils";
 let canEdit = false;
@@ -16,14 +12,8 @@ class Root extends Component {
         canEdit = util.settings.isHost || util.settings.isAdmin || util.settings.permissions.EDIT;
     }
 
-    navigateMap(page, index, event) {
-        event.preventDefault();
-        const {props} = this;
-        props.dispatch(VisiblePanelActions.selectPanel(page, index));
-    }
-
     onCreate() {
-        this.refs["rolesPanel"].getWrappedInstance().onAddRole();
+        this.rolesPanelref.getWrappedInstance().onAddRole();
     }
 
     render() {
@@ -35,14 +25,14 @@ class Root extends Component {
                             <Button type="primary" size="large" onClick={this.onCreate.bind(this) }>{resx.get("Create") }</Button>
                         }
                     </PersonaBarPageHeader>
-                    <RolesPanel ref="rolesPanel" />
+                    <RolesPanel ref={node => this.rolesPanelref = node} />
                 </PersonaBarPage>
             </div>
         );
     }
 }
 
-Root.PropTypes = {
+Root.propTypes = {
     dispatch: PropTypes.func.isRequired,
     selectedPage: PropTypes.number,
     selectedPageVisibleIndex: PropTypes.number

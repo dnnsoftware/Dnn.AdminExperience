@@ -1,8 +1,6 @@
-import React, {Component, PropTypes } from "react";
-import Label from "dnn-label";
-import InputGroup from "dnn-input-group";
-//import SingleLineInput from "dnn-single-line-input";
-import SingleLineInputWithError from "dnn-single-line-input-with-error";
+import React, {Component } from "react";
+import PropTypes from "prop-types";
+import { Label, InputGroup, SingleLineInputWithError } from "@dnnsoftware/dnn-react-common";
 import GlobalIcon from "./GlobalIcon";
 
 export default class EditBlock extends Component {

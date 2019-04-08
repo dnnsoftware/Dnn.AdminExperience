@@ -1,14 +1,11 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import {
     siteBehavior as SiteBehaviorActions
 } from "../../actions";
 import SiteAliases from "./siteAliases";
-import InputGroup from "dnn-input-group";
-import Switch from "dnn-switch";
-import RadioButtons from "dnn-radio-buttons";
-import Label from "dnn-label";
-import Button from "dnn-button";
+import { InputGroup, Switch, RadioButtons, Label, Button } from "@dnnsoftware/dnn-react-common";
 import "./style.less";
 import util from "../../utils";
 import resx from "../../resources";
@@ -22,40 +19,33 @@ class SiteAliasSettingsPanelBody extends Component {
         };
     }
 
-    loadData() {
-        const {props} = this;
+    componentDidMount() {
+        this.loadData();
+    }
+
+    componentDidUpdate() {
+        const { props } = this;        
         if (props.urlMappingSettings) {
+            let portalIdChanged = false;
             if (props.portalId === undefined || props.urlMappingSettings.PortalId === props.portalId) {
-                return false;
+                portalIdChanged = false;
             }
             else {
-                return true;
+                portalIdChanged = true;
             }
-        }
-        else {
-            return true;
+            if (portalIdChanged) {
+                this.loadData();
+            }
         }
     }
 
-    componentWillMount() {
+    loadData() {
         const {props} = this;
-        if (!this.loadData()) {
-            this.setState({
-                urlMappingSettings: props.urlMappingSettings
-            });
-            return;
-        }
         props.dispatch(SiteBehaviorActions.getUrlMappingSettings(props.portalId, (data) => {
             this.setState({
                 urlMappingSettings: Object.assign({}, data.Settings)
             });
         }));
-    }
-
-    componentWillReceiveProps(props) {
-        this.setState({
-            urlMappingSettings: Object.assign({}, props.urlMappingSettings)
-        });
     }
 
     getMappingModeOptions() {
@@ -122,7 +112,7 @@ class SiteAliasSettingsPanelBody extends Component {
                                 labelType="inline"
                                 tooltipMessage={resx.get("portalAliasModeButtonListLabel.Help")}
                                 label={resx.get("portalAliasModeButtonListLabel")}
-                                />
+                            />
                             <RadioButtons
                                 onChange={this.onSettingChange.bind(this, "PortalAliasMapping")}
                                 options={this.getMappingModeOptions()}
@@ -135,14 +125,14 @@ class SiteAliasSettingsPanelBody extends Component {
                                     labelType="inline"
                                     tooltipMessage={resx.get("plAutoAddPortalAlias.Help")}
                                     label={resx.get("plAutoAddPortalAlias")}
-                                    />
+                                />
                                 <Switch
                                     onText={resx.get("SwitchOn")}
                                     offText={resx.get("SwitchOff")}
                                     readOnly={!state.urlMappingSettings.AutoAddPortalAliasEnabled}
                                     value={state.urlMappingSettings.AutoAddPortalAlias}
                                     onChange={this.onSettingChange.bind(this, "AutoAddPortalAlias")}
-                                    />
+                                />
                             </div>
                         </InputGroup>
                     </div>
@@ -182,7 +172,8 @@ function mapStateToProps(state) {
         tabIndex: state.pagination.tabIndex,
         urlMappingSettings: state.siteBehavior.urlMappingSettings,
         portalAliasMappingModes: state.siteBehavior.portalAliasMappingModes,
-        urlMappingSettingsClientModified: state.siteBehavior.urlMappingSettingsClientModified
+        urlMappingSettingsClientModified: state.siteBehavior.urlMappingSettingsClientModified,
+        portalId: state.siteInfo ? state.siteInfo.portalId : undefined,
     };
 }
 

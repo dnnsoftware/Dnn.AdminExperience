@@ -1,10 +1,8 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import "./style.less";
-import Label from "dnn-label";
-import Button from "dnn-button";
-import Tags from "dnn-tags";
-import InputGroup from "dnn-input-group";
+import { Label, Button, Tags, InputGroup } from "@dnnsoftware/dnn-react-common";
 import {
     search as SearchActions
 } from "../../../actions";
@@ -27,7 +25,7 @@ class SynonymsGroupEditor extends Component {
         };
     }
 
-    componentWillMount() {
+    componentDidMount() {
         const {props} = this;
         let group = Object.assign({}, props.group);
         group.CultureCode = props.culture;
@@ -94,11 +92,11 @@ class SynonymsGroupEditor extends Component {
                     <InputGroup>
                         <Label
                             label={resx.get("Synonyms")}
-                            />
+                        />
                         <Tags
                             tags={this.state.group.SynonymsTags ? this.state.group.SynonymsTags.split(",") : []}
                             onUpdateTags={this.onSettingChange.bind(this, "SynonymsTags")}
-                            />
+                        />
                     </InputGroup>
                     <div className="editor-buttons-box">
                         <Button

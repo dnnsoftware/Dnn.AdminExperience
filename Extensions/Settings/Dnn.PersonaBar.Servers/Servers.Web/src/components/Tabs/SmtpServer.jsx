@@ -1,10 +1,10 @@
-import React, { Component, PropTypes } from "react";
-import GridSystem from "dnn-grid-system";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { GridSystem, Button } from "@dnnsoftware/dnn-react-common";
 import RadioButtonBlock from "../common/RadioButtonBlock";
 import EditBlock from "../common/EditBlock";
 import SwitchBlock from "../common/SwitchBlock";
 import localization from "../../localization";
-import Button from "dnn-button";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import SmtpServerTabActions from "../../actions/smtpServerTab";
@@ -16,7 +16,7 @@ class SmtpServer extends Component {
         this.props.onRetrieveSmtpServerInfo();
     }
 
-    componentWillReceiveProps(newProps) {
+    UNSAFE_componentWillReceiveProps(newProps) {
         if (this.props.infoMessage !== newProps.infoMessage && newProps.infoMessage) {
             utils.notify(newProps.infoMessage);
         }
@@ -61,6 +61,7 @@ class SmtpServer extends Component {
             smtpAuthentication: smtpSettings.smtpAuthentication,
             smtpUsername: smtpSettings.smtpUserName,
             smtpPassword: smtpSettings.smtpPassword,
+            smtpHostEmail: smtpSettings.smtpHostEmail,
             enableSmtpSsl: smtpSettings.enableSmtpSsl,
             messageSchedulerBatchSize: props.smtpServerInfo.host.messageSchedulerBatchSize
         };
@@ -190,14 +191,14 @@ class SmtpServer extends Component {
                     {smtpSettingsVisible &&
                         <div className="tooltipAdjustment border-bottom">
                             <RadioButtonBlock options={this.getSmtpAuthenticationOptions()}
-                                    label={localization.get("plSMTPAuthentication")}
-                                    tooltip={localization.get("plSMTPAuthentication.Help")}
-                                    onChange={this.onChangeAuthenticationMode.bind(this)}
-                                    value={selectedSmtpSettings.smtpAuthentication || "0"} 
-                                    isGlobal={areGlobalSettings} />
+                                label={localization.get("plSMTPAuthentication")}
+                                tooltip={localization.get("plSMTPAuthentication.Help")}
+                                onChange={this.onChangeAuthenticationMode.bind(this)}
+                                value={selectedSmtpSettings.smtpAuthentication || "0"} 
+                                isGlobal={areGlobalSettings} />
                         </div>
                     }
-                    <div className="tooltipAdjustment">
+                    <div className="tooltipAdjustment border-bottom">
                         {smtpSettingsVisible && credentialVisible && 
                             <div>
                                 <EditBlock label={localization.get("plSMTPUsername")}
@@ -226,13 +227,21 @@ class SmtpServer extends Component {
                             isGlobal={areGlobalSettings} />
                         }              
                     </div>
+                    {smtpSettingsVisible && areGlobalSettings &&
+                        <EditBlock label={localization.get("plHostEmail")}
+                            tooltip={localization.get("plHostEmail.Help")}
+                            value={selectedSmtpSettings.smtpHostEmail}
+                            isGlobal={true}
+                            onChange={this.onChangeField.bind(this, "smtpHostEmail")}
+                            error={props.errors["smtpHostEmail"]} />
+                    }
                 </div>
             </GridSystem>
             <div className="clear" />
             <div className="buttons-panel">
-                 <Button type="secondary"
+                <Button type="secondary" 
                     onClick={this.onTestSmtpSettings.bind(this)}>{localization.get("EmailTest")}</Button>
-                 <Button type="primary" 
+                <Button type="primary" 
                     onClick={this.onSave.bind(this)}>{localization.get("SaveButtonText")}</Button>
             </div>
         </div>;

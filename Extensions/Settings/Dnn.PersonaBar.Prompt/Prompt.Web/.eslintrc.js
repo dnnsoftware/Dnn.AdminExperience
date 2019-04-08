@@ -2,7 +2,6 @@ module.exports = {
     "parser": "babel-eslint",
     "plugins": [
         "react",
-        "spellcheck",
         "jest"
     ],
     "env": {
@@ -13,19 +12,21 @@ module.exports = {
     "extends": [
         "eslint:recommended",
         "plugin:react/recommended",
-        "eslint-config-dnn",
         "plugin:jest/recommended"
     ],
     "settings": {
+        "react": {
+            "version": "16"
+        },
         "import/resolver":{
             "node":{
-                "extensions":[".js", ".jsx"]
+                "extensions": [".js", ".jsx"],
+                "paths": ["../node_modules", "src"]
             }
         }
     },
     "parserOptions": {
         "ecmaFeatures": {
-            "es6":true,
             "jsx": true,
             "experimentalObjectRestSpread": true,
             "arrowFunctions": true,
@@ -43,31 +44,30 @@ module.exports = {
             "superInFunctions": false,
             "templateStrings": true
         },
-        "ecmaVersion": 6,
+        "ecmaVersion": 2018,
         "sourceType": "module"
     },
     "globals": {
         "Promise": false,
     },
     "rules": {
-       "spellcheck/spell-checker": [1,
-        {
-            "comments": "true",
-            "strings": "true",
-            "identifiers": "true",
-            "skipWords": require("./.eslintskipwords"),
-            "skipIfMatch": [
-                "http://[^s]*",
-                "https://[^s]*",
-                "util(s)?",
-                "(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)" // CSS hex color
-            ],
-            "jest/no-disabled-tests": "warn",
-            "jest/no-focused-tests": "error",
-            "jest/no-identical-title": "error",
-            "jest/valid-expect": "error"
-        }
-      ],
-
+        "semi": "error",
+        "no-var": "error",
+        "quotes": ["warn", "double" ],
+        "indent": ["warn", 4, {"SwitchCase": 1}],
+        "no-unused-vars": "warn",
+        "no-console": "warn",      
+        "keyword-spacing": "warn", 
+        "eqeqeq": "warn",
+        "space-before-function-paren": ["warn", { "anonymous": "always", "named": "never" }],
+        "space-before-blocks": "warn",
+        "no-multiple-empty-lines":  "warn",
+        "react/jsx-equals-spacing": ["warn", "never"],
+        "id-match": ["error", "^([A-Za-z0-9_])+$", {"properties": true}],
+        "no-useless-escape": "off",
+        "jest/no-disabled-tests": "warn",
+        "jest/no-focused-tests": "error",
+        "jest/no-identical-title": "error",
+        "jest/valid-expect": "error"       
     }
 };

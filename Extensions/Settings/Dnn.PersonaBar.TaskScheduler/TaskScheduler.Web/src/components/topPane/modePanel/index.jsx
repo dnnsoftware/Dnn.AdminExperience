@@ -1,9 +1,7 @@
-import React, { PropTypes, Component } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import Collapse from "dnn-collapsible";
-import Button from "dnn-button";
-import Select from "dnn-select";
-import SingleLineInputWithError from "dnn-single-line-input-with-error";
+import { Collapsible, Button, Select, SingleLineInputWithError } from "@dnnsoftware/dnn-react-common";
 import "./style.less";
 import {
     task as TaskActions
@@ -29,7 +27,7 @@ class ModePanel extends Component {
         };
     }
 
-    componentWillMount() {
+    componentDidMount() {
         let {props, state} = this;
         if (props.schedulerDelay === "" || !re.test(props.schedulerDelay)) {
             state.error["schedulerDelay"] = true;
@@ -105,7 +103,7 @@ class ModePanel extends Component {
         const {props, state} = this;
         return (
             <div className={props.isOpened ? "collapsible-content-mode" : "collapsible-content-mode-hidden"}>
-                <Collapse
+                <Collapsible
                     fixedHeight={props.fixedHeight}
                     keepCollapsedContent={props.keepCollapsedContent}
                     isOpened={props.isOpened}>
@@ -129,7 +127,7 @@ class ModePanel extends Component {
                                             errorMessage={resx.get("ScheduleAppStartDelayValidation")}
                                             value={state.updateRequest.SchedulerdelayAtAppStart}
                                             onChange={this.onValueChange.bind(this, "SchedulerdelayAtAppStart")}
-                                            />
+                                        />
                                     </div>
                                     <div className="action-buttons">
                                         <Button type="secondary" onClick={this.onClose.bind(this)}>{resx.get("Cancel")}</Button>
@@ -144,13 +142,13 @@ class ModePanel extends Component {
                         </div>
                     }
                     {!props.fixedHeight && props.children}
-                </Collapse>
+                </Collapsible>
             </div>
         );
     }
 }
 
-ModePanel.PropTypes = {
+ModePanel.propTypes = {
     label: PropTypes.string,
     fixedHeight: PropTypes.number,
     collapsibleWidth: PropTypes.number,

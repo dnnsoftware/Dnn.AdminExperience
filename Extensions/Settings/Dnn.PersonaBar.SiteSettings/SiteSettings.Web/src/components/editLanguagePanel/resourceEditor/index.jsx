@@ -1,58 +1,49 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import debounce from "lodash/debounce";
-import SingleLineInput from "dnn-single-line-input";
-import MultiLineInput from "dnn-multi-line-input";
 import FullEditor from "./fullEditor";
-import Modal from "dnn-modal";
-import { EditIcon } from "dnn-svg-icons";
-import resx from "resources";
-import utilities from "utils";
 import "./style.less";
+import { SingleLineInput, MultiLineInput, Modal, SvgIcons } from "@dnnsoftware/dnn-react-common";
 
 class ResourceEditor extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             inFullMode: false,
-            content: ""
+            content: props.value ? props.value : ""
         };
-    }
-
-    componentWillMount() {
-        const { props } = this;
-
         this.debouncedOnChange = debounce(this.changeContent, 500);
-        this.setState({content: props.value});
     }
 
-    componentWillReceiveProps(newProps){
-        this.setState({content: newProps.value});
+    componentDidUpdate(prevProps) {
+        if (this.props.value !== prevProps.value){
+            this.setState({content: this.props.value});
+        }
     }
 
-    onChange(e){
-        this.setState({content: e.target.value}, () => {
-            this.debouncedOnChange();
-        });  
+    onChange(e) {
+        this.setState({content: e.target.value});
+        this.debouncedOnChange();
     }
 
-    changeContent(){
+    changeContent() {
         const { props } = this;
 
-        if(props.enabled){
+        if (props.enabled) {
             props.onChange(this.state.content);
         }
     }
 
-    renderMulti(){
+    renderMulti() {
         const { props, state } = this;
 
         let lines = props.value.length / 30;
-        if(props.value.length % 30 !== 0){
+        if (props.value.length % 30 !== 0) {
             lines ++;
         }
 
         let height = lines * 18 + 16;
-        if(height > 100){
+        if (height > 100) {
             height = 100;
         }
 
@@ -64,7 +55,7 @@ class ResourceEditor extends Component {
             onChange={this.onChange.bind(this)} />);
     }
 
-    renderSingle(){
+    renderSingle() {
         const { props, state } = this;
 
         return (<SingleLineInput 
@@ -74,7 +65,7 @@ class ResourceEditor extends Component {
             onChange={this.onChange.bind(this)} />);
     }
 
-    onEnterFullMode(){
+    onEnterFullMode() {
         this.setState({
             inFullMode: true
         });
@@ -82,7 +73,7 @@ class ResourceEditor extends Component {
         window.dnn.stopEscapeFromClosingPB = true;
     }
 
-    onExitFullMode(){
+    onExitFullMode() {
         this.setState({
             inFullMode: false
         });
@@ -90,7 +81,7 @@ class ResourceEditor extends Component {
         window.dnn.stopEscapeFromClosingPB = false;
     }
 
-    onFullEditorChange(value){
+    onFullEditorChange(value) {
         const { props } = this;
 
         props.onChange(value);
@@ -98,7 +89,7 @@ class ResourceEditor extends Component {
         this.onExitFullMode();
     }
 
-    onFullEditorCancel(value){
+    onFullEditorCancel() {
         this.onExitFullMode();
     }
     
@@ -113,7 +104,7 @@ class ResourceEditor extends Component {
             {props.enabled && 
             <div 
                 className="edit-svg" 
-                dangerouslySetInnerHTML={{ __html: EditIcon }}
+                dangerouslySetInnerHTML={{ __html: SvgIcons.EditIcon }}
                 onClick={this.onEnterFullMode.bind(this)}>
             </div>
             }
@@ -122,16 +113,15 @@ class ResourceEditor extends Component {
                 isOpen={state.inFullMode}
                 onRequestClose={this.onExitFullMode.bind(this)}
                 shouldCloseOnOverlayClick={false}
-                modalHeight={390}
-                >
+                modalHeight={390}>
                 <FullEditor 
                     value={props.value} 
                     onChange={this.onFullEditorChange.bind(this)}
                     onCancel={this.onFullEditorCancel.bind(this)}
-                     />
+                />
             </Modal>
             }
-            </div>);
+        </div>);
     }
 }
 

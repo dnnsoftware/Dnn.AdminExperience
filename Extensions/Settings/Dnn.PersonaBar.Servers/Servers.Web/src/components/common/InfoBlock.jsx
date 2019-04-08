@@ -1,6 +1,6 @@
-import React, {Component, PropTypes } from "react";
-import Label from "dnn-label";
-import InputGroup from "dnn-input-group";
+import React, {Component } from "react";
+import PropTypes from "prop-types";
+import { Label, InputGroup } from "@dnnsoftware/dnn-react-common";
 
 export default class InfoBlock extends Component {
     

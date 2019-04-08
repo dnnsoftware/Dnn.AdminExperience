@@ -1,9 +1,7 @@
-import React, {Component, PropTypes} from "react";
+import React, {Component} from "react";
+import PropTypes from "prop-types";
 import Localization from "localization";
-import Tooltip from "dnn-tooltip";
-import Checkbox from "dnn-checkbox";
-
-import { TrashIcon, CycleIcon, LinkIcon } from "dnn-svg-icons";
+import { Tooltip, Checkbox, SvgIcons } from "@dnnsoftware/dnn-react-common";
 
 class Module extends Component {
 
@@ -35,21 +33,22 @@ class Module extends Component {
 
         if (module.Exist) {
             const className = "module-row" + (module.IsDeleted ? " deleted" : "");
+            const toolTip = [module.IsShared ? Localization.get("SharedModule") : Localization.get("IsNotSharedModule"), module.ModuleInfoHelp].join("<br>");
             return <div className={className}>
                 <Tooltip
-                    messages={[module.ModuleInfoHelp]}
+                    messages={[toolTip]}
                     style={{ float: "left", position: "static" }}
                     />
                 <input type="text" value={module.ModuleTitle} onChange={this.onUpdateModules.bind(this, "ModuleTitle") } aria-label="Title"/>
                 {module.IsDeleted && <div className="icons-container">
-                    <span className="icon" onClick={this.onDeleteModule.bind(this, module.TabModuleId) } dangerouslySetInnerHTML={{ __html: TrashIcon }} />
-                    <span className="icon" onClick={this.onRestoreModule.bind(this, module.TabModuleId) } dangerouslySetInnerHTML={{ __html: CycleIcon }} />
+                    <span className="icon" onClick={this.onDeleteModule.bind(this, module.TabModuleId) } dangerouslySetInnerHTML={{ __html: SvgIcons.TrashIcon }} />
+                    <span className="icon" onClick={this.onRestoreModule.bind(this, module.TabModuleId) } dangerouslySetInnerHTML={{ __html: SvgIcons.CycleIcon }} />
                 </div>}
                 {!module.IsDeleted && !isDefault && <div className="icons-container">
                     <span
-                        className={`icon float-left ${(module.IsLocalized ? " blue" : "")}`}
+                        className={`icon float-left ${(module.IsShared ? " disabled" : (module.IsLocalized ? " blue" : ""))}`}
                         onClick={this.toggleLink.bind(this) }
-                        dangerouslySetInnerHTML={{ __html: LinkIcon }} />
+                        dangerouslySetInnerHTML={{ __html: SvgIcons.LinkIcon }} />
                     {module.TranslatedVisible && <Checkbox
                         style={{ float: "left" }}
                         value={module.IsTranslated}

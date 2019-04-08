@@ -1,11 +1,10 @@
-import React, { Component, PropTypes } from "react";
-import Collapse from "dnn-collapsible";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import "./style.less";
-import { CheckMarkIcon, SettingsIcon, UsersIcon, LanguagesIcon, LanguagesPageIcon } from "dnn-svg-icons";
-import Flag from "dnn-flag";
+import { Collapsible, Flag, SvgIcons } from "@dnnsoftware/dnn-react-common";
 
 class LanguageRow extends Component {
-    componentWillMount() {
+    componentDidMount() {
         let opened = (this.props.openId !== "" && this.props.id === this.props.openId);
         this.setState({
             opened
@@ -44,7 +43,7 @@ class LanguageRow extends Component {
     getActiveDisplay(prop) {
         if (this.props.id !== "add") {
             if (prop && this.props.isLocalized) {
-                return <div className="checkMarkIcon" dangerouslySetInnerHTML={{ __html: CheckMarkIcon }}></div>;
+                return <div className="checkMarkIcon" dangerouslySetInnerHTML={{ __html: SvgIcons.CheckMarkIcon }}></div>;
             }
             else return <span>&nbsp; </span>;
         }
@@ -54,7 +53,7 @@ class LanguageRow extends Component {
     getEnabledDisplay(prop) {
         if (this.props.id !== "add") {
             if (prop) {
-                return <div className="checkMarkIcon" dangerouslySetInnerHTML={{ __html: CheckMarkIcon }}></div>;
+                return <div className="checkMarkIcon" dangerouslySetInnerHTML={{ __html: SvgIcons.CheckMarkIcon }}></div>;
             }
             else return <span>&nbsp; </span>;
         }
@@ -172,18 +171,18 @@ class LanguageRow extends Component {
                                 {this.getEnabledDisplay(props.enabled)}
                             </div>
                             <div className="language-item item-row-actionButtons item-row-actionButtons-adv">
-                                {!props.isDefault && <div className={this.getPageEditorBtnClassName()} dangerouslySetInnerHTML={{ __html: LanguagesPageIcon }} onClick={props.onOpenPageList}></div>}
-                                <div className={this.getEditorBtnClassName()} dangerouslySetInnerHTML={{ __html: LanguagesIcon }} onClick={props.onOpenEditor}></div>
+                                {!props.isDefault && <div className={this.getPageEditorBtnClassName()} dangerouslySetInnerHTML={{ __html: SvgIcons.LanguagesPageIcon }} onClick={props.onOpenPageList}></div>}
+                                <div className={this.getEditorBtnClassName()} dangerouslySetInnerHTML={{ __html: SvgIcons.LanguagesIcon }} onClick={props.onOpenEditor}></div>
                                 {!props.isDefault &&
-                                    <div className={this.getTranslatorBtnClassName()} dangerouslySetInnerHTML={{ __html: UsersIcon }} onClick={this.toggle.bind(this, 2)}></div>
+                                    <div className={this.getTranslatorBtnClassName()} dangerouslySetInnerHTML={{ __html: SvgIcons.UsersIcon }} onClick={this.toggle.bind(this, 2)}></div>
                                 }
-                                <div className={this.getEditBtnClassName()} dangerouslySetInnerHTML={{ __html: SettingsIcon }} onClick={this.toggle.bind(this, 1)}></div>
+                                <div className={this.getEditBtnClassName()} dangerouslySetInnerHTML={{ __html: SvgIcons.SettingsIcon }} onClick={this.toggle.bind(this, 1)}></div>
                             </div>
                         </div>
                     </div>
 
-                    {isAddMode && <Collapse autoScroll={true} isOpened={opened} style={{ float: "left", width: "100%" }}>{opened && props.children}</Collapse>}
-                    {!isAddMode && <Collapse autoScroll={true} className="language-permission-grid" isOpened={opened} style={{ float: "left" }}>{opened && props.children}</Collapse>}
+                    {isAddMode && <Collapsible autoScroll={true} isOpened={opened} style={{ width: "100%", overflow: "visible" }}>{opened && props.children}</Collapsible>}
+                    {!isAddMode && <Collapsible autoScroll={true} className="language-permission-grid" isOpened={opened} style={{ width: "100%", overflow: "visible" }}>{opened && props.children}</Collapsible>}
                 </div>
             );
         }
@@ -199,16 +198,16 @@ class LanguageRow extends Component {
                                 {this.getEnabledDisplay(props.enabled)}
                             </div>
                             <div className="language-item item-row-actionButtons">
-                                <div className={this.getEditorBtnClassName()} dangerouslySetInnerHTML={{ __html: LanguagesIcon }} onClick={props.onOpenEditor}></div>
+                                <div className={this.getEditorBtnClassName()} dangerouslySetInnerHTML={{ __html: SvgIcons.LanguagesIcon }} onClick={props.onOpenEditor}></div>
                                 {!props.isDefault &&
-                                    <div className={this.getTranslatorBtnClassName()} dangerouslySetInnerHTML={{ __html: UsersIcon }} onClick={this.toggle.bind(this, 2)}></div>
+                                    <div className={this.getTranslatorBtnClassName()} dangerouslySetInnerHTML={{ __html: SvgIcons.UsersIcon }} onClick={this.toggle.bind(this, 2)}></div>
                                 }
-                                <div className={this.getEditBtnClassName()} dangerouslySetInnerHTML={{ __html: SettingsIcon }} onClick={this.toggle.bind(this, 1)}></div>
+                                <div className={this.getEditBtnClassName()} dangerouslySetInnerHTML={{ __html: SvgIcons.SettingsIcon }} onClick={this.toggle.bind(this, 1)}></div>
                             </div>
                         </div>
                     </div>
-                    {isAddMode && <Collapse autoScroll={true} isOpened={opened} style={{ float: "left", width: "100%" }}>{opened && props.children}</Collapse>}
-                    {!isAddMode && <Collapse autoScroll={true} className="language-permission-grid" isOpened={opened} style={{ float: "left" }}>{opened && props.children}</Collapse>}
+                    {isAddMode && <Collapsible autoScroll={true} isOpened={opened} style={{ width: "100%", overflow: "visible" }}>{opened && props.children}</Collapsible>}
+                    {!isAddMode && <Collapsible autoScroll={true} className="language-permission-grid" isOpened={opened} style={{ width: "100%", overflow: "visible" }}>{opened && props.children}</Collapsible>}
                 </div>
             );
         }
@@ -221,9 +220,9 @@ LanguageRow.propTypes = {
     code: PropTypes.string,
     icon: PropTypes.string,
     enabled: PropTypes.bool,
-    localizablePages: PropTypes.number,
+    localizablePages: PropTypes.string,
     localizedStatus: PropTypes.string,
-    translatedPages: PropTypes.number,
+    translatedPages: PropTypes.string,
     translatedStatus: PropTypes.string,
     active: PropTypes.bool,
     isLocalized: PropTypes.bool,

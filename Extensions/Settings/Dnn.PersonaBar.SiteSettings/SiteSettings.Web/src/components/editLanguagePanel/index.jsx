@@ -1,6 +1,7 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import PersonaBarPageBody from "dnn-persona-bar-page-body";
+import { PersonaBarPageBody } from "@dnnsoftware/dnn-react-common";
 import LanguageInfoView from "./languageInfoView";
 import { visiblePanel as VisiblePanelActions, languageEditor as LanguageEditorActions } from "actions";
 import resx from "resources";
@@ -31,7 +32,7 @@ function findParent(parentList, item) {
     });
 }
 
-function generateList(list, index) {
+function generateList(list) {
     let _list = [];
     if (!list) {
         return;
@@ -58,7 +59,7 @@ class EditLanguagePanel extends Component {
     refreshFileList() {
         this.props.dispatch(LanguageEditorActions.getRootResourcesFolder(this.props.portalId, this.state.selectedMode));
     }
-    componentWillMount() {
+    componentDidMount() {
         this.refreshFileList();
     }
 

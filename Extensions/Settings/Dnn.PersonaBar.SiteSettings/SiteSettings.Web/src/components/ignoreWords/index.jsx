@@ -1,14 +1,13 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import {
     search as SearchActions
 } from "../../actions";
 import IgnoreWordsRow from "./ignoreWordsRow";
 import IgnoreWordsEditor from "./ignoreWordsEditor";
-import Collapse from "dnn-collapsible";
 import "./style.less";
-import DropDown from "dnn-dropdown";
-import { AddIcon } from "dnn-svg-icons";
+import { Dropdown, SvgIcons } from "@dnnsoftware/dnn-react-common";
 import util from "../../utils";
 import resx from "../../resources";
 
@@ -25,19 +24,40 @@ class IgnoreWordsPanel extends Component {
     }
 
     loadData() {
-        const {props} = this;
+        const { props } = this;
+        props.dispatch(SearchActions.getIgnoreWords(props.portalId, props.cultureCode, (data) => {
+            this.setState({
+                ignoreWords: Object.assign({}, data),
+                culture: data.CultureCode
+            });
+        }));
+    }
+
+    componentDidMount() {
+        const { props } = this;
+
+        if (tableFields.length === 0) {
+            tableFields.push({ "name": resx.get("IgnoreWords"), "id": "IgnoreWords" });
+        }
+
+        props.dispatch(SearchActions.getCultureList(props.portalId));
+        this.loadData();
+    }
+
+    componentDidUpdate(prevProps) {
+        const { props } = this;
+
         if (props.ignoreWords) {
             let portalIdChanged = false;
             let cultureCodeChanged = false;
-
-            if (props.portalId === undefined || props.ignoreWords.PortalId === props.portalId) {
+            if (props.portalId === undefined || prevProps.portalId === props.portalId) {
                 portalIdChanged = false;
             }
             else {
                 portalIdChanged = true;
             }
 
-            if (props.cultureCode === undefined || props.ignoreWords.CultureCode === props.cultureCode) {
+            if (props.cultureCode === undefined || prevProps.cultureCode === props.cultureCode) {
                 cultureCodeChanged = false;
             }
             else {
@@ -45,56 +65,8 @@ class IgnoreWordsPanel extends Component {
             }
 
             if (portalIdChanged || cultureCodeChanged) {
-                return true;
+                this.loadData();
             }
-            else return false;
-        }
-        else {
-            return true;
-        }
-    }
-
-    componentWillMount() {
-        const {props, state} = this;
-
-        if (tableFields.length === 0) {
-            tableFields.push({ "name": resx.get("IgnoreWords"), "id": "IgnoreWords" });
-        }
-
-        if (!this.loadData()) {
-            this.setState({
-                ignoreWords: props.ignoreWords,
-                culture: props.ignoreWords.CultureCode
-            });
-            return;
-        }
-        props.dispatch(SearchActions.getCultureList(props.portalId));
-        if (state.culture === "") {
-            this.setState({
-                culture: props.cultureCode
-            });
-            props.dispatch(SearchActions.getIgnoreWords(props.portalId, props.cultureCode, (data) => {
-                this.setState({
-                    ignoreWords: Object.assign({}, data.IgnoreWords)
-                });
-            }));
-        }
-        else {
-            props.dispatch(SearchActions.getIgnoreWords(props.portalId, state.culture, (data) => {
-                this.setState({
-                    ignoreWords: Object.assign({}, data.IgnoreWords)
-                });
-            }));
-        }
-
-    }
-
-    componentWillReceiveProps(props) {
-        if (props.ignoreWords) {
-            this.setState({
-                ignoreWords: props.ignoreWords
-            });
-            return;
         }
     }
 
@@ -234,19 +206,19 @@ class IgnoreWordsPanel extends Component {
                             <div className="sectionTitle">{resx.get("IgnoreWords")}</div>
                             {!props.ignoreWords.StopWords &&
                                 <div className={opened ? "AddItemBox-active" : "AddItemBox"} onClick={this.toggle.bind(this, opened ? "" : "add")}>
-                                    <div className="add-icon" dangerouslySetInnerHTML={{ __html: AddIcon }}>
+                                    <div className="add-icon" dangerouslySetInnerHTML={{ __html: SvgIcons.AddIcon }}>
                                     </div> {resx.get("cmdAddWord")}
                                 </div>
                             }
                             {this.props.cultures && this.props.cultures.length > 1 &&
                                 <div className="language-filter">
-                                    <DropDown
+                                    <Dropdown
                                         value={this.state.culture}
                                         style={{ width: "auto" }}
                                         options={this.getCultureOptions()}
                                         withBorder={false}
                                         onSelect={this.onSelectCulture.bind(this)}
-                                        />
+                                    />
                                 </div>
                             }
                         </div>
@@ -293,7 +265,8 @@ function mapStateToProps(state) {
     return {
         ignoreWords: state.search.ignoreWords,
         tabIndex: state.pagination.tabIndex,
-        cultures: state.search.cultures
+        cultures: state.search.cultures,
+        portalId: state.siteInfo ? state.siteInfo.portalId : undefined,
     };
 }
 

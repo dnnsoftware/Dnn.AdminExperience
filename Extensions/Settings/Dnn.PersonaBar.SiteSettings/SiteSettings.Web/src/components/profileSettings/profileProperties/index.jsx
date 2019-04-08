@@ -1,16 +1,15 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import {
     siteBehavior as SiteBehaviorActions
 } from "../../../actions";
 import ProfilePropertyRow from "./profilePropertyRow";
 import ProfilePropertyEditor from "./profilePropertyEditor";
-import Sortable from "dnn-sortable";
-import Collapse from "dnn-collapsible";
 import "./style.less";
-import { AddIcon } from "dnn-svg-icons";
 import util from "../../../utils";
 import resx from "../../../resources";
+import { Sortable, Collapsible, SvgIcons } from "@dnnsoftware/dnn-react-common";
 
 let tableFields = [];
 
@@ -23,44 +22,30 @@ class ProfilePropertiesPanel extends Component {
         };
     }
 
-    loadData() {
+    componentDidUpdate() {
         const {props} = this;
         if (props.profileProperties) {
             if (props.portalId === undefined || props.profileProperties.PortalId === props.portalId) {
-                return false;
+                return;
             }
             else {
-                return true;
+                this.loadData();
             }
         }
-        else {
-            return true;
-        }
     }
 
-    componentWillMount() {
+    componentDidMount() {
+        this.loadData();
+    }
+
+    loadData() {
         const {props} = this;
+        props.dispatch(SiteBehaviorActions.getProfileProperties(props.portalId, (data) => {
+            this.setState({
+                profileProperties: data.Properties
+            });
+        }));
 
-        if (!this.loadData()) {
-            return;
-        }
-        else {
-            props.dispatch(SiteBehaviorActions.getProfileProperties(props.portalId, (data) => {
-                this.setState({
-                    pid: data.PortalId
-                });
-            }));
-        }
-
-        tableFields = [];
-        tableFields.push({ "name": resx.get("Name.Header"), "id": "Name" });
-        tableFields.push({ "name": resx.get("DataType.Header"), "id": "DataType" });
-        tableFields.push({ "name": resx.get("DefaultVisibility.Header"), "id": "DefaultVisibility" });
-        tableFields.push({ "name": resx.get("Required.Header"), "id": "Required" });
-        tableFields.push({ "name": resx.get("Visible.Header"), "id": "Visible" });
-    }
-
-    componentWillReceiveProps() {
         tableFields = [];
         tableFields.push({ "name": resx.get("Name.Header"), "id": "Name" });
         tableFields.push({ "name": resx.get("DataType.Header"), "id": "DataType" });
@@ -214,6 +199,7 @@ class ProfilePropertiesPanel extends Component {
                 this.collapse();
             }, (error) => {
                 const errorMessage = JSON.parse(error.responseText);
+                util.utilities.notifyError(errorMessage.Message);
             }));
     }
 
@@ -262,13 +248,13 @@ class ProfilePropertiesPanel extends Component {
                     <div className="AddItemRow">
                         <div className="sectionTitle">{resx.get("UserProfileFields") }</div>
                         <div className={opened ? "AddItemBox-active" : "AddItemBox"} onClick={this.toggle.bind(this, opened ? "" : "add") }>
-                            <div className="add-icon" dangerouslySetInnerHTML={{ __html: AddIcon }}>
+                            <div className="add-icon" dangerouslySetInnerHTML={{ __html: SvgIcons.AddIcon }}>
                             </div> {resx.get("cmdAddField") }
                         </div>
                     </div>
                     <div className="property-items-grid">
                         {this.renderHeader() }
-                        <Collapse isOpened={opened} autoScroll={true} style={{ float: "left", width: "100%" }}>
+                        <Collapsible isOpened={opened} autoScroll={true} style={{ overflow: opened ? "visible" : "hidden", width: "100%" }}>
                             <ProfilePropertyRow
                                 name={"-"}
                                 dataType={"-"}
@@ -290,7 +276,7 @@ class ProfilePropertiesPanel extends Component {
                                     id={"add"}
                                     openId={this.state.openId} />
                             </ProfilePropertyRow>
-                        </Collapse>
+                        </Collapsible>
                         {this.props.profileProperties && this.state.openId &&
                             this.renderedProfileProperties()
                         }
@@ -298,8 +284,7 @@ class ProfilePropertiesPanel extends Component {
                             <Sortable
                                 onSort={this.onSort.bind(this) }
                                 items={this.props.profileProperties.Properties}
-                                sortOnDrag={true}
-                                >
+                                sortOnDrag={true}>
                                 {this.renderedProfileProperties() }
                             </Sortable>
                         }

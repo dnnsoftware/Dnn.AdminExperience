@@ -1,11 +1,7 @@
-import React, { PropTypes, Component } from "react";
-import GridCell from "dnn-grid-cell";
-import GridSystem from "dnn-grid-system";
-import SingleLineInputWithError from "dnn-single-line-input-with-error";
-import DropdownWithError from "dnn-dropdown-with-error";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { GridCell, GridSystem, SingleLineInputWithError, DropdownWithError, Switch, Button } from "@dnnsoftware/dnn-react-common";
 import Localization from "localization";
-import Switch from "dnn-switch";
-import Button from "dnn-button";
 import "./style.less";
 
 const inputStyle = { width: "100%" };
@@ -31,19 +27,47 @@ class ControlFields extends Component {
                             tooltipMessage={Localization.get("AddModuleControl_Key.HelpText")}
                             value={props.controlBeingEdited.key}
                             onChange={props.onChange.bind(this, "key")} />
-                        <DropdownWithError
-                            label={Localization.get("AddModuleControl_SourceFolder.Label")}
-                            tooltipMessage={Localization.get("AddModuleControl_SourceFolder.HelpText")}
+                      
+                    </div>
+                    <div>
+                        <SingleLineInputWithError
+                            label={Localization.get("AddModuleControl_Title.Label")}
+                            tooltipMessage={Localization.get("AddModuleControl_Title.HelpText")}
                             style={inputStyle}
-                            options={props.sourceFolders.map((folder) => {
-                                return {
-                                    label: folder.Value,
-                                    value: folder.Value
-                                };
-                            })}
-                            onSelect={props.onSelectSourceFolder.bind(this)}
-                            value={props.selectedSourceFolder}
-                            />
+                            value={props.controlBeingEdited.title}
+                            onChange={props.onChange.bind(this, "title")} />
+                    </div>
+                </GridSystem>
+                <GridCell>
+                    <DropdownWithError
+                        label={Localization.get("AddModuleControl_SourceFolder.Label")}
+                        tooltipMessage={Localization.get("AddModuleControl_SourceFolder.HelpText")}
+                        style={inputStyle}
+                        options={props.sourceFolders.map((folder) => {
+                            return {
+                                label: folder.Value,
+                                value: folder.Value
+                            };
+                        })}
+                        onSelect={props.onSelectSourceFolder.bind(this)}
+                        value={props.selectedSourceFolder} />
+                    <DropdownWithError
+                        label={Localization.get("AddModuleControl_Source.Label") + "*"}
+                        tooltipMessage={Localization.get("AddModuleControl_Source.HelpText")}
+                        style={inputStyle}
+                        options={props.sourceFiles.map((file) => {
+                            return {
+                                label: file.Value,
+                                value: file.Value
+                            };
+                        })}
+                        value={props.controlBeingEdited.source}
+                        error={props.triedToSave && props.error.source}
+                        onSelect={this.onSelect.bind(this, "source")}
+                    />
+                </GridCell>
+                <GridSystem>
+                    <div>
                         <DropdownWithError
                             label={Localization.get("AddModuleControl_Type.Label")}
                             tooltipMessage={Localization.get("AddModuleControl_Type.HelpText")}
@@ -75,8 +99,7 @@ class ControlFields extends Component {
                                 }
                             ]}
                             value={props.controlBeingEdited.type}
-                            onSelect={this.onSelect.bind(this, "type")}
-                            />
+                            onSelect={this.onSelect.bind(this, "type")} />
                         <DropdownWithError
                             label={Localization.get("AddModuleControl_Icon.Label")}
                             tooltipMessage={Localization.get("AddModuleControl_Icon.HelpText")}
@@ -88,36 +111,16 @@ class ControlFields extends Component {
                                 };
                             })}
                             value={props.controlBeingEdited.icon}
-                            onSelect={this.onSelect.bind(this, "icon")}
-                            />
+                            onSelect={this.onSelect.bind(this, "icon")} />
                         <Switch value={props.controlBeingEdited.supportPopups}
                             label={Localization.get("AddModuleControl_SupportsPopups.Label")}
                             onText={Localization.get("SwitchOn")}
                             offText={Localization.get("SwitchOff")}
                             tooltipMessage={Localization.get("AddModuleControl_SupportsPopups.HelpText")}
                             onChange={props.onChange.bind(this, "supportPopups")} />
+ 
                     </div>
                     <div>
-                        <SingleLineInputWithError
-                            label={Localization.get("AddModuleControl_Title.Label")}
-                            tooltipMessage={Localization.get("AddModuleControl_Title.HelpText")}
-                            style={inputStyle}
-                            value={props.controlBeingEdited.title}
-                            onChange={props.onChange.bind(this, "title")} />
-                        <DropdownWithError
-                            label={Localization.get("AddModuleControl_Source.Label") + "*"}
-                            tooltipMessage={Localization.get("AddModuleControl_Source.HelpText")}
-                            style={inputStyle}
-                            options={props.sourceFiles.map((file) => {
-                                return {
-                                    label: file.Value,
-                                    value: file.Value
-                                };
-                            })}
-                            value={props.controlBeingEdited.source}
-                            error={props.triedToSave && props.error.source}
-                            onSelect={this.onSelect.bind(this, "source")}
-                            />
                         <SingleLineInputWithError
                             label={Localization.get("AddModuleControl_ViewOrder.Label")}
                             tooltipMessage={Localization.get("AddModuleControl_ViewOrder.HelpText")}

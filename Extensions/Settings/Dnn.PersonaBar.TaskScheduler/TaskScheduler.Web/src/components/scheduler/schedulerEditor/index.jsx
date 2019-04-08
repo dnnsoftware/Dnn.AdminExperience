@@ -1,13 +1,15 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import "./style.less";
-import SingleLineInputWithError from "dnn-single-line-input-with-error";
-import Grid from "dnn-grid-system";
-import Label from "dnn-label";
-import Button from "dnn-button";
-import Switch from "dnn-switch";
-import Dropdown from "dnn-dropdown";
-import DatePicker from "dnn-date-picker";
+import { 
+    Label,
+    Button,
+    Switch,
+    Dropdown,
+    DatePicker,
+    SingleLineInputWithError
+} from "@dnnsoftware/dnn-react-common";
 import History from "../../history";
 import {
     task as TaskActions
@@ -26,7 +28,6 @@ class SchedulerEditor extends Component {
         super();
 
         this.state = {
-            scheduleItemDetail: undefined,
             error: {
                 name: true,
                 frequency: true,
@@ -36,23 +37,12 @@ class SchedulerEditor extends Component {
         };
     }
 
-    componentWillMount() {
+    componentDidMount() {
         const { props } = this;
-        /*if (props.scheduleItemDetail) {
-            this.setState({
-                scheduleItemDetail: props.scheduleItemDetail
-            });
-            return;
-        }*/
         if (props.scheduleId) {
             props.dispatch(TaskActions.getGetScheduleItem({
                 scheduleId: props.scheduleId
             }));
-        }
-        else {
-            this.setState({
-                scheduleItemDetail: {}
-            });
         }
 
         retainHistoryNumOptions = [];
@@ -87,44 +77,16 @@ class SchedulerEditor extends Component {
             catchUpEnabledOptions.push({ "value": "false", "label": resx.get("Disabled") });
             catchUpEnabledOptions.push({ "value": "true", "label": resx.get("Enabled.Label") });
         }
-    }
-
-    componentWillReceiveProps(props) {
-        let { state } = this;
-        if (props.scheduleItemDetail["TypeFullName"] === "" || props.scheduleItemDetail["TypeFullName"] === undefined) {
-            state.error["name"] = true;
-        }
-        else if (props.scheduleItemDetail["TypeFullName"] !== "" && props.scheduleItemDetail["TypeFullName"] !== undefined) {
-            state.error["name"] = false;
-        }
-        if (props.scheduleItemDetail["TimeLapse"] === "" || !re.test(props.scheduleItemDetail["TimeLapse"])) {
-            state.error["frequency"] = true;
-        }
-        else if (props.scheduleItemDetail["TimeLapse"] !== "" && re.test(props.scheduleItemDetail["TimeLapse"])) {
-            state.error["frequency"] = false;
-        }
-        if (props.scheduleItemDetail["RetryTimeLapse"] === -1 || props.scheduleItemDetail["RetryTimeLapse"] === undefined || props.scheduleItemDetail["RetryTimeLapse"] === "") {
-            state.error["retry"] = false;
-        }
-        else {
-            if (!re.test(props.scheduleItemDetail["RetryTimeLapse"])) {
-                state.error["retry"] = true;
-            }
-            else {
-                state.error["retry"] = false;
-            }
-        }
 
         this.setState({
-            scheduleItemDetail: Object.assign({}, props.scheduleItemDetail),
             triedToSubmit: false,
-            error: state.error
+            error: {}
         });
     }
 
     runSchedule() {
         const { props } = this;
-        let { scheduleItemDetail } = this.state;
+        let { scheduleItemDetail } = props;
         props.dispatch(TaskActions.runScheduleItem(scheduleItemDetail, () => {
             util.utilities.notify(resx.get("RunNow"));
         }, () => {
@@ -136,40 +98,47 @@ class SchedulerEditor extends Component {
         return !date || new Date(date).getFullYear() < 1970;
     }
 
+    getDefaultIfNull(obj, key, defaultValue) {
+        if (obj && key && obj[key]) {
+            return obj[key].toString();
+        }
+        return defaultValue;
+    }
+
     getValue(selectKey) {
-        const { state } = this;
+        const { props } = this;
         switch (selectKey) {
             case "FriendlyName":
-                return state.scheduleItemDetail.FriendlyName !== undefined ? state.scheduleItemDetail.FriendlyName.toString() : "";
+                return this.getDefaultIfNull(props.scheduleItemDetail, "FriendlyName", "");
             case "TypeFullName":
-                return state.scheduleItemDetail.TypeFullName !== undefined ? state.scheduleItemDetail.TypeFullName.toString() : "";
+                return this.getDefaultIfNull(props.scheduleItemDetail, "TypeFullName", "");
             case "RetainHistoryNum":
-                return state.scheduleItemDetail.RetainHistoryNum !== undefined ? state.scheduleItemDetail.RetainHistoryNum.toString() : "0";
+                return this.getDefaultIfNull(props.scheduleItemDetail, "RetainHistoryNum", "0");
             case "Servers":
-                return state.scheduleItemDetail.Servers !== undefined ? state.scheduleItemDetail.Servers.toString() : "";
+                return this.getDefaultIfNull(props.scheduleItemDetail, "Servers", "");
             case "ObjectDependencies":
-                return state.scheduleItemDetail.ObjectDependencies !== undefined ? state.scheduleItemDetail.ObjectDependencies.toString() : "";
+                return this.getDefaultIfNull(props.scheduleItemDetail, "ObjectDependencies", "");
             case "ScheduleStartDate":
-                if (!this.isEmptyDate(state.scheduleItemDetail.ScheduleStartDate)) {
-                    return new Date(state.scheduleItemDetail.ScheduleStartDate);
+                if (!this.isEmptyDate(this.getDefaultIfNull(props.scheduleItemDetail, "ScheduleStartDate", null))) {
+                    return new Date(props.scheduleItemDetail.ScheduleStartDate);
                 }
                 else {
                     return null;
                 }
             case "TimeLapse":
-                return state.scheduleItemDetail.TimeLapse !== undefined ? state.scheduleItemDetail.TimeLapse.toString() : "";
+                return this.getDefaultIfNull(props.scheduleItemDetail, "TimeLapse", "");
             case "TimeLapseMeasurement":
-                return state.scheduleItemDetail.TimeLapseMeasurement !== undefined ? state.scheduleItemDetail.TimeLapseMeasurement.toString() : "s";
+                return this.getDefaultIfNull(props.scheduleItemDetail, "TimeLapseMeasurement", "s");
             case "RetryTimeLapse":
-                return state.scheduleItemDetail.RetryTimeLapse !== undefined ? state.scheduleItemDetail.RetryTimeLapse.toString() : "";
+                return this.getDefaultIfNull(props.scheduleItemDetail, "RetryTimeLapse", "");
             case "RetryTimeLapseMeasurement":
-                return state.scheduleItemDetail.RetryTimeLapseMeasurement !== undefined ? state.scheduleItemDetail.RetryTimeLapseMeasurement.toString() : "s";
+                return this.getDefaultIfNull(props.scheduleItemDetail, "RetryTimeLapseMeasurement", "s");
             case "AttachToEvent":
-                return state.scheduleItemDetail.AttachToEvent !== undefined ? state.scheduleItemDetail.AttachToEvent.toString() : "";
+                return this.getDefaultIfNull(props.scheduleItemDetail, "AttachToEvent", "");
             case "CatchUpEnabled":
-                return state.scheduleItemDetail.CatchUpEnabled !== undefined ? state.scheduleItemDetail.CatchUpEnabled.toString() : "false";
+                return this.getDefaultIfNull(props.scheduleItemDetail, "CatchUpEnabled", "false");
             case "Enabled":
-                return state.scheduleItemDetail.Enabled !== undefined ? state.scheduleItemDetail.Enabled.toString() : "false";
+                return this.getDefaultIfNull(props.scheduleItemDetail, "Enabled", "false");
             default:
                 break;
         }
@@ -177,7 +146,7 @@ class SchedulerEditor extends Component {
 
     onSettingChange(key, event) {
         let { state, props } = this;
-        let scheduleItemDetail = Object.assign({}, state.scheduleItemDetail);
+        let scheduleItemDetail = Object.assign({}, props.scheduleItemDetail);
 
         if (key === "ScheduleStartDate") {
             scheduleItemDetail[key] = event;
@@ -234,7 +203,7 @@ class SchedulerEditor extends Component {
             return;
         }
 
-        props.onUpdate(this.state.scheduleItemDetail);
+        props.onUpdate(props.scheduleItemDetail);
     }
 
     onCancel() {
@@ -252,12 +221,13 @@ class SchedulerEditor extends Component {
 
     /* eslint-disable react/no-danger */
     render() {
-        if (this.props.panelIndex === 1) {
-            return <History pageSize={5} scheduleId={this.props.scheduleId} title={resx.get("HistoryModalTitle")} />;
+        const { props, state } = this;
+        if (props.panelIndex === 1) {
+            return <History pageSize={5} scheduleId={props.scheduleId} title={resx.get("HistoryModalTitle")} />;
         }
 
-        if (this.state.scheduleItemDetail !== undefined || this.props.id === "add") {
-            const columnOne = <div className="container">
+        if (props.scheduleItemDetail !== undefined || props.id === "add") {
+            const columnOne = <div className="container" key="columnOne">
                 <div className="editor-row divider">
                     <SingleLineInputWithError
                         withLabel={true}
@@ -273,7 +243,7 @@ class SchedulerEditor extends Component {
                         withLabel={true}
                         style={{ width: 100 + "%", float: "left" }}
                         label={resx.get("plType") + " *"}
-                        error={this.state.error.name && this.state.triedToSubmit}
+                        error={state.error.name && state.triedToSubmit}
                         errorMessage={resx.get("TypeRequired")}
                         value={this.getValue("TypeFullName") || ""}
                         onChange={this.onSettingChange.bind(this, "TypeFullName")}
@@ -308,7 +278,7 @@ class SchedulerEditor extends Component {
                     />
                 </div>
             </div>;
-            const columnTwo = <div className="container right-column">
+            const columnTwo = <div className="container right-column" key="columnTwo">
                 <div className="editor-row divider">
                     <Label label={resx.get("plScheduleStartDate")} style={{ margin: "0 0 5px 0" }} />
                     <DatePicker
@@ -324,7 +294,7 @@ class SchedulerEditor extends Component {
                         withLabel={true}
                         style={{ float: "left", width: "47.5%", whiteSpace: "pre" }}
                         label={resx.get("plTimeLapse") + " *"}
-                        error={this.state.error.frequency && this.state.triedToSubmit}
+                        error={state.error.frequency && state.triedToSubmit}
                         errorMessage={resx.get("TimeLapseRequired.ErrorMessage")}
                         value={this.getValue("TimeLapse") || ""}
                         onChange={this.onSettingChange.bind(this, "TimeLapse")}
@@ -342,7 +312,7 @@ class SchedulerEditor extends Component {
                         withLabel={true}
                         style={{ width: "47.5%", float: "left", whiteSpace: "pre" }}
                         label={resx.get("plRetryTimeLapse")}
-                        error={this.state.error.retry && this.state.triedToSubmit}
+                        error={state.error.retry && state.triedToSubmit}
                         errorMessage={resx.get("RetryTimeLapseValidator.ErrorMessage")}
                         value={this.getValue("RetryTimeLapse") === "-1" ? "" : this.getValue("RetryTimeLapse")}
                         onChange={this.onSettingChange.bind(this, "RetryTimeLapse")}
@@ -384,24 +354,31 @@ class SchedulerEditor extends Component {
                 </div>
             </div>;
 
-            return (
+            return ( 
                 <div className="scheduler-setting-editor">
-                    <Grid children={[columnOne, columnTwo]} numberOfColumns={2} />
+                    <div className="scheduler-item-container">
+                        <div className="scheduler-item-column">
+                            {columnOne}
+                        </div>
+                        <div className="scheduler-item-column">
+                            {columnTwo}
+                        </div>
+                    </div>
                     <div className="buttons-box">
-                        {this.props.scheduleId !== undefined && <Button type="secondary" onClick={this.props.onDelete.bind(this, this.props.scheduleId)}>{resx.get("cmdDelete")}</Button>}
+                        {props.scheduleId !== undefined && <Button type="secondary" onClick={props.onDelete.bind(this, props.scheduleId)}>{resx.get("cmdDelete")}</Button>}
                         <Button
                             type="secondary"
                             onClick={this.onCancel.bind(this)}>
                             {resx.get("Cancel")}
                         </Button>
-                        {this.props.scheduleId !== undefined && this.props.scheduleItemDetail.Enabled && this.props.enabled &&
+                        {props.scheduleId !== undefined && props.scheduleItemDetail.Enabled && props.enabled &&
                             <Button type="secondary" onClick={this.runSchedule.bind(this)}>{resx.get("cmdRun")}</Button>
                         }
                         <Button
-                            disabled={!this.props.settingsClientModified}
+                            disabled={!props.settingsClientModified}
                             type="primary"
                             onClick={this.onUpdateItem.bind(this)}>
-                            {this.props.scheduleId !== undefined ? resx.get("Update") : resx.get("cmdSave")}
+                            {props.scheduleId !== undefined ? resx.get("Update") : resx.get("cmdSave")}
                         </Button>
                     </div>
                 </div>

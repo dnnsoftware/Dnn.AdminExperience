@@ -1,6 +1,7 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import GridCell from "dnn-grid-cell";
+import { GridCell } from "@dnnsoftware/dnn-react-common";
 import Localization from "../../localization";
 import SearchAdvanced from "./SearchAdvanced";
 import SearchResultCard from "./SearchResultCard";
@@ -105,8 +106,8 @@ SearchResult.propTypes = {
     pageTypeSelectorComponents : PropTypes.array,
     filters : PropTypes.array.isRequired,
     tags : PropTypes.string.isRequired,
-    filterByPageType : PropTypes.string.isRequired,
-    filterByPublishStatus : PropTypes.bool.isRequired,
+    filterByPageType : PropTypes.string,
+    filterByPublishStatus : PropTypes.string,
     filtersUpdated : PropTypes.bool.isRequired,
     startDate : PropTypes.instanceOf(Date).isRequired,
     endDate : PropTypes.instanceOf(Date).isRequired,
@@ -126,7 +127,7 @@ SearchResult.propTypes = {
     updateFilterByPageTypeOptions : PropTypes.func.isRequired,
     updateFilterByWorkflowOptions : PropTypes.func.isRequired,
     updateFilterStartEndDate : PropTypes.func.isRequired,
-    filterByWorkflow: PropTypes.string.isRequired,
+    filterByWorkflow: PropTypes.number,
     onSearchScroll: PropTypes.func,
     buildTree : PropTypes.func.isRequired,
     pageIndex: PropTypes.number

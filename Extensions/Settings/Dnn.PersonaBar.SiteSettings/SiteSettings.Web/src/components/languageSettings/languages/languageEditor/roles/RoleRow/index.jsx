@@ -1,7 +1,7 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import "./style.less";
-import GridCell from "dnn-grid-cell";
-import Checkbox from "dnn-checkbox";
+import { GridCell, Checkbox } from "@dnnsoftware/dnn-react-common";
 import { connect } from "react-redux";
 import {
     languages as LanguagesActions
@@ -15,7 +15,7 @@ class RoleRow extends Component {
         };
     }
 
-    componentWillMount() {
+    componentDidMount() {
         const {props} = this;
 
         this.setState({
@@ -23,10 +23,13 @@ class RoleRow extends Component {
         });
     }
 
-    componentWillReceiveProps(props) {
-        this.setState({
-            selected: props.selected
-        });
+    componentDidUpdate(prevProps) {
+        const { props } = this;
+        if(props.selected !== prevProps.selected) {
+            this.setState({
+                selected: props.selected
+            });
+        }
     }
 
     onChange(role, event) {

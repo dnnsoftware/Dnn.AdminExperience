@@ -1,8 +1,7 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import resx from "resources";
-import SingleLineInput from "dnn-single-line-input";
-import SearchBox from "dnn-search-box";
-import GridCell from "dnn-grid-cell";
+import { SearchBox, GridCell } from "@dnnsoftware/dnn-react-common";
 import ResourceEditor from "./resourceEditor";
 import utilities from "utils";
 
@@ -28,7 +27,7 @@ class ResourceList extends Component {
             searchText: ""
         };
     }
-    componentWillMount() {
+    componentDidMount() {
         this.setState({
             resources: this.props.list
         });
@@ -83,11 +82,11 @@ class ResourceList extends Component {
                     </GridCell>
                 </GridCell>
                 <GridCell className="resource-rows">
-                    {searchedList.map((key) => {
+                    {searchedList.map((key, i) => {
                         const shouldBeHighlighted = props.highlightPendingTranslations 
                             && this.props.list[key].First === this.props.list[key].Second;
 
-                        return <GridCell className="resource-row">
+                        return <GridCell className="resource-row" key={i}>
                             <GridCell className="row-detail" columnSize={rowSizes[0]}>
                                 <div className="key-name">{key}</div>
                             </GridCell>

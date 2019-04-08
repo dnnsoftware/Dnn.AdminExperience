@@ -2,9 +2,7 @@ import * as React from "react";
 import * as ReactRedux from "react-redux";
 import * as Redux from "redux";
 import ReactDOM from "react-dom";
-import ReactTabs from "react-tabs";
-import ReactComponentWithPureRenderMixin from "react/lib/ReactComponentWithPureRenderMixin";
-import ReactMount from "react/lib/ReactMount";
+import { Tabs as ReactTabs } from "react-tabs";
 import ReactCollapse from "react-collapse";
 import * as ReactCustomScrollBars from "react-custom-scrollbars";
 import ReactModal from "react-modal";
@@ -17,7 +15,6 @@ import ReduxImmutableStateInvariant from "redux-immutable-state-invariant";
 import ReduxThunk from "redux-thunk";
 import Moment from "moment";
 import ReactWidgets from "react-widgets";
-import ThrottleDebounce from "throttle-debounce";
 import Promise from "es6-promise";
 import PersonaBarComponents from "./components/persona-bar-components";
 
@@ -34,17 +31,14 @@ if (!window.dnn.nodeModules) {
 
 window.dnn.nodeModules.React = React;
 window.dnn.nodeModules.Redux = Redux;
-window.dnn.nodeModules.ReactMount = ReactMount;
 window.dnn.nodeModules.ReactRedux = ReactRedux;
 window.dnn.nodeModules.ReactDOM = ReactDOM;
 window.dnn.nodeModules.ReactTabs = ReactTabs;
 window.dnn.nodeModules.ReactTooltip = ReactTooltip;
-window.dnn.nodeModules.ReactComponentWithPureRenderMixin = ReactComponentWithPureRenderMixin;
 window.dnn.nodeModules.ReactCollapse = ReactCollapse;
 window.dnn.nodeModules.ReactCustomScrollBars = ReactCustomScrollBars;
 window.dnn.nodeModules.ReactModal = ReactModal;
 window.dnn.nodeModules.ReactWidgets = ReactWidgets;
-window.dnn.nodeModules.ThrottleDebounce = ThrottleDebounce;
 window.dnn.nodeModules.CommonComponents = CommonComponents;
 window.dnn.nodeModules.PersonaBarComponents = PersonaBarComponents;
 window.dnn.nodeModules.ReduxDevTools = ReduxDevTools;

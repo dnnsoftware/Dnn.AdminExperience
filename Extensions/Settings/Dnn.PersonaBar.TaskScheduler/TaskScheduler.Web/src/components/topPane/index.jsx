@@ -1,17 +1,17 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import {
     task as TaskActions
 } from "../../actions";
 import styles from "./style.less";
-import Button from "dnn-button";
-import TextOverflowWrapper from "dnn-text-overflow-wrapper";
+import { Button, TextOverflowWrapper } from "@dnnsoftware/dnn-react-common";
 import ModePanel from "./modePanel";
 import util from "../../utils";
 import resx from "../../resources";
 
 /*eslint-disable quotes*/
-const svgIcon = require(`!raw!./../svg/edit.svg`);
+const svgIcon = require(`!raw-loader!./../svg/edit.svg`);
 
 class TopPane extends Component {
     constructor() {
@@ -21,7 +21,7 @@ class TopPane extends Component {
         };
     }
 
-    componentWillMount() {
+    componentDidMount() {
         const {props} = this;
         const persistedSettings = util.utilities.persistent.load();
 

@@ -1,16 +1,11 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import "./style.less";
-import Switch from "dnn-switch";
-import Grid from "dnn-grid-system";
-import Button from "dnn-button";
-import Select from "dnn-dropdown";
 import util from "../../../utils";
 import resx from "../../../resources";
-import SingleLineInputWithError from "dnn-single-line-input-with-error";
-import MultiLineInput from "dnn-multi-line-input";
+import { Dropdown as Select, GridSystem as Grid, Switch, Button, SingleLineInputWithError, MultiLineInput, Label }  from "@dnnsoftware/dnn-react-common";
 import RoleGroupEditor from "./RoleGroupEditor";
-import Label from "dnn-label";
 import {
     roles as RolesActions
 } from "../../../actions";
@@ -198,7 +193,7 @@ class RolesEditor extends Component {
     /* eslint-disable react/no-danger */
     render() {
         let { state, props } = this;
-        const columnOne = <div className="editor-container">
+        const columnOne = <div key="editor-container-columnOne" className="editor-container">
             <div className="editor-row divider">
                 <SingleLineInputWithError
                     value={state.roleDetails.name}
@@ -255,7 +250,7 @@ class RolesEditor extends Component {
             </div>
         </div>;
 
-        const columnTwo = <div className="editor-container right-column">
+        const columnTwo = <div key="editor-container-columnTwo" className="editor-container right-column">
             <div className="editor-row divider">
                 <Label
                     label={resx.get("plRoleGroups")}
@@ -357,7 +352,7 @@ class RolesEditor extends Component {
         /* eslint-disable react/no-danger */
         return (
             <div className="role-details-editor">
-                <Grid children={children} numberOfColumns={2} />
+                <Grid numberOfColumns={2}>{children}</Grid>
                 <div className="buttons-box">
                     {
                         this.props.roleId > 0 && (!state.roleDetails.isSystem && state.roleDetails.id > -1) ?

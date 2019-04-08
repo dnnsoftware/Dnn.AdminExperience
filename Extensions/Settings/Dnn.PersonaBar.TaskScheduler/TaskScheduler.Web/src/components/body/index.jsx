@@ -1,5 +1,5 @@
-import React, { Component, PropTypes } from "react";
-import Tabs from "dnn-tabs";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import {
     pagination as PaginationActions,
@@ -9,7 +9,7 @@ import TaskQueue from "../taskQueue";
 import History from "../history";
 import Scheduler from "../scheduler";
 import TopPane from "../topPane";
-import PersonaBarPageBody from "dnn-persona-bar-page-body";
+import { DnnTabs as Tabs, PersonaBarPageBody } from "@dnnsoftware/dnn-react-common";
 import "./style.less";
 import resx from "../../resources";
 import util from "../../utils";
@@ -31,7 +31,6 @@ export class Body extends Component {
         else {
             props.dispatch(PaginationActions.loadTab(index));
         }
-        this.setState({});
     }
 
     /*eslint no-mixed-spaces-and-tabs: "error"*/

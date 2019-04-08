@@ -1,12 +1,8 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import "./style.less";
-import SingleLineInputWithError from "dnn-single-line-input-with-error";
-import Grid from "dnn-grid-system";
-import Label from "dnn-label";
-import Button from "dnn-button";
-import InputGroup from "dnn-input-group";
-import Dropdown from "dnn-dropdown";
+import { SingleLineInputWithError, GridSystem, Label, Button, InputGroup, Dropdown } from "@dnnsoftware/dnn-react-common";
 import {
     siteBehavior as SiteBehaviorActions
 } from "../../../../actions";
@@ -32,32 +28,29 @@ class SiteAliasEditor extends Component {
         };
     }
 
-    componentWillMount() {
+    componentDidMount() {
         const {props} = this;
         if (props.aliasId) {
             props.dispatch(SiteBehaviorActions.getSiteAlias(props.aliasId));
         }
     }
 
-    componentWillReceiveProps(props) {
-        let {state} = this;
-
-        if (!props.aliasDetail) {
-            return;
+    componentDidUpdate(prevProps){
+        const {props, state} = this;
+        if ((props !== prevProps) && props.aliasDetail ){
+            if (props.aliasDetail["HTTPAlias"] === undefined || props.aliasDetail["HTTPAlias"] === "") {
+                state.error["alias"] = true;
+            }
+            else if (props.aliasDetail["HTTPAlias"] !== "" && props.aliasDetail["HTTPAlias"] !== undefined) {
+                state.error["alias"] = false;
+            }
+    
+            this.setState({
+                aliasDetail: Object.assign({}, props.aliasDetail),
+                triedToSubmit: false,
+                error: state.error
+            });
         }
-
-        if (props.aliasDetail["HTTPAlias"] === undefined || props.aliasDetail["HTTPAlias"] === "") {
-            state.error["alias"] = true;
-        }
-        else if (props.aliasDetail["HTTPAlias"] !== "" && props.aliasDetail["HTTPAlias"] !== undefined) {
-            state.error["alias"] = false;
-        }
-
-        this.setState({
-            aliasDetail: Object.assign({}, props.aliasDetail),
-            triedToSubmit: false,
-            error: state.error
-        });
     }
 
     onSettingChange(key, event) {
@@ -167,11 +160,11 @@ class SiteAliasEditor extends Component {
     render() {
         /* eslint-disable react/no-danger */
         if (this.state.aliasDetail !== undefined || this.props.id === "add") {
-            const columnOne = <div className="left-column">
+            const columnOne = <div key="column-one" className="left-column">
                 <InputGroup>
                     <Label
                         label={resx.get("SiteAlias")}
-                        />
+                    />
                     <SingleLineInputWithError
                         inputStyle={{ margin: "0" }}
                         withLabel={false}
@@ -179,47 +172,47 @@ class SiteAliasEditor extends Component {
                         errorMessage={resx.get("InvalidAlias")}
                         value={this.state.aliasDetail.HTTPAlias}
                         onChange={this.onSettingChange.bind(this, "HTTPAlias")}
-                        />
+                    />
                 </InputGroup>
                 <InputGroup>
                     <Label
                         label={resx.get("Browser")}
-                        />
+                    />
                     <Dropdown
                         options={this.getBrowserOptions()}
                         value={this.state.aliasDetail.BrowserType}
                         onSelect={this.onSettingChange.bind(this, "BrowserType")}
-                        />
+                    />
                 </InputGroup>
             </div>;
-            const columnTwo = <div className="right-column">
+            const columnTwo = <div key="column-two" className="right-column">
                 {this.props.siteAliases.Languages.length > 1 &&
                     <InputGroup>
                         <Label
                             label={resx.get("Language")}
-                            />
+                        />
                         <Dropdown
                             options={this.getLanguageOptions()}
                             value={this.state.aliasDetail.CultureCode}
                             onSelect={this.onSettingChange.bind(this, "CultureCode")}
-                            />
+                        />
                     </InputGroup>
                 }
                 <InputGroup>
                     <Label
                         label={resx.get("Theme")}
-                        />
+                    />
                     <Dropdown
                         options={this.getSkinOptions()}
                         value={this.state.aliasDetail.Skin}
                         onSelect={this.onSettingChange.bind(this, "Skin")}
-                        />
+                    />
                 </InputGroup>
             </div>;
 
             return (
                 <div className="alias-editor">
-                    <Grid children={[columnOne, columnTwo]} numberOfColumns={2} />
+                    <GridSystem numberOfColumns={2}>{[columnOne, columnTwo]}</GridSystem>
                     <div className="editor-buttons-box">
                         <Button
                             type="secondary"

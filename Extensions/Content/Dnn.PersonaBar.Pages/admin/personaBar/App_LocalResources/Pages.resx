@@ -702,6 +702,12 @@
   <data name="NeutralPageClickButton.Text" xml:space="preserve">
     <value>To change this to a translatable page, click the button here.</value>
   </data>
+  <data name="SharedModule.Text" xml:space="preserve">
+    <value>Shared: true</value>
+  </data>
+  <data name="IsNotSharedModule.Text" xml:space="preserve">
+    <value>Shared: false</value>
+  </data>
   <data name="NotifyModalHeader.Text" xml:space="preserve">
     <value>Send a notification to translators</value>
   </data>
@@ -1689,5 +1695,20 @@
   </data>
   <data name="EditContent.Text" xml:space="preserve">
     <value>Edit Content</value>
+  </data>
+  <data name="DeleteTranslationConfirm.Text" xml:space="preserve">
+    <value>You are about to permanently &lt;b&gt;remove&lt;/b&gt; the '&lt;b&gt;{0}&lt;/b&gt;' translation of this page. Are you sure you want to proceed?</value>
+  </data>
+  <data name="IconFile.Help" xml:space="preserve">
+    <value>The page icon is an image that may be used by your theme or menu system for each page</value>
+  </data>
+  <data name="IconFile.Text" xml:space="preserve">
+    <value>Small Icon</value>
+  </data>
+  <data name="IconFileLarge.Help" xml:space="preserve">
+    <value>The page icon is an image that may be used by your theme or menu system for each page</value>
+  </data>
+  <data name="IconFileLarge.Text" xml:space="preserve">
+    <value>Large Icon</value>
   </data>
 </root>

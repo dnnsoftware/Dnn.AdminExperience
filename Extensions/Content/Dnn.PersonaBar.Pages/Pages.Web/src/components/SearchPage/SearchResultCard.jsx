@@ -1,12 +1,10 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import Localization from "../../localization";
 import utils from "../../utils";
-import cloneDeep from "lodash/clonedeep";
+import cloneDeep from "lodash/cloneDeep";
 import securityService from "../../services/securityService";
-
-import GridCell from "dnn-grid-cell";
-import OverflowText from "dnn-text-overflow-wrapper";
-import { EyeIcon, TreeEdit } from "dnn-svg-icons";
+import { TextOverflowWrapper, GridCell, SvgIcons } from "@dnnsoftware/dnn-react-common";
 
 
 class SearchResultCard extends Component {
@@ -87,9 +85,9 @@ class SearchResultCard extends Component {
     renderCustomComponent() {
         const item = this.props.item;
         if (!this.thumbRendered && this.props.pageTypeSelectorComponents && this.props.pageTypeSelectorComponents.length > 0) { 
-            return this.props.pageTypeSelectorComponents.map(function (component) {
+            return this.props.pageTypeSelectorComponents.map(function (component, index) {
                 const Component = component.component;
-                return <div className="search-item-thumbnail"><Component page={item} /></div>;
+                return <div className="search-item-thumbnail" key={"search-item-thumbnail-" + index}><Component page={item} /></div>;
             });
         }
         this.thumbRendered = true;                             
@@ -98,12 +96,12 @@ class SearchResultCard extends Component {
     /* eslint-disable react/no-danger */
     render() {
         let visibleMenus = [];
-        this.props.item.canViewPage && visibleMenus.push(<li onClick={() => this.props.onViewPage(this.props.item)}><div title={Localization.get("View")} dangerouslySetInnerHTML={{ __html: EyeIcon }} /></li>);
-        this.props.item.canAddContentToPage && visibleMenus.push(<li onClick={() => this.props.onViewEditPage(this.props.item)}><div title={Localization.get("Edit")} dangerouslySetInnerHTML={{ __html: TreeEdit }} /></li>);
+        this.props.item.canViewPage && visibleMenus.push(<li key={"visible-menu-item-can-view-page"} onClick={() => this.props.onViewPage(this.props.item)}><div title={Localization.get("View")} dangerouslySetInnerHTML={{ __html: SvgIcons.EyeIcon }} /></li>);
+        this.props.item.canAddContentToPage && visibleMenus.push(<li key={"visible-menu-item-can-add-content"} onClick={() => this.props.onViewEditPage(this.props.item)}><div title={Localization.get("Edit")} dangerouslySetInnerHTML={{ __html: SvgIcons.TreeEdit }} /></li>);
         if (this.props.pageInContextComponents && securityService.isSuperUser() && !utils.isPlatform()) {
             let additionalMenus = cloneDeep(this.props.pageInContextComponents || []);
-            additionalMenus && additionalMenus.map(additionalMenu => {
-                visibleMenus.push(<li onClick={() => (additionalMenu.OnClickAction && typeof additionalMenu.OnClickAction === "function")
+            additionalMenus && additionalMenus.map((additionalMenu, index) => {
+                visibleMenus.push(<li key={"visible-menu-item-additinal-" + index} onClick={() => (additionalMenu.OnClickAction && typeof additionalMenu.OnClickAction === "function")
                     && this.props.CallCustomAction(additionalMenu.OnClickAction)}><div title={additionalMenu.title} dangerouslySetInnerHTML={{ __html: additionalMenu.icon }} /></li>);
             });
         }
@@ -117,7 +115,7 @@ class SearchResultCard extends Component {
                     {this.renderCustomComponent()}
                     <div className={`search-item-details${utils.isPlatform() ? " full" : ""}`}>
                         <div className="search-item-details-left">
-                            <h1 onClick={() => this.onNameClick(this.props.item)}><OverflowText text={this.props.item.name} /></h1>
+                            <h1 onClick={() => this.onNameClick(this.props.item)}><TextOverflowWrapper text={this.props.item ? this.props.item.name : ""} /></h1>
                             <div title={tabPath}>{tabPath}</div>
                         </div>
                         <div className="search-item-details-right">
@@ -153,7 +151,7 @@ class SearchResultCard extends Component {
                                     <p title={this.props.item.tags.join(",").trim(",")}>{
                                         this.props.item.tags.map((tag, count) => {
                                             return (
-                                                <span>
+                                                <span key={"tag-" + count}>
                                                     <span style={{ marginLeft: "5px" }} onClick={() => this.addToTags(tag)}>
                                                         {tag}
                                                     </span>
@@ -189,8 +187,8 @@ SearchResultCard.propTypes = {
     CallCustomAction : PropTypes.func.isRequired,
     getPageTypeLabel : PropTypes.func.isRequired,
     getPublishStatusLabel : PropTypes.func.isRequired,
-    filterByPageType : PropTypes.string.isRequired,
-    filterByPublishStatus : PropTypes.bool.isRequired,
+    filterByPageType : PropTypes.string,
+    filterByPublishStatus : PropTypes.string,
     updateFilterByPageStatusOptions : PropTypes.func.isRequired,
     updateFilterByPageTypeOptions : PropTypes.func.isRequired,
     updateFilterByWorkflowOptions : PropTypes.func.isRequired,
@@ -198,8 +196,8 @@ SearchResultCard.propTypes = {
     startDate : PropTypes.instanceOf(Date).isRequired,
     endDate : PropTypes.instanceOf(Date).isRequired,
     updateSearchAdvancedTags : PropTypes.func.isRequired,
-    filterByWorkflow : PropTypes.string.isRequired,
-    buildTree : PropTypes.func.isRequired
+    filterByWorkflow : PropTypes.number,
+    buildTree : PropTypes.func
     
 };
 

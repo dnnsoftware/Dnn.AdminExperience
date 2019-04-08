@@ -1,19 +1,20 @@
-import React, { Component, PropTypes } from "react";
-import Tabs from "dnn-tabs";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import {
     pagination as PaginationActions
 } from "../../actions";
+import { DnnTabs, PersonaBarPageBody } from "@dnnsoftware/dnn-react-common";
 import BasicSettings from "../basicSettings";
 import DefaultPagesSettings from "../defaultPagesSettings";
 import MessagingSettings from "../messagingSettings";
 import ProfileSettings from "../profileSettings";
 import SiteAliasSettings from "../siteAliasSettings";
+import PrivacySettings from "../privacySettings";
 import BasicSearchSettings from "../basicSearchSettings";
 import LanguageSettings from "../languageSettings";
 import SynonymsGroups from "../synonymsGroups";
 import IgnoreWords from "../ignoreWords";
-import PersonaBarPageBody from "dnn-persona-bar-page-body";
 import MoreSettings from "../moreSettings";
 import "./style.less";
 import util from "../../utils";
@@ -36,7 +37,7 @@ export class Body extends Component {
         props.dispatch(PaginationActions.loadTab(index));   //index acts as scopeTypeId
     }
 
-    shouldComponentUpdate(nextProps){
+    shouldComponentUpdate(nextProps) {
         // Only render if is to show the component.Avoid calling backend when not needed. 
         return nextProps.showing;
     }
@@ -44,22 +45,24 @@ export class Body extends Component {
     renderSiteBehaviorTab() {
         const {props} = this;
         if (isHost) {
-            return <Tabs onSelect={this.handleSelect.bind(this) }
+            return <DnnTabs onSelect={this.handleSelect.bind(this) }
                 tabHeaders={[resx.get("TabDefaultPages"),
                     resx.get("TabMessaging"),
                     resx.get("TabUserProfiles"),
                     resx.get("TabSiteAliases"),
+                    resx.get("TabPrivacy"),
                     resx.get("TabMore")]}
                 type="secondary">
                 <DefaultPagesSettings portalId={props.portalId} cultureCode={props.cultureCode} />
                 <MessagingSettings portalId={props.portalId} cultureCode={props.cultureCode} />
                 <ProfileSettings portalId={props.portalId} cultureCode={props.cultureCode} />
                 <SiteAliasSettings portalId={props.portalId} cultureCode={props.cultureCode} />
+                <PrivacySettings portalId={props.portalId} cultureCode={props.cultureCode} />
                 <MoreSettings portalId={props.portalId} openHtmlEditorManager={props.openHtmlEditorManager.bind(this) } />
-            </Tabs>;
+            </DnnTabs>;
         }
         else {
-            return <Tabs onSelect={this.handleSelect.bind(this) }
+            return <DnnTabs onSelect={this.handleSelect.bind(this) }
                 tabHeaders={[resx.get("TabDefaultPages"),
                     resx.get("TabMessaging"),
                     resx.get("TabUserProfiles")]}
@@ -67,7 +70,7 @@ export class Body extends Component {
                 <DefaultPagesSettings portalId={props.portalId} cultureCode={props.cultureCode} />
                 <MessagingSettings portalId={props.portalId} cultureCode={props.cultureCode} />
                 <ProfileSettings portalId={props.portalId} cultureCode={props.cultureCode} />
-            </Tabs>;
+            </DnnTabs>;
         }
     }
 
@@ -75,26 +78,28 @@ export class Body extends Component {
         const SearchExtras = window.dnn.SiteSettings && window.dnn.SiteSettings.SearchExtras;
 
         let searchTabHeaders = [resx.get("TabBasicSettings"), resx.get("TabSynonyms"), resx.get("TabIgnoreWords")];
-        let searchTabContent = [<BasicSearchSettings portalId={this.props.portalId} cultureCode={this.props.cultureCode} />,
-            <SynonymsGroups portalId={this.props.portalId} cultureCode={this.props.cultureCode} />,
-            <IgnoreWords portalId={this.props.portalId} cultureCode={this.props.cultureCode} />];
+        let searchTabContent = [
+            <BasicSearchSettings portalId={this.props.portalId} cultureCode={this.props.cultureCode} key="first" />,
+            <SynonymsGroups portalId={this.props.portalId} cultureCode={this.props.cultureCode} key="second" />,
+            <IgnoreWords portalId={this.props.portalId} cultureCode={this.props.cultureCode} key="third" />
+        ];
 
         if (SearchExtras && SearchExtras.length > 0) {
             SearchExtras.sort(function (a, b) {
                 if (a.RenderOrder < b.RenderOrder) return -1;
                 if (a.RenderOrder > b.RenderOrder) return 1;
                 return 0;
-            }).forEach((searchExtra) => {
+            }).forEach((searchExtra, index) => {
                 searchTabHeaders.push(searchExtra.TabHeader);
-                searchTabContent.push(searchExtra.Component);
+                searchTabContent.push(<div key={"content-" + index}>{searchExtra.Component}</div>);
             });
         }
 
-        return <Tabs onSelect={this.handleSelect.bind(this) }
+        return <DnnTabs onSelect={this.handleSelect.bind(this) }
             tabHeaders={searchTabHeaders}
             type="secondary">
             {searchTabContent}
-        </Tabs>;
+        </DnnTabs>;
     }
 
     renderBasicSettings() {
@@ -117,7 +122,7 @@ export class Body extends Component {
                 text: this.props.referrer && this.props.referrerText,
                 onClick: this.props.backToReferrerFunc
             }}>
-                <Tabs onSelect={this.handleSelect.bind(this) }
+                <DnnTabs onSelect={this.handleSelect.bind(this) }
                     tabHeaders={tabHeaders}
                     type="primary">
                     {this.props.showing && canViewSiteInfo && this.renderBasicSettings() }
@@ -127,10 +132,10 @@ export class Body extends Component {
                         openLanguageVerifier={this.props.openLanguageVerifier}
                         openLanguagePack={this.props.openLanguagePack}
                         openLocalizedContent={this.props.openLocalizedContent}
-                        cultureCode={this.props.cultureCode}
-                        />}
+                        cultureCode={this.props.cultureCode}/>
+                    }
                     {this.props.showing && isAdmin && this.getSearchSecondaryTabs() }
-                </Tabs>
+                </DnnTabs>
             </PersonaBarPageBody>
         );
     }

@@ -1,4 +1,5 @@
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import Picker from "react-day-picker";
 import "./style.less";
 
@@ -9,7 +10,7 @@ const DayPicker = (newProps) => {
             <Picker {...newProps} />
         </div>);
 };
-DayPicker.PropTypes = {
+DayPicker.propTypes = {
     onDayClick: PropTypes.func.isRequired,
     month: PropTypes.instanceOf(Date),
     selectedDays: PropTypes.instanceOf(Date),

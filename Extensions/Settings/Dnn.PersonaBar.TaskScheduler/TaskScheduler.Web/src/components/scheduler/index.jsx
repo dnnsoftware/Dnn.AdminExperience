@@ -1,14 +1,13 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import {
     task as TaskActions
 } from "../../actions";
 import SchedulerRow from "./schedulerRow";
-import Dropdown from "dnn-dropdown";
+import { Dropdown, Collapsible, SvgIcons } from "@dnnsoftware/dnn-react-common";
 import SchedulerEditor from "./schedulerEditor";
-import Collapse from "dnn-collapsible";
 import "./style.less";
-import { AddIcon } from "dnn-svg-icons";
 import util from "../../utils";
 import resx from "../../resources";
 
@@ -26,7 +25,7 @@ class SchedulerPanel extends Component {
         };
     }
 
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         const { props } = this;
         props.dispatch(TaskActions.getSchedulerItemList());
         if (props.serverList === null || props.serverList === [] || props.serverList === undefined) {
@@ -61,12 +60,10 @@ class SchedulerPanel extends Component {
         return <div className="header-row">{tableHeaders}</div>;
     }
     uncollapse(id, index) {
-        setTimeout(() => {
-            this.setState({
-                openId: id,
-                historyPanelOpen: index === 1
-            });
-        }, this.timeout);
+        this.setState({
+            openId: id,
+            historyPanelOpen: index === 1
+        });
     }
     collapse(index) {
         if (this.state.openId !== "") {
@@ -138,7 +135,6 @@ class SchedulerPanel extends Component {
 
     /* eslint-disable react/no-danger */
     renderedScedulerItemList() {
-        const { state } = this;
         let i = 0;
         if (this.props.schedulerItemList) {
             return this.props.schedulerItemList.map((item, index) => {
@@ -194,13 +190,13 @@ class SchedulerPanel extends Component {
                     </div>
                     <div className="AddItemRow">
                         <div className={opened ? "AddItemBox-active" : "AddItemBox"} onClick={this.toggle.bind(this, opened ? "" : "add")}>
-                            <div className="add-icon" dangerouslySetInnerHTML={{ __html: AddIcon }}>
+                            <div className="add-icon" dangerouslySetInnerHTML={{ __html: SvgIcons.AddIcon }}>
                             </div> {resx.get("cmdAddTask")}
                         </div>
                     </div>
                     <div className="schedule-items-grid">
                         {this.renderHeader()}
-                        <Collapse isOpened={opened} style={{ float: "left" }} fixedHeight={650}>
+                        <Collapsible isOpened={opened} style={{ float: "left", width: "100%" }} fixedHeight={650}>
                             <SchedulerRow
                                 name={"-"}
                                 frequency={"-"}
@@ -221,12 +217,12 @@ class SchedulerPanel extends Component {
                                     id={"add"}
                                     openId={this.state.openId} />
                             </SchedulerRow>
-                        </Collapse>
+                        </Collapsible>
                         {this.renderedScedulerItemList()}
                     </div>
                 </div>
 
-            </div >
+            </div>
         );
     }
 }

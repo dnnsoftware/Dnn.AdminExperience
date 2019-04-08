@@ -1,13 +1,10 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import {
-    theme as ThemeActions
-} from "actions";
+import { theme as ThemeActions } from "actions";
 import Localization from "localization";
-import GridCell from "dnn-grid-cell";
-import Button from "dnn-button";
+import { GridCell, Button } from "@dnnsoftware/dnn-react-common";
 import utils from "utils";
-
 import "./style.less";
 
 class RestoreTheme extends Component {
@@ -26,7 +23,7 @@ class RestoreTheme extends Component {
 
     render() {
         return (
-            <GridCell className="restore-theme" columnSize="50">
+            <GridCell className="restore-theme" columnSize={50}>
                 <Button onClick={this.restoreTheme.bind(this)}>{Localization.get("RestoreTheme")}</Button>
             </GridCell>
         );

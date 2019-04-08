@@ -1,15 +1,16 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import {
     task as TaskActions
 } from "../../actions";
 import TaskHistoryItemRow from "./taskHistoryItemRow";
 import "./style.less";
-import Pager from "dnn-pager";
+import { Pager } from "@dnnsoftware/dnn-react-common";
 import resx from "../../resources";
 
 /*eslint-disable quotes*/
-const svgIcon = require(`!raw!./../svg/history.svg`);
+const svgIcon = require(`!raw-loader!./../svg/history.svg`);
 
 let pageSizeOptions = [];
 let tableFields = [];
@@ -26,7 +27,7 @@ class HistoryPanelBody extends Component {
         };
     }
 
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         const {props, state} = this;
         props.dispatch(TaskActions.getScheduleItemHistory({ scheduleId: props.scheduleId, pageIndex: state.pageIndex, pageSize: state.pageSize }));
 
@@ -84,12 +85,12 @@ class HistoryPanelBody extends Component {
                     showPageInfo={false}
                     numericCounters={4}
                     pageSize={state.pageSize}
-                    totalRecords={props.totalCount}
+                    totalRecords={props.totalCount || 0}
                     onPageChanged={this.onPageChange.bind(this)}
                     pageSizeDropDownWithoutBorder={true}
                     pageSizeOptionText={resx.get("pageSizeOption")}
                     summaryText={resx.get("pagerSummary")}
-                    />
+                />
             </div>
         );
     }

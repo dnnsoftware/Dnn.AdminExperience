@@ -1,11 +1,8 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import GridSystem from "dnn-grid-system";
-import GridCell from "dnn-grid-cell";
-import InputGroup from "dnn-input-group";
-import Button from "dnn-button";
-import Label from "dnn-label";
+import { GridSystem, GridCell, InputGroup, Button, Label } from "@dnnsoftware/dnn-react-common";
 import RadioButtonBlock from "../common/RadioButtonBlock";
 import DropdownBlock from "../common/DropdownBlock";
 import InfoBlock from "../common/InfoBlock";
@@ -17,11 +14,11 @@ import utils from "../../utils";
 
 
 class Performance extends Component {
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         this.props.onRetrievePerformanceSettings();
     }
 
-    componentWillReceiveProps(newProps) {
+    UNSAFE_componentWillReceiveProps(newProps) {
         if (this.props.infoMessage !== newProps.infoMessage && newProps.infoMessage) {
             utils.notify(newProps.infoMessage);
         }
@@ -135,8 +132,7 @@ class Performance extends Component {
                                 label={localization.get("PerformanceTab_CachingProvider")}
                                 options={props.performanceSettings.cachingProviderOptions}
                                 value={props.performanceSettings.cachingProvider}
-                                onSelect={this.onChangeField.bind(this, "cachingProvider")}
-                                />
+                                onSelect={this.onChangeField.bind(this, "cachingProvider")} />
                         }
                         {props.performanceSettings.moduleCacheProviders &&
                             <DropdownBlock
@@ -144,8 +140,7 @@ class Performance extends Component {
                                 label={localization.get("PerformanceTab_ModuleCacheProviders")}
                                 options={props.performanceSettings.moduleCacheProviders}
                                 value={props.performanceSettings.moduleCacheProvider}
-                                onSelect={this.onChangeField.bind(this, "moduleCacheProvider")}
-                                />
+                                onSelect={this.onChangeField.bind(this, "moduleCacheProvider")} />
                         }
                         {props.performanceSettings.pageCacheProviders &&
                             <DropdownBlock
@@ -153,8 +148,7 @@ class Performance extends Component {
                                 label={localization.get("PerformanceTab_PageCacheProviders")}
                                 options={props.performanceSettings.pageCacheProviders}
                                 value={props.performanceSettings.pageCacheProvider}
-                                onSelect={this.onChangeField.bind(this, "pageCacheProvider")}
-                                />
+                                onSelect={this.onChangeField.bind(this, "pageCacheProvider")} />
                         }
                     </div>
                 </div>
@@ -165,8 +159,7 @@ class Performance extends Component {
                             label={localization.get("PerformanceTab_CacheSetting")}
                             options={props.performanceSettings.cacheSettingOptions}
                             value={props.performanceSettings.cacheSetting}
-                            onSelect={this.onChangeField.bind(this, "cacheSetting")}
-                            />
+                            onSelect={this.onChangeField.bind(this, "cacheSetting")} />
                     }
                     {props.performanceSettings.authCacheabilityOptions &&
                         <DropdownBlock
@@ -174,8 +167,7 @@ class Performance extends Component {
                             label={localization.get("PerformanceTab_AuthCacheability")}
                             options={props.performanceSettings.authCacheabilityOptions}
                             value={props.performanceSettings.authCacheability}
-                            onSelect={this.onChangeField.bind(this, "authCacheability")}
-                            />
+                            onSelect={this.onChangeField.bind(this, "authCacheability")} />
                     }
                     {props.performanceSettings.unauthCacheabilityOptions &&
                         <DropdownBlock
@@ -183,8 +175,7 @@ class Performance extends Component {
                             label={localization.get("PerformanceTab_UnauthCacheability")}
                             options={props.performanceSettings.unauthCacheabilityOptions}
                             value={props.performanceSettings.unauthCacheability}
-                            onSelect={this.onChangeField.bind(this, "unauthCacheability")}
-                            />
+                            onSelect={this.onChangeField.bind(this, "unauthCacheability")} />
                     }
                     <SwitchBlock label={localization.get("PerformanceTab_SslForCacheSyncrhonization")}
                         onText={localization.get("SwitchOn")}

@@ -1,73 +1,35 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import {
     languages as LanguagesActions
 } from "../../actions";
-import InputGroup from "dnn-input-group";
 import Languages from "./languages";
-import Grid from "dnn-grid-system";
-import Dropdown from "dnn-dropdown";
-import Flag from "dnn-flag";
-import RadioButtons from "dnn-radio-buttons";
-import Switch from "dnn-switch";
-import Tooltip from "dnn-tooltip";
-import Label from "dnn-label";
-import Button from "dnn-button";
 import "./style.less";
 import util from "../../utils";
 import resx from "../../resources";
 import styles from "./style.less";
-
-let isHost = false;
-let defaultAllowContentLocalization = null;
+import { InputGroup, GridSystem, Dropdown, Flag, RadioButtons, Switch, Tooltip, Label, Button } from "@dnnsoftware/dnn-react-common";
 
 class LanguageSettingsPanelBody extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             languageSettings: undefined
         };
-        isHost = util.settings.isHost;
+    }
+
+    isHost() {
+        return util.settings.isHost === true;
+    }
+
+    allowContentLocalization() {
+        const { props } = this;
+        return props.languageSettings !== undefined && props.languageSettings.AllowContentLocalization === true;
     }
 
     loadData() {
         const {props} = this;
-        if (props.languageSettings) {
-            let portalIdChanged = false;
-            let cultureCodeChanged = false;
-
-            if (props.portalId === undefined || props.languageSettings.PortalId === props.portalId) {
-                portalIdChanged = false;
-            }
-            else {
-                portalIdChanged = true;
-            }
-
-            if (props.cultureCode === undefined || props.languageSettings.CultureCode === props.cultureCode) {
-                cultureCodeChanged = false;
-            }
-            else {
-                cultureCodeChanged = true;
-            }
-
-            if (portalIdChanged || cultureCodeChanged) {
-                return true;
-            }
-            else return false;
-        }
-        else {
-            return true;
-        }
-    }
-
-    componentWillMount() {
-        const {props} = this;
-        if (!this.loadData()) {
-            this.setState({
-                languageSettings: props.languageSettings
-            });
-            return;
-        }
         props.dispatch(LanguagesActions.getLanguageSettings(props.portalId, props.cultureCode, (data) => {
             this.setState({
                 languageSettings: Object.assign({}, data.Settings)
@@ -75,18 +37,37 @@ class LanguageSettingsPanelBody extends Component {
         }));
     }
 
-    componentWillReceiveProps(props) {
-        this.setState({
-            languageSettings: Object.assign({}, props.languageSettings)
-        });
-        if (defaultAllowContentLocalization === null) {
-            defaultAllowContentLocalization = props.languageSettings.AllowContentLocalization;
+    componentDidMount() {
+        this.loadData();
+    }
+
+    componentDidUpdate(prevProps) {
+        const { props } = this;
+        if (props.languageSettings) {
+            let portalIdChanged = false;
+            let cultureCodeChanged = false;            
+            if (props.portalId === undefined || prevProps.portalId === props.portalId) {
+                portalIdChanged = false;
+            }
+            else {
+                portalIdChanged = true;
+            }
+            if (props.cultureCode === undefined || prevProps.cultureCode === props.cultureCode) {
+                cultureCodeChanged = false;
+            }
+            else {
+                cultureCodeChanged = true;
+            }
+
+            if (portalIdChanged || cultureCodeChanged) {
+                this.loadData();
+            }
         }
     }
 
     onSettingChange(key, event) {
-        let {state, props} = this;
-        let languageSettings = Object.assign({}, state.languageSettings);
+        let {props} = this;
+        let languageSettings = Object.assign({}, props.languageSettings);
 
         if (key === "LanguageDisplayMode") {
             languageSettings[key] = event;
@@ -107,14 +88,10 @@ class LanguageSettingsPanelBody extends Component {
 
     onUpdate(event) {
         event.preventDefault();
-        const {props, state} = this;
+        const {props} = this;
 
-        props.dispatch(LanguagesActions.updateLanguageSettings(state.languageSettings, props.languageList, () => {
+        props.dispatch(LanguagesActions.updateLanguageSettings(props.languageSettings, props.languageList, () => {
             util.utilities.notify(resx.get("SettingsUpdateSuccess"));
-            defaultAllowContentLocalization = state.languageSettings.AllowContentLocalization;
-            this.setState({
-
-            });
         }, () => {
             util.utilities.notifyError(resx.get("SettingsError"));
         }));
@@ -132,11 +109,11 @@ class LanguageSettingsPanelBody extends Component {
     }
 
     getLanguageOptions() {
-        const {props, state} = this;
+        const {props} = this;
         let options = [];
         if (props.languages !== undefined) {
             options = props.languages.map((item) => {
-                if (state.languageSettings.LanguageDisplayMode === "NATIVE") {
+                if (props.languageSettings.LanguageDisplayMode === "NATIVE") {
                     return {
                         label: <div title={item.NativeName} style={{ float: "left", display: "flex" }}>
                             <div className="language-flag">
@@ -195,9 +172,9 @@ class LanguageSettingsPanelBody extends Component {
     }
 
     disableLocalizedContentButton() {
-        const {state} = this;
+        const {props} = this;
 
-        if (defaultAllowContentLocalization !== state.languageSettings.AllowContentLocalization) {
+        if (this.allowContentLocalization() !== props.languageSettings.AllowContentLocalization) {
             return true;
         }
         else {
@@ -206,68 +183,68 @@ class LanguageSettingsPanelBody extends Component {
     }
 
     getDefaultLanguageDisplay() {
-        const {state} = this;
+        const {props} = this;
         return (
             <div className="default-language">
                 <div className="language-container">
                     <div style={{ float: "left", display: "flex" }}>
                         <div className="language-flag">
-                            <img src={state.languageSettings.SystemDefaultLanguageIcon} alt={state.languageSettings.SystemDefaultLanguage} />
+                            <img src={props.languageSettings.SystemDefaultLanguageIcon} alt={props.languageSettings.SystemDefaultLanguage} />
                         </div>
-                        <div className="language-name">{state.languageSettings.SystemDefaultLanguage}</div>
+                        <div className="language-name">{props.languageSettings.SystemDefaultLanguage}</div>
                     </div>
                 </div>
             </div>
         );
     }
 
-    /* eslint-disable react/no-danger */
+    /* eslint-disable react/no-danger test */
     render() {
-        const {props, state} = this;
-        if (state.languageSettings) {
-            const columnOne = <div className="left-column">
+        const {props} = this;
+        if (props.languageSettings) {
+            const columnOne = <div className="left-column" key="language-settings-left-column">
                 <InputGroup>
                     <Label
                         tooltipMessage={resx.get("systemDefaultLabel.Help")}
                         label={resx.get("systemDefaultLabel")}
-                        />
+                    />
                     {this.getDefaultLanguageDisplay()}
                 </InputGroup>
                 <InputGroup>
                     <Label
                         tooltipMessage={resx.get("siteDefaultLabel.Help")}
                         label={resx.get("siteDefaultLabel")}
-                        />
+                    />
                     <Dropdown
                         options={this.getLanguageOptions()}
-                        value={state.languageSettings.SiteDefaultLanguage}
+                        value={props.languageSettings.SiteDefaultLanguage}
                         onSelect={this.onSettingChange.bind(this, "SiteDefaultLanguage")}
-                        enabled={!state.languageSettings.ContentLocalizationEnabled}
+                        enabled={!props.languageSettings.ContentLocalizationEnabled}
                         getLabelText={(label) => label.props.title}
-                        />
+                    />
                     <RadioButtons
                         onChange={this.onSettingChange.bind(this, "LanguageDisplayMode")}
                         options={this.getLanguageDisplayModes()}
                         buttonGroup="languageDisplayMode"
-                        value={state.languageSettings.LanguageDisplayMode}
-                        />
+                        value={props.languageSettings.LanguageDisplayMode}
+                    />
                 </InputGroup>
             </div>;
-            const columnTwo = <div className="right-column">
+            const columnTwo = <div className="right-column" key="language-settings-right-column">
                 <InputGroup>
                     <div className="languageSettings-row_switch">
                         <Label
                             labelType="inline"
                             tooltipMessage={resx.get("plUrl.Help")}
                             label={resx.get("plUrl")}
-                            />
+                        />
                         <Switch
                             onText={resx.get("SwitchOn")}
                             offText={resx.get("SwitchOff")}
-                            value={state.languageSettings.EnableUrlLanguage}
+                            value={props.languageSettings.EnableUrlLanguage}
                             onChange={this.onSettingChange.bind(this, "EnableUrlLanguage")}
-                            readOnly={state.languageSettings.ContentLocalizationEnabled}
-                            />
+                            readOnly={props.languageSettings.ContentLocalizationEnabled}
+                        />
                     </div>
                 </InputGroup>
                 <InputGroup>
@@ -276,13 +253,13 @@ class LanguageSettingsPanelBody extends Component {
                             labelType="inline"
                             tooltipMessage={resx.get("detectBrowserLable.Help")}
                             label={resx.get("detectBrowserLable")}
-                            />
+                        />
                         <Switch
                             onText={resx.get("SwitchOn")}
                             offText={resx.get("SwitchOff")}
-                            value={state.languageSettings.EnableBrowserLanguage}
+                            value={props.languageSettings.EnableBrowserLanguage}
                             onChange={this.onSettingChange.bind(this, "EnableBrowserLanguage")}
-                            />
+                        />
                     </div>
                 </InputGroup>
                 <InputGroup>
@@ -291,16 +268,16 @@ class LanguageSettingsPanelBody extends Component {
                             labelType="inline"
                             tooltipMessage={resx.get("allowUserCulture.Help")}
                             label={resx.get("allowUserCulture")}
-                            />
+                        />
                         <Switch
                             onText={resx.get("SwitchOn")}
                             offText={resx.get("SwitchOff")}
-                            value={state.languageSettings.AllowUserUICulture}
+                            value={props.languageSettings.AllowUserUICulture}
                             onChange={this.onSettingChange.bind(this, "AllowUserUICulture")}
-                            />
+                        />
                     </div>
                 </InputGroup>
-                {isHost &&
+                {this.isHost() &&
                     <InputGroup>
                         <div className="languageSettings-row_switch">
                             <Label
@@ -312,25 +289,25 @@ class LanguageSettingsPanelBody extends Component {
                                         messages={[resx.get("GlobalSetting")]}
                                         type="global"
                                         style={{ float: "left", position: "static" }}
-                                        />}
-                                />
+                                    />}
+                            />
                             <Switch
                                 onText={resx.get("SwitchOn")}
                                 offText={resx.get("SwitchOff")}
-                                value={state.languageSettings.AllowContentLocalization}
+                                value={props.languageSettings.AllowContentLocalization}
                                 onChange={this.onSettingChange.bind(this, "AllowContentLocalization")}
-                                />
+                            />
                         </div>
                     </InputGroup>
                 }
-                <div className={"collapsible-button" + (defaultAllowContentLocalization || state.languageSettings.ContentLocalizationEnabled ? " open" : "")}>
-                    {!state.languageSettings.ContentLocalizationEnabled && <Button
+                <div className={"collapsible-button" + (this.allowContentLocalization() || props.languageSettings.ContentLocalizationEnabled ? " open" : "")}>
+                    {!props.languageSettings.ContentLocalizationEnabled && <Button
                         type="secondary"
                         onClick={this.enableLocalizedContent.bind(this)}
                         disabled={this.disableLocalizedContentButton()}>
                         {resx.get("EnableLocalizedContent")}
                     </Button>}
-                    {state.languageSettings.ContentLocalizationEnabled && <Button
+                    {props.languageSettings.ContentLocalizationEnabled && <Button
                         type="secondary"
                         onClick={this.disableLocalizedContent.bind(this)}
                         disabled={this.disableLocalizedContentButton()}>
@@ -343,26 +320,26 @@ class LanguageSettingsPanelBody extends Component {
                 <div className={styles.languageSettings}>
                     <Languages
                         portalId={this.props.portalId}
-                        languageDisplayMode={state.languageSettings.LanguageDisplayMode}
-                        contentLocalizationEnabled={state.languageSettings.ContentLocalizationEnabled}
-                        />
+                        languageDisplayMode={props.languageSettings.LanguageDisplayMode}
+                        contentLocalizationEnabled={props.languageSettings.ContentLocalizationEnabled}
+                    />
                     <div className="sectionTitle">{resx.get("LanguageSettings")}</div>
-                    <Grid children={[columnOne, columnTwo]} numberOfColumns={2} />
-                    <div className={isHost ? "buttons-box-alter" : "buttons-box"}>
+                    <GridSystem numberOfColumns={2}>{[columnOne, columnTwo]}</GridSystem>
+                    <div className={this.isHost() ? "buttons-box-alter" : "buttons-box"}>
                         <Button
                             disabled={!this.props.languageSettingsClientModified}
                             type="secondary"
                             onClick={this.onCancel.bind(this)}>
                             {resx.get("Cancel")}
                         </Button>
-                        {isHost &&
+                        {this.isHost() &&
                             <Button
                                 type="secondary"
                                 onClick={props.openLanguageVerifier}>
                                 {resx.get("VerifyLanguageResources")}
                             </Button>
                         }
-                        {isHost &&
+                        {this.isHost() &&
                             <Button
                                 type="secondary"
                                 onClick={props.openLanguagePack}>
@@ -405,7 +382,8 @@ function mapStateToProps(state) {
         languages: state.languages.languages,
         languageDisplayModes: state.languages.languageDisplayModes,
         languageSettingsClientModified: state.languages.languageSettingsClientModified,
-        languageList: state.languages.languageList
+        languageList: state.languages.languageList,
+        portalId: state.siteInfo ? state.siteInfo.portalId : undefined
     };
 }
 

@@ -1,8 +1,7 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { Scrollbars } from "react-custom-scrollbars";
-import GridCell from "dnn-grid-cell";
-import Dropdown from "dnn-dropdown";
-
+import { GridCell, Dropdown } from "@dnnsoftware/dnn-react-common";
 import Localization from "../../localization";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -19,7 +18,7 @@ class Logs extends Component {
         this.props.onRetrieveLogsServerInfo();
     }
 
-    componentWillReceiveProps(newProps) {
+    UNSAFE_componentWillReceiveProps(newProps) {
         if (this.props.errorMessage !== newProps.errorMessage && newProps.errorMessage) {
             utils.notifyError(newProps.errorMessage);
         }

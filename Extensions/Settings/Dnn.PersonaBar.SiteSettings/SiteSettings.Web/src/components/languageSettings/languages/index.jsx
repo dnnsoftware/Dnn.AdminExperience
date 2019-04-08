@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import {
     languages as LanguagesActions,
@@ -7,9 +8,8 @@ import {
 } from "../../../actions";
 import LanguageRow from "./languageRow";
 import LanguageEditor from "./languageEditor";
-import Collapse from "dnn-collapsible";
+import { Collapsible, SvgIcons } from "@dnnsoftware/dnn-react-common";
 import "./style.less";
-import { AddIcon } from "dnn-svg-icons";
 import util from "../../../utils";
 import resx from "../../../resources";
 
@@ -30,49 +30,27 @@ class LanguagesPanel extends Component {
 
     loadData() {
         const {props} = this;
-        if (props.languageList) {
-            if (props.portalId === undefined || props.languageList.PortalId === props.portalId) {
-                return false;
-            }
-            else {
-                return true;
-            }
-        }
-        else {
-            return true;
-        }
-    }
-
-    componentWillMount() {
-        const {props} = this;
 
         this.getHeaderColumns(props.contentLocalizationEnabled);
 
-        if (!this.loadData()) {
-            this.setState({
-                languageList: props.languageList,
-                contentLocalizationEnabled: props.contentLocalizationEnabled
-            });
-            return;
-        }
         props.dispatch(LanguagesActions.getLanguages(props.portalId, (data) => {
             this.setState({
-                languageList: Object.assign({}, data.Languages),
+                languageList: data.Languages,
                 contentLocalizationEnabled: props.contentLocalizationEnabled
             });
         }));
     }
 
-    componentWillReceiveProps(props) {
-        let {state} = this;        
+    componentDidMount() {
+        this.loadData();
+    }
 
-        if (state.contentLocalizationEnabled !== props.contentLocalizationEnabled) {
-            props.dispatch(LanguagesActions.getLanguages(props.portalId, () => {
-                this.getHeaderColumns(props.contentLocalizationEnabled);
-                this.setState({
-                    contentLocalizationEnabled: props.contentLocalizationEnabled
-                });
-            }));
+    componentDidUpdate(prevProps) {
+        let { props } = this;
+
+        if (prevProps.portalId !== props.portalId || 
+            prevProps.contentLocalizationEnabled !== props.contentLocalizationEnabled) {
+            this.loadData();
         }
     }
 
@@ -237,7 +215,7 @@ class LanguagesPanel extends Component {
                             id={id}
                             openId={this.state.openId}
                             openMode={this.state.openMode}
-                            />
+                        />
                     </LanguageRow>
                 );
             });
@@ -253,14 +231,14 @@ class LanguagesPanel extends Component {
                         <div className="sectionTitle-languages">{resx.get("Languages")}</div>
                         {isHost &&
                             <div className={opened ? "AddItemBox-active" : "AddItemBox"} onClick={this.toggle.bind(this, opened ? "" : "add", 1)}>
-                                <div className="add-icon" dangerouslySetInnerHTML={{ __html: AddIcon }}>
+                                <div className="add-icon" dangerouslySetInnerHTML={{ __html: SvgIcons.AddIcon }}>
                                 </div> {resx.get("cmdCreateLanguage")}
                             </div>
                         }
                     </div>
                     <div className="language-items-grid">
                         {this.renderHeader()}
-                        <Collapse isOpened={opened} style={{ float: "left", width: "100%" }}>
+                        <Collapsible isOpened={opened} style={{ width: "100%", overflow: opened ? "visible" : "hidden" }}>
                             <LanguageRow
                                 name={"-"}
                                 code={""}
@@ -283,10 +261,10 @@ class LanguagesPanel extends Component {
                                     onUpdate={this.onUpdateLanguage.bind(this)}
                                     id={"add"}
                                     openId={this.state.openId}
-                                    openMode={this.state.openMode}
-                                    />}
+                                    openMode={this.state.openMode}/>
+                                }
                             </LanguageRow>
-                        </Collapse>
+                        </Collapsible>
                         {this.renderedLanguages()}
                     </div>
                 </div>

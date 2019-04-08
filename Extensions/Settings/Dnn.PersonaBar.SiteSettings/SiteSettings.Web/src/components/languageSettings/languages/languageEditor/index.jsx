@@ -1,13 +1,8 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import "./style.less";
-import Grid from "dnn-grid-system";
-import Label from "dnn-label";
-import Button from "dnn-button";
-import Switch from "dnn-switch";
-import InputGroup from "dnn-input-group";
-import Dropdown from "dnn-dropdown";
-import Flag from "dnn-flag";
+import { GridSystem,Label,Button,Switch,InputGroup,Dropdown,Flag } from "@dnnsoftware/dnn-react-common";
 import Roles from "./roles";
 import {
     languages as LanguagesActions
@@ -18,8 +13,8 @@ import resx from "../../../../resources";
 let isHost = false;
 
 class LanguageEditor extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
             languageDetail: {
@@ -28,7 +23,7 @@ class LanguageEditor extends Component {
         isHost = util.settings.isHost;
     }
 
-    componentWillMount() {
+    componentDidMount() {
         const {props} = this;
         if (!props.languageDetail || (props.code !== props.languageDetail.Code)) {
             props.dispatch(LanguagesActions.getLanguage(props.portalId, props.languageId));
@@ -44,13 +39,13 @@ class LanguageEditor extends Component {
         }
     }
 
-    componentWillReceiveProps(props) {
-        if (!props.languageDetail) {
-            return;
+    componentDidUpdate(prevProps) {
+        const { props } = this;
+        if(props.languageDetail !== prevProps.languageDetail) {
+            this.setState({
+                languageDetail: Object.assign({}, props.languageDetail)
+            });
         }
-        this.setState({
-            languageDetail: Object.assign({}, props.languageDetail)
-        });
     }
 
     getFlagItem(name, code) {
@@ -192,9 +187,6 @@ class LanguageEditor extends Component {
             if (languages.length > 0) {
                 let languageDetail = Object.assign({}, state.languageDetail);
                 languageDetail["Code"] = languages[0].value;
-                this.setState({
-                    languageDetail: languageDetail
-                });
             }
 
             return languages.length > 0 ? languages[0].value : "";
@@ -245,27 +237,27 @@ class LanguageEditor extends Component {
 
     renderNewForm() {
         let {state, props} = this;
-        const columnOne = <div className="left-column">
+        const columnOne = <div key="left-column" className="left-column">
             <InputGroup>
                 <Label
                     tooltipMessage={resx.get("languageLabel.Help")}
                     label={resx.get("languageLabel")}
-                    />
+                />
                 <Dropdown
                     options={this.getLanguageOptions()}
                     value={this.getLanguageValue(state.languageDetail.Code)}
                     onSelect={this.onSettingChange.bind(this, "Code")}
                     enabled={props.id === "add"}
                     getLabelText={(label) => label.props.title}
-                    />
+                />
             </InputGroup>
         </div>;
-        const columnTwo = <div className="right-column">
+        const columnTwo = <div key="right-column" className="right-column">
             <InputGroup>
                 <Label
                     tooltipMessage={resx.get("fallBackLabel.Help")}
                     label={resx.get("fallBackLabel")}
-                    />
+                />
                 <Dropdown
                     options={this.getFallbackOptions()}
                     fixedHeight={100}
@@ -273,12 +265,12 @@ class LanguageEditor extends Component {
                     onSelect={this.onSettingChange.bind(this, "Fallback")}
                     enabled={true}
                     getLabelText={(label) => label.props.title}
-                    />
+                />
             </InputGroup>
         </div>;
         return (
             <div className="language-editor">
-                <Grid children={[columnOne, columnTwo]} numberOfColumns={2} />
+                <GridSystem numberOfColumns={2}>{[columnOne, columnTwo]}</GridSystem>
                 <div className="editor-buttons-box">
                     <Button
                         type="secondary"
@@ -297,12 +289,12 @@ class LanguageEditor extends Component {
 
     renderEditForm() {
         let {state} = this;
-        const columnOne = <div className="left-column">
+        const columnOne = <div className="left-column" key="editForm-columnOne">
             <InputGroup>
                 <Label
                     tooltipMessage={resx.get("fallBackLabel.Help")}
                     label={resx.get("fallBackLabel")}
-                    />
+                />
                 <Dropdown
                     options={this.getFallbackOptions()}
                     fixedHeight={100}
@@ -310,23 +302,23 @@ class LanguageEditor extends Component {
                     onSelect={this.onSettingChange.bind(this, "Fallback")}
                     enabled={isHost}
                     getLabelText={(label) => label.props.title}
-                    />
+                />
             </InputGroup>
         </div>;
-        const columnTwo = <div className="right-column">
+        const columnTwo = <div className="right-column" key="editForm-columnTwo">
             <InputGroup>
                 <div className="languageDetailSettings-row_switch">
                     <Label
                         labelType="inline"
                         label={resx.get("enableLanguageLabel")}
-                        />
+                    />
                     <Switch
                         onText={resx.get("SwitchOn")}
                         offText={resx.get("SwitchOff")}
                         value={state.languageDetail.Enabled}
                         onChange={this.onToggleEnable.bind(this)}
                         readOnly={!state.languageDetail.CanEnableDisable}
-                        />
+                    />
                 </div>
             </InputGroup>
             {state.languageDetail.IsDefault &&
@@ -335,13 +327,13 @@ class LanguageEditor extends Component {
                         style={{ marginTop: "-15px" }}
                         labelType="inline"
                         label={resx.get("DefaultLanguage")}
-                        />
+                    />
                 </InputGroup>
             }
         </div>;
         return (
             <div className="language-editor">
-                <Grid children={[columnOne, columnTwo]} numberOfColumns={2} />
+                <GridSystem numberOfColumns={2}>{[columnOne, columnTwo]}</GridSystem>
                 <div className="editor-buttons-box">
                     <Button
                         type="secondary"
@@ -430,7 +422,8 @@ function mapStateToProps(state) {
         fallbacks: state.languages.fallbacks,
         fullLanguageList: state.languages.fullLanguageList,
         languageDisplayModes: state.languages.languageDisplayModes,
-        languageClientModified: state.languages.languageClientModified
+        languageClientModified: state.languages.languageClientModified,
+        portalId: state.siteInfo ? state.siteInfo.portalId : undefined,
     };
 }
 

@@ -1,18 +1,16 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import Button from "dnn-button";
+import { Button, GridSystem, PersonaBarPageBody, DnnTabs as Tabs } from "@dnnsoftware/dnn-react-common";
 import {
     vocabulary as VocabularyActions,
     pagination as PaginationActions,
     vocabularyTermList as VocabularyTermListActions
 } from "../../actions";
 import TermHeader from "./TermHeader";
-import GridSystem from "dnn-grid-system";
 import LeftPane from "./LeftPane";
 import RightPane from "./RightPane";
 import util from "../../utils";
-import PersonaBarPageBody from "dnn-persona-bar-page-body";
-import Tabs from "dnn-tabs";
 import LocalizedResources from "../../resources";
 import "./style.less";
 
@@ -63,7 +61,7 @@ class VocabularyListComponent extends Component {
         };
     }
 
-    componentWillMount() {
+    componentDidMount() {
         const {props} = this;
         props.dispatch(VocabularyActions.getVocabularyList(this.getNextPage(props.pagination.pageIndex, props.pagination.pageSize, props.pagination.scopeTypeId)));
     }
@@ -177,7 +175,7 @@ class VocabularyListComponent extends Component {
                             onEnter={this.onDescriptionUpdate}
                             index={index}
                             scopeType={term.ScopeType}
-                            />
+                        />
                         <RightPane
                             vocabularyId={term.VocabularyId}
                             getVocabularyTerms={this.getVocabularyTerms.bind(this)}
@@ -222,8 +220,8 @@ VocabularyListComponent.propTypes = {
     pagination: PropTypes.object,
     tabIndex: PropTypes.number,
     scopeTypeId: PropTypes.oneOfType([
-        React.PropTypes.string,
-        React.PropTypes.number
+        PropTypes.string,
+        PropTypes.number
     ])
 };
 

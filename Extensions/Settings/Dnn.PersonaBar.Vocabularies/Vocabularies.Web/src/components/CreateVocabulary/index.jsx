@@ -1,12 +1,15 @@
-import React, { PropTypes, Component } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import MultiLineInputWithError from "dnn-multi-line-input-with-error";
-import SingleLineInputWithError from "dnn-single-line-input-with-error";
-import PersonaBarPageBody from "dnn-persona-bar-page-body";
-import GridCell from "dnn-grid-cell";
-import Button from "dnn-button";
-import InputGroup from "dnn-input-group";
-import RadioButtons from "dnn-radio-buttons";
+import { 
+    MultiLineInputWithError,
+    SingleLineInputWithError,
+    PersonaBarPageBody,
+    GridCell,
+    Button,
+    InputGroup,
+    RadioButtons
+} from "@dnnsoftware/dnn-react-common";
 import {
     vocabulary as VocabularyActions,
     pagination as PaginationActions
@@ -32,7 +35,7 @@ class CreateVocabulary extends Component {
         };
     }
 
-    componentWillMount() {
+    componentDidMount() {
         this.setState({
             term: {
                 Name: "",
@@ -121,7 +124,7 @@ class CreateVocabulary extends Component {
                 text: LocalizedResources.get("BackToVocabularies"),
                 onClick: this.onCloseVocabulary.bind(this)
             }}
-             className={styles.createVocabulary} style={{ height: "calc(100% - 100px)" }}>
+            className={styles.createVocabulary} style={{ height: "calc(100% - 100px)" }}>
                 {props.isOpen &&
                     <GridCell className="create-box">
                         <InputGroup>
@@ -133,7 +136,7 @@ class CreateVocabulary extends Component {
                                 errorMessage={LocalizedResources.get("TermValidationError.Message")}
                                 value={state.term.Name}
                                 onChange={this.onTermValueChange.bind(this, "Name")}
-                                />
+                            />
                         </InputGroup>
                         <InputGroup>
                             <MultiLineInputWithError
@@ -169,7 +172,7 @@ class CreateVocabulary extends Component {
     }
 }
 
-CreateVocabulary.PropTypes = {
+CreateVocabulary.propTypes = {
     dispatch: PropTypes.func.isRequired,
     totalCount: PropTypes.number,
     onCloseVocabulary: PropTypes.func,

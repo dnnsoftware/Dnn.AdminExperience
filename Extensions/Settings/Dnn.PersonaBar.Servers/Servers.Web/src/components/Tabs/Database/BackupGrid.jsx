@@ -1,15 +1,15 @@
-import React, {Component, PropTypes } from "react";
-import GridCell from "dnn-grid-cell";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { GridCell, TextOverflowWrapper as OverflowText } from "@dnnsoftware/dnn-react-common";
 import Localization from "../../../localization";
 import util from "../../../utils";
-import OverflowText from "dnn-text-overflow-wrapper";
 
 export default class BackupGrid extends Component {
 
     getBackUpsGridRows() {
         if (this.props.backups && this.props.backups.length > 0) {
-            const rows = this.props.backups.map((field) => {
-                return <div className="row">
+            const rows = this.props.backups.map((field, i) => {
+                return <div className="row" key={i}>
                     <GridCell columnSize={45}><OverflowText text={field.name} maxWidth={290} /></GridCell>
                     <GridCell columnSize={15}>{util.formatDateNoTime(field.startDate)}</GridCell>
                     <GridCell columnSize={15}>{util.formatDateNoTime(field.finishDate)}</GridCell>

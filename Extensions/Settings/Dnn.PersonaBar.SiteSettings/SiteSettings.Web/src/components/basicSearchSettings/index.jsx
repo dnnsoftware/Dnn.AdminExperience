@@ -1,28 +1,22 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import {
     search as SearchActions
 } from "../../actions";
-import InputGroup from "dnn-input-group";
-import SingleLineInputWithError from "dnn-single-line-input-with-error";
-import DropdownWithError from "dnn-dropdown-with-error";
-import NumberSlider from "dnn-slider";
-import Grid from "dnn-grid-system";
-import Switch from "dnn-switch";
-import Label from "dnn-label";
-import Button from "dnn-button";
-import Tooltip from "dnn-tooltip";
+
+import { InputGroup, SingleLineInputWithError, DropdownWithError, NumberSlider, GridSystem, Switch, Label, Button, Tooltip } from "@dnnsoftware/dnn-react-common";
 import "./style.less";
 import util from "../../utils";
 import resx from "../../resources";
 import styles from "./style.less";
 
 const re = /^[1-9]\d*$/;
-let isHost = false;
 
 class BasicSearchSettingsPanelBody extends Component {
     constructor() {
         super();
+        this._mounted = false;
         this.state = {
             basicSearchSettings: undefined,
             error: {
@@ -33,57 +27,33 @@ class BasicSearchSettingsPanelBody extends Component {
         };
     }
 
-    componentWillMount() {
+
+    componentDidMount() {
         const {props} = this;
-
-        isHost = util.settings.isHost;
-        if (isHost) {
-            if (props.basicSearchSettings) {
-                this.setState({
-                    basicSearchSettings: props.basicSearchSettings
-                });
-                return;
-            }
-
+        this._mounted = true;
+        if (this.isHost()) {
             props.dispatch(SearchActions.getBasicSearchSettings((data) => {
-                this.setState({
-                    basicSearchSettings: Object.assign({}, data.Settings)
-                });
+                if(this._mounted) {
+                    this.setState({
+                        basicSearchSettings: Object.assign({}, data.Settings)
+                    });
+                }
             }));
         }
     }
 
-    componentWillReceiveProps(props) {
-        let {state} = this;
-        if (isHost) {
-            let minWordLength = props.basicSearchSettings["MinWordLength"];
-            if (!re.test(minWordLength)) {
-                state.error["minlength"] = true;
-            }
-            else if (re.test(minWordLength)) {
-                state.error["minlength"] = false;
-            }
+    componentWillUnmount() {
+        this._mounted = false;
+    }
 
-            let maxWordLength = props.basicSearchSettings["MaxWordLength"];
-
-            if (!re.test(maxWordLength) || parseInt(minWordLength) >= parseInt(maxWordLength)) {
-                state.error["maxlength"] = true;
-            }
-            else if (re.test(maxWordLength) && parseInt(maxWordLength) > parseInt(minWordLength)) {
-                state.error["maxlength"] = false;
-            }
-
-            this.setState({
-                basicSearchSettings: Object.assign({}, props.basicSearchSettings),
-                error: state.error,
-                triedToSubmit: false
-            });
-        }
+    isHost() {
+        return util.settings.isHost;
     }
 
     onSettingChange(key, event) {
         let {state, props} = this;
         let basicSearchSettings = Object.assign({}, state.basicSearchSettings);
+        const error = {};
 
         if (key === "TitleBoost" || key === "TagBoost" || key === "ContentBoost" || key === "DescriptionBoost" || key === "AuthorBoost") {
             basicSearchSettings[key] = event;
@@ -96,24 +66,24 @@ class BasicSearchSettingsPanelBody extends Component {
         }
 
         if (!re.test(basicSearchSettings[key]) && key === "MinWordLength") {
-            state.error["minlength"] = true;
+            error["minlength"] = true;
         }
         else if (re.test(basicSearchSettings[key]) && key === "MinWordLength") {
-            state.error["minlength"] = false;
+            error["minlength"] = false;
         }
 
         if (key === "MaxWordLength" && (!re.test(basicSearchSettings[key])
             || parseInt(basicSearchSettings["MinWordLength"]) >= parseInt(basicSearchSettings["MaxWordLength"]))) {
-            state.error["maxlength"] = true;
+            error["maxlength"] = true;
         }
         else if (key === "MaxWordLength" && re.test(basicSearchSettings[key])
             && parseInt(basicSearchSettings["MaxWordLength"]) > parseInt(basicSearchSettings["MinWordLength"])) {
-            state.error["maxlength"] = false;
+            error["maxlength"] = false;
         }
 
         this.setState({
             basicSearchSettings: basicSearchSettings,
-            error: state.error,
+            error,
             triedToSubmit: false
         });
 
@@ -138,10 +108,6 @@ class BasicSearchSettingsPanelBody extends Component {
         this.setState({
             triedToSubmit: true
         });
-
-        if (state.error.minlength || state.error.maxlength) {
-            return;
-        }
 
         props.dispatch(SearchActions.updateBasicSearchSettings(state.basicSearchSettings, () => {
             util.utilities.notify(resx.get("SettingsUpdateSuccess"));
@@ -185,9 +151,9 @@ class BasicSearchSettingsPanelBody extends Component {
     /* eslint-disable react/no-danger */
     render() {
         const {state} = this;
-        if (isHost) {
+        if (this.isHost()) {
             if (state.basicSearchSettings) {
-                const columnOne = <div className="left-column">
+                const columnOne = <div className="left-column" key="columnOneSearchSettingsPanel">
                     <InputGroup>
                         <Label
                             tooltipMessage={resx.get("lblIndexWordMinLength.Help")}
@@ -197,8 +163,8 @@ class BasicSearchSettingsPanelBody extends Component {
                                     messages={[resx.get("GlobalSetting")]}
                                     type="global"
                                     style={{ float: "left", position: "static" }}
-                                    />}
-                            />
+                                />}
+                        />
                         <SingleLineInputWithError
                             inputStyle={{ margin: "0" }}
                             withLabel={false}
@@ -207,7 +173,7 @@ class BasicSearchSettingsPanelBody extends Component {
                             value={state.basicSearchSettings.MinWordLength}
                             onChange={this.onSettingChange.bind(this, "MinWordLength")}
                             style={{ width: "100%" }}
-                            />
+                        />
                     </InputGroup>
                     <InputGroup>
                         <Label
@@ -218,8 +184,8 @@ class BasicSearchSettingsPanelBody extends Component {
                                     messages={[resx.get("GlobalSetting")]}
                                     type="global"
                                     style={{ float: "left", position: "static" }}
-                                    />}
-                            />
+                                />}
+                        />
                         <SingleLineInputWithError
                             inputStyle={{ margin: "0" }}
                             withLabel={false}
@@ -228,10 +194,10 @@ class BasicSearchSettingsPanelBody extends Component {
                             value={state.basicSearchSettings.MaxWordLength}
                             onChange={this.onSettingChange.bind(this, "MaxWordLength")}
                             style={{ width: "100%" }}
-                            />
+                        />
                     </InputGroup>
                 </div>;
-                const columnTwo = <div className="right-column">
+                const columnTwo = <div className="right-column" key="columnTwoSearchSettingsPanel">
                     <DropdownWithError
                         style={{ maxWidth: "100%" }}
                         options={this.getAnalyzerTypeOptions()}
@@ -246,8 +212,8 @@ class BasicSearchSettingsPanelBody extends Component {
                                 messages={[resx.get("GlobalSetting")]}
                                 type="global"
                                 style={{ float: "left", position: "static", marginTop: -3 }}
-                                />}
-                        />
+                            />}
+                    />
                     <InputGroup>
                         <div className="basicSearchSettings-row_switch">
                             <Label
@@ -259,20 +225,20 @@ class BasicSearchSettingsPanelBody extends Component {
                                         messages={[resx.get("GlobalSetting")]}
                                         type="global"
                                         style={{ float: "left", position: "static" }}
-                                        />}
-                                />
+                                    />}
+                            />
                             <Switch
                                 onText={resx.get("SwitchOn")}
                                 offText={resx.get("SwitchOff")}
                                 value={state.basicSearchSettings.AllowLeadingWildcard}
                                 onChange={this.onSettingChange.bind(this, "AllowLeadingWildcard")}
-                                />
+                            />
                         </div>
                     </InputGroup>
                 </div>;
                 return (
                     <div className={styles.basicSearchSettings}>
-                        <Grid children={[columnOne, columnTwo]} numberOfColumns={2} />
+                        <GridSystem numberOfColumns={2}>{[columnOne, columnTwo]}</GridSystem>
                         <div className="sectionTitle">{resx.get("SearchPriorities")}</div>
                         <InputGroup>
                             <div className="basicSearchSettings-row_slider">
@@ -285,15 +251,15 @@ class BasicSearchSettingsPanelBody extends Component {
                                             messages={[resx.get("GlobalSetting")]}
                                             type="global"
                                             style={{ float: "left", position: "static" }}
-                                            />}
-                                    />
+                                        />}
+                                />
                                 <NumberSlider
                                     min={0}
                                     max={50}
                                     step={5}
                                     value={state.basicSearchSettings.TitleBoost}
                                     onChange={this.onSettingChange.bind(this, "TitleBoost")}
-                                    />
+                                />
                             </div>
                         </InputGroup>
                         <InputGroup>
@@ -307,15 +273,15 @@ class BasicSearchSettingsPanelBody extends Component {
                                             messages={[resx.get("GlobalSetting")]}
                                             type="global"
                                             style={{ float: "left", position: "static" }}
-                                            />}
-                                    />
+                                        />}
+                                />
                                 <NumberSlider
                                     min={0}
                                     max={50}
                                     step={5}
                                     value={state.basicSearchSettings.TagBoost}
                                     onChange={this.onSettingChange.bind(this, "TagBoost")}
-                                    />
+                                />
                             </div>
                         </InputGroup>
                         <InputGroup>
@@ -329,15 +295,15 @@ class BasicSearchSettingsPanelBody extends Component {
                                             messages={[resx.get("GlobalSetting")]}
                                             type="global"
                                             style={{ float: "left", position: "static" }}
-                                            />}
-                                    />
+                                        />}
+                                />
                                 <NumberSlider
                                     min={0}
                                     max={50}
                                     step={5}
                                     value={state.basicSearchSettings.ContentBoost}
                                     onChange={this.onSettingChange.bind(this, "ContentBoost")}
-                                    />
+                                />
                             </div>
                         </InputGroup>
                         <InputGroup>
@@ -351,15 +317,15 @@ class BasicSearchSettingsPanelBody extends Component {
                                             messages={[resx.get("GlobalSetting")]}
                                             type="global"
                                             style={{ float: "left", position: "static" }}
-                                            />}
-                                    />
+                                        />}
+                                />
                                 <NumberSlider
                                     min={0}
                                     max={50}
                                     step={5}
                                     value={state.basicSearchSettings.DescriptionBoost}
                                     onChange={this.onSettingChange.bind(this, "DescriptionBoost")}
-                                    />
+                                />
                             </div>
                         </InputGroup>
                         <InputGroup>
@@ -373,15 +339,15 @@ class BasicSearchSettingsPanelBody extends Component {
                                             messages={[resx.get("GlobalSetting")]}
                                             type="global"
                                             style={{ float: "left", position: "static" }}
-                                            />}
-                                    />
+                                        />}
+                                />
                                 <NumberSlider
                                     min={0}
                                     max={50}
                                     step={5}
                                     value={state.basicSearchSettings.AuthorBoost}
                                     onChange={this.onSettingChange.bind(this, "AuthorBoost")}
-                                    />
+                                />
                             </div>
                         </InputGroup>
 
@@ -395,55 +361,55 @@ class BasicSearchSettingsPanelBody extends Component {
                                         labelType="inline"
                                         tooltipMessage={resx.get("lblSearchIndexPath.Help")}
                                         label={resx.get("lblSearchIndexPath")}
-                                        />
+                                    />
                                     <Label
                                         labelType="inline"
                                         label={state.basicSearchSettings.SearchIndexPath}
-                                        />
+                                    />
                                 </InputGroup>
                                 <InputGroup>
                                     <Label
                                         labelType="inline"
                                         tooltipMessage={resx.get("lblSearchIndexDbSize.Help")}
                                         label={resx.get("lblSearchIndexDbSize")}
-                                        />
+                                    />
                                     <Label
                                         labelType="inline"
                                         label={state.basicSearchSettings.SearchIndexDbSize}
-                                        />
+                                    />
                                 </InputGroup>
                                 <InputGroup>
                                     <Label
                                         labelType="inline"
                                         tooltipMessage={resx.get("lblSearchIndexActiveDocuments.Help")}
                                         label={resx.get("lblSearchIndexActiveDocuments")}
-                                        />
+                                    />
                                     <Label
                                         labelType="inline"
                                         label={state.basicSearchSettings.SearchIndexTotalActiveDocuments}
-                                        />
+                                    />
                                 </InputGroup>
                                 <InputGroup>
                                     <Label
                                         labelType="inline"
                                         tooltipMessage={resx.get("lblSearchIndexDeletedDocuments.Help")}
                                         label={resx.get("lblSearchIndexDeletedDocuments")}
-                                        />
+                                    />
                                     <Label
                                         labelType="inline"
                                         label={state.basicSearchSettings.SearchIndexTotalDeletedDocuments}
-                                        />
+                                    />
                                 </InputGroup>
                                 <InputGroup>
                                     <Label
                                         labelType="inline"
                                         tooltipMessage={resx.get("lblSearchIndexLastModifiedOn.Help")}
                                         label={resx.get("lblSearchIndexLastModifiedOn")}
-                                        />
+                                    />
                                     <Label
                                         labelType="inline"
                                         label={state.basicSearchSettings.SearchIndexLastModifiedOn || "-"}
-                                        />
+                                    />
                                 </InputGroup>
                                 <div className="searchIndexWarning">{resx.get("MessageIndexWarning")}</div>
                             </div>

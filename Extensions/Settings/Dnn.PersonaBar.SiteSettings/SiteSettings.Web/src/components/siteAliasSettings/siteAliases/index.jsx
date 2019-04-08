@@ -1,23 +1,23 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import {
     siteBehavior as SiteBehaviorActions
 } from "../../../actions";
 import SiteAliasRow from "./siteAliasRow";
 import SiteAliasEditor from "./siteAliasEditor";
-import Collapse from "dnn-collapsible";
+import { Collapsible } from "@dnnsoftware/dnn-react-common";
 import "./style.less";
-import { AddIcon } from "dnn-svg-icons";
+import { SvgIcons } from "@dnnsoftware/dnn-react-common";
 import util from "../../../utils";
 import resx from "../../../resources";
-
-let tableFields = [];
 
 class SiteAliasesPanel extends Component {
     constructor() {
         super();
         this.state = {
-            openId: ""
+            openId: "",
+            tableFields: []
         };
     }
 
@@ -36,7 +36,7 @@ class SiteAliasesPanel extends Component {
         }
     }
 
-    componentWillMount() {
+    componentDidMount() {
         const {props} = this;
 
         if (!this.loadData()) {
@@ -45,20 +45,25 @@ class SiteAliasesPanel extends Component {
         props.dispatch(SiteBehaviorActions.getSiteAliases(props.portalId));
     }
 
-    componentWillReceiveProps(props) {
-        if (tableFields.length === 0) {
-            tableFields.push({ "name": resx.get("Alias.Header"), "id": "Alias" });
-            tableFields.push({ "name": resx.get("Browser.Header"), "id": "Browser" });
-            tableFields.push({ "name": resx.get("Theme.Header"), "id": "Theme" });
-            if (props.siteAliases. Languages.length > 1) {
-                tableFields.push({ "name": resx.get("Language.Header"), "id": "Language" });
+    componentDidUpdate(prevProps) {
+        const {props} = this;
+        if (props !== prevProps){
+            let tableFields = [];
+            if (tableFields.length === 0) {
+                tableFields.push({ "name": resx.get("Alias.Header"), "id": "Alias" });
+                tableFields.push({ "name": resx.get("Browser.Header"), "id": "Browser" });
+                tableFields.push({ "name": resx.get("Theme.Header"), "id": "Theme" });
+                if (props.siteAliases !== undefined && props.siteAliases. Languages.length > 1) {
+                    tableFields.push({ "name": resx.get("Language.Header"), "id": "Language" });
+                }
+                tableFields.push({ "name": resx.get("Primary.Header"), "id": "Primary" });
             }
-            tableFields.push({ "name": resx.get("Primary.Header"), "id": "Primary" });
+            this.setState({tableFields});
         }
     }
 
     renderHeader() {
-        let tableHeaders = tableFields.map((field) => {
+        let tableHeaders = this.state.tableFields.map((field) => {
             let className = "alias-items header-" + field.id;
             return <div className={className} key={"header-" + field.id}>
                 <span>{field.name}&nbsp; </span>
@@ -140,7 +145,7 @@ class SiteAliasesPanel extends Component {
                         browser={item.BrowserType}
                         skin={item.Skin}
                         language={item.CultureCode}
-                        isPrimary={item.IsPrimary}
+                        isPrimary={!!item.IsPrimary}
                         deletable={item.Deletable}
                         editable={item.Editable}
                         showLanguageColumn={this.props.siteAliases.Languages && this.props.siteAliases.Languages.length > 1}
@@ -172,19 +177,19 @@ class SiteAliasesPanel extends Component {
                     <div className="AddItemRow">
                         <div className="sectionTitle">{resx.get("SiteAliases")}</div>
                         <div className={opened ? "AddItemBox-active" : "AddItemBox"} onClick={this.toggle.bind(this, opened ? "" : "add")}>
-                            <div className="add-icon" dangerouslySetInnerHTML={{ __html: AddIcon }}>
+                            <div className="add-icon" dangerouslySetInnerHTML={{ __html: SvgIcons.AddIcon }}>
                             </div> {resx.get("cmdAddAlias")}
                         </div>
                     </div>
                     <div className="alias-items-grid">
                         {this.renderHeader()}
-                        <Collapse isOpened={opened} style={{ float: "left", width: "100%" }}>
+                        <Collapsible isOpened={opened} style={{width: "100%", overflow: opened ? "visible" : "hidden"}}>
                             <SiteAliasRow
                                 alias={"-"}
                                 browser={"-"}
                                 skin={"-"}
                                 language={"-"}
-                                isPrimary={"-"}
+                                isPrimary={false}
                                 deletable={false}
                                 editable={false}
                                 showLanguageColumn={this.props.siteAliases && this.props.siteAliases.Languages && this.props.siteAliases.Languages.length > 1}
@@ -202,12 +207,11 @@ class SiteAliasesPanel extends Component {
                                     id={"add"}
                                     openId={this.state.openId} />
                             </SiteAliasRow>
-                        </Collapse>
+                        </Collapsible>
                         {this.renderedSiteAliases()}
                     </div>
                 </div>
-
-            </div >
+            </div>
         );
     }
 }

@@ -1,14 +1,13 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import {
     siteBehavior as SiteBehaviorActions
 } from "actions";
 import ListEntryRow from "./listEntryRow";
 import ListEntryEditor from "./listEntryEditor";
-import Collapse from "dnn-collapsible";
+import { Collapsible, Sortable, SvgIcons } from "@dnnsoftware/dnn-react-common";
 import "./style.less";
-import { AddIcon } from "dnn-svg-icons";
-import Sortable from "dnn-sortable";
 import util from "utils";
 import resx from "resources";
 
@@ -22,7 +21,7 @@ class ListEntriesPanel extends Component {
         };
     }
 
-    componentWillMount() {
+    componentDidMount() {
         const { props } = this;
         if (tableFields.length === 0) {
             tableFields.push({ "name": resx.get("ListEntryText"), "id": "Text" });
@@ -145,14 +144,14 @@ class ListEntriesPanel extends Component {
                         </div>
                         <div className={opened ? "AddItemBox-active" : "AddItemBox"}
                             onClick={this.toggle.bind(this, opened ? "" : "add")}>
-                            <div className="add-icon" dangerouslySetInnerHTML={{ __html: AddIcon }}>
+                            <div className="add-icon" dangerouslySetInnerHTML={{ __html: SvgIcons.AddIcon }}>
                             </div> {resx.get("cmdAddEntry")}
                         </div>
                     </div>
                     <div className="list-items-grid">
                         {this.renderHeader()}
-                        <Collapse isOpened={opened}
-                            style={{ float: "left", width: "100%" }}>
+                        <Collapsible isOpened={opened}
+                            style={{ overflow: "visible", width: "100%" }}>
                             <ListEntryRow
                                 text={"-"}
                                 value={"-"}
@@ -176,7 +175,7 @@ class ListEntriesPanel extends Component {
                                     id={"add"}
                                     openId={this.state.openId} />
                             </ListEntryRow>
-                        </Collapse>
+                        </Collapsible>
                         {this.props.entries &&
                             this.props.entries.length > 0 &&
                             (this.state.openId || !this.props.enableSortOrder) &&

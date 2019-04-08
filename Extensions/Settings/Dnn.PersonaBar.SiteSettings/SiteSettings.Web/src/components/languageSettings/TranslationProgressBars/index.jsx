@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import resx from "../../../resources";
 import ProgressBar from "./progressBar";
@@ -51,7 +52,7 @@ TranslationProgressBars.propTypes = {
     dispatch: PropTypes.func.isRequired,
     closePersonaBarPage: PropTypes.func,
     languages: PropTypes.array,
-    languageSettings: PropTypes.obj,
+    languageSettings: PropTypes.object,
     InProgress: PropTypes.bool,
     PrimaryPercent: PropTypes.number,
     PrimaryTotal: PropTypes.number,
@@ -60,7 +61,7 @@ TranslationProgressBars.propTypes = {
     SecondaryTotal: PropTypes.number,
     SecondaryValue: PropTypes.number,
     TimeEstimated: PropTypes.number,
-    CurrentOperationText: PropTypes.strings,
+    CurrentOperationText: PropTypes.array,
     Error: PropTypes.strings
 };
 

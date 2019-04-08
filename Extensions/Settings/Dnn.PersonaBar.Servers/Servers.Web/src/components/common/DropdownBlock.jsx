@@ -1,7 +1,6 @@
-import React, {Component, PropTypes } from "react";
-import Label from "dnn-label";
-import InputGroup from "dnn-input-group";
-import Dropdown from "dnn-dropdown";
+import React, {Component } from "react";
+import PropTypes from "prop-types";
+import { Label, InputGroup, Dropdown } from "@dnnsoftware/dnn-react-common";
 import GlobalIcon from "./GlobalIcon";
 
 export default class DropdownBlock extends Component {
@@ -15,10 +14,9 @@ export default class DropdownBlock extends Component {
                 label={props.label} style={{width: "auto"}} />
             {props.isGlobal && <GlobalIcon /> }
             <Dropdown style={{width:"100%"}}
-                    options={props.options}
-                    value={props.value}
-                    onSelect={props.onSelect}
-                    />
+                options={props.options}
+                value={props.value}
+                onSelect={props.onSelect}/>
         </InputGroup>;
     }
 }

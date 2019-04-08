@@ -1,12 +1,8 @@
-import React, { Component, PropTypes } from "react";
-import ReactDOM from "react-dom";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import Localization from "../../localization";
-import GridCell from "dnn-grid-cell";
-import Tags from "dnn-tags";
-import Dropdown from "dnn-dropdown";
-import Button from "dnn-button";
+import { GridCell, Tags, Dropdown, Button, SvgIcons } from "@dnnsoftware/dnn-react-common";
 import DropdownDayPicker from "../DropdownDayPicker/DropdownDayPicker";
-import {CalendarIcon} from "dnn-svg-icons";
 import utils from "../../utils";
 
 class SearchAdvancedDetails extends Component {
@@ -19,10 +15,10 @@ class SearchAdvancedDetails extends Component {
         };
     }
 
-    componentWillReceiveProps(newProps) {
-        if (newProps.tags) {
+    componentDidUpdate(prevProps) {
+        if (this.props.tags !== prevProps.tags) {
             this.setState({
-                tags:newProps.tags.split(",")
+                tags: this.props.tags.split(",")
             });
         }
     }
@@ -68,7 +64,7 @@ class SearchAdvancedDetails extends Component {
     }
 
     onTagClick() {
-        ReactDOM.findDOMNode(this).getElementsByClassName("input-container")[0].childNodes[0].focus();
+        this.node.getElementsByClassName("input-container")[0].childNodes[0].focus();
     }
 
     applyDateFilter() {
@@ -83,7 +79,7 @@ class SearchAdvancedDetails extends Component {
 
     render() {
         return (
-            <div className="search-more-flyout">
+            <div className="search-more-flyout" ref={node => this.node = node}>
                 <GridCell columnSize={70} style={{ padding: "5px 5px 5px 10px" }}>
                     <h1>{Localization.get("lblGeneralFilters").toUpperCase()}</h1>
                 </GridCell>
@@ -122,7 +118,7 @@ class SearchAdvancedDetails extends Component {
                                 startDate={this.props.startDate}
                                 endDate={this.props.endDate}
                                 toggleDropdownCalendar={this.toggleDropdownCalendar.bind(this)}
-                                CalendarIcon={CalendarIcon}
+                                CalendarIcon={SvgIcons.CalendarIcon}
                                 label={this.getDateLabel()}
                             />
                         </GridCell>
@@ -156,8 +152,8 @@ class SearchAdvancedDetails extends Component {
 
 SearchAdvancedDetails.propTypes = {
     onSearch : PropTypes.func.isRequired,
-    workflowList : PropTypes.array.isRequired,
-    getWorkflowsList : PropTypes.func.isRequired,
+    workflowList : PropTypes.array,
+    getWorkflowsList : PropTypes.func,
     getFilterByPageTypeOptions : PropTypes.func.isRequired,
     getFilterByPageStatusOptions : PropTypes.func.isRequired,
     getFilterByWorkflowOptions : PropTypes.func.isRequired,
@@ -165,14 +161,14 @@ SearchAdvancedDetails.propTypes = {
     updateFilterByPageStatusOptions : PropTypes.func.isRequired,
     updateFilterByWorkflowOptions : PropTypes.func.isRequired,
     onApplyChangesDropdownDayPicker : PropTypes.func.isRequired,
-    filterByPublishStatus: PropTypes.string.isRequired,
-    filterByPageType : PropTypes.string.isRequired,
+    filterByPublishStatus: PropTypes.string,
+    filterByPageType : PropTypes.string,
     onDayClick : PropTypes.func.isRequired,
     startDate : PropTypes.instanceOf(Date).isRequired,
     endDate : PropTypes.instanceOf(Date).isRequired,
     startAndEndDateDirty : PropTypes.bool.isRequired,
     tags : PropTypes.string.isRequired,
-    filterByWorkflow : PropTypes.string.isRequired,
+    filterByWorkflow : PropTypes.number,
     collapsed : PropTypes.bool.isRequired, 
     clearAdvancedSearch : PropTypes.func.isRequired,
     clearAdvancedSearchDateInterval : PropTypes.func.isRequired,

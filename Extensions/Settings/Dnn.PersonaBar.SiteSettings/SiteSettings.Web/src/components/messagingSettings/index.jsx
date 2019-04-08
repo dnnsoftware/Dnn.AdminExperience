@@ -1,14 +1,10 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import {
     siteBehavior as SiteBehaviorActions
 } from "../../actions";
-import InputGroup from "dnn-input-group";
-import Switch from "dnn-switch";
-import Grid from "dnn-grid-system";
-import Dropdown from "dnn-dropdown";
-import Label from "dnn-label";
-import Button from "dnn-button";
+import { InputGroup, Switch, GridSystem, Dropdown, Label, Button } from "@dnnsoftware/dnn-react-common";
 import "./style.less";
 import util from "../../utils";
 import resx from "../../resources";
@@ -25,20 +21,20 @@ class MessagingSettingsPanelBody extends Component {
         };
     }
 
-    loadData() {
+    componentDidUpdate(prevProps) {
         const {props} = this;
         if (props.messagingSettings) {
             let portalIdChanged = false;
             let cultureCodeChanged = false;
 
-            if (props.portalId === undefined || props.messagingSettings.PortalId === props.portalId) {
+            if (props.portalId === undefined || prevProps.portalId === props.portalId) {
                 portalIdChanged = false;
             }
             else {
                 portalIdChanged = true;
             }
 
-            if (props.cultureCode === undefined || props.messagingSettings.CultureCode === props.cultureCode) {
+            if (props.cultureCode === undefined || prevProps.cultureCode === props.cultureCode) {
                 cultureCodeChanged = false;
             }
             else {
@@ -46,24 +42,18 @@ class MessagingSettingsPanelBody extends Component {
             }
 
             if (portalIdChanged || cultureCodeChanged) {
-                return true;
+                this.loadData();
             }
-            else return false;
-        }
-        else {
-            return true;
         }
     }
 
-    componentWillMount() {
-        const { props} = this;
-        if (!this.loadData()) {
-            this.setState({
-                messagingSettings: props.messagingSettings
-            });
-            return;
-        }
+    componentDidMount() {
+        this.loadData();
+    }
 
+    loadData() {
+        const {props} = this;
+        
         timeIntervalOptions = [];
         timeIntervalOptions.push({ "value": 0, "label": "0" });
         timeIntervalOptions.push({ "value": 0.5, "label": "0.5" });
@@ -93,12 +83,6 @@ class MessagingSettingsPanelBody extends Component {
                 messagingSettings: Object.assign({}, data.Settings)
             });
         }));
-    }
-
-    componentWillReceiveProps(props) {
-        this.setState({
-            messagingSettings: Object.assign({}, props.messagingSettings)
-        });
     }
 
     onSettingChange(key, event) {
@@ -145,59 +129,59 @@ class MessagingSettingsPanelBody extends Component {
     render() {
         const {state} = this;
         if (state.messagingSettings) {
-            const columnOne = <div className="left-column">
+            const columnOne = <div key="column-one" className="left-column">
                 <InputGroup>
                     <div className="messagingSettings-row_switch">
                         <Label
                             labelType="inline"
                             tooltipMessage={resx.get("plDisablePrivateMessage.Help")}
                             label={resx.get("plDisablePrivateMessage")}
-                            />
+                        />
                         <Switch
                             onText={resx.get("SwitchOn")}
                             offText={resx.get("SwitchOff")}
                             value={state.messagingSettings.DisablePrivateMessage}
                             onChange={this.onSettingChange.bind(this, "DisablePrivateMessage")}
-                            />
+                        />
                     </div>
                 </InputGroup>
                 <InputGroup>
                     <Label
                         tooltipMessage={resx.get("plMsgThrottlingInterval.Help")}
                         label={resx.get("plMsgThrottlingInterval")}
-                        />
+                    />
                     <Dropdown
                         options={timeIntervalOptions}
                         value={state.messagingSettings.ThrottlingInterval}
                         onSelect={this.onSettingChange.bind(this, "ThrottlingInterval")}
-                        />
+                    />
                 </InputGroup>
                 <InputGroup>
                     <Label
                         tooltipMessage={resx.get("plMsgRecipientLimit.Help")}
                         label={resx.get("plMsgRecipientLimit")}
-                        />
+                    />
                     <Dropdown
                         options={recipientLimitOptions}
                         value={state.messagingSettings.RecipientLimit}
                         onSelect={this.onSettingChange.bind(this, "RecipientLimit")}
-                        />
+                    />
                 </InputGroup>
             </div>;
-            const columnTwo = <div className="right-column">
+            const columnTwo = <div key="column-two" className="right-column">
                 <InputGroup>
                     <div className="messagingSettings-row_switch">
                         <Label
                             labelType="inline"
                             tooltipMessage={resx.get("plMsgProfanityFilters.Help")}
                             label={resx.get("plMsgProfanityFilters")}
-                            />
+                        />
                         <Switch
                             onText={resx.get("SwitchOn")}
                             offText={resx.get("SwitchOff")}
                             value={state.messagingSettings.ProfanityFilters}
                             onChange={this.onSettingChange.bind(this, "ProfanityFilters")}
-                            />
+                        />
                     </div>
                 </InputGroup>
                 <InputGroup>
@@ -206,13 +190,13 @@ class MessagingSettingsPanelBody extends Component {
                             labelType="inline"
                             tooltipMessage={resx.get("plIncludeAttachments.Help")}
                             label={resx.get("plIncludeAttachments")}
-                            />
+                        />
                         <Switch
                             onText={resx.get("SwitchOn")}
                             offText={resx.get("SwitchOff")}
                             value={state.messagingSettings.IncludeAttachments}
                             onChange={this.onSettingChange.bind(this, "IncludeAttachments")}
-                            />
+                        />
                     </div>
                 </InputGroup>
                 <InputGroup>
@@ -221,13 +205,13 @@ class MessagingSettingsPanelBody extends Component {
                             labelType="inline"
                             tooltipMessage={resx.get("plMsgAllowAttachments.Help")}
                             label={resx.get("plMsgAllowAttachments")}
-                            />
+                        />
                         <Switch
                             onText={resx.get("SwitchOn")}
                             offText={resx.get("SwitchOff")}
                             value={state.messagingSettings.AllowAttachments}
                             onChange={this.onSettingChange.bind(this, "AllowAttachments")}
-                            />
+                        />
                     </div>
                 </InputGroup>
                 <InputGroup>
@@ -236,20 +220,20 @@ class MessagingSettingsPanelBody extends Component {
                             labelType="inline"
                             tooltipMessage={resx.get("plMsgSendEmail.Help")}
                             label={resx.get("plMsgSendEmail")}
-                            />
+                        />
                         <Switch
                             onText={resx.get("SwitchOn")}
                             offText={resx.get("SwitchOff")}
                             value={state.messagingSettings.SendEmail}
                             onChange={this.onSettingChange.bind(this, "SendEmail")}
-                            />
+                        />
                     </div>
                 </InputGroup>
             </div>;
 
             return (
                 <div className={styles.messagingSettings}>
-                    <Grid children={[columnOne, columnTwo]} numberOfColumns={2} />
+                    <GridSystem numberOfColumns={2}>{[columnOne, columnTwo]}</GridSystem>
                     <div className="buttons-box">
                         <Button
                             disabled={!this.props.messagingSettingsClientModified}

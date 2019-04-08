@@ -1,16 +1,11 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import {
     siteBehavior as SiteBehaviorActions
 } from "../../actions";
 import ProfileProperties from "./profileProperties";
-import InputGroup from "dnn-input-group";
-import SingleLineInputWithError from "dnn-single-line-input-with-error";
-import Grid from "dnn-grid-system";
-import Switch from "dnn-switch";
-import Dropdown from "dnn-dropdown";
-import Label from "dnn-label";
-import Button from "dnn-button";
+import { InputGroup, SingleLineInputWithError, GridSystem, Switch, Dropdown, Label, Button } from "@dnnsoftware/dnn-react-common";
 import "./style.less";
 import util from "../../utils";
 import resx from "../../resources";
@@ -24,40 +19,29 @@ class ProfileSettingsPanelBody extends Component {
         };
     }
 
-    loadData() {
+    componentDidUpdate() {
         const {props} = this;
         if (props.profileSettings) {
             if (props.portalId === undefined || props.profileSettings.PortalId === props.portalId) {
-                return false;
+                return;
             }
             else {
-                return true;
+                this.loadData();
             }
-        }
-        else {
-            return true;
         }
     }
 
-    componentWillMount() {
+    componentDidMount() {
+        this.loadData();
+    }
+
+    loadData() {
         const {props} = this;
-        if (!this.loadData()) {
-            this.setState({
-                profileSettings: props.profileSettings
-            });
-            return;
-        }
         props.dispatch(SiteBehaviorActions.getProfileSettings(props.portalId, (data) => {
             this.setState({
                 profileSettings: Object.assign({}, data.Settings)
             });
         }));
-    }
-
-    componentWillReceiveProps(props) {
-        this.setState({
-            profileSettings: Object.assign({}, props.profileSettings)
-        });
     }
 
     getProfileVisibilityOptions() {
@@ -114,17 +98,17 @@ class ProfileSettingsPanelBody extends Component {
     render() {
         const {props, state} = this;
         if (state.profileSettings) {
-            const columnOne = <div className="left-column">
+            const columnOne = <div key="column-one" className="left-column">
                 <InputGroup>
                     <Label
                         tooltipMessage={resx.get("Profile_DefaultVisibility.Help")}
                         label={resx.get("Profile_DefaultVisibility")}
-                        />
+                    />
                     <Dropdown
                         options={this.getProfileVisibilityOptions()}
                         value={state.profileSettings.ProfileDefaultVisibility}
                         onSelect={this.onSettingChange.bind(this, "ProfileDefaultVisibility")}
-                        />
+                    />
                 </InputGroup>
                 <InputGroup>
                     <div className="profileSettings-row_switch">
@@ -132,29 +116,29 @@ class ProfileSettingsPanelBody extends Component {
                             labelType="inline"
                             tooltipMessage={resx.get("redirectOldProfileUrlsLabel.Help")}
                             label={resx.get("redirectOldProfileUrlsLabel")}
-                            />
+                        />
                         <Switch
                             onText={resx.get("SwitchOn")}
                             offText={resx.get("SwitchOff")}
                             value={state.profileSettings.RedirectOldProfileUrl}
                             onChange={this.onSettingChange.bind(this, "RedirectOldProfileUrl")}
-                            />
+                        />
                     </div>
                 </InputGroup>
             </div>;
-            const columnTwo = <div className="right-column">
+            const columnTwo = <div key="column-two" className="right-column">
                 <InputGroup>
                     <Label
                         tooltipMessage={resx.get("vanilyUrlPrefixLabel.Help")}
                         label={resx.get("vanilyUrlPrefixLabel")}
-                        />
+                    />
                     <SingleLineInputWithError
                         inputStyle={{ margin: "0" }}
                         withLabel={false}
                         error={false}
                         value={state.profileSettings.VanityUrlPrefix}
                         onChange={this.onSettingChange.bind(this, "VanityUrlPrefix")}
-                        />
+                    />
                     <div className="VanityUrlPrefix">/{resx.get("VanityUrlExample")}</div>
                 </InputGroup>
                 <InputGroup>
@@ -163,13 +147,13 @@ class ProfileSettingsPanelBody extends Component {
                             labelType="inline"
                             tooltipMessage={resx.get("Profile_DisplayVisibility.Help")}
                             label={resx.get("Profile_DisplayVisibility")}
-                            />
+                        />
                         <Switch
                             onText={resx.get("SwitchOn")}
                             offText={resx.get("SwitchOff")}
                             value={state.profileSettings.ProfileDisplayVisibility}
                             onChange={this.onSettingChange.bind(this, "ProfileDisplayVisibility")}
-                            />
+                        />
                     </div>
                 </InputGroup>
             </div>;
@@ -177,7 +161,7 @@ class ProfileSettingsPanelBody extends Component {
             return (
                 <div className={styles.profileSettings}>
                     <div className="sectionTitleNoBorder">{resx.get("UserProfileSettings")}</div>
-                    <Grid children={[columnOne, columnTwo]} numberOfColumns={2} />
+                    <GridSystem numberOfColumns={2}>{[columnOne, columnTwo]}</GridSystem>
                     <ProfileProperties portalId={props.portalId} cultureCode={props.cultureCode}/>
                     <div className="buttons-box">
                         <Button

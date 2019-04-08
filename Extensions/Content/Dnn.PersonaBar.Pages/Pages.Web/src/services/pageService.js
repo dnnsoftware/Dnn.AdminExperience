@@ -1,6 +1,5 @@
 import Api from "./api";
 import utils from "../utils";
-import securityService from "./securityService";
 const PageService = function () {
 
     function getOverridablePagesApi() {
@@ -23,9 +22,9 @@ const PageService = function () {
         return api.post("SavePageDetails", toBackEndPage(request));
     };
 
-    const deletePage = function (page) {
+    const deletePage = function (page, hardDelete = false) {
         const api = getPagesApi();
-        return api.post("DeletePage", { id: page.tabId });
+        return api.post("DeletePage?hardDelete=" + hardDelete, { id: page.tabId });
     };
 
     const addPages = function (bulkPage) {
@@ -91,6 +90,8 @@ const PageService = function () {
                 page.hasParent = parentPage && typeof parentPage !== "function" && parentPage.id || page.hasParent;
                 page.hierarchy = parentPage && typeof parentPage !== "function" && parentPage.id && parentPage.name || page.hierarchy;
                 page.parentId = parentPage && typeof parentPage !== "function" && parentPage.id || page.parentId;
+                page.iconFile = null;
+                page.iconFileLarge = null;
                 return page;
             });
     };

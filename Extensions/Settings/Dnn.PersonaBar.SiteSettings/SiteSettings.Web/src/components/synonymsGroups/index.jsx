@@ -1,14 +1,13 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import {
     search as SearchActions
 } from "../../actions";
 import SynonymsGroupRow from "./synonymsGroupRow";
 import SynonymsGroupEditor from "./synonymsGroupEditor";
-import Collapse from "dnn-collapsible";
-import DropDown from "dnn-dropdown";
+import { Dropdown, SvgIcons } from "@dnnsoftware/dnn-react-common";
 import "./style.less";
-import { AddIcon } from "dnn-svg-icons";
 import util from "../../utils";
 import resx from "../../resources";
 
@@ -25,19 +24,40 @@ class SynonymsGroupsPanel extends Component {
     }
 
     loadData() {
-        const {props} = this;
+        const { props } = this;
+        props.dispatch(SearchActions.getSynonymsGroups(props.portalId, props.cultureCode, (data) => {
+            this.setState({
+                synonymsGroups: Object.assign({}, data)
+            });
+        }));
+    }
+
+    componentDidMount() {
+        const { props } = this;
+
+        if (tableFields.length === 0) {
+            tableFields.push({ "name": resx.get("SynonymsGroup.Header"), "id": "Synonyms" });
+        }
+
+        props.dispatch(SearchActions.getCultureList(props.portalId));
+
+        this.loadData();
+    }
+
+    componentDidUpdate(prevProps) {
+        const { props } = this;
+
         if (props.synonymsGroups) {
             let portalIdChanged = false;
             let cultureCodeChanged = false;
-
-            if (props.portalId === undefined || props.synonymsGroups.PortalId === props.portalId) {
+            if (props.portalId === undefined || prevProps.portalId === props.portalId) {
                 portalIdChanged = false;
             }
             else {
                 portalIdChanged = true;
             }
 
-            if (props.cultureCode === undefined || props.synonymsGroups.CultureCode === props.cultureCode) {
+            if (props.cultureCode === undefined || prevProps.cultureCode === props.cultureCode) {
                 cultureCodeChanged = false;
             }
             else {
@@ -45,56 +65,8 @@ class SynonymsGroupsPanel extends Component {
             }
 
             if (portalIdChanged || cultureCodeChanged) {
-                return true;
+                this.loadData();
             }
-            else return false;
-        }
-        else {
-            return true;
-        }
-    }
-
-    componentWillMount() {
-        const {state, props} = this;
-
-        if (tableFields.length === 0) {
-            tableFields.push({ "name": resx.get("SynonymsGroup.Header"), "id": "Synonyms" });
-        }
-
-        if (!this.loadData()) {
-            this.setState({
-                synonymsGroups: props.synonymsGroups,
-                culture: props.synonymsGroups.CultureCode
-            });
-            return;
-        }
-        props.dispatch(SearchActions.getCultureList(props.portalId));
-
-        if (state.culture === "") {
-            this.setState({
-                culture: props.cultureCode
-            });
-            props.dispatch(SearchActions.getSynonymsGroups(props.portalId, props.cultureCode, (data) => {
-                this.setState({
-                    synonymsGroups: Object.assign({}, data)
-                });
-            }));
-        }
-        else {
-            props.dispatch(SearchActions.getSynonymsGroups(props.portalId, state.culture, (data) => {
-                this.setState({
-                    synonymsGroups: Object.assign({}, data)
-                });
-            }));
-        }
-    }
-
-    componentWillReceiveProps(props) {
-        if (props.synonymsGroups) {
-            this.setState({
-                synonymsGroups: props.synonymsGroups
-            });
-            return;
         }
     }
 
@@ -116,7 +88,7 @@ class SynonymsGroupsPanel extends Component {
         }
     }
 
-    uncollapse(id) {
+    unCollapse(id) {
         this.setState({
             openId: id
         });
@@ -132,7 +104,7 @@ class SynonymsGroupsPanel extends Component {
 
     toggle(openId) {
         if (openId !== "") {
-            this.uncollapse(openId);
+            this.unCollapse(openId);
         }
     }
 
@@ -254,18 +226,18 @@ class SynonymsGroupsPanel extends Component {
                     <div className="AddItemRow">
                         <div className="sectionTitle">{resx.get("Synonyms")}</div>
                         <div className={opened ? "AddItemBox-active" : "AddItemBox"} onClick={this.toggle.bind(this, opened ? "" : "add")}>
-                            <div className="add-icon" dangerouslySetInnerHTML={{ __html: AddIcon }}>
+                            <div className="add-icon" dangerouslySetInnerHTML={{ __html: SvgIcons.AddIcon }}>
                             </div> {resx.get("cmdAddGroup")}
                         </div>
                         {this.props.cultures && this.props.cultures.length > 1 &&
                             <div className="synonyms-filter">
-                                <DropDown
-                                    value={this.state.culture}
+                                <Dropdown
+                                    value={this.props.cultureCode}
                                     style={{ width: "auto" }}
                                     options={this.getCultureOptions()}
                                     withBorder={false}
                                     onSelect={this.onSelectCulture.bind(this)}
-                                    />
+                                />
                             </div>
                         }
                     </div>
@@ -301,7 +273,7 @@ class SynonymsGroupsPanel extends Component {
 SynonymsGroupsPanel.propTypes = {
     dispatch: PropTypes.func.isRequired,
     tabIndex: PropTypes.number,
-    synonymsGroups: PropTypes.array,
+    synonymsGroups: PropTypes.object,
     cultures: PropTypes.array,
     portalId: PropTypes.number,
     cultureCode: PropTypes.string
@@ -311,7 +283,8 @@ function mapStateToProps(state) {
     return {
         synonymsGroups: state.search.synonymsGroups,
         cultures: state.search.cultures,
-        tabIndex: state.pagination.tabIndex
+        tabIndex: state.pagination.tabIndex,
+        portalId: state.siteInfo ? state.siteInfo.portalId : undefined,
     };
 }
 

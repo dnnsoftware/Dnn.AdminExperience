@@ -1,7 +1,6 @@
-import React, {Component, PropTypes } from "react";
-import Label from "dnn-label";
-import InputGroup from "dnn-input-group";
-import Switch from "dnn-switch";
+import React, {Component } from "react";
+import PropTypes from "prop-types";
+import { Label, InputGroup, Switch } from "@dnnsoftware/dnn-react-common";
 import GlobalIcon from "./GlobalIcon";
 
 export default class InfoBlock extends Component {

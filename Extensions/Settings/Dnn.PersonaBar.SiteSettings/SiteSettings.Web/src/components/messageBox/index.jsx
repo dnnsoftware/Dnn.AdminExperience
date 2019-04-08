@@ -1,6 +1,7 @@
-import React, { PropTypes, Component } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import Modal from "react-modal";
-import { XThinIcon, CheckMarkIcon } from "dnn-svg-icons";
+import { SvgIcons } from "@dnnsoftware/dnn-react-common";
 
 const modalStyles = {
     overlay: {
@@ -45,13 +46,13 @@ class MessageBox extends Component {
                 style={modalStyles}>
                 <div className="dnn-message-box">
                     <div className="top-bar">
-                        <div className="close-button" dangerouslySetInnerHTML={{ __html: XThinIcon }} onClick={this.onClose.bind(this)} />
+                        <div className="close-button" dangerouslySetInnerHTML={{ __html: SvgIcons.XThinIcon }} onClick={this.onClose.bind(this)} />
                     </div>
                     <div className="content">
-                        <div className="message-icon" dangerouslySetInnerHTML={{ __html: CheckMarkIcon }} />
+                        <div className="message-icon" dangerouslySetInnerHTML={{ __html: SvgIcons.CheckMarkIcon }} />
                         <div className="message-text">{props.message}</div>
                         {props.link &&
-                            <div className="message-link"><a target="_blank" href={props.link}>{props.link}</a></div>
+                            <div className="message-link"><a target="_blank" rel="noopener noreferrer" href={props.link}>{props.link}</a></div>
                         }
                     </div>
                 </div>
@@ -60,8 +61,8 @@ class MessageBox extends Component {
     }
 }
 
-MessageBox.PropTypes = {
-    text: PropTypes.string.isRequired,
+MessageBox.propTypes = {
+    message: PropTypes.string.isRequired,
     link: PropTypes.string,
     isOpened: PropTypes.bool,
     onClose: PropTypes.func.isRequired

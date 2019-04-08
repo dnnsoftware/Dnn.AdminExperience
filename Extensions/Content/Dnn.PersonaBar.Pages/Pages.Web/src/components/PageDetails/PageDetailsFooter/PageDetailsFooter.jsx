@@ -2,8 +2,7 @@ import React, {Component} from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import styles from "./style.less";
-import GridSystem from "dnn-grid-system";
-import GridCell from "dnn-grid-cell";
+import { GridSystem, GridCell } from "@dnnsoftware/dnn-react-common";
 import PageNameInput from "./PageNameInput";
 import DisplayInMenu from "./DisplayInMenu";
 import EnableScheduling from "./EnableScheduling";
@@ -29,15 +28,17 @@ class PageDetailsFooter extends Component {
         const {page, errors} = this.props;
         let defaultLeftColumnComponents;
         if (!normalPage) {
-            defaultLeftColumnComponents = [<PageNameInput pageName={page.name}
+            defaultLeftColumnComponents = [<PageNameInput key={page.tabId} pageName={page.name}
                 errors={errors}
                 onChangePageName={this.onChangeField.bind(this, "name")} />];
         } else {
-            defaultLeftColumnComponents = [<DisplayInMenu includeInMenu={page.includeInMenu}
+            defaultLeftColumnComponents = [<DisplayInMenu key={page.tabId} includeInMenu={page.includeInMenu}
                 onChangeIncludeInMenu={this.onChangeValue.bind(this,"includeInMenu")} />];
             if (includeTemplates && page.tabId === 0) {
                 defaultLeftColumnComponents.push(
-                    <Template templates={page.templates} 
+                    <Template 
+                        key={"templateKey-" + page.tabId}
+                        templates={page.templates} 
                         selectedTemplateId={page.templateId}
                         onSelect={this.onChangeField.bind(this, "templateId")} />
                 );
@@ -57,7 +58,7 @@ class PageDetailsFooter extends Component {
         for (let i = 0; i < elements.length; i++) {
             let index = this.getInteger(elements[i].order);
             const Component = elements[i].component;
-            const instance = <Component page={this.props.page} onChange={this.onChangeValue.bind(this)} 
+            const instance = <Component key={"component" + i.toString()} page={this.props.page} onChange={this.onChangeValue.bind(this)} 
                 store={elements[i].store} />;
 
             if (index || index === 0) {
@@ -80,15 +81,15 @@ class PageDetailsFooter extends Component {
     getRightColumnComponents(normalPage, pageType) {
         const {page} = this.props;
         const defaultRightColumnComponents = !normalPage ? 
-            [<DisplayInMenu includeInMenu={page.includeInMenu}
+            [<DisplayInMenu key={"displayInMenu" + page.tabId} includeInMenu={page.includeInMenu}
                 onChangeIncludeInMenu={this.onChangeValue.bind(this, "includeInMenu")} />,
-            <EnableScheduling schedulingEnabled={page.schedulingEnabled}
+            <EnableScheduling key={"enableScheduling" + page.tabId} schedulingEnabled={page.schedulingEnabled}
                 onChangeSchedulingEnabled={this.onChangeValue.bind(this, "schedulingEnabled")}
                 startDate={page.startDate}
                 endDate={page.endDate}
                 onChangeStartDate={this.onChangeValue.bind(this, "startDate")}
                 onChangeEndDate={this.onChangeValue.bind(this, "endDate")} />] :
-            [<EnableScheduling schedulingEnabled={page.schedulingEnabled}
+            [<EnableScheduling key={"enableScheduling" + page.tabId} schedulingEnabled={page.schedulingEnabled}
                 onChangeSchedulingEnabled={this.onChangeValue.bind(this, "schedulingEnabled")}
                 startDate={page.startDate}
                 endDate={page.endDate}

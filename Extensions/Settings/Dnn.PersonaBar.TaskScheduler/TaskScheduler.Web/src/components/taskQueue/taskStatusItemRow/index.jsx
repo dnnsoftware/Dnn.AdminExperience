@@ -1,8 +1,8 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import ReactDOM from "react-dom";
 import styles from "./style.less";
-import GridSystem from "dnn-grid-system";
+import { GridSystem } from "@dnnsoftware/dnn-react-common";
 import LeftPane from "../LeftPane";
 import RightPane from "../RightPane";
 
@@ -14,10 +14,6 @@ class TaskStatusItemRow extends Component {
             collapsedClass: true,
             repainting: false
         };
-        this.timeout = 0;
-        // setInterval(() => {
-        //     console.log("Repainting: ", this.state.repainting);
-        // }, 500);
         this.handleClick = this.handleClick.bind(this);
     }
 
@@ -38,7 +34,7 @@ class TaskStatusItemRow extends Component {
         // the "findDOMNode was called on an unmounted component." error we need to check if the component is mounted before execute this code
         if (!this._isMounted) { return; }
 
-        if (!ReactDOM.findDOMNode(this).contains(event.target) && (typeof event.target.className == "string" && event.target.className.indexOf("do-not-close") == -1)) {
+        if (!this.node.contains(event.target) && (typeof event.target.className == "string" && event.target.className.indexOf("do-not-close") == -1)) {
 
             this.timeout = 475;
         } else {
@@ -50,7 +46,7 @@ class TaskStatusItemRow extends Component {
     render() {
         const {props} = this;
         return (
-            <div className={styles.taskStatusItemRow}>
+            <div className={styles.taskStatusItemRow} ref={node => this.node = node}>
                 <GridSystem>
                     <LeftPane
                         friendlyName={props.friendlyName}
@@ -60,7 +56,7 @@ class TaskStatusItemRow extends Component {
                         elapsedTime={props.elapsedTime}
                         startDate={props.startDate}
                         key={"schedule-left-" + props.scheduleId}
-                        />
+                    />
                     <RightPane
                         scheduleId={props.scheduleId}
                         servers={props.servers}
@@ -68,7 +64,7 @@ class TaskStatusItemRow extends Component {
                         threadId={props.threadId}
                         scheduleSource={props.scheduleSource}
                         key={"schedule-right-" + props.scheduleId}
-                        />
+                    />
                 </GridSystem>
             </div>
         );
@@ -79,7 +75,7 @@ TaskStatusItemRow.propTypes = {
     scheduleId: PropTypes.number,
     friendlyName: PropTypes.string,
     overdue: PropTypes.bool,
-    remainingTime: PropTypes.number,
+    remainingTime: PropTypes.string,
     nextStart: PropTypes.string,
     objectDependencies: PropTypes.string,
     scheduleSource: PropTypes.string,

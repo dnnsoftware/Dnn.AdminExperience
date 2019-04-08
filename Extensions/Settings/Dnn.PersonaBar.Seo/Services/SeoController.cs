@@ -20,6 +20,7 @@
 #endregion
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -241,29 +242,10 @@ namespace Dnn.PersonaBar.Seo.Services
                 }
                 else
                 {
-                    HostController.Instance.Update(FriendlyUrlSettings.IgnoreRegexSetting, request.IgnoreRegex, false);
-                    HostController.Instance.Update(FriendlyUrlSettings.DoNotRewriteRegExSetting,
-                        request.DoNotRewriteRegex, false);
-                    HostController.Instance.Update(FriendlyUrlSettings.SiteUrlsOnlyRegexSetting,
-                        request.UseSiteUrlsRegex, false);
-                    HostController.Instance.Update(FriendlyUrlSettings.DoNotRedirectUrlRegexSetting,
-                        request.DoNotRedirectRegex, false);
-                    HostController.Instance.Update(FriendlyUrlSettings.DoNotRedirectHttpsUrlRegexSetting,
-                        request.DoNotRedirectSecureRegex, false);
-                    HostController.Instance.Update(FriendlyUrlSettings.PreventLowerCaseUrlRegexSetting,
-                        request.ForceLowerCaseRegex, false);
-                    HostController.Instance.Update(FriendlyUrlSettings.DoNotUseFriendlyUrlRegexSetting,
-                        request.NoFriendlyUrlRegex, false);
-                    HostController.Instance.Update(FriendlyUrlSettings.KeepInQueryStringRegexSetting,
-                        request.DoNotIncludeInPathRegex, false);
-                    HostController.Instance.Update(FriendlyUrlSettings.UrlsWithNoExtensionRegexSetting,
-                        request.ValidExtensionlessUrlsRegex, false);
-                    HostController.Instance.Update(FriendlyUrlSettings.ValidFriendlyUrlRegexSetting, request.RegexMatch,
-                        false);
-
-                    DataCache.ClearHostCache(false);
-                    CacheController.FlushPageIndexFromCache();
-                    CacheController.FlushFriendlyUrlSettingsFromCache();
+                    // if no errors, update settings in db
+                    UpdateRegexSettingsInternal(request);
+                    // clear cache
+                    ClearCache();
 
                     return Request.CreateResponse(HttpStatusCode.OK, new { Success = true });
                 }
@@ -273,6 +255,47 @@ namespace Dnn.PersonaBar.Seo.Services
                 Logger.Error(exc);
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, exc);
             }
+        }
+
+        private void UpdateRegexSettingsInternal(UpdateRegexSettingsRequest request)
+        {
+            var settings =  new Dictionary<string, string>() {
+                        { FriendlyUrlSettings.IgnoreRegexSetting, request.IgnoreRegex },
+                        { FriendlyUrlSettings.DoNotRewriteRegExSetting, request.DoNotRewriteRegex },
+                        { FriendlyUrlSettings.SiteUrlsOnlyRegexSetting, request.UseSiteUrlsRegex },
+                        { FriendlyUrlSettings.DoNotRedirectUrlRegexSetting, request.DoNotRedirectRegex },
+                        { FriendlyUrlSettings.DoNotRedirectHttpsUrlRegexSetting, request.DoNotRedirectSecureRegex },
+                        { FriendlyUrlSettings.PreventLowerCaseUrlRegexSetting, request.ForceLowerCaseRegex },
+                        { FriendlyUrlSettings.DoNotUseFriendlyUrlRegexSetting, request.NoFriendlyUrlRegex },
+                        { FriendlyUrlSettings.KeepInQueryStringRegexSetting, request.DoNotIncludeInPathRegex },
+                        { FriendlyUrlSettings.UrlsWithNoExtensionRegexSetting, request.ValidExtensionlessUrlsRegex },
+                        { FriendlyUrlSettings.ValidFriendlyUrlRegexSetting, request.RegexMatch }};
+
+            settings.ToList().ForEach((value) =>
+            {
+                if (PortalId == Null.NullInteger)
+                {
+                    HostController.Instance.Update(value.Key, value.Value, false);
+                }
+                else
+                {
+                    PortalController.Instance.UpdatePortalSetting(PortalId, value.Key, value.Value, false, Null.NullString, false);
+                }
+            });
+        }
+
+        private void ClearCache()
+        {
+            if (PortalId == Null.NullInteger)
+            {
+                DataCache.ClearHostCache(false);
+            }
+            else
+            {
+                DataCache.ClearPortalCache(PortalId, false);
+            }
+            CacheController.FlushPageIndexFromCache();
+            CacheController.FlushFriendlyUrlSettingsFromCache();
         }
 
         private static bool ValidateRegex(string regexPattern)
