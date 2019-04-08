@@ -2551,9 +2551,12 @@ hmac-drbg@^1.0.0:
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.1"
 
-hoist-non-react-statics@^2.5.0:
-  version "2.5.5"
-  resolved "https://www.myget.org/F/dnn-software-public/npm/hoist-non-react-statics/-/hoist-non-react-statics-2.5.5.tgz#c5903cf409c0dfd908f388e619d86b9c1174cb47"
+hoist-non-react-statics@^3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-3.3.0.tgz#b09178f0122184fb95acf525daaecb4d8f45958b"
+  integrity sha512-0XsbTXxgiaCDYDIWFcwkmerZPSwywfUqYmwT4jzewKTQSWoE6FCMoUVOeBJWK3E/CrWbxRG3m5GzY4lnIwGRBA==
+  dependencies:
+    react-is "^16.7.0"
 
 hpack.js@^2.1.6:
   version "2.1.6"
@@ -4113,20 +4116,29 @@ react-height@^3.0.0:
   dependencies:
     prop-types "15.5.8"
 
-react-hot-loader@4.3.12:
-  version "4.3.12"
-  resolved "https://www.myget.org/F/dnn-software-public/npm/react-hot-loader/-/react-hot-loader-4.3.12.tgz#0d56688884e7330c63a00a17217866280616b07a"
+react-hot-loader@4.8.3:
+  version "4.8.3"
+  resolved "https://registry.yarnpkg.com/react-hot-loader/-/react-hot-loader-4.8.3.tgz#14f018777a60ea9cfa60496c7341c2f967311253"
+  integrity sha512-Is8bKbSxuDLTqsWu1yjr+o1yA6yGDGjEQ2i1E8t/Nj1xJYC6QBRbyoofTn1xkMoKpcgXHuTJTqBhK0RY6moFJA==
   dependencies:
     fast-levenshtein "^2.0.6"
     global "^4.3.0"
-    hoist-non-react-statics "^2.5.0"
+    hoist-non-react-statics "^3.3.0"
+    loader-utils "^1.1.0"
+    lodash "^4.17.11"
     prop-types "^15.6.1"
     react-lifecycles-compat "^3.0.4"
     shallowequal "^1.0.2"
+    source-map "^0.7.3"
 
 react-is@^16.3.2:
   version "16.6.3"
   resolved "https://www.myget.org/F/dnn-software-public/npm/react-is/-/react-is-16.6.3.tgz#d2d7462fcfcbe6ec0da56ad69047e47e56e7eac0"
+
+react-is@^16.7.0:
+  version "16.8.6"
+  resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.8.6.tgz#5bbc1e2d29141c9fbdfed456343fe2bc430a6a16"
+  integrity sha512-aUk3bHfZ2bRSVFFbbeVS4i+lNPZr3/WM5jT2J5omUVV1zzcs1nAaf3l51ctA5FFvCRbhrH0bdAsRRQddFJZPtA==
 
 react-lifecycles-compat@^3.0.0, react-lifecycles-compat@^3.0.4:
   version "3.0.4"
@@ -4711,6 +4723,11 @@ source-map@^0.5.0, source-map@^0.5.6:
 source-map@^0.6.0, source-map@^0.6.1, source-map@~0.6.0, source-map@~0.6.1:
   version "0.6.1"
   resolved "https://www.myget.org/F/dnn-software-public/npm/source-map/-/source-map-0.6.1.tgz#74722af32e9614e9c287a8d0bbde48b5e2f1a263"
+
+source-map@^0.7.3:
+  version "0.7.3"
+  resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.7.3.tgz#5302f8169031735226544092e64981f751750383"
+  integrity sha512-CkCj6giN3S+n9qrYiBTX5gystlENnRW5jZeNLHpe6aue+SrHcG5VYwujhW9s4dY31mEGsxBDrHR6oI69fTXsaQ==
 
 spdy-transport@^3.0.0:
   version "3.0.0"
