@@ -25,8 +25,7 @@ class SynonymsGroupsPanel extends Component {
 
     loadData() {
         const { props } = this;
-        const culture = this.getCurrentCulture();
-        props.dispatch(SearchActions.getSynonymsGroups(props.portalId, culture, (data) => {
+        props.dispatch(SearchActions.getSynonymsGroups(props.portalId, props.cultureCode, (data) => {
             this.setState({
                 synonymsGroups: Object.assign({}, data)
             });
@@ -48,24 +47,25 @@ class SynonymsGroupsPanel extends Component {
     componentDidUpdate(prevProps) {
         const { props } = this;
 
-        if (props.synonymsGroups !== prevProps.synonymsGroups) {
-            const culture = props.synonymsGroups.CultureCode ? props.synonymsGroups.CultureCode : props.cultureCode;
-            this.setState({
-                synonymsGroups: props.synonymsGroups,
-                culture
-            });
-        }
-    }
+        if (props.synonymsGroups) {
+            let portalIdChanged = false;
+            let cultureCodeChanged = false;
+            if (props.portalId === undefined || prevProps.portalId === props.portalId) {
+                portalIdChanged = false;
+            }
+            else {
+                portalIdChanged = true;
+            }
 
-    getCurrentCulture() {
-        const { state, props } = this;
-        if(state.culture) {
-            return state.culture;
-        } else {
-            if(props.synonymsGroups !== undefined && props.synonymsGroups.CultureCode !== undefined) {
-                return props.synonymsGroups.CultureCode;
-            } else {
-                return props.cultureCode;
+            if (props.cultureCode === undefined || prevProps.cultureCode === props.cultureCode) {
+                cultureCodeChanged = false;
+            }
+            else {
+                cultureCodeChanged = true;
+            }
+
+            if (portalIdChanged || cultureCodeChanged) {
+                this.loadData();
             }
         }
     }
@@ -232,7 +232,7 @@ class SynonymsGroupsPanel extends Component {
                         {this.props.cultures && this.props.cultures.length > 1 &&
                             <div className="synonyms-filter">
                                 <Dropdown
-                                    value={this.state.culture}
+                                    value={this.props.cultureCode}
                                     style={{ width: "auto" }}
                                     options={this.getCultureOptions()}
                                     withBorder={false}
@@ -273,7 +273,7 @@ class SynonymsGroupsPanel extends Component {
 SynonymsGroupsPanel.propTypes = {
     dispatch: PropTypes.func.isRequired,
     tabIndex: PropTypes.number,
-    synonymsGroups: PropTypes.array,
+    synonymsGroups: PropTypes.object,
     cultures: PropTypes.array,
     portalId: PropTypes.number,
     cultureCode: PropTypes.string
@@ -284,7 +284,7 @@ function mapStateToProps(state) {
         synonymsGroups: state.search.synonymsGroups,
         cultures: state.search.cultures,
         tabIndex: state.pagination.tabIndex,
-        portalId: state.siteInfo.settings ? state.siteInfo.settings.PortalId : undefined,
+        portalId: state.siteInfo ? state.siteInfo.portalId : undefined,
     };
 }
 

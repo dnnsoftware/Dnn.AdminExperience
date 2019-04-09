@@ -13,7 +13,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Dnn.PersonaBar.Roles</RootNamespace>
     <AssemblyName>Dnn.PersonaBar.Roles</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <UseIISExpress>false</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
@@ -115,7 +115,6 @@
     <Compile Include="Services\RolesController.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="admin\personaBar\css\Roles.css" />
     <Content Include="admin\personaBar\scripts\bundles\roles-bundle.js" />
     <Content Include="admin\personaBar\scripts\Roles.js" />
     <Content Include="admin\personaBar\Roles.html" />

@@ -21,20 +21,20 @@ class MessagingSettingsPanelBody extends Component {
         };
     }
 
-    loadData() {
+    componentDidUpdate(prevProps) {
         const {props} = this;
         if (props.messagingSettings) {
             let portalIdChanged = false;
             let cultureCodeChanged = false;
 
-            if (props.portalId === undefined || props.messagingSettings.PortalId === props.portalId) {
+            if (props.portalId === undefined || prevProps.portalId === props.portalId) {
                 portalIdChanged = false;
             }
             else {
                 portalIdChanged = true;
             }
 
-            if (props.cultureCode === undefined || props.messagingSettings.CultureCode === props.cultureCode) {
+            if (props.cultureCode === undefined || prevProps.cultureCode === props.cultureCode) {
                 cultureCodeChanged = false;
             }
             else {
@@ -42,24 +42,18 @@ class MessagingSettingsPanelBody extends Component {
             }
 
             if (portalIdChanged || cultureCodeChanged) {
-                return true;
+                this.loadData();
             }
-            else return false;
-        }
-        else {
-            return true;
         }
     }
 
     componentDidMount() {
-        const { props} = this;
-        if (!this.loadData()) {
-            this.setState({
-                messagingSettings: props.messagingSettings
-            });
-            return;
-        }
+        this.loadData();
+    }
 
+    loadData() {
+        const {props} = this;
+        
         timeIntervalOptions = [];
         timeIntervalOptions.push({ "value": 0, "label": "0" });
         timeIntervalOptions.push({ "value": 0.5, "label": "0.5" });
