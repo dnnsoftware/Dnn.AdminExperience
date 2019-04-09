@@ -1577,11 +1577,13 @@ namespace Dnn.PersonaBar.SiteSettings.Services
                         CheckUpgrade = HostController.Instance.GetBoolean("CheckUpgrade", true),
                         DnnImprovementProgram = HostController.Instance.GetBoolean("DnnImprovementProgram", true),
                         DisplayCopyright = HostController.Instance.GetBoolean("Copyright", true),
-                        portalSettings.GdprActive,
-                        GdprResetTerms = false,
-                        GdprConsentRedirect = TabSanitizer(portalSettings.GdprConsentRedirect, pid)?.TabID,
-                        GdprConsentRedirectName = TabSanitizer(portalSettings.GdprConsentRedirect, pid)?.TabName,
-                        GdprUserDeleteAction = (int)portalSettings.GdprUserDeleteAction
+                        portalSettings.DataConsentActive,
+                        DataConsentResetTerms = false,
+                        DataConsentConsentRedirect = TabSanitizer(portalSettings.DataConsentConsentRedirect, pid)?.TabID,
+                        DataConsentConsentRedirectName = TabSanitizer(portalSettings.DataConsentConsentRedirect, pid)?.TabName,
+                        DataConsentUserDeleteAction = (int)portalSettings.DataConsentUserDeleteAction,
+                        PortalSettings.DataConsentDelay,
+                        PortalSettings.DataConsentDelayMeasurement
                     }
                 });
             }
@@ -1616,9 +1618,11 @@ namespace Dnn.PersonaBar.SiteSettings.Services
                 HostController.Instance.Update("CheckUpgrade", request.CheckUpgrade ? "Y" : "N", false);
                 HostController.Instance.Update("DnnImprovementProgram", request.DnnImprovementProgram ? "Y" : "N", false);
                 HostController.Instance.Update("Copyright", request.DisplayCopyright ? "Y" : "N", false);
-                PortalController.UpdatePortalSetting(pid, "GdprActive", request.GdprActive.ToString(), false);
-                PortalController.UpdatePortalSetting(pid, "GdprConsentRedirect", ValidateTabId(request.GdprConsentRedirect, pid).ToString(), false);
-                PortalController.UpdatePortalSetting(pid, "GdprUserDeleteAction", request.GdprUserDeleteAction.ToString(), false);
+                PortalController.UpdatePortalSetting(pid, "DataConsentActive", request.DataConsentActive.ToString(), false);
+                PortalController.UpdatePortalSetting(pid, "DataConsentConsentRedirect", ValidateTabId(request.DataConsentConsentRedirect, pid).ToString(), false);
+                PortalController.UpdatePortalSetting(pid, "DataConsentUserDeleteAction", request.DataConsentUserDeleteAction.ToString(), false);
+                PortalController.UpdatePortalSetting(pid, "DataConsentDelay", request.DataConsentDelay.ToString(), false);
+                PortalController.UpdatePortalSetting(pid, "DataConsentDelayMeasurement", request.DataConsentDelayMeasurement, false);
                 DataCache.ClearCache();
 
                 return Request.CreateResponse(HttpStatusCode.OK, new { Success = true });
@@ -1649,7 +1653,7 @@ namespace Dnn.PersonaBar.SiteSettings.Services
                     return Request.CreateErrorResponse(HttpStatusCode.Unauthorized, AuthFailureMessage);
                 }
                 UserController.ResetTermsAgreement(pid);
-                PortalController.UpdatePortalSetting(pid, "GdprTermsLastChange", DateTime.Now.ToString("u"), true);
+                PortalController.UpdatePortalSetting(pid, "DataConsentTermsLastChange", DateTime.Now.ToString("u"), true);
                 return Request.CreateResponse(HttpStatusCode.OK, new { Success = true });
             }
             catch (Exception exc)

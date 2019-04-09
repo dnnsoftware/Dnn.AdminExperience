@@ -77,6 +77,14 @@ class PrivacySettingsPanelBody extends Component {
     ];
   }
 
+  getTimeLapseMeasurements() {
+    return [
+      { value: "h", label: resx.get("Hours") },
+      { value: "d", label: resx.get("Days") },
+      { value: "w", label: resx.get("Weeks") }
+    ];
+  }
+
   onDataConsentResetTerms() {
     util.utilities.confirm(
       resx.get("DataConsentResetTerms.Confirm"),
@@ -99,7 +107,10 @@ class PrivacySettingsPanelBody extends Component {
     let { state, props } = this;
     let privacySettings = Object.assign({}, state.privacySettings);
 
-    if (key === "DataConsentUserDeleteAction") {
+    if (
+      key === "DataConsentUserDeleteAction" ||
+      key === "DataConsentDelayMeasurement"
+    ) {
       privacySettings[key] = event.value;
     } else {
       privacySettings[key] =
@@ -282,6 +293,31 @@ class PrivacySettingsPanelBody extends Component {
     ) : (
       <div key="column-two-right" className="right-column" />
     );
+    const hardDeleteDelay =
+      state.privacySettings &&
+      state.privacySettings.DataConsentUserDeleteAction === 0 ? (
+        <div className="editor-row divider">
+          <SingleLineInputWithError
+            withLabel={true}
+            style={{ float: "left", width: "47.5%", whiteSpace: "pre" }}
+            label={resx.get("DataConsentDelay")}
+            error={false}
+            errorMessage={resx.get("DataConsentDelay.ErrorMessage")}
+            value={state.privacySettings.DataConsentDelay}
+            onChange={this.onSettingChange.bind(this, "DataConsentDelay")}
+          />
+          <div className="text-section">&nbsp; </div>
+          <Dropdown
+            style={{ width: 46 + "%", float: "right", margin: "25px 0 0 0" }}
+            options={this.getTimeLapseMeasurements()}
+            value={state.privacySettings.DataConsentDelayMeasurement}
+            onSelect={this.onSettingChange.bind(
+              this,
+              "DataConsentDelayMeasurement"
+            )}
+          />
+        </div>
+      ) : null;
     const columnThreeLeft = state.privacySettings ? (
       <div key="column-two-left" className="left-column">
         <InputGroup>
@@ -299,17 +335,6 @@ class PrivacySettingsPanelBody extends Component {
         </InputGroup>
         <InputGroup>
           <Label
-            tooltipMessage={resx.get("DataConsentUserDeleteAction.Help")}
-            label={resx.get("DataConsentUserDeleteAction")}
-          />
-          <Dropdown
-            options={this.getUserDeleteOptions()}
-            value={state.privacySettings.DataConsentUserDeleteAction}
-            onSelect={this.onSettingChange.bind(this, "DataConsentUserDeleteAction")}
-          />
-        </InputGroup>
-        <InputGroup>
-          <Label
             tooltipMessage={resx.get("DataConsentConsentRedirect.Help")}
             label={resx.get("DataConsentConsentRedirect")}
           />
@@ -321,7 +346,10 @@ class PrivacySettingsPanelBody extends Component {
                 ? state.privacySettings.DataConsentConsentRedirect
                 : -1
             }
-            OnSelect={this.onSettingChange.bind(this, "DataConsentConsentRedirect")}
+            OnSelect={this.onSettingChange.bind(
+              this,
+              "DataConsentConsentRedirect"
+            )}
             defaultLabel={
               state.privacySettings.DataConsentConsentRedirectName
                 ? state.privacySettings.DataConsentConsentRedirectName
@@ -332,6 +360,21 @@ class PrivacySettingsPanelBody extends Component {
             PortalTabsParameters={TabParameters_1}
           />
         </InputGroup>
+        <InputGroup>
+          <Label
+            tooltipMessage={resx.get("DataConsentUserDeleteAction.Help")}
+            label={resx.get("DataConsentUserDeleteAction")}
+          />
+          <Dropdown
+            options={this.getUserDeleteOptions()}
+            value={state.privacySettings.DataConsentUserDeleteAction}
+            onSelect={this.onSettingChange.bind(
+              this,
+              "DataConsentUserDeleteAction"
+            )}
+          />
+        </InputGroup>
+        {hardDeleteDelay}
       </div>
     ) : (
       <div key="column-two-left" className="left-column" />
@@ -343,7 +386,10 @@ class PrivacySettingsPanelBody extends Component {
             {resx.get("DataConsentResetTerms.Warning")}
           </div>
           <div className="warningButton">
-            <Button type="secondary" onClick={this.onDataConsentResetTerms.bind(this)}>
+            <Button
+              type="secondary"
+              onClick={this.onDataConsentResetTerms.bind(this)}
+            >
               {resx.get("DataConsentResetTerms")}
             </Button>
           </div>

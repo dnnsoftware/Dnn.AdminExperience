@@ -847,7 +847,19 @@ namespace Dnn.PersonaBar.Sites.Components
             {
                 writer.WriteElementString("dataconsentuserdeleteaction", setting);
             }
-            
+
+            settingsDictionary.TryGetValue("DataConsentDelay", out setting);
+            if (!string.IsNullOrEmpty(setting))
+            {
+                writer.WriteElementString("dataconsentdelay", setting);
+            }
+
+            settingsDictionary.TryGetValue("DataConsentDelayMeasurement", out setting);
+            if (!string.IsNullOrEmpty(setting))
+            {
+                writer.WriteElementString("dataconsentdelaymeasurement", setting);
+            }
+
             //End Portal Settings
             writer.WriteEndElement();
         }

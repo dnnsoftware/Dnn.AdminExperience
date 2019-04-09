@@ -1416,4 +1416,19 @@
   <data name="GdprResetTerms.Confirm" xml:space="preserve">
     <value>Do you wish to reset all users consent and force everyone to consent to the terms and conditions again?</value>
   </data>
+  <data name="Days.Text" xml:space="preserve">
+    <value>Days</value>
+  </data>
+  <data name="Hours.Text" xml:space="preserve">
+    <value>Hours</value>
+  </data>
+  <data name="Weeks.Text" xml:space="preserve">
+    <value>Weeks</value>
+  </data>
+  <data name="DataConsentDelay.ErrorMessage" xml:space="preserve">
+    <value>Must be an integer</value>
+  </data>
+  <data name="DataConsentDelay.Text" xml:space="preserve">
+    <value>Hard Delete Delay</value>
+  </data>
 </root>

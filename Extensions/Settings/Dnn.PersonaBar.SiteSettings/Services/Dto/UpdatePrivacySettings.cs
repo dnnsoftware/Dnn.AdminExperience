@@ -47,5 +47,9 @@ namespace Dnn.PersonaBar.SiteSettings.Services.Dto
         public int DataConsentConsentRedirect { get; set; }
 
         public int DataConsentUserDeleteAction { get; set; }
+
+        public int DataConsentDelay { get; set; }
+
+        public string DataConsentDelayMeasurement { get; set; }
     }
 }
