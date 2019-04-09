@@ -824,28 +824,28 @@ namespace Dnn.PersonaBar.Sites.Components
                 writer.WriteElementString("cookiemorelink", setting);
             }
 
-            settingsDictionary.TryGetValue("GdprActive", out setting);
+            settingsDictionary.TryGetValue("DataConsentActive", out setting);
             if (!string.IsNullOrEmpty(setting))
             {
-                writer.WriteElementString("gdpractive", setting);
+                writer.WriteElementString("dataconsentactive", setting);
             }
 
-            settingsDictionary.TryGetValue("GdprTermsLastChange", out setting);
+            settingsDictionary.TryGetValue("DataConsentTermsLastChange", out setting);
             if (!string.IsNullOrEmpty(setting))
             {
-                writer.WriteElementString("gdprtermslastchange", setting);
+                writer.WriteElementString("dataconsenttermslastchange", setting);
             }
 
-            settingsDictionary.TryGetValue("GdprConsentRedirect", out setting);
+            settingsDictionary.TryGetValue("DataConsentConsentRedirect", out setting);
             if (!string.IsNullOrEmpty(setting))
             {
-                writer.WriteElementString("gdprconsentredirect", setting);
+                writer.WriteElementString("dataconsentconsentredirect", setting);
             }
 
-            settingsDictionary.TryGetValue("GdprUserDeleteAction", out setting);
+            settingsDictionary.TryGetValue("DataConsentUserDeleteAction", out setting);
             if (!string.IsNullOrEmpty(setting))
             {
-                writer.WriteElementString("gdpruserdeleteaction", setting);
+                writer.WriteElementString("dataconsentuserdeleteaction", setting);
             }
             
             //End Portal Settings

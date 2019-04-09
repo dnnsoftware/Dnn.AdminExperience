@@ -1368,40 +1368,40 @@
   <data name="plDisplayCopyright.Text" xml:space="preserve">
     <value>Display Copyright</value>
   </data>
-  <data name="GdprActive.Help" xml:space="preserve">
+  <data name="DataConsentActive.Help" xml:space="preserve">
     <value>When switched on, registered users will be forced to consent to the terms and conditions of this site</value>
   </data>
-  <data name="GdprActive.Text" xml:space="preserve">
+  <data name="DataConsentActive.Text" xml:space="preserve">
     <value>Data Consent Active</value>
   </data>
-  <data name="GdprConsentRedirect.Help" xml:space="preserve">
+  <data name="DataConsentConsentRedirect.Help" xml:space="preserve">
     <value>If a page is selected then users will be taken to this page to sign their consent. If not then DNN will offer a default screen for this.</value>
   </data>
-  <data name="GdprConsentRedirect.Text" xml:space="preserve">
+  <data name="DataConsentConsentRedirect.Text" xml:space="preserve">
     <value>Consent Redirect</value>
   </data>
-  <data name="GdprResetTerms.Text" xml:space="preserve">
+  <data name="DataConsentResetTerms.Text" xml:space="preserve">
     <value>Reset Terms and Conditions</value>
   </data>
-  <data name="GdprResetTerms.Warning" xml:space="preserve">
+  <data name="DataConsentResetTerms.Warning" xml:space="preserve">
     <value>Use the button below to force all users to consent to the terms and conditions again. Use this when terms and conditions have changed.</value>
   </data>
-  <data name="GdprSettings.Text" xml:space="preserve">
+  <data name="DataConsentSettings.Text" xml:space="preserve">
     <value>Data Consent Settings</value>
   </data>
-  <data name="GdprUserDelayedHardDelete.Text" xml:space="preserve">
+  <data name="DataConsentUserDelayedHardDelete.Text" xml:space="preserve">
     <value>Delayed Hard Delete</value>
   </data>
-  <data name="GdprUserDeleteAction.Help" xml:space="preserve">
+  <data name="DataConsentUserDeleteAction.Help" xml:space="preserve">
     <value>Specify what should happen when a user opts to delete their profile from the site</value>
   </data>
-  <data name="GdprUserDeleteAction.Text" xml:space="preserve">
+  <data name="DataConsentUserDeleteAction.Text" xml:space="preserve">
     <value>User Delete Action</value>
   </data>
-  <data name="GdprUserHardDelete.Text" xml:space="preserve">
+  <data name="DataConsentUserHardDelete.Text" xml:space="preserve">
     <value>Hard Delete</value>
   </data>
-  <data name="GdrpUserAnonymize.Text" xml:space="preserve">
+  <data name="DataConsentUserAnonymize.Text" xml:space="preserve">
     <value>Anonymize</value>
   </data>
   <data name="Reset.Text" xml:space="preserve">

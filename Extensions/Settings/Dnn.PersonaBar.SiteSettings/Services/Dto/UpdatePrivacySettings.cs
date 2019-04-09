@@ -42,10 +42,10 @@ namespace Dnn.PersonaBar.SiteSettings.Services.Dto
 
         public bool DisplayCopyright { get; set; }
 
-        public bool GdprActive { get; set; }
+        public bool DataConsentActive { get; set; }
 
-        public int GdprConsentRedirect { get; set; }
+        public int DataConsentConsentRedirect { get; set; }
 
-        public int GdprUserDeleteAction { get; set; }
+        public int DataConsentUserDeleteAction { get; set; }
     }
 }

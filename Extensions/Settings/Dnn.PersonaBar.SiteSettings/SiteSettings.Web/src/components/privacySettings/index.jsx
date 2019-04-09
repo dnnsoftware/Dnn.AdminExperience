@@ -71,24 +71,24 @@ class PrivacySettingsPanelBody extends Component {
 
   getUserDeleteOptions() {
     return [
-      { label: resx.get("GdprUserDelayedHardDelete"), value: 0 },
-      { label: resx.get("GdprUserHardDelete"), value: 1 },
-      { label: resx.get("GdrpUserAnonymize"), value: 2 }
+      { label: resx.get("DataConsentUserDelayedHardDelete"), value: 0 },
+      { label: resx.get("DataConsentUserHardDelete"), value: 1 },
+      { label: resx.get("DataConsentUserAnonymize"), value: 2 }
     ];
   }
 
-  onGdprResetTerms() {
+  onDataConsentResetTerms() {
     util.utilities.confirm(
-      resx.get("GdprResetTerms.Confirm"),
+      resx.get("DataConsentResetTerms.Confirm"),
       resx.get("Yes"),
       resx.get("No"),
-      function onGdprResetTermsConfirm() {
+      function onDataConsentResetTermsConfirm() {
         SiteBehaviorActions.resetTermsAgreement(
           {
             PortalId: this.state.privacySettings.PortalId
           },
           () => {
-            util.utilities.notify(resx.get("GdprResetTerms.Completed"));
+            util.utilities.notify(resx.get("DataConsentResetTerms.Completed"));
           }
         );
       }.bind(this)
@@ -99,7 +99,7 @@ class PrivacySettingsPanelBody extends Component {
     let { state, props } = this;
     let privacySettings = Object.assign({}, state.privacySettings);
 
-    if (key === "GdprUserDeleteAction") {
+    if (key === "DataConsentUserDeleteAction") {
       privacySettings[key] = event.value;
     } else {
       privacySettings[key] =
@@ -126,7 +126,7 @@ class PrivacySettingsPanelBody extends Component {
           util.utilities.notify(resx.get("SettingsUpdateSuccess"));
           this.setState({
             privacySettings: Object.assign({}, this.state.privacySettings, {
-              GdprResetTerms: false
+              DataConsentResetTerms: false
             })
           });
         },
@@ -287,44 +287,44 @@ class PrivacySettingsPanelBody extends Component {
         <InputGroup>
           <Label
             labelType="inline"
-            tooltipMessage={resx.get("GdprActive.Help")}
-            label={resx.get("GdprActive")}
+            tooltipMessage={resx.get("DataConsentActive.Help")}
+            label={resx.get("DataConsentActive")}
           />
           <Switch
             onText={resx.get("SwitchOn")}
             offText={resx.get("SwitchOff")}
-            value={state.privacySettings.GdprActive}
-            onChange={this.onSettingChange.bind(this, "GdprActive")}
+            value={state.privacySettings.DataConsentActive}
+            onChange={this.onSettingChange.bind(this, "DataConsentActive")}
           />
         </InputGroup>
         <InputGroup>
           <Label
-            tooltipMessage={resx.get("GdprUserDeleteAction.Help")}
-            label={resx.get("GdprUserDeleteAction")}
+            tooltipMessage={resx.get("DataConsentUserDeleteAction.Help")}
+            label={resx.get("DataConsentUserDeleteAction")}
           />
           <Dropdown
             options={this.getUserDeleteOptions()}
-            value={state.privacySettings.GdprUserDeleteAction}
-            onSelect={this.onSettingChange.bind(this, "GdprUserDeleteAction")}
+            value={state.privacySettings.DataConsentUserDeleteAction}
+            onSelect={this.onSettingChange.bind(this, "DataConsentUserDeleteAction")}
           />
         </InputGroup>
         <InputGroup>
           <Label
-            tooltipMessage={resx.get("GdprConsentRedirect.Help")}
-            label={resx.get("GdprConsentRedirect")}
+            tooltipMessage={resx.get("DataConsentConsentRedirect.Help")}
+            label={resx.get("DataConsentConsentRedirect")}
           />
           <PagePicker
             serviceFramework={util.utilities.sf}
             style={{ width: "100%", zIndex: 5 }}
             selectedTabId={
-              state.privacySettings.GdprConsentRedirect
-                ? state.privacySettings.GdprConsentRedirect
+              state.privacySettings.DataConsentConsentRedirect
+                ? state.privacySettings.DataConsentConsentRedirect
                 : -1
             }
-            OnSelect={this.onSettingChange.bind(this, "GdprConsentRedirect")}
+            OnSelect={this.onSettingChange.bind(this, "DataConsentConsentRedirect")}
             defaultLabel={
-              state.privacySettings.GdprConsentRedirectName
-                ? state.privacySettings.GdprConsentRedirectName
+              state.privacySettings.DataConsentConsentRedirectName
+                ? state.privacySettings.DataConsentConsentRedirectName
                 : noneSpecifiedText
             }
             noneSpecifiedText={noneSpecifiedText}
@@ -340,11 +340,11 @@ class PrivacySettingsPanelBody extends Component {
       <div key="column-two-right" className="right-column">
         <div class="warningBox">
           <div className="warningText">
-            {resx.get("GdprResetTerms.Warning")}
+            {resx.get("DataConsentResetTerms.Warning")}
           </div>
           <div className="warningButton">
-            <Button type="secondary" onClick={this.onGdprResetTerms.bind(this)}>
-              {resx.get("GdprResetTerms")}
+            <Button type="secondary" onClick={this.onDataConsentResetTerms.bind(this)}>
+              {resx.get("DataConsentResetTerms")}
             </Button>
           </div>
         </div>
@@ -367,7 +367,7 @@ class PrivacySettingsPanelBody extends Component {
         <GridSystem numberOfColumns={2}>
           {[columnTwoLeft, columnTwoRight]}
         </GridSystem>
-        <div className="sectionTitle">{resx.get("GdprSettings")}</div>
+        <div className="sectionTitle">{resx.get("DataConsentSettings")}</div>
         <GridSystem numberOfColumns={2}>
           {[columnThreeLeft, columnThreeRight]}
         </GridSystem>
