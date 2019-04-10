@@ -71,9 +71,10 @@ class PrivacySettingsPanelBody extends Component {
 
   getUserDeleteOptions() {
     return [
-      { label: resx.get("DataConsentUserDelayedHardDelete"), value: 0 },
-      { label: resx.get("DataConsentUserHardDelete"), value: 1 },
-      { label: resx.get("DataConsentUserAnonymize"), value: 2 }
+      { label: resx.get("Off"), value: 0 },
+      { label: resx.get("DataConsentUserDeleteManual"), value: 1 },
+      { label: resx.get("DataConsentUserDelayedHardDelete"), value: 2 },
+      { label: resx.get("DataConsentUserHardDelete"), value: 3 }
     ];
   }
 
@@ -295,7 +296,7 @@ class PrivacySettingsPanelBody extends Component {
     );
     const hardDeleteDelay =
       state.privacySettings &&
-      state.privacySettings.DataConsentUserDeleteAction === 0 ? (
+      state.privacySettings.DataConsentUserDeleteAction === 2 ? (
         <div className="editor-row divider">
           <SingleLineInputWithError
             withLabel={true}

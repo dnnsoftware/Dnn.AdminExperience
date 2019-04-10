@@ -1401,9 +1401,6 @@
   <data name="DataConsentUserHardDelete.Text" xml:space="preserve">
     <value>Hard Delete</value>
   </data>
-  <data name="DataConsentUserAnonymize.Text" xml:space="preserve">
-    <value>Anonymize</value>
-  </data>
   <data name="Reset.Text" xml:space="preserve">
     <value>Reset</value>
   </data>
@@ -1430,5 +1427,11 @@
   </data>
   <data name="DataConsentDelay.Text" xml:space="preserve">
     <value>Hard Delete Delay</value>
+  </data>
+  <data name="DataConsentUserDeleteManual.Text" xml:space="preserve">
+    <value>Manual</value>
+  </data>
+  <data name="Off.Text" xml:space="preserve">
+    <value>Off</value>
   </data>
 </root>
