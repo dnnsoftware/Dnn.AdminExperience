@@ -137,7 +137,7 @@ class PageLanguage extends Component {
                             onClick={this.linkAllModules.bind(this)  }
                             dangerouslySetInnerHTML={{ __html: SvgIcons.LinkIcon }} />
                             <div title={this.state.allModulesSelected ? Localization.get("UnCheckAllTranslatedModules_tooltip") : Localization.get("CheckToTranslateAllModules_tooltip")} style={{ float: "left", display: "inline-block"}}>
-                            <Checkbox                            
+                            <Checkbox
                             value={this.state.allModulesSelected}
                             onChange={this.selectAllModules.bind(this) } /></div>
                         </div>}
