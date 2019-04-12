@@ -33,7 +33,7 @@
     "moment": "^2.23.0",
     "prop-types": "15.6.2",
     "react": "^16.6.3",
-    "react-dom": "^16.6.3",
+    "react-dom": "^16.8.6",
     "react-hot-loader": "^4.6.3",
     "react-redux": "^5.1.1",
     "react-widgets": "^4.4.7",
