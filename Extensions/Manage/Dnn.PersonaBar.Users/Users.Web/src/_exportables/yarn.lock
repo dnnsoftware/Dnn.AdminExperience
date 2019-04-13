@@ -531,7 +531,8 @@
 
 "@babel/preset-react@^7.0.0":
   version "7.0.0"
-  resolved "https://www.myget.org/F/dnn-software-public/npm/@babel/preset-react/-/@babel/preset-react-7.0.0.tgz#e86b4b3d99433c7b3e9e91747e2653958bc6b3c0"
+  resolved "https://registry.yarnpkg.com/@babel/preset-react/-/preset-react-7.0.0.tgz#e86b4b3d99433c7b3e9e91747e2653958bc6b3c0"
+  integrity sha512-oayxyPS4Zj+hF6Et11BwuBkmpgT/zMxyuZgFrMeZID6Hdh3dGlk4sHCAhdBCpuCKW2ppBfl2uCCetlrUIJRY3w==
   dependencies:
     "@babel/helper-plugin-utils" "^7.0.0"
     "@babel/plugin-transform-react-display-name" "^7.0.0"
@@ -575,10 +576,10 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
-"@dnnsoftware/dnn-react-common@^2.0.51":
-  version "2.0.51"
-  resolved "https://registry.yarnpkg.com/@dnnsoftware/dnn-react-common/-/dnn-react-common-2.0.51.tgz#d1c40d45db32585738f7aa3ebd2360eed92863ce"
-  integrity sha512-/oY5YYerwIdAjMC2QT3AOnlKoLot0G1hj1n1UrTri+fZteMc+YjDOKZkmIggsvrPBxLFrxwrASi7BPCy/BaHRg==
+"@dnnsoftware/dnn-react-common@^2.0.67":
+  version "2.0.67"
+  resolved "https://registry.yarnpkg.com/@dnnsoftware/dnn-react-common/-/dnn-react-common-2.0.67.tgz#e45d7f34709add48135a7f78c9bd6db5bc32a027"
+  integrity sha512-iSlJtpTSCVCh9KFBWVj60rkiq+uxCpQdpoZrGwkIxR4cUCKVYOa323aAaF/ClW1IY7BCEcHdRte8K6DuPoI4iQ==
   dependencies:
     interact.js "^1.2.8"
     moment "^2.22.2"

@@ -31,9 +31,9 @@ class TranslatePageContent extends Component {
         this.getProgressData();
     }
 
-    componentDidUpdate(newProps) {
+    componentDidUpdate(prevProps) {
         const { props } = this;
-        if(newProps.languageBeingEdited !== props.languageBeingEdited) {
+        if (prevProps.languageBeingEdited !== props.languageBeingEdited) {
             this.setState({languageBeingEdited: Object.assign({}, props.languageBeingEdited)});
         }
     }
@@ -313,7 +313,7 @@ function mapStateToProps(state) {
         pageList: state.languages.pageList,
         languageBeingEdited: state.languageEditor.languageBeingEdited,
         languageDisplayMode: (state.languages.languageSettings && state.languages.languageSettings.LanguageDisplayMode) || "NATIVE",
-        portalId: state.siteInfo.settings ? state.siteInfo.settings.PortalId : undefined,
+        portalId: state.siteInfo.settings ? state.siteInfo.portalId : undefined,
     };
 }
 
