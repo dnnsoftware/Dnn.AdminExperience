@@ -60,10 +60,10 @@ namespace Dnn.PersonaBar.Users.Components.Dto
         [DataMember(Name = "authorized")]
         public bool Authorized { get; set; }
 
-        [DataMember(Name = "HasAgreedToTerms")]
+        [DataMember(Name = "hasAgreedToTerms")]
         public bool HasAgreedToTerms { get; set; }
 
-        [DataMember(Name = "RequestsRemoval")]
+        [DataMember(Name = "requestsRemoval")]
         public bool RequestsRemoval { get; set; }
 
         [DataMember(Name = "isSuperUser")]

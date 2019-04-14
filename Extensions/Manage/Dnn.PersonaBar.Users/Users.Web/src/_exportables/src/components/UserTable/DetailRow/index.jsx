@@ -106,11 +106,11 @@ class DetailsRow extends Component {
             let statusClass = "black";
             let statusIcon = SvgIcons.Signature;
             let hoverText = Localization.get("HasAgreedToTerms.title");
-            if (user.RequestsRemoval) {
+            if (user.requestsRemoval) {
                 statusClass = "red";
                 statusIcon = SvgIcons.UserSlash;
                 hoverText = Localization.get("RequestsRemoval.title");
-            } else if (!user.HasAgreedToTerms) {
+            } else if (!user.hasAgreedToTerms) {
                 statusClass = "grey";
                 hoverText = Localization.get("HasNotAgreedToTerms.title");
             }
