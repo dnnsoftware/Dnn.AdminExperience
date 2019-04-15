@@ -110,10 +110,18 @@ class DetailsRow extends Component {
                 statusClass = "red";
                 statusIcon = SvgIcons.UserSlash;
                 hoverText = Localization.get("RequestsRemoval.title");
+            } else if (user.isDeleted) {
+                statusClass = "grey";
+                statusIcon = SvgIcons.UserSlash;
+                hoverText = Localization.get("Deleted");
+            } else if (!user.authorized) {
+                statusClass = "grey";
+                statusIcon = SvgIcons.ShieldIcon;
+                hoverText = Localization.get("UnAuthorized");
             } else if (!user.hasAgreedToTerms) {
                 statusClass = "grey";
                 hoverText = Localization.get("HasNotAgreedToTerms.title");
-            }
+            } 
             userColumns = [
                 {
                     index: 3,

@@ -1269,7 +1269,7 @@
     <value>Requested Removal</value>
   </data>
   <data name="HasAgreedToTerms.title" xml:space="preserve">
-    <value>User has agreed to terms of use on {0}</value>
+    <value>User has agreed to terms of use</value>
   </data>
   <data name="HasNotAgreedToTerms.title" xml:space="preserve">
     <value>User has not agreed to terms of use</value>

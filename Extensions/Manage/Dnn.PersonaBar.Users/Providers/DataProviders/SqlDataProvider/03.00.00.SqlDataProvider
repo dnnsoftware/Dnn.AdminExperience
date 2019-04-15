@@ -35,8 +35,8 @@ BEGIN
 	BEGIN
 	  IF (@SearchTerm Is Null) -- search superusers
 	  BEGIN
-		SELECT U.UserID, U.Username, U.DisplayName, U.Email, U.CreatedOnDate, U.IsDeleted, Authorised, IsSuperUser, 1 AS HasAgreedToTerms, 0 AS RequestsRemoval, TotalCount
-		FROM (SELECT UserID, Username, DisplayName, Email, CreatedOnDate, IsDeleted, 1 AS Authorised, IsSuperUser, Count(*) OVER () AS TotalCount,
+		SELECT U.UserID, U.Username, U.DisplayName, U.Email, U.CreatedOnDate, U.IsDeleted, Authorized, IsSuperUser, 1 AS HasAgreedToTerms, 0 AS RequestsRemoval, TotalCount
+		FROM (SELECT UserID, Username, DisplayName, Email, CreatedOnDate, IsDeleted, 1 AS Authorized, IsSuperUser, Count(*) OVER () AS TotalCount,
 				 ROW_NUMBER() OVER (ORDER BY CASE WHEN @SortColumn = N'Joined'      AND @SortAscending = 1 THEN UserID               END ASC, 
 											 CASE WHEN @SortColumn = N'Joined'      AND @SortAscending = 0 THEN UserID               END DESC,
 											 CASE WHEN @SortColumn = N'Email'       AND @SortAscending = 1 THEN Email                END ASC, 
@@ -58,7 +58,7 @@ BEGIN
 	  END
 	  ELSE -- search superusers using term
 	  BEGIN
-		SELECT UserID, Username, DisplayName, Email, CreatedOnDate, IsDeleted, 1 AS Authorised, IsSuperUser, 1 AS HasAgreedToTerms, 0 AS RequestsRemoval, TotalCount
+		SELECT UserID, Username, DisplayName, Email, CreatedOnDate, IsDeleted, 1 AS Authorized, IsSuperUser, 1 AS HasAgreedToTerms, 0 AS RequestsRemoval, TotalCount
 		 FROM  (SELECT UserID, 
 		               Username, 
 					   DisplayName,
@@ -126,7 +126,7 @@ BEGIN
 				 AND (@HasAgreedToTerms Is Null OR P.HasAgreedToTerms = @HasAgreedToTerms)
 				 AND (@RequestsRemoval Is Null OR P.RequestsRemoval = @RequestsRemoval);
 			   
-			SELECT UserID, Username, DisplayName, Email, CreatedOnDate, IsDeleted, Authorised, IsSuperUser, HasAgreedToTerms, RequestsRemoval, @TotalCount AS TotalCount
+			SELECT UserID, Username, DisplayName, Email, CreatedOnDate, IsDeleted, Authorised AS Authorized, IsSuperUser, HasAgreedToTerms, RequestsRemoval, @TotalCount AS TotalCount
 			FROM
 		     (SELECT U.UserID, U.Username, U.DisplayName, U.Email, U.CreatedOnDate, P.IsDeleted, P.Authorised, U.IsSuperUser, P.HasAgreedToTerms, P.RequestsRemoval,
 			         ROW_NUMBER() OVER (ORDER BY CASE WHEN @SortColumn = N'Joined'      AND @SortAscending = 1 THEN U.UserID             END ASC, 
@@ -155,7 +155,7 @@ BEGIN
 	END
 	ELSE -- search portal users:
 	BEGIN
-		SELECT UserID, Username, DisplayName, Email, CreatedOnDate, IsDeleted, Authorised, IsSuperUser, HasAgreedToTerms, RequestsRemoval, TotalCount
+		SELECT UserID, Username, DisplayName, Email, CreatedOnDate, IsDeleted, Authorised AS Authorized, IsSuperUser, HasAgreedToTerms, RequestsRemoval, TotalCount
 		FROM  ( SELECT S.UserID, 
 		               Username, 
 					   DisplayName,
