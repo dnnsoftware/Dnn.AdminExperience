@@ -243,7 +243,7 @@
     "@babel/helper-plugin-utils" "^7.0.0"
     "@babel/plugin-syntax-json-strings" "^7.2.0"
 
-"@babel/plugin-proposal-object-rest-spread@^7.0.0", "@babel/plugin-proposal-object-rest-spread@^7.2.0":
+"@babel/plugin-proposal-object-rest-spread@^7.2.0":
   version "7.2.0"
   resolved "https://www.myget.org/F/dnn-software-public/npm/@babel/plugin-proposal-object-rest-spread/-/@babel/plugin-proposal-object-rest-spread-7.2.0.tgz#88f5fec3e7ad019014c97f7ee3c992f0adbf7fb8"
   integrity sha1-iPX+w+etAZAUyX9+48mS8K2/f7g=
@@ -614,6 +614,13 @@
   integrity sha1-sD5C7t31iY4AZG5MhA+ge6jcrX8=
   dependencies:
     regenerator-runtime "^0.12.0"
+
+"@babel/runtime@^7.3.4":
+  version "7.4.3"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.4.3.tgz#79888e452034223ad9609187a0ad1fe0d2ad4bdc"
+  integrity sha512-9lsJwJLxDh/T3Q3SZszfWOTkk3pHbkmH+3KY+zwIDmsNlxsumuhS2TH3NIpktU4kNvfzy+k3eLT7aTJSPTo0OA==
+  dependencies:
+    regenerator-runtime "^0.13.2"
 
 "@babel/template@^7.1.0", "@babel/template@^7.1.2", "@babel/template@^7.2.2":
   version "7.2.2"
@@ -1936,32 +1943,25 @@ cssesc@^0.1.0:
   resolved "https://www.myget.org/F/dnn-software-public/npm/cssesc/-/cssesc-0.1.0.tgz#c814903e45623371a0477b40109aaafbeeaddbb4"
   integrity sha1-yBSQPkViM3GgR3tAEJqq++6t27Q=
 
+csstype@^2.6.3:
+  version "2.6.3"
+  resolved "https://registry.yarnpkg.com/csstype/-/csstype-2.6.3.tgz#b701e5968245bf9b08d54ac83d00b624e622a9fa"
+  integrity sha512-rINUZXOkcBmoHWEyu7JdHu5JMzkGRoMX4ov9830WNgxf5UYxcBUO0QTKAqeJ5EZfSdlrcJYkC8WwfVW7JYi4yg==
+
 cyclist@~0.2.2:
   version "0.2.2"
   resolved "https://www.myget.org/F/dnn-software-public/npm/cyclist/-/cyclist-0.2.2.tgz#1b33792e11e914a2fd6d6ed6447464444e5fa640"
   integrity sha1-GzN5LhHpFKL9bW7WRHRkRE5fpkA=
-
-d3-color@1:
-  version "1.2.3"
-  resolved "https://www.myget.org/F/dnn-software-public/npm/d3-color/-/d3-color-1.2.3.tgz#6c67bb2af6df3cc8d79efcc4d3a3e83e28c8048f"
-  integrity sha1-bGe7KvbfPMjXnvzE06PoPijIBI8=
 
 d3-ease@^1.0.3:
   version "1.0.5"
   resolved "https://www.myget.org/F/dnn-software-public/npm/d3-ease/-/d3-ease-1.0.5.tgz#8ce59276d81241b1b72042d6af2d40e76d936ffb"
   integrity sha1-jOWSdtgSQbG3IELWry1A522Tb/s=
 
-d3-interpolate@^1.2.0:
-  version "1.3.2"
-  resolved "https://www.myget.org/F/dnn-software-public/npm/d3-interpolate/-/d3-interpolate-1.3.2.tgz#417d3ebdeb4bc4efcc8fd4361c55e4040211fd68"
-  integrity sha1-QX0+vetLxO/Mj9Q2HFXkBAIR/Wg=
-  dependencies:
-    d3-color "1"
-
-d3-timer@^1.0.4:
+d3-timer@^1.0.9:
   version "1.0.9"
-  resolved "https://www.myget.org/F/dnn-software-public/npm/d3-timer/-/d3-timer-1.0.9.tgz#f7bb8c0d597d792ff7131e1c24a36dd471a471ba"
-  integrity sha1-97uMDVl9eS/3Ex4cJKNt1HGkcbo=
+  resolved "https://registry.yarnpkg.com/d3-timer/-/d3-timer-1.0.9.tgz#f7bb8c0d597d792ff7131e1c24a36dd471a471ba"
+  integrity sha512-rT34J5HnQUHhcLvhSB9GjCkN0Ddd5Y8nCwDBG2u6wQEeYxT/Lf51fTFFkldeib/sE/J0clIe0pnCfs6g/lRbyg==
 
 dashdash@^1.12.0:
   version "1.14.1"
@@ -3705,6 +3705,13 @@ jwt-decode@2.2.0:
   resolved "https://www.myget.org/F/dnn-software-public/npm/jwt-decode/-/jwt-decode-2.2.0.tgz#7d86bd56679f58ce6a84704a657dd392bba81a79"
   integrity sha1-fYa9VmefWM5qhHBKZX3TkruoGnk=
 
+kapellmeister@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/kapellmeister/-/kapellmeister-3.0.1.tgz#419b715cd221acda3db79892caedf63e1c9f7d25"
+  integrity sha512-S7+gYcziMREv8RxG46138mb1O4Xf9II/bCxEJPYkhlZ7PgGWTlicgsyNad/DGc5oEAlWGLXE5ExLbTDVvJmgDA==
+  dependencies:
+    d3-timer "^1.0.9"
+
 killable@^1.0.0:
   version "1.0.1"
   resolved "https://www.myget.org/F/dnn-software-public/npm/killable/-/killable-1.0.1.tgz#4c8ce441187a061c7474fb87ca08e2a638194892"
@@ -4266,16 +4273,16 @@ npmlog@^4.0.2:
     gauge "~2.7.3"
     set-blocking "~2.0.0"
 
-nuka-carousel@4.4.2:
-  version "4.4.2"
-  resolved "https://www.myget.org/F/dnn-software-public/npm/nuka-carousel/-/nuka-carousel-4.4.2.tgz#d5a3e148f03a348fd7f5cfe793f07bacb038a6cb"
-  integrity sha1-1aPhSPA6NI/X9c/nk/B7rLA4pss=
+nuka-carousel@4.5.4:
+  version "4.5.4"
+  resolved "https://registry.yarnpkg.com/nuka-carousel/-/nuka-carousel-4.5.4.tgz#dd2498cd129c0f0bf235a6974bda5f2dd6874592"
+  integrity sha512-ysQb5QMqnynV+JbDA8LcYXA2gpCukm6+KVDbmo6EQl6EGKPxnq7BZcxxoVxG1LqTLRoNR8rgDckCtC7kzY1v8A==
   dependencies:
-    "@babel/plugin-proposal-object-rest-spread" "^7.0.0"
+    csstype "^2.6.3"
     d3-ease "^1.0.3"
     exenv "^1.2.0"
     prop-types "^15.6.0"
-    react-move "^2.7.0"
+    react-move "^5.0.0"
 
 number-is-nan@^1.0.0:
   version "1.0.1"
@@ -4757,13 +4764,14 @@ prop-types@15.5.8:
   dependencies:
     fbjs "^0.8.9"
 
-prop-types@^15.5.0, prop-types@^15.5.10, prop-types@^15.5.8, prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2:
-  version "15.6.2"
-  resolved "https://www.myget.org/F/dnn-software-public/npm/prop-types/-/prop-types-15.6.2.tgz#05d5ca77b4453e985d60fc7ff8c859094a497102"
-  integrity sha1-BdXKd7RFPphdYPx/+MhZCUpJcQI=
+prop-types@^15.5.0, prop-types@^15.5.10, prop-types@^15.5.8, prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.2:
+  version "15.7.2"
+  resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
+  integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
   dependencies:
-    loose-envify "^1.3.1"
+    loose-envify "^1.4.0"
     object-assign "^4.1.1"
+    react-is "^16.8.1"
 
 proxy-addr@~2.0.4:
   version "2.0.4"
@@ -4981,6 +4989,11 @@ react-is@^16.3.2:
   resolved "https://www.myget.org/F/dnn-software-public/npm/react-is/-/react-is-16.6.3.tgz#d2d7462fcfcbe6ec0da56ad69047e47e56e7eac0"
   integrity sha1-0tdGL8/L5uwNpWrWkEfkflbn6sA=
 
+react-is@^16.8.1:
+  version "16.8.6"
+  resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.8.6.tgz#5bbc1e2d29141c9fbdfed456343fe2bc430a6a16"
+  integrity sha512-aUk3bHfZ2bRSVFFbbeVS4i+lNPZr3/WM5jT2J5omUVV1zzcs1nAaf3l51ctA5FFvCRbhrH0bdAsRRQddFJZPtA==
+
 react-lifecycles-compat@^3.0.0, react-lifecycles-compat@^3.0.4:
   version "3.0.4"
   resolved "https://www.myget.org/F/dnn-software-public/npm/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
@@ -5005,13 +5018,15 @@ react-motion@^0.5.2:
     prop-types "^15.5.8"
     raf "^3.1.0"
 
-react-move@^2.7.0:
-  version "2.8.0"
-  resolved "https://www.myget.org/F/dnn-software-public/npm/react-move/-/react-move-2.8.0.tgz#63deaf6a0e58ca6769357abfcd91dde44d83a596"
-  integrity sha1-Y96vag5YymdpNXq/zZHd5E2DpZY=
+react-move@^5.0.0:
+  version "5.2.1"
+  resolved "https://registry.yarnpkg.com/react-move/-/react-move-5.2.1.tgz#2098cbb071538a487a815f54b73842c30aaa7628"
+  integrity sha512-2If8uw9jJUQC8KxT1V1bJJ9amDvbHM4zCT42UekmP9KKrkf6elbc1PsXmPprfMjd20PkejtKnvs9T/TTXmTymA==
   dependencies:
-    d3-interpolate "^1.2.0"
-    d3-timer "^1.0.4"
+    "@babel/runtime" "^7.3.4"
+    kapellmeister "^3.0.1"
+    prop-types "^15.7.2"
+    react-lifecycles-compat "^3.0.4"
 
 react-scrollbar@^0.5.4:
   version "0.5.4"
@@ -5155,6 +5170,11 @@ regenerator-runtime@^0.12.0:
   version "0.12.1"
   resolved "https://www.myget.org/F/dnn-software-public/npm/regenerator-runtime/-/regenerator-runtime-0.12.1.tgz#fa1a71544764c036f8c49b13a08b2594c9f8a0de"
   integrity sha1-+hpxVEdkwDb4xJsToIsllMn4oN4=
+
+regenerator-runtime@^0.13.2:
+  version "0.13.2"
+  resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.13.2.tgz#32e59c9a6fb9b1a4aff09b4930ca2d4477343447"
+  integrity sha512-S/TQAZJO+D3m9xeN1WTI8dLKBBiRgXBlTJvbWjCThHWZj9EvHK70Ff50/tYj2J/fvBY6JtFVwRuazHN2E7M9BA==
 
 regenerator-transform@^0.13.3:
   version "0.13.3"
