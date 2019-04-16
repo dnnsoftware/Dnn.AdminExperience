@@ -72,11 +72,11 @@ namespace Dnn.PersonaBar.Users.Components
         public IEnumerable<KeyValuePair<string, int>> GetUserFilters(bool isSuperUser = false)
         {
             var userFilters = new List<KeyValuePair<string, int>>();
-            for (var i = 0; i < 9; i++)
+            foreach (var filter in Enum.GetValues(typeof(UserFilters)).Cast<UserFilters>())
             {
                 userFilters.Add(
                     new KeyValuePair<string, int>(
-                        Localization.GetString(Convert.ToString((UserFilters)i), Constants.LocalResourcesFile), i));
+                        Localization.GetString(Convert.ToString(filter), Constants.LocalResourcesFile), (int)filter));
             }
             if (!isSuperUser)
             {
