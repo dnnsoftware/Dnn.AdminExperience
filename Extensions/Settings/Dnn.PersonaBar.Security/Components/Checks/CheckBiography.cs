@@ -26,7 +26,7 @@ namespace Dnn.PersonaBar.Security.Components.Checks
                     var pd = ProfileController.GetPropertyDefinitionByName(portal.PortalID, "Biography");
                     if (pd != null && pd.DataType == richTextDataType.EntryID && !pd.Deleted)
                     {
-                        result.Severity = SeverityEnum.Failure;
+                        result.Severity = SeverityEnum.Warning;
                         result.Notes.Add("Portal:" + portal.PortalName);
                     }
                 }
