@@ -3442,10 +3442,10 @@ fbjs@^0.8.9:
     setimmediate "^1.0.5"
     ua-parser-js "^0.7.18"
 
-fetch-mock@^7.2.5:
-  version "7.2.5"
-  resolved "https://www.myget.org/F/dnn-software-public/npm/fetch-mock/-/fetch-mock-7.2.5.tgz#4682f51b9fa74d790e10a471066cb22f3ff84d48"
-  integrity sha1-RoL1G5+nTXkOEKRxBmyyLz/4TUg=
+fetch-mock@^7.3.1:
+  version "7.3.1"
+  resolved "https://registry.yarnpkg.com/fetch-mock/-/fetch-mock-7.3.1.tgz#a3e28d8f141caaf68d78112354381a7303f87049"
+  integrity sha512-euKqWnxeApj0toZ5MSavZJ7IIxbMaHpgteV2GNuz6/slAY0JUbRe95U/ueaz2spT/4nR75H4wpEmy2MMEsCoRg==
   dependencies:
     babel-polyfill "^6.26.0"
     glob-to-regexp "^0.4.0"
