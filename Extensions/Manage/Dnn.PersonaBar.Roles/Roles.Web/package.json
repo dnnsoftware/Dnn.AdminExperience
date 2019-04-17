@@ -47,6 +47,6 @@
     "webpack-dev-server": "3.1.14"
   },
   "dependencies": {
-    "react-widgets": "^4.4.6"
+    "react-widgets": "^4.4.10"
   }
 }

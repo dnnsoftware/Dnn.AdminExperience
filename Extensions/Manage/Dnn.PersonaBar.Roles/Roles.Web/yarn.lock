@@ -4235,9 +4235,10 @@ react-transition-group@^2.4.0:
     prop-types "^15.6.2"
     react-lifecycles-compat "^3.0.4"
 
-react-widgets@^4.4.4, react-widgets@^4.4.6:
-  version "4.4.7"
-  resolved "https://www.myget.org/F/dnn-software-public/npm/react-widgets/-/react-widgets-4.4.7.tgz#f57f0092c4a8106710dd23f7e87565117f91ca14"
+react-widgets@^4.4.10, react-widgets@^4.4.4:
+  version "4.4.10"
+  resolved "https://registry.yarnpkg.com/react-widgets/-/react-widgets-4.4.10.tgz#e752c57902421d333a5b702ad0d526b96691c998"
+  integrity sha512-ERPwWxgfHv20ddNuUeINA9Od/b6DTcDgdAWrcwRf+DtMlN1UtiyLVVCb7V0H44kDVX/TUkG91wQ07FIZyNSV2A==
   dependencies:
     classnames "^2.2.6"
     date-arithmetic "^3.1.0"
