@@ -52,6 +52,6 @@
   "dependencies": {
     "@dnnsoftware/dnn-react-common": "^2.1.2",
     "localization": "^1.0.2",
-    "react-widgets": "^4.4.6"
+    "react-widgets": "^4.4.10"
   }
 }
