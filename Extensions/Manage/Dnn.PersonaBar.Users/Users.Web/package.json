@@ -46,7 +46,7 @@
     "utils": "^0.3.1",
     "webpack": "4.26.1",
     "webpack-bundle-size-analyzer": "3.0.0",
-    "webpack-cli": "^3.1.2",
+    "webpack-cli": "^3.3.0",
     "webpack-dev-server": "^3.1.14"
   },
   "dependencies": {
