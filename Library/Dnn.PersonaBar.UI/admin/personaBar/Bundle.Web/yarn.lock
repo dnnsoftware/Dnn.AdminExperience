@@ -4405,6 +4405,14 @@ react-tabs@2.3.0:
     classnames "^2.2.0"
     prop-types "^15.5.0"
 
+react-tabs@3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/react-tabs/-/react-tabs-3.0.0.tgz#60311a17c755eb6aa9b3310123e67db421605127"
+  integrity sha512-z90cDIb+5V7MzjXFHq1VLxYiMH7dDQWan7mXSw6BWQtw+9pYAnq/fEDvsPaXNyevYitvLetdW87C61uu27JVMA==
+  dependencies:
+    classnames "^2.2.0"
+    prop-types "^15.5.0"
+
 react-test-utils@0.0.1:
   version "0.0.1"
   resolved "https://www.myget.org/F/dnn-software-public/npm/react-test-utils/-/react-test-utils-0.0.1.tgz#cd69a37c3e4d726e3497e325462a32785a19c026"
