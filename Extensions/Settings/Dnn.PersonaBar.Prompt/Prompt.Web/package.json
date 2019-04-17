@@ -48,7 +48,7 @@
     "moment": "^2.15.0",
     "object-assign": "*",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
-    "prop-types": "^15.6.2",
+    "prop-types": "^15.7.2",
     "raw-loader": "0.5.1",
     "react": "^16.6.3",
     "react-click-outside": "^3.0.1",
