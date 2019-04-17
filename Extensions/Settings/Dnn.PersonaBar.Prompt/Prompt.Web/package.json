@@ -52,7 +52,7 @@
     "raw-loader": "0.5.1",
     "react": "^16.6.3",
     "react-click-outside": "^3.0.1",
-    "react-dom": "^16.6.3",
+    "react-dom": "^16.8.6",
     "react-hot-loader": "4.3.12",
     "react-redux": "5.1.0",
     "react-test-renderer": "^16.6.2",
