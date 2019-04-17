@@ -67,7 +67,7 @@
   "dependencies": {
     "moment": "^2.22.2",
     "promise": "^8.0.2",
-    "prop-types": "^15.6.2",
+    "prop-types": "^15.7.2",
     "react": "^16.6.3",
     "react-day-picker": "^7.2.4",
     "url-parse": "^1.2.0"
