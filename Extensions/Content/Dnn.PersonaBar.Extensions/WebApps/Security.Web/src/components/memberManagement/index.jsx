@@ -264,7 +264,7 @@ class MemberManagementPanelBody extends Component {
                         </div>
                     </InputGroup>
                     <InputGroup>
-                        <div className="memberSettings-row_switch" style={{ margin: "0" }}>
+                        <div className="memberSettings-row_switch" style={{ margin: "0 0 20px 0" }}>
                             <Label
                                 labelType="inline"
                                 tooltipMessage={resx.get("plEnableStrengthMeter.Help") }
@@ -283,7 +283,7 @@ class MemberManagementPanelBody extends Component {
                         </div>
                     </InputGroup>
                     <InputGroup>
-                        <div className="memberSettings-row_switch" style={{ margin: "20px 0 20px 0" }}>
+                        <div className="memberSettings-row_switch" style={{ margin: "0 0 20px 0" }}>
                             <Label
                                 labelType="inline"
                                 tooltipMessage={resx.get("plEnableIPChecking.Help") }
@@ -302,7 +302,7 @@ class MemberManagementPanelBody extends Component {
                         </div>
                     </InputGroup>
                     <InputGroup>
-                        <div className="memberSettings-row_switch" style={{ margin: "20px 0 20px 0" }}>
+                        <div className="memberSettings-row_switch" style={{ margin: "0 0 20px 0" }}>
                             <Label
                                 labelType="inline"
                                 tooltipMessage={resx.get("plForceLogOutAfterPasswordChanged.Help") }
