@@ -1160,6 +1160,6 @@
     <value>Force Logout After Password Changed</value>
   </data>
   <data name="plForceLogOutAfterPasswordChanged.Help" xml:space="preserve">
-    <value>Force user logout in other browsers after the user's password have been changed.</value>
+    <value>Force user logout in other browsers after the user's password has been changed.</value>
   </data>
 </root>
