@@ -302,6 +302,25 @@ class MemberManagementPanelBody extends Component {
                         </div>
                     </InputGroup>
                     <InputGroup>
+                        <div className="memberSettings-row_switch" style={{ margin: "20px 0 20px 0" }}>
+                            <Label
+                                labelType="inline"
+                                tooltipMessage={resx.get("plForceLogOutAfterPasswordChanged.Help") }
+                                label={resx.get("plForceLogOutAfterPasswordChanged") }
+                                extra={
+                                    <Tooltip
+                                        messages={[resx.get("GlobalSetting")]}
+                                        type="global"
+                                        style={{ float: "left", position: "static" }} />
+                                } />
+                            <Switch
+                                onText={resx.get("SwitchOn")}
+                                offText={resx.get("SwitchOff")}
+                                value={state.memberSettings.ForceLogoutAfterPasswordChanged}
+                                onChange={this.onSettingChange.bind(this, "ForceLogoutAfterPasswordChanged") } />
+                        </div>
+                    </InputGroup>
+                    <InputGroup>
                         <Label
                             tooltipMessage={resx.get("PasswordConfig_PasswordExpiry.Help") }
                             label={resx.get("PasswordConfig_PasswordExpiry") }
