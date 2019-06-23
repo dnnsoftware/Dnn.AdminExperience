@@ -203,27 +203,7 @@ class PrivacySettingsPanelBody extends Component {
             value={state.privacySettings.CheckUpgrade}
             onChange={this.onSettingChange.bind(this, "CheckUpgrade")}
           />
-        </InputGroup>
-        <InputGroup>
-          <Label
-            labelType="inline"
-            tooltipMessage={resx.get("plDisplayCopyright.Help")}
-            label={resx.get("plDisplayCopyright")}
-            extra={
-              <Tooltip
-                messages={[resx.get("GlobalSetting")]}
-                type="global"
-                style={{ float: "left", position: "static" }}
-              />
-            }
-          />
-          <Switch
-            onText={resx.get("SwitchOn")}
-            offText={resx.get("SwitchOff")}
-            value={state.privacySettings.DisplayCopyright}
-            onChange={this.onSettingChange.bind(this, "DisplayCopyright")}
-          />
-        </InputGroup>
+        </InputGroup>        
       </div>
     ) : (
       <div key="column-one-left" className="left-column" />
