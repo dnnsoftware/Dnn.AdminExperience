@@ -14,7 +14,7 @@
     "@babel/preset-env": "^7.1.6",
     "@babel/preset-react": "^7.0.0",
     "@dnnsoftware/dnn-react-common": "^2.1.2",
-    "array.prototype.find": "2.0.4",
+    "array.prototype.find": "2.1.0",
     "array.prototype.findindex": "2.0.2",
     "babel-loader": "8.0.6",
     "babel-plugin-transform-react-remove-prop-types": "0.4.24",
