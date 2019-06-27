@@ -8,7 +8,7 @@
     "analyze": "set NODE_ENV=production&&webpack --config webpack.config.js --profile --json > stats.json&&webpack-bundle-analyzer stats.json"
   },
   "devDependencies": {
-    "@babel/core": "^7.1.6",
+    "@babel/core": "^7.4.5",
     "@babel/plugin-proposal-object-rest-spread": "^7.2.0",
     "@babel/preset-env": "^7.1.6",
     "@babel/preset-react": "^7.0.0",
