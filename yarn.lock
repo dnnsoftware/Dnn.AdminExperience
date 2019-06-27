@@ -4387,7 +4387,7 @@ create-hmac@^1.1.0, create-hmac@^1.1.2, create-hmac@^1.1.4:
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
 
-create-react-class@^15.6, create-react-class@^15.6.0, create-react-class@^15.6.3:
+create-react-class@^15.6, create-react-class@^15.6.3:
   version "15.6.3"
   resolved "https://registry.yarnpkg.com/create-react-class/-/create-react-class-15.6.3.tgz#2d73237fb3f970ae6ebe011a9e66f46dbca80036"
   integrity sha512-M+/3Q6E6DLO6Yx3OwrWjwHBnvfXXYA7W+dFjt/ZDBemHO1DDZhsalX/NUtnTYclN6GfnBDRh4qRHjcDHmlJBJg==
@@ -6013,7 +6013,7 @@ fbjs-css-vars@^1.0.0:
   resolved "https://registry.yarnpkg.com/fbjs-css-vars/-/fbjs-css-vars-1.0.2.tgz#216551136ae02fe255932c3ec8775f18e2c078b8"
   integrity sha512-b2XGFAFdWZWg0phtAWLHCk836A1Xann+I+Dgd3Gk64MHKZO44FfoD1KxyvbSh0qZsIoXQGGlVztIY+oitJPpRQ==
 
-fbjs@*:
+fbjs@*, fbjs@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/fbjs/-/fbjs-1.0.0.tgz#52c215e0883a3c86af2a7a776ed51525ae8e0a5a"
   integrity sha512-MUgcMEJaFhCaF1QtWGnmq9ZDRAzECTCRAF7O6UZIlAlkTs1SasiX9aP0Iw7wfD2mJ7wDTNfg2w7u5fSCwJk1OA==
@@ -6856,14 +6856,14 @@ html-minifier@^3.5.20:
     relateurl "0.2.x"
     uglify-js "3.4.x"
 
-html-react-parser@^0.7.0:
-  version "0.7.0"
-  resolved "https://registry.yarnpkg.com/html-react-parser/-/html-react-parser-0.7.0.tgz#943b935ce76705bdbef13eed2fec7eee010e5d06"
-  integrity sha512-CheTifRqOK1mFmtTnFnDUeHPrA19knrus4Hx+7lS/V5ywHvjAl5BMM8phVLWwLo73rqP2QBpnfvraXMMBgHqMw==
+html-react-parser@^0.7.1:
+  version "0.7.1"
+  resolved "https://registry.yarnpkg.com/html-react-parser/-/html-react-parser-0.7.1.tgz#4230717092e1d2ea486bbe5e6b7f8c955b29cf91"
+  integrity sha512-e1rvyL5F4BjtQ+p89Y00lQem9A6G45WksytIwEpgxr7rVz4tF0vh1+jcQc8JfAjxWh8hOvzt2VCn1rPPpFZsVQ==
   dependencies:
     "@types/domhandler" "2.4.1"
     html-dom-parser "0.2.1"
-    react-dom-core "0.0.4"
+    react-dom-core "0.1.1"
     style-to-object "0.2.2"
 
 html-webpack-plugin@^4.0.0-beta.2:
@@ -9279,7 +9279,7 @@ oauth-sign@~0.9.0:
   resolved "https://registry.yarnpkg.com/oauth-sign/-/oauth-sign-0.9.0.tgz#47a7b016baa68b5fa0ecf3dee08a85c679ac6455"
   integrity sha512-fexhUFFPTGV8ybAtSIGbV6gOkSv8UtRbDBnAyLQw4QPKkgNlsH2ByPGtMUqdWkos6YCRmAqViwgZrJc/mRDzZQ==
 
-object-assign@*, object-assign@^4.0.1, object-assign@^4.1.0, object-assign@^4.1.1:
+object-assign@*, object-assign@4.1.1, object-assign@^4.0.1, object-assign@^4.1.0, object-assign@^4.1.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/object-assign/-/object-assign-4.1.1.tgz#2109adc7965887cfc05cbbd442cac8bfbb360863"
   integrity sha1-IQmtx5ZYh8/AXLvUQsrIv7s2CGM=
@@ -10636,6 +10636,14 @@ rc@^1.2.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
+react-15@0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/react-15/-/react-15-0.2.0.tgz#5cc915031b433c50bdec225d3ef8b80a07295175"
+  integrity sha512-9bdNuBo2I+2AerqURa37AcCKwHqjOvWuNrsd8wKXF+Y+ceBbJAJ1GkWeTliZV40RiEiAgRCLOzwCBxihCZvOfg==
+  dependencies:
+    fbjs "1.0.0"
+    object-assign "4.1.1"
+
 react-accessible-tooltip@^2.0.3:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/react-accessible-tooltip/-/react-accessible-tooltip-2.0.3.tgz#d676f23fda74c1df5733834869d27722a2649331"
@@ -10753,12 +10761,14 @@ react-dock@^0.2.4:
     lodash.debounce "^3.1.1"
     prop-types "^15.5.8"
 
-react-dom-core@0.0.4:
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/react-dom-core/-/react-dom-core-0.0.4.tgz#26ef74749c1235993b0e570a83308f323a485b2a"
-  integrity sha512-nJoncKG/Ltlv3K7f0uVwX3kEvhrRl3dyKguxpYR3OmFF1REcRHiWWxSkD1hJdgeVfoBFp/DPVp48JZuaQhwLoQ==
+react-dom-core@0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/react-dom-core/-/react-dom-core-0.1.1.tgz#d580a72941f84f7b5b53d95d406b654181fb8021"
+  integrity sha512-06UPgimujyIOsR9owLdLy5731O8rxs/CZrFYX/ZPDLC6VUDwJuTkPWmLVA03es1tO7JqsqsET4rVe0cfKBEQXA==
   dependencies:
-    react "15"
+    fbjs "1.0.0"
+    object-assign "4.1.1"
+    react-15 "0.2.0"
 
 react-dom@^16.4.2, react-dom@^16.6.3, react-dom@^16.8.1:
   version "16.8.6"
@@ -11118,17 +11128,6 @@ react-widgets@^4.4.4, react-widgets@^4.4.6, react-widgets@^4.4.7:
     react-transition-group "^2.4.0"
     uncontrollable "^5.0.0"
     warning "^3.0.0"
-
-react@15:
-  version "15.6.2"
-  resolved "https://registry.yarnpkg.com/react/-/react-15.6.2.tgz#dba0434ab439cfe82f108f0f511663908179aa72"
-  integrity sha1-26BDSrQ5z+gvEI8PURZjkIF5qnI=
-  dependencies:
-    create-react-class "^15.6.0"
-    fbjs "^0.8.9"
-    loose-envify "^1.1.0"
-    object-assign "^4.1.0"
-    prop-types "^15.5.10"
 
 react@^16.4.2, react@^16.6.3, react@^16.8.1:
   version "16.8.6"
