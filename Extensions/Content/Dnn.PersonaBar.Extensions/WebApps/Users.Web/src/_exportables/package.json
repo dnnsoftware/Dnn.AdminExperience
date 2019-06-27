@@ -11,7 +11,7 @@
   },
   "license": "UNLICENSED",
   "devDependencies": {
-    "@babel/core": "^7.1.6",
+    "@babel/core": "^7.4.5",
     "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
     "@babel/plugin-transform-react-jsx": "^7.1.6",
     "@babel/preset-env": "^7.1.6",
