@@ -39,9 +39,6 @@
     <Reference Include="DotNetNuke.Instrumentation">
       <HintPath>..\..\bin\DotNetNuke.Instrumentation.dll</HintPath>
     </Reference>
-    <Reference Include="DotNetNuke.Web">
-      <HintPath>.\..\bin\DotNetNuke.Web.dll</HintPath>
-    </Reference>
     <Reference Include="Moq">
       <HintPath>..\..\bin\Moq.dll</HintPath>
     </Reference>

@@ -175,8 +175,8 @@ namespace Dnn.PersonaBar.Security.Services
                 PortalController.Instance.UpdatePortalInfo(portalInfo);
 
                 PortalController.UpdatePortalSetting(PortalId, "DefaultAuthProvider", request.DefaultAuthProvider);
-                PortalController.UpdatePortalSetting(PortalId, "Redirect_AfterLogin", request.RedirectAfterLoginTabId.ToString(), cultureCode);
-                PortalController.UpdatePortalSetting(PortalId, "Redirect_AfterLogout", request.RedirectAfterLogoutTabId.ToString(), cultureCode);
+                PortalController.UpdatePortalSetting(PortalId, "Redirect_AfterLogin", request.RedirectAfterLoginTabId.ToString(), false, cultureCode, false);
+                PortalController.UpdatePortalSetting(PortalId, "Redirect_AfterLogout", request.RedirectAfterLogoutTabId.ToString(), false, cultureCode, false);
                 PortalController.UpdatePortalSetting(PortalId, "Security_RequireValidProfile", request.RequireValidProfileAtLogin.ToString(), false);
                 PortalController.UpdatePortalSetting(PortalId, "Security_CaptchaLogin", request.CaptchaLogin.ToString(), false);
                 PortalController.UpdatePortalSetting(PortalId, "Security_CaptchaRetrivePassword", request.CaptchaRetrivePassword.ToString(), false);
@@ -572,8 +572,7 @@ namespace Dnn.PersonaBar.Security.Services
                 PortalController.UpdatePortalSetting(PortalId, "Registration_RequireConfirmPassword", request.RequirePasswordConfirmation.ToString(), true);
                 PortalController.UpdatePortalSetting(PortalId, "Security_RequireValidProfile", request.RequireValidProfile.ToString(), false);
                 PortalController.UpdatePortalSetting(PortalId, "Security_CaptchaRegister", request.UseCaptchaRegister.ToString(), false);
-                PortalController.UpdatePortalSetting(PortalId, "Redirect_AfterRegistration", request.RedirectAfterRegistrationTabId.ToString(), LocaleController.Instance.GetCurrentLocale(PortalId).Code);
-
+                PortalController.UpdatePortalSetting(PortalId, "Redirect_AfterRegistration", request.RedirectAfterRegistrationTabId.ToString(), false, LocaleController.Instance.GetCurrentLocale(PortalId).Code, false);
                 return Request.CreateResponse(HttpStatusCode.OK, new { Success = true });
             }
             catch (Exception exc)
