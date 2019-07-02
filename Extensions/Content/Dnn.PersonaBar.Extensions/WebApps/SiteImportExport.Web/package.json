@@ -35,7 +35,7 @@
     "moment": "^2.15.0",
     "prop-types": "^15.6.2",
     "raw-loader": "^2.0.0",
-    "rc-progress": "^2.0.6",
+    "rc-progress": "^2.5.1",
     "react": "^16.6.3",
     "react-click-outside": "^3.0.1",
     "react-dom": "^16.6.3",
