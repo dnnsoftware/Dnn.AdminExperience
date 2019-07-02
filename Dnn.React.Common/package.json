@@ -62,7 +62,7 @@
     "cpy-cli": "^2.0.0",
     "create-react-class": "^15.6.3",
     "css-loader": "2.1.1",
-    "enzyme": "^3.5.0",
+    "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
     "enzyme-to-json": "^3.3.4",
     "eslint": "^5.4.0",
