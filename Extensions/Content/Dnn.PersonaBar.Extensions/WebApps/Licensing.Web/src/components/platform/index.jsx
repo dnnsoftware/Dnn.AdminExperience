@@ -39,7 +39,7 @@ class Platform extends Component {
     }
 
     onDocCenterClick() {
-        window.open("http://www.dnnsoftware.com/docs/", "_blank");
+        window.open("https://www.dnndocs.com/", "_blank");
     }
 
     /* eslint-disable react/no-danger */
