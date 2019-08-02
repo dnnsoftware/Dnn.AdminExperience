@@ -132,8 +132,7 @@ class IpFilterEditor extends Component {
                         onChange={this.onRuleSpecificityChange.bind(this) }
                         options={specificityOptions}
                         buttonGroup="specificity"
-                        value={this.state.ruleSpecificity}/>        
-                
+                        value={this.state.ruleSpecificity}/>
             </InputGroup>
             <InputGroup>
                 <Label
