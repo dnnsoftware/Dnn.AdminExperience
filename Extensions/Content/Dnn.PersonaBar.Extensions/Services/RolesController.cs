@@ -401,13 +401,13 @@ namespace Dnn.PersonaBar.Roles.Services
 
         private void Validate(RoleGroupDto role)
         {
-			Requires.NotNullOrEmpty("Name", role.Name);
+            Requires.NotNullOrEmpty("Name", role.Name);
 
-			if (string.IsNullOrWhiteSpace(role.Name))
-			{
-			    throw new ArgumentException(Localization.GetExceptionMessage("ArgumentCannotBeNullOrEmpty", "The argument '{0}' cannot be null or empty.", (object)"Name"), "Name");
-			}
-		}
+            if (string.IsNullOrWhiteSpace(role.Name))
+            {
+                 throw new ArgumentException(Localization.GetExceptionMessage("ArgumentCannotBeNullOrEmpty", "The argument '{0}' cannot be null or empty.", (object)"Name"), "Name");
+            }
+        }
 
         private void Validate(UserRoleDto userRoleDto)
         {
