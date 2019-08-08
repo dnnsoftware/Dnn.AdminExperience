@@ -13446,9 +13446,10 @@ Q\n";
     NodeParser.prototype.paintText = function(container) {
         container.applyTextTransform();
         var characters = window.html2canvas.punycode.ucs2.decode(container.node.data);
-        var textList = (!this.options.letterRendering || noLetterSpacing(container)) && !hasUnicode(container.node.data) ? getWords(characters) : characters.map(function(character) {
-            return window.html2canvas.punycode.ucs2.encode([character]);
-        });
+        
+		var textList = characters.map(function(character) {
+			return window.html2canvas.punycode.ucs2.encode([character]);
+		});
 
         var weight = container.parent.fontWeight();
         var size = container.parent.css('fontSize');
