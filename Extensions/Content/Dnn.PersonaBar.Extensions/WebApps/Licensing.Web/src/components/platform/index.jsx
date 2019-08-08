@@ -64,7 +64,7 @@ class Platform extends Component {
         );
     }
 
-    UNSAFE_componentWillMount() {
+    componentDidMount() {
         const {props} = this;
         props.dispatch(LicensingActions.getServerInfo());
     }
