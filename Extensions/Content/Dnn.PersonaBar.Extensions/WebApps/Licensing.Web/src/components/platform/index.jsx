@@ -24,15 +24,15 @@ class Platform extends Component {
     }
 
     onGitHubClick() {
-        window.open("//github.com/dnnsoftware/Dnn.Platform", "_blank");
+        window.open("https://github.com/dnnsoftware/Dnn.Platform", "_blank");
     }
 
     onCommunityClick() {
-        window.open("//dnncommunity.org", "_blank");
+        window.open("https://dnncommunity.org", "_blank");
     }
 
     onDocsClick() {
-        window.open("//dnndocs.com", "_blank");
+        window.open("https://dnndocs.com", "_blank");
     }
 
     /* eslint-disable react/no-danger */
