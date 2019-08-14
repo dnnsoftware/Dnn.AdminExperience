@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { ScrollBar, GridCell } from "@dnnsoftware/dnn-react-common";
 import { PersonaBarPageTreeview } from "./PersonaBarPageTreeview";
@@ -11,6 +12,7 @@ import { PropTypes } from "prop-types";
 import Promise from "promise";
 import "./styles.less";
 import Localization from "localization";
+import { addPagesActions as AddPagesActions } from "../../../actions";
 
 
 class PersonaBarPageTreeviewInteractor extends Component {
@@ -655,7 +657,7 @@ class PersonaBarPageTreeviewInteractor extends Component {
             isTreeviewExpanded
         } = this.state;
 
-        this.props._traverse((item, list, updateStore) => {
+        const traverseCallback = () => this.props._traverse((item, list, updateStore) => {
             if (item.hasOwnProperty("childListItems") && item.childListItems.length > 0) {
                 item.isOpen = (isTreeviewExpanded) ? false : true;
                 updateStore(list);
@@ -664,6 +666,31 @@ class PersonaBarPageTreeviewInteractor extends Component {
                 });
             }
         });
+
+        const waitForChildList = (timeoutTime, callback) => new Promise((resolve, reject) => {
+            const check = () => {                
+                if(this.state.isChildLoaded) {
+                    callback();
+                    resolve();
+                } else if((timeoutTime -= 100) < 0) {
+                    reject();
+                } else {
+                    setTimeout(check, 100);
+                }                
+            }
+
+            setTimeout(check, 100)
+        });
+
+        if (this.props.multiplePagesAdded) {
+            this.props.addPagesComplete();
+            this.setState({ isChildLoaded: false });
+            this.loadAllChildList();
+
+            waitForChildList(2000, traverseCallback);
+        } else {
+            traverseCallback();
+        }
     }
 
     render_treeview() {
@@ -812,7 +839,9 @@ PersonaBarPageTreeviewInteractor.propTypes = {
     Localization: PropTypes.object.isRequired,
     onNoPermissionSelection: PropTypes.func.isRequired,
     NoPermissionSelectionPageId: PropTypes.number,
-    enabled: PropTypes.bool
+    enabled: PropTypes.bool,
+    multiplePagesAdded: PropTypes.bool,
+    addPagesComplete: PropTypes.func.isRequired
 };
 
 PersonaBarPageTreeviewInteractor.defaultProps = {
@@ -823,6 +852,12 @@ PersonaBarPageTreeviewInteractor.contextTypes = {
     scrollArea: PropTypes.object
 };
 
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({
+        addPagesComplete: AddPagesActions.addPagesComplete,
+    }, dispatch);
+}
+
 
 const mapStateToProps = (state) => {
     return ({
@@ -830,4 +865,4 @@ const mapStateToProps = (state) => {
     });
 };
 // export default PersonaBarPageTreeviewInteractor;
-export const connectedPersonaBarPageTreeviewInteractor = connect(mapStateToProps)(PersonaBarPageTreeviewInteractor);
+export const connectedPersonaBarPageTreeviewInteractor = connect(mapStateToProps, mapDispatchToProps)(PersonaBarPageTreeviewInteractor);

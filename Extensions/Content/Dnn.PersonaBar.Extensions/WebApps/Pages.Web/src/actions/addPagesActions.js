@@ -37,6 +37,13 @@ const addPagesActions = {
         };
     },
 
+    addPagesComplete() {
+        return (dispatch) => {
+            dispatch({
+                type: ActionTypes.UNFORCE_PAGE_LIST_LOAD
+        })};
+    },
+
     addPages(callback) {
         return (dispatch, getState) => {
             const {addPages} = getState();
@@ -57,6 +64,10 @@ const addPagesActions = {
                     data: {
                         response 
                     }
+                });
+
+                dispatch({
+                    type: ActionTypes.FORCE_PAGE_LIST_LOAD
                 });
                 
                 callback();

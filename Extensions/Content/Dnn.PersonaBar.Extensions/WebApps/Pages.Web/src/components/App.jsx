@@ -1603,7 +1603,8 @@ class App extends Component {
                                         pageInContextComponents={props.pageInContextComponents}
                                         NoPermissionSelectionPageId={this.noPermissionSelectionPageId}
                                         CallCustomAction={this.CallCustomAction.bind(this)}
-                                        enabled={!((selectedPage && selectedPage.tabId === 0) || inSearch)} />
+                                        enabled={!((selectedPage && selectedPage.tabId === 0) || inSearch)}
+                                        multiplePagesAdded = {this.props.multiplePagesAdded} />
                                 </div>
                                 <GridCell columnSize={760} type={"px"}>
                                     {this.render_details()}
@@ -1685,7 +1686,8 @@ App.propTypes = {
     getPageHierarchy: PropTypes.func.isRequired,
     dirtyTemplate: PropTypes.bool,
     dirtyCustomDetails: PropTypes.bool,
-    onChangeCustomDetails: PropTypes.func
+    onChangeCustomDetails: PropTypes.func,
+    multiplePagesAdded: PropTypes.bool
 };
 
 function mapStateToProps(state) {
@@ -1696,6 +1698,7 @@ function mapStateToProps(state) {
         selectedPage: state.pages.selectedPage,
         selectedPageErrors: state.pages.errors,
         selectedPageDirty: state.pages.dirtyPage,
+        multiplePagesAdded: state.addPages.multiplePagesAdded,
         filtersUpdated: state.pages.filtersUpdated,
         dirtyTemplate: state.template.dirtyTemplate,
         dirtyEvoqTemplate: state.template.dirtyEvoqTemplate,

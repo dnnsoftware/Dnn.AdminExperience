@@ -8,7 +8,8 @@ function getEmptyBulkPage() {
         tags: "",
         includeInMenu: true,
         startDate: null,
-        endDate: null
+        endDate: null,
+        multiplePagesAdded: false
     };
 }
 
@@ -35,7 +36,17 @@ export default function addPagesReducer(state = {
         case ActionTypes.CHANGE_MULTIPLE_PAGE_VALUE:
             return { ...state,
                 bulkPage: changeField(state, action.field, action.value),
-                dirtyBulkPage:true           
+                dirtyBulkPage:true      
+            };
+
+        case ActionTypes.FORCE_PAGE_LIST_LOAD:
+            return { ...state,
+                multiplePagesAdded: true
+            };
+
+        case ActionTypes.UNFORCE_PAGE_LIST_LOAD:
+            return { ...state,
+                multiplePagesAdded: false
             };
 
         default:
