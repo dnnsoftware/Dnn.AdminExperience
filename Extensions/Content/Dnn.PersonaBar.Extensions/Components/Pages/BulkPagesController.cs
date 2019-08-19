@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Xml;
 using Dnn.PersonaBar.Pages.Components.Exceptions;
@@ -75,11 +76,7 @@ namespace Dnn.PersonaBar.Pages.Components
                     {
                         oTab.TabID = CreateTabFromParent(portalSettings, rootTab, oTab, parentId, validateOnly, out errorMessage);
                     }
-                    else if (validateOnly)
-                    {
-                        errorMessage = string.Empty;
-                    }
-                    else
+                    else if (HasValidTabLevelDepth(oTab, tabs.Take(currentIndex), out errorMessage) && !validateOnly)
                     {
                         var parentTabId = GetParentTabId(tabs, currentIndex, oTab.Level - 1);
                         if (parentTabId != Null.NullInteger)
@@ -87,6 +84,7 @@ namespace Dnn.PersonaBar.Pages.Components
                             oTab.TabID = CreateTabFromParent(portalSettings, rootTab, oTab, parentTabId, validateOnly, out errorMessage);
                         }
                     }
+
                     bulkPageItems.Add(ToBulkPageResponseItem(oTab, errorMessage));
                 }
                 catch (Exception ex)
@@ -97,6 +95,32 @@ namespace Dnn.PersonaBar.Pages.Components
             response.Pages = bulkPageItems;
 
             return response;
+        }
+
+        private bool HasValidTabLevelDepth(TabInfo currentTab, IEnumerable<TabInfo> tabsBeforeCurrentTab, out string errorMessage)
+        {
+            errorMessage = string.Empty;
+
+            // Return true if it's already a root tab
+            if (currentTab.Level == 0)
+            {
+                return true;
+            }
+
+            foreach (var previousTab in tabsBeforeCurrentTab.Reverse())
+            {
+                if (previousTab.Level == currentTab.Level - 1)
+                {
+                    return HasValidTabLevelDepth(previousTab, tabsBeforeCurrentTab.TakeWhile(t => t != previousTab), out errorMessage);
+                }
+                else if (previousTab.Level < currentTab.Level)
+                {
+                    break;
+                }
+            }
+
+            errorMessage = Localization.GetString("TabDepthIsWrong");
+            return false;
         }
 
         private static BulkPageResponseItem ToBulkPageResponseItem(TabInfo tab, string error)
