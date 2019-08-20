@@ -664,6 +664,11 @@ class PersonaBarPageTreeviewInteractor extends Component {
                 this.setState({
                     isTreeviewExpanded: !this.state.isTreeviewExpanded
                 });
+            } else if (item.childCount === 0) {
+                delete item.childListItems;
+                delete item.isOpen;
+                delete item.hasChildren;
+                updateStore(list);
             }
         });
 
