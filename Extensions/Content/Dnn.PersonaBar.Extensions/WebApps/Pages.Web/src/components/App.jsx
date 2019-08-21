@@ -1604,7 +1604,7 @@ class App extends Component {
                                         NoPermissionSelectionPageId={this.noPermissionSelectionPageId}
                                         CallCustomAction={this.CallCustomAction.bind(this)}
                                         enabled={!((selectedPage && selectedPage.tabId === 0) || inSearch)}
-                                        multiplePagesAdded = {this.props.multiplePagesAdded} />
+                                        multiplePagesAdded={this.props.multiplePagesAdded} />
                                 </div>
                                 <GridCell columnSize={760} type={"px"}>
                                     {this.render_details()}
