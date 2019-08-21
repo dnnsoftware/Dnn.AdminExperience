@@ -41,7 +41,8 @@ const addPagesActions = {
         return (dispatch) => {
             dispatch({
                 type: ActionTypes.UNFORCE_PAGE_LIST_LOAD
-        })};
+            });
+        };
     },
 
     addPages(callback) {

@@ -674,17 +674,17 @@ class PersonaBarPageTreeviewInteractor extends Component {
 
         const waitForChildList = (timeoutTime, callback) => new Promise((resolve, reject) => {
             const check = () => {                
-                if(this.state.isChildLoaded) {
+                if (this.state.isChildLoaded) {
                     callback();
                     resolve();
-                } else if((timeoutTime -= 100) < 0) {
+                } else if ((timeoutTime -= 100) < 0) {
                     reject();
                 } else {
                     setTimeout(check, 100);
                 }                
             }
 
-            setTimeout(check, 100)
+            setTimeout(check, 100);
         });
 
         if (this.props.multiplePagesAdded) {
