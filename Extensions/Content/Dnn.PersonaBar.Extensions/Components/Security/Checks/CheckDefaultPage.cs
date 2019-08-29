@@ -59,9 +59,8 @@ namespace Dnn.PersonaBar.Security.Components.Checks
             var sumData = Utility.LoadFileSumData();
 
             var appVersion = Utility.GetApplicationVersion();
-            var appType = Utility.GetApplicationType();
 
-            var dataNodes = sumData.SelectNodes("/checksums/sum[@version=\"" + appVersion + "\"][@type=\"" + appType + "\"]");
+            var dataNodes = sumData.SelectNodes("/checksums/sum[@version=\"" + appVersion + "\"]");
             if (dataNodes == null || dataNodes.Count == 0)
             {
                 return true; //when no record matched, need notify user to update the module.
