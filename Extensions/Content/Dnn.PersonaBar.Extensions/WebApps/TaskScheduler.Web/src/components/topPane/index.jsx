@@ -7,7 +7,7 @@ import {
 import styles from "./style.less";
 import { Button, TextOverflowWrapper } from "@dnnsoftware/dnn-react-common";
 import ModePanel from "./modePanel";
-import util from "../../utils";
+import { util } from "../../utils";
 import resx from "../../resources";
 
 /*eslint-disable quotes*/

@@ -12,7 +12,7 @@ import TopPane from "../topPane";
 import { DnnTabs as Tabs, PersonaBarPageBody } from "@dnnsoftware/dnn-react-common";
 import "./style.less";
 import resx from "../../resources";
-import util from "../../utils";
+import { util } from "../../utils";
 
 export class Body extends Component {
     constructor() {

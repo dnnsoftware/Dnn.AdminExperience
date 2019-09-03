@@ -8,7 +8,7 @@ import SchedulerRow from "./schedulerRow";
 import { Dropdown, Collapsible, SvgIcons } from "@dnnsoftware/dnn-react-common";
 import SchedulerEditor from "./schedulerEditor";
 import "./style.less";
-import util from "../../utils";
+import { util } from "../../utils";
 import resx from "../../resources";
 
 let tableFields = [];

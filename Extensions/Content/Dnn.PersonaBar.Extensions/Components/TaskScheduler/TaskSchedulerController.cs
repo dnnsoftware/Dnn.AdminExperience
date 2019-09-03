@@ -30,8 +30,8 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Net;
 using DotNetNuke.Common.Utilities;
+using DotNetNuke.Entities.Controllers;
 using DotNetNuke.Instrumentation;
 using DotNetNuke.Services.Localization;
 using DotNetNuke.Services.Scheduling;
@@ -136,6 +136,7 @@ namespace Dnn.PersonaBar.TaskScheduler.Components
             scheduleItem.Servers = string.IsNullOrEmpty(servers) ? Null.NullString : servers;
             return scheduleItem;
         }
+
         public IEnumerable<ScheduleItem> GetScheduleItems(bool? enabled, string serverName = "", string taskName = "")
         {
             try
@@ -166,6 +167,44 @@ namespace Dnn.PersonaBar.TaskScheduler.Components
                 Logger.Error(exc);
                 return null;
             }
+        }
+
+        /// <summary>
+        /// Gets list of servers to be recommended for the particular scheduler.
+        /// </summary>
+        /// <param name="schedulerId">Scheduler Id</param>
+        /// <returns>List of recommended servers</returns>
+        public IEnumerable<string> GetRecommendedServers(int schedulerId)
+        {
+            var recommendedServers = new List<string>();
+
+            var schedulersToRunOnSameWebServer = HostController.Instance.GetString(
+                "SchedulersToRunOnSameWebServer", 
+                string.Empty);
+
+            var schedulers = schedulersToRunOnSameWebServer.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+
+            if (!schedulers.Any() || !schedulers.Select(x => x.Trim()).Contains(schedulerId.ToString()))
+            {
+                return recommendedServers;
+            }
+
+            foreach (var scheduler in schedulers)
+            {
+                if (!int.TryParse(scheduler.Trim(), out int id) || id == schedulerId)
+                {
+                    continue;
+                }
+
+                var schedule = SchedulingProvider.Instance().GetSchedule(id);
+
+                if (schedule != null && schedule.Enabled && !string.IsNullOrWhiteSpace(schedule.Servers))
+                {
+                    recommendedServers.AddRange(schedule.Servers.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries));
+                }
+            }
+
+            return recommendedServers.Distinct().OrderBy(x => x);
         }
     }
 }

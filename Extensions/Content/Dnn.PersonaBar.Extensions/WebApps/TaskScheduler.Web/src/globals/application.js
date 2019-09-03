@@ -1,4 +1,4 @@
-import utilities from "../utils";
+import { util } from "../utils";
 const boilerPlate = {
     init() {
         // This setting is required and define the public path 
@@ -7,8 +7,8 @@ const boilerPlate = {
         // __webpack_public_path__ = options.publicPath;        
         let options = window.dnn.initScheduler();
 
-        utilities.init(options.utility);
-        utilities.moduleName = options.moduleName;
+        util.init(options.utility);
+        util.moduleName = options.moduleName;
 
         // delay the styles loading after the __webpack_public_path__ is set
         // this allows the fonts associated to be loaded properly in production
