@@ -199,7 +199,7 @@ namespace Dnn.PersonaBar.Roles.Components
                 parentFolder = AssetManager.Instance.CreateFolder(role.RoleID.ToString(),
                     portalFolder.FolderID,
                     portalFolder.FolderMappingID,
-                    "");
+                    string.Empty);
             }
 
             AssetManager.Instance.CreateFolder(role.RoleID.ToString(),
