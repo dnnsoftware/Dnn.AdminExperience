@@ -192,9 +192,10 @@ namespace Dnn.PersonaBar.Roles.Components
             Requires.NotNull("role", role);
 
             var parentFolder = FolderManager.Instance.GetFolder(role.PortalID, "Groups");
-            var portalFolder = FolderManager.Instance.GetFolder(role.PortalID, "");
+            
             if (parentFolder == null)
             {
+                var portalFolder = FolderManager.Instance.GetFolder(role.PortalID, string.Empty);
                 parentFolder = AssetManager.Instance.CreateFolder(role.RoleID.ToString(),
                     portalFolder.FolderID,
                     portalFolder.FolderMappingID,
@@ -204,7 +205,7 @@ namespace Dnn.PersonaBar.Roles.Components
             AssetManager.Instance.CreateFolder(role.RoleID.ToString(),
                 parentFolder.FolderID,
                 parentFolder.FolderMappingID,
-                "");
+                string.Empty);
 
             RoleController.Instance.AddUserRole(role.PortalID,
                 userId,
