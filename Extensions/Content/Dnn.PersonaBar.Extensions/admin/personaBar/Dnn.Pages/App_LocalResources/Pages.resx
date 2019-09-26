@@ -153,6 +153,15 @@
   <data name="Cancel.Text" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="Continue.Text" xml:space="preserve">
+    <value>Continue</value>
+  </data>
+  <data name="UpdateLocalizationWarning.Text" xml:space="preserve">
+    <value>Updating localization might take a few minutes depending on the number of modules. Please wait until the process finishes completely.</value>
+  </data>
+  <data name="UpdateLocalizationSuccess.Text" xml:space="preserve">
+    <value>Done!</value>
+  </data>
   <data name="DragPageTooltip.Text" xml:space="preserve">
     <value>Drag Page into Location</value>
   </data>
@@ -523,7 +532,7 @@
     <value>{0} is an invalid Page Title.</value>
   </data>
   <data name="CustomUrlPathCleaned.Error" xml:space="preserve">
-    <value>The Page URL entered contains characters which cannot be used in a URL or are illegal characters for a URL.   These characters have been removed.  Click the Update button again to accept the modified URL.&lt;br&gt;[NOTE: The illegal characters list is the following: &lt;&gt;\?:&amp;=+|%# ]</value>
+    <value>The Page URL entered contains characters which cannot be used in a URL or are illegal characters for a URL.   These characters have been removed.  Click the Update button again to accept the modified URL.</value>
   </data>
   <data name="CustomUrlPortalAlias.Error" xml:space="preserve">
     <value>Please select a valid site alias for this custom URL.</value>
