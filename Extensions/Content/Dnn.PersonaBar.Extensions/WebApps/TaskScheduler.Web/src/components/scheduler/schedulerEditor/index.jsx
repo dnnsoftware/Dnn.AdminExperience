@@ -14,7 +14,7 @@ import History from "../../history";
 import {
     task as TaskActions
 } from "../../../actions";
-import util from "../../../utils";
+import { util, formatString } from "../../../utils";
 import resx from "../../../resources";
 
 const re = /^[1-9][0-9]?[0-9]?[0-9]?[0-9]?[0-9]?$/;
@@ -203,7 +203,36 @@ class SchedulerEditor extends Component {
             return;
         }
 
-        props.onUpdate(props.scheduleItemDetail);
+        this.handleRecommendedServers(() => props.onUpdate(props.scheduleItemDetail));
+    }
+
+    handleRecommendedServers(callback) {
+        const { scheduleItemDetail } = this.props;
+        const runCallback = function () {
+            if (callback && typeof(callback) === "function") {
+                callback();
+            }
+        };
+        const compare = function (prev, next) {
+            return prev.toLowerCase().localeCompare(next.toLowerCase());
+        };
+
+        if ((scheduleItemDetail.RecommendedServers || []).length > 0) {
+            const servers = scheduleItemDetail.Servers ? 
+                scheduleItemDetail.Servers.split(",").filter(function (e) { return e; }).sort(compare) : [];
+            const recommendedServers = scheduleItemDetail.RecommendedServers.sort(compare);
+
+            if (JSON.stringify(servers).toLowerCase() !== 
+                JSON.stringify(recommendedServers).toLowerCase()) {
+                util.utilities.confirm(formatString(resx.get("RecommendServers"), recommendedServers.join(", ")), resx.get("Yes"), resx.get("No"), () => {
+                    runCallback();
+                });
+            } else {
+                runCallback();
+            }
+        } else {
+            runCallback();
+        }
     }
 
     onCancel() {

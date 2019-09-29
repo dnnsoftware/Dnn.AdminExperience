@@ -263,7 +263,9 @@ namespace Dnn.PersonaBar.TaskScheduler.Services
         {
             try
             {
-                ScheduleItem scheduleItem = SchedulingProvider.Instance().GetSchedule(scheduleId);
+                var scheduleItem = SchedulingProvider.Instance().GetSchedule(scheduleId);
+
+                var recommendedServers = _controller.GetRecommendedServers(scheduleItem.ScheduleID);
 
                 var response = new
                 {
@@ -284,7 +286,8 @@ namespace Dnn.PersonaBar.TaskScheduler.Services
                         scheduleItem.AttachToEvent,
                         scheduleItem.CatchUpEnabled,
                         scheduleItem.ObjectDependencies,
-                        scheduleItem.Servers
+                        scheduleItem.Servers,
+                        RecommendedServers = recommendedServers
                     },
                     TotalResults = 1
                 };

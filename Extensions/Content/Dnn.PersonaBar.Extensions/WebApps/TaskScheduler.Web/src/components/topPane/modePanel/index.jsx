@@ -6,7 +6,7 @@ import "./style.less";
 import {
     task as TaskActions
 } from "../../../actions";
-import util from "../../../utils";
+import { util } from "../../../utils";
 import resx from "../../../resources";
 
 const re = /^([0-9]|[1-9][0-9]|[1-9][0-9][0-9]|[1-9][0-4][0-4][0])$/;

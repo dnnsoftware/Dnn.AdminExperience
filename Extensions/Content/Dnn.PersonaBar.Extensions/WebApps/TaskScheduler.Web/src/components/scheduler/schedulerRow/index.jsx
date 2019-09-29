@@ -7,7 +7,7 @@ import resx from "../../../resources";
 import {
     task as TaskActions
 } from "../../../actions";
-import util from "../../../utils";
+import { util } from "../../../utils";
 
 /*eslint-disable quotes*/
 const svgIcon = require(`!raw-loader!./../../svg/checkmark.svg`).default;

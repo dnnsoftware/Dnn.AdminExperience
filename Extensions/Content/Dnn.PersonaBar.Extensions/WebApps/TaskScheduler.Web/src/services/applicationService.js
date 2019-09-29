@@ -1,4 +1,4 @@
-import util from "../utils";
+import { util } from "../utils";
 function serializeQueryStringParameters(obj) {
     let s = [];
     for (let p in obj) {
