@@ -26,11 +26,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using Dnn.PersonaBar.Roles.Services.DTO;
+using DotNetNuke.Common;
 using DotNetNuke.Common.Utilities;
 using DotNetNuke.Entities.Portals;
 using DotNetNuke.Entities.Users;
 using DotNetNuke.Framework;
 using DotNetNuke.Security.Roles;
+using DotNetNuke.Services.Assets;
+using DotNetNuke.Services.FileSystem;
 using DotNetNuke.Services.Localization;
 
 #endregion
@@ -170,7 +173,47 @@ namespace Dnn.PersonaBar.Roles.Components
                     return false;
                 }
             }
+
+            if (roleDto.IsPublic && roleDto.SecurityMode == SecurityMode.SocialGroup)
+            {
+                AddSocialRole(role, portalSettings.UserId);
+            }
+
             return true;
+        }
+
+        /// <summary>
+        /// Add Role to Social Group, create folder(s) for it and adds user created role as owner.
+        /// </summary>
+        /// <param name="role"></param>
+        /// <param name="userId"></param>
+        public void AddSocialRole(RoleInfo role, int userId)
+        {
+            Requires.NotNull("role", role);
+
+            var parentFolder = FolderManager.Instance.GetFolder(role.PortalID, "Groups");
+            
+            if (parentFolder == null)
+            {
+                var portalFolder = FolderManager.Instance.GetFolder(role.PortalID, string.Empty);
+                parentFolder = AssetManager.Instance.CreateFolder(role.RoleID.ToString(),
+                    portalFolder.FolderID,
+                    portalFolder.FolderMappingID,
+                    string.Empty);
+            }
+
+            AssetManager.Instance.CreateFolder(role.RoleID.ToString(),
+                parentFolder.FolderID,
+                parentFolder.FolderMappingID,
+                string.Empty);
+
+            RoleController.Instance.AddUserRole(role.PortalID,
+                userId,
+                role.RoleID,
+                RoleStatus.Approved,
+                true,
+                Null.NullDate,
+                Null.NullDate);
         }
 
         public string DeleteRole(PortalSettings portalSettings, int roleId, out KeyValuePair<HttpStatusCode, string> message)
