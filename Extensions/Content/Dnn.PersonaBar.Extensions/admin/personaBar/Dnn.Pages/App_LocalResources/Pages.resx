@@ -516,6 +516,9 @@
   <data name="TabRecycled.Text" xml:space="preserve">
     <value>A page with this name exists in the Recycle Bin.  To restore this page use the Recycle Bin.</value>
   </data>
+  <data name="TabDepthIsWrong.Text" xml:space="preserve">
+    <value>Parent tab couldn't be found since tab hierarchy is wrong.</value>
+  </data>
   <data name="BulkPagesLabel.Text" xml:space="preserve">
     <value>One page per line, prepended with "&gt;" to create hierarchy</value>
   </data>
