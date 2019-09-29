@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -185,23 +186,8 @@ namespace Dnn.PersonaBar.Security.Components
 
         public static string GetApplicationVersion()
         {
-            return DotNetNukeContext.Current.Application.Version.ToString(3);
-        }
-
-        public static string GetApplicationType()
-        {
-            switch (DotNetNukeContext.Current.Application.Name)
-            {
-                case "DNNCORP.CE":
-                    return "Platform";
-                case "DNNCORP.XE":
-                case "DNNCORP.PE":
-                    return "Content";
-                case "DNNCORP.SOCIAL":
-                    return "Social";
-                default:
-                    return "Platform";
-            }
+            var version = new Version(FileVersionInfo.GetVersionInfo(typeof(DotNetNuke.Common.Globals).Assembly.Location).FileVersion);
+            return version.ToString(3);
         }
 
         public static IList<FileInfo> GetLastModifiedFiles()
