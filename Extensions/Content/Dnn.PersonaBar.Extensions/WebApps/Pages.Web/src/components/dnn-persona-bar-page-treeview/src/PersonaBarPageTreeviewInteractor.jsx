@@ -742,7 +742,7 @@ class PersonaBarPageTreeviewInteractor extends Component {
         return (
             <div
                 onClick={this.props.enabled ? this.toggleExpandAll.bind(this) : () => {}}
-                className="collapse-expand" >
+                className={this.state.initialCollapse ? "collapse-expand initial" : "collapse-expand"}>
                 [{this.state.isTreeviewExpanded ? Localization.get("lblCollapseAll").toUpperCase() : Localization.get("lblExpandAll").toUpperCase()}]
             </div>
         );
