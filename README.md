@@ -4,7 +4,11 @@
 
 The Persona Bar Library, Extensions and EditBar for Dnn (DotNetNuke) is the core of the admin experience in Dnn. 
 
+# No Longer Used
 
+This repository is no longer used and the content of the Persona Bar has been merged into the DNN.Platform repository.  This project will be moved to Read-Only.  Please DO NOT SUBMIT any pull requests or issues to this repository.
+
+## -----------------------------------------------------------------------------
 ## Quick Links
 
 * [Contribute](CONTRIBUTING.md)
